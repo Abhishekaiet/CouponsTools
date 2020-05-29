@@ -1,0 +1,158 @@
+ 
+ 
+ 
+ 
+ 
+ /*upload image panel drag and dorp plus sign will apear it*/
+  .demo-droppable {
+    background: #454545;
+    color: #fff;
+    text-align: center;
+	width:200px;
+	height:140px;
+	position:relative;
+	margin-left:150px;
+	margin-bottom:10px;
+	border:1px dashed #FFFFFF;
+
+  }
+  .demo-droppable.dragover {
+    background: #00CC71;
+  }
+  
+  .drag_uplo{margin-top:80px; position:absolute; margin-left:10px;}
+ 
+ 
+ .edit_tool{width:524px; height:335px; background:#535353; position:absolute; z-index:10; margin-left:817px;}
+.edit_tool1{width:100%; height:22px; background:#000000;}
+.btn_tool_1{background:none; border:1px solid #FFFFFF; color:#FFFFFF; margin-left:18px; width:150px; font-size:13px!important; border-radius:3px;}
+.btn_tool{background:none; border:1px solid #FFFFFF; color:#FFFFFF; margin-left:20px; font-size:13px!important; border-radius:3px;}
+.filed_tool{background:#8e8e8e; color:#FFFFFF; border:none; border-radius:2px; padding-left:10px; margin-left:10px;}
+.filed_tool::placeholder{color:#FFFFFF;}
+.corl2 img{height:65px!important;}
+.title_tool{color:#FFFFFF; margin-top:-17px; font-size:12px;}
+.bottm{width:100%; height:20px; background:#000000; text-align:center;}
+.btn_tool_done{background:none; width:150px; height:18px; color:#FFFFFF; border:none;} 
+.slide_tool{margin-top:-10px;}
+
+.btn-bs-file{
+    position:relative;
+}
+.btn-bs-file input[type="file"]{
+    position: absolute;
+    top: -9999999;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    width:0;
+    height:0;
+    outline: none;
+    cursor: inherit;
+}
+	
+	.url1{width:165px; height:23px; background:#8e8e8e; margin-left:10px; border:none; border-radius:2px; padding-left:5px;}
+	.url1::placeholder{color:#FFFFFF;}
+	.url1:focus{outline:none;}
+	
+	
+	
+	/*Hover effect slider on add image sign*/
+	
+	.sel_chck{margin-right:5px!important;}
+	
+.con
+{
+position:absolute;
+width:55%;
+height:25px;
+background:#535353;
+top:23px;
+left:25px;
+display:none;
+color:#FFFFFF;
+text-align:center;
+font-size:13px;
+}
+
+
+.corl:hover >.con{display:block;}
+ 
+ 
+ 
+ 
+ .slct{background:none; color:#FFFFFF; width:50px; font-size:12px; border:none;}
+		 
+		   .filter_div{width:100%; height:auto; border:1px solid #FFFFFF; margin-top:5px; border-right:none; border-left:none;}
+		   .search::placeholder{color:#FF0000!important;}
+		   #player{width:100%!important;}
+		   
+		   .slct option{background:#535353;}
+		   
+		   
+		   
+		   
+		   
+		   /*timeline*/
+		   
+		   #dvSource img{width:100%; height:95px; float:left; margin-left:-0px;}
+        .draggable
+        {
+            filter: alpha(opacity=60);
+            opacity: 0.6;
+        }
+        .dropped
+        {
+            position: static !important;
+        }
+        #dvSource
+        {
+            
+            width:auto;
+			float:left;
+			
+        }
+	
+	#dvDest img{width:60px; height:40px; float:left;}	
+	
+	
+	
+	
+	/* being Sort button css youtube part */
+		   .sort_btn a{color:#FFFFFF; font-size:12px; margin-left:25px;}
+		   .sort_btn a:hover{text-decoration:none;}
+		  
+		  .filter_btn a{color:#FFFFFF; font-size:12px; margin-left:8px;}
+		   .filter_btn a:hover{text-decoration:none;}
+		   
+		   
+		   .sort_tab{width:100%; height:auto; background:#262626; border:1px solid #858585;}
+		   .sort_tab ul{list-style:none; margin-left:-30px; margin-top:35px;}
+		   .sort_tab ul li{margin-top:-20px; font-size:11px; color:#787878;}
+		   .sort_tab ul li a{text-decoration:none; color:#FFFFFF; font-size:11px;}
+		   .horizantal{width:250px; margin-top:2px; margin-left:-0px;}
+		   .acc{float:right; margin-right:6px; cursor:pointer;}
+		   .decc{float:right; margin-right:6px; cursor:pointer;}
+		   .sort_tab p a{color:#FFFFFF;}
+		   
+		   /*Ends sort button css youtube part*/
+		   
+		   
+		   /*bings filter button css youtube part*/
+		   
+		   .filter_tab{width:100%; height:700px; background:#262626; position:absolute; border:1px solid #858585; z-index:10;}
+		    .slct_provider{color:#FFFFFF; font-size:12px; margin-left:8px;}
+			.slet_provider{background:#535353; border:none; color:#FFFFFF; width:135px; font-size:13px; padding-left:5px; height:22px; float:right; margin-right:5px;}
+			.slet_provider option{font-size:12px; margin-top:5px;}
+			
+			.filter_tab ul{list-style:none; margin-top:25px; margin-left:-26px;}
+			.filter_tab ul li{color:#FFFFFF; font-size:12px; margin-top:-18px;}
+			.fil_hr{width:95%; margin-left:0px; margin-top:-0px; background:#585858!important;}
+			.arraow{float:right; margin-right:15px;}
+			.right_filter{float:right; margin-right:15px;}
+			.drop_duration li{}
+			.hr_dropdown{width:94%; margin-left:0px; margin-top:-0px;}
+			.arrow_descelt{margin-top:5px; margin-left:8px;}
+			.select_dropdwon{cursor:pointer;}
+			
+			 /*ends filter button css youtube part*/
+		  
+		   
