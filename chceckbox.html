@@ -1,0 +1,63 @@
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="js/responsive.css">
+	  <link rel="stylesheet" type="text/css" href="css/coupons&deals.css">
+	  <link rel="stylesheet" type="text/css" href="css/creatingcoupons.css">
+	  <link rel="stylesheet" type="text/css" href="css/creatingpage.css">
+	  <link rel="stylesheet" type="text/css" href="css/creatingcouponsleftresult.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+	
+	
+	<button type="button" id="removeselted">Remove</button>
+	
+	<script>
+		
+	    var arrayweblink;
+	    arrayweblink = ['shahrukh','khan',"salman",'amir'];
+//		
+		var selectedimage;
+	    selectedimage = [0,1,2];
+		
+		document.getElementById('removeselted').addEventListener('click',function(){
+			
+var i = arrayweblink.length;
+while (i--) {
+	for( var k = 0; k < selectedimage.length; k++){
+    if (i == selectedimage[k]) {
+        arrayweblink.splice(i, 1);
+    }
+	}
+}
+console.log(arrayweblink)
+
+	});
+		
+		
+		
+//		
+	
+	</script>
+	
+	
+	
+	
+	
+</body>
+</html>
+
+
+
+
