@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Web Studio</title>
+	
+	<!-- Being Font Aewesome version 5.1.0 CDN calling fonts on page -->
+ 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="js/responsive.css">
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+	  <script src="https://use.fontawesome.com/9c9720beb5.js"></script>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css" />	<!-- Css Stylesheet Contolling page Design-->
+  
+  </head>
+  <body>
+  
+ <div class="container-fluid">
+ <div class="row">
+    <nav class="navbar navbar-default" role="navigation">
+       <div class="container-fluid" style="padding-right: 20px; background: white; box-shadow: 0px 0px 8px black">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="
+    padding-left: 38%;"><img src="img/logo_community.png" style="width: 244px; height: 32px; margin-top: -5px;"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               
+                <ul class="nav navbar-nav navbar-right">
+				<li><a href="#" style="color:#FFFFFF;"></a></li>
+					<li><span class="textusertop">welcome back Aman</span> <button type="button" class="backtoappbtn"><i class="fa fa-caret-left" aria-hidden="true" style="margin-right: 11px;"></i>Back to App</button></li>
+				
+					
+				
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
+
+<div class="search">
+    <button type="button" class="close">X</button>
+    <form>
+        <input type="search"  placeholder="type Here" />
+        <button type="submit" class="btn btn-primary btn-search"> > Search</button>
+    </form>
+</div>
+
+	 <style>
+		 
+		 .textusertop
+		 {
+			 font-size: 24px;
+    margin-right: 14px;
+		 }
+		 
+		 .backtoappbtn
+		 {
+			width: 166px;
+    border-radius: 17px;
+    border: none;
+    padding: 5px;
+    font-size: 19px;
+    /* font-family: bold; */
+    font-weight: 500;
+    /* padding-bottom: 5px; */
+    margin-bottom: 13px;
+    background: #E9E9E9;
+    margin-top: 16px;
+    margin-right: 35px;
+		 }
+	 
+		 .cupons{width: 140px;height: 40px; background: white; float: left; text-align: center; width: 140px;
+    height: 40px;
+    background: white;
+    /* border-radius: 25px; */
+    float: left;
+   
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;}
+		 .deals{width: 140px;height: 40px; background:#D5D5D5; float: left; text-align: center; border-top-right-radius: 20px;
+   border-bottom-right-radius: 20px;}
+		 
+		 .cupons img{
+		     width: 70px;
+    height: 25px;
+    margin-top: 6px;
+		 }
+		 
+		 .deals img{
+		     width: 42px;
+    height: 25px;
+    margin-top: 6px;
+		 }
+		 
+		 .sreach{
+			 width: 212px;
+    height: 35px;
+    background: #969494;
+    padding-left: 19px;
+		 }
+		 
+		 #searchfield::placeholder
+		 {
+			 color: black;
+		 }
+		 .underline
+		 {
+			width: 52%;
+    height: 5px;
+    margin-right: 41px;
+    border-radius: 26px;
+    background: #bbb5b5;
+			 margin-top: 15px;
+			 
+		 }
+		 
+		
+		 
+	 </style>
+
+<div class="container-fluid">
+	 
+	<div class="row">
+	
+	<div class="col-sm-4">
+		
+		<butto class="cupons" onclick="mycupons()" id="btncupons">
+		<img src="img/Icons/cuponslight.png" id="cuposnimage" onClick="mycupons()">
+		</butto>
+		
+		<butto class="deals" onclick="myFunction()" id="btndealsbg">
+		<img src="img/Icons/dealsoff.png" onClick="myfunction" id="dealsimage">
+		</butto>
+		
+		
+		
+		
+	</div>
+	
+		
+		<div class="col-sm-3" align="right">
+	
+			
+			 <h3 align="center" style="font-size: 35px;
+    color: black;
+    font-weight: 550;
+    font-family: inherit;
+    margin-left: 87px;
+    margin-top: 1px;" id="couponstitle">Your Coupons</h3>
+	
+			<div class="underline"></div>
+		
+	</div>	
+		
+		<div class="col-sm-5" style="padding-top:7px;">
+	
+			
+            <input type="search" placeholder="Search" style="border: none;
+    width: 193px;
+    border-radius: 12px;
+    height: 27px;padding-left: 17px;
+" id="searchfield">
+			<button type="button" class="sortfliter">Sort & Filters</button>
+			<button type="button" class="dlete" id="datacallingal">Delete</button>
+			<button type="button" class="slcall">Select All</button>
+			
+		
+		
+	</div>	
+	</div><!--Row end-->
+    </div><!--Container End-->
+	 </div>
+	 
+	  
+	 <style>
+		 
+		 .sortfliter
+		 {	
+       padding: 4px;
+    background: white;
+    border: none;
+    border-radius: 10px;
+    /* font-weight: bold; */
+    width: 129px;
+			     margin-left: 19px;
+		 }
+		 
+		 .slcall
+		 {
+			     width: 113px;
+    padding: 4px;
+    background: white;
+    border: none;
+    border-radius: 10px;
+    /* font-weight: bold; */
+    margin-right: 16px;
+    margin-left: 22px;
+			 
+		 }
+		 
+		 .dlete
+		 {
+			   width: 85px;
+    padding: 4px;
+    background: #e4e4e4;
+    border: none;
+    border-radius: 10px;
+    margin-left: 24px;
+			 
+		 }
+		 
+		 
+		 
+	 .cupons_dev
+		 {
+			 width: 100%; height: 800px; background:; position: relative;
+		 }
+		 .creating_cupons{
+			width: 495px;
+    height: 189px;
+    background: ;
+    margin-left: 24px;
+    margin-top: 20px;
+    float: left;
+			 display:inline;
+		 }
+		 
+		 
+		 
+		 .creating_deals{
+			width: 495px;
+    height: 189px;
+    background: ;
+    margin-left: 24px;
+    margin-top: 20px;
+    float: left;
+		 }
+		 
+		 .create_deals{
+			    width: 360px;
+    height: 222px;
+    background: ;
+    margin-left: 24px;
+    margin-top: 20px;
+    float: left;
+		 }
+		 .create_deals img
+		 {
+			 width: 100%; 
+			 height: 100%;
+		 }
+		 
+		 
+	 </style>
+	 
+	
+	  
+<!--
+	  
+	 <div class="cupons_dev" id="cupons_div">
+
+		 
+		<a href="creatingcoupons.html"> <div class="creating_cupons">
+		 
+			 <img src="img/homecreatingimg/Create_Coupon.png" style="width: 100%; height: 100%;">
+		 
+		 </div>
+		 </a>
+			
+		 
+		  <div class="creating_cupons">
+		 
+			  <ul id="couponsimage"></ul>
+			  
+		 </div>
+		 
+		
+		 
+	
+	 </div>
+-->
+	 
+	 <a href="creatingcoupons.html">
+		 <img src="img/homecreatingimg/Create_Coupon.png" style="    width: 30%;
+    height: 100%;
+    margin-left: 32px;">
+			 </a>
+	 <div id="dataglu">
+		 
+	 			  <ul id="couponsimage1"></ul>
+	 
+	 </div>
+	 <style>
+		 
+		 #couponsimage1
+		 {
+			 float:left;
+			 display: inline;
+			 margin-left: 30px;
+		 }
+		 
+		 #couponsimage1 li
+		 {
+			 
+			 float:left;
+			     width: 513px;
+			 list-style: none;
+		 }
+		 
+	 
+	#dataglu
+		 {
+			 width: 100%;
+			 height: 100%;
+/*			 background: blue;*/
+			 float: left;
+		 }
+		 
+			 
+		 .namedd
+					{
+/*						    background: orange;*/
+  width: 199px;
+    left: 81px;
+    top: 27px;
+    position: absolute;
+    height: 27px;
+    overflow: auto;
+		 }
+	 
+		 
+		 .objectcoupons
+					{
+						    width: 100%;
+    height: 133px;
+    background-image: url("img/blankcoupons/Things_to_do.png");
+    position: relative;
+					    background-size: contain;	
+					}
+					.imgclass
+					{
+						width: 54px;
+    height: 40px;
+    background: red;
+    position: absolute;
+    left: 13px;
+    top: 10px;
+					}
+					
+				
+					
+					.rigtimage
+					{
+
+						   
+    width: 173px;
+    /* left: 67px; */
+    right: 72px;
+    top: 29px;
+    position: absolute;
+    height: 168px;
+						
+					}
+					.offerdd
+					{
+/*						        background: #25ff00;*/
+   
+        width: 203px;
+    left: 20px;
+    top: 136px;
+    position: absolute;
+    height: 58px;
+    overflow: auto;
+}
+				
+					.desc
+					{
+/*						background: #ff00d2;*/
+ 
+      width: 198px;
+    left: 81px;
+    top: 58px;
+    position: absolute;
+    height: 69px;
+    overflow: auto;
+}
+					
+					#imagecc
+					{
+						width: 100%;
+						height: 100%;
+						
+					}
+					#namedc
+					{    margin: 0px;
+    font-size: 9px;
+    text-align: left;
+    width: 100%;
+    padding: 3px;
+					}
+					
+					#desccc
+					{    margin: 0px;
+    font-size: 9px;
+    text-align: left;
+    width: 100%;
+    padding: 3px;
+					}
+					#offerdc
+					{        margin: 0px;
+    font-size: 8px;
+    text-align: left;
+    width: 100%;
+    padding: 3px;
+    color: white;
+					}
+					#imagerightcc
+					{
+						width: 100%;
+						height: 100%;
+					}
+					
+		 
+		 
+		 .delofferleft
+		
+		 {
+			 width: 100%;
+    height: 61px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    position: absolute;
+    bottom: -3px;
+		 }
+		 
+		 .delofferleft2
+		
+		 {
+			 width: 100%;
+    height: 61px;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    
+		 }
+		 
+		 
+		 #couponsimagedeal
+		 {
+			 list-style: none;
+		 }
+		 
+		 #checkbox
+		 {
+			     width: 100%;
+    height: 43px;
+    position: absolute;
+    top: 0;
+			     z-index: 1;
+		 }
+		 
+		 
+		 
+		 
+		 
+		 /* The container */
+.contain {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.contain input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+      top: 9px;
+    left: 5px;
+  height: 25px;
+  width: 25px;
+	border: 1px solid;
+  background-color: white;
+}
+
+/* On mouse-over, add a grey background color */
+.contain:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.contain input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.contain input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.contain .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+		 
+	 </style>
+	 
+	 
+	  
+	  
+	  <div class="cupons_dev" style="display: none;" id="deals_dav">
+	<br>
+		 
+			 
+	 
+	
+		 
+		 <div class="create_deals">
+		 
+			 <img src="img/homecreatingimg/Create_Deal.png" style="width: 100%;
+    height: 333px;
+    margin-top: -50px;">
+		 
+		 </div>
+		 	 <div class="create_deals">
+				 
+		
+		    <ul id="couponsimagedeal"></ul>
+		 
+		  </div>
+		 
+	 </div>
+	  
+	  
+	<script>	
+		
+		 // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCFgW7VCEKkko_t42HBjXBL0guNmJgl-94",
+    authDomain: "mycommunity-a734d.firebaseapp.com",
+    databaseURL: "https://mycommunity-a734d.firebaseio.com",
+    projectId: "mycommunity-a734d",
+    storageBucket: "mycommunity-a734d.appspot.com",
+    messagingSenderId: "885464413077"
+  };
+  firebase.initializeApp(config);
+		
+		var starCountRef;
+		var objects_array;
+		var ref = firebase.database().ref('coupons_new');
+		
+		
+		
+		
+		var listthecheckmar;
+	var listchecbarray;
+	var getitemlist;
+	getitemlist = [];
+	
+	var newArr = getitemlist;
+		
+		
+		
+	document.getElementById('datacallingal').addEventListener('click',function ()
+															  
+															  {	
+		
+		
+		 var r = confirm("Are you Sure to delete selected Coupons");
+  if (r == true) {
+		
+		listchecbarray.forEach(function(item,index){
+   
+			 console.log(item);
+				
+		starCountRef = firebase.database().ref("/coupons_new/"+item);
+			
+			  starCountRef.remove()
+			.then(function() {
+		
+				  window.location.href = "dealsCupons.html";
+	
+//		  window.location.href = "creatingcoupons.html";
+	
+  });
+				
+   
+   });
+	  
+  }
+		
+		
+	});
+		
+		
+		
+						starCountRef = firebase.database().ref("/coupons_new/");
+						
+				starCountRef.on('value', function (snapshot2) {
+					
+				
+					 objects_array = snapshot2.val();
+					
+					
+					console.log(objects_array);
+					
+					var listIndex = 1;
+					
+					objects_array.forEach(function(item,index){
+					
+						const imageurl = item.image[0].imageUrl;
+						const name = item.name;
+						const offer =item.offer;
+						const description = item.description;
+						const cateogry = item.cateogry;
+						const ExpiryDate = item.expiryDate;
+						const discalmer = item.discalmer;
+						const address = item.address;
+						const code = item.code;
+						const placeid = item.placeid;
+						const imagelogo = item.imagelogo;
+						const id = item.id;
+						const place = item.place;
+						const  pos = index;
+						const  priority = item.priority;
+						const  isPromoted = item.isPromoted;
+						const  backgroundurl = item.backgroundurl;
+						const  zipcode = item.zipcode;
+						
+						
+						  
+						
+						var ul = document.getElementById("couponsimage1");
+		  var li=document.createElement('li');
+        li.innerHTML='<div style="width: 103%; height: 207px; margin-top: 10px; padding:0px; position: relative;"><div style="width: 100%; height: 123px; padding:0px; position: absolute; background: rgba(255, 0, 0,0.5); z-index: 2; display:none; text-align:center;" class="highlightclk"><h3 style="color:white; padding: 9px; color: white; margin-top: 11%; margin-left: 62px; border: 1px solid white; width: 61%;">SELECTED</h3></div><img src='+backgroundurl+' style="width: 90%; height: 100%; float:left; margin-top: 10px;"><div style="width: 54px;height: 40px;  position: absolute; left: 23px; top: 26px;" id="logodiv"><img src='+imagelogo+' style="width: 100%; height: 100%; object-fit: cover;" id="photosearchlist1"></div>'+'<div class="namedd"><p id="namedc">'+name+'</p></div><div class="desc"><p id="desccc">'+description+'</p></div><div class="offerdd"><p id="offerdc">'+offer+'</p></div><div id="checkbox"><p style="float: right; padding-right: 72px; padding-top: 26px;"><input type="checkbox" style="width:25px; height:25px;"></p></div><div class="rigtimage"><img src='+imageurl+' style="width: 100%; height: 100%; object-fit: cover;" id="photosearchlist2"></div></div>';
+        ul.appendChild(li);
+						
+						
+							
+						function listgetcoupons()
+									
+						           {
+												   
+								 getitemlist.push(index); 
+									     
+									    console.log(getitemlist);
+									   
+for(var h = 0; h < getitemlist.length; h++) {
+    var curItem = getitemlist[h];
+    var foundCount = 0;
+    // search array for item  
+									   
+	
+    for(var i = 0; i < getitemlist.length; i++) {
+        if (getitemlist[i] == getitemlist[h])
+            foundCount++;
+    }
+	
+	
+    if(foundCount > 1) {
+        // remove repeated item from new array
+        for(var j = 0; j < newArr.length; j++) {
+            if(newArr[j] == curItem) {                
+                newArr.splice(j, 1);
+                j = j - 1;
+					
+            }
+			
+			  
+        }  
+		
+    }
+		
+}	
+			var str = newArr.toString();
+ listthecheckmar = str.split();
+  listchecbarray = JSON.parse("[" + listthecheckmar + "]");
+	  
+									   
+									   
+					
+									   
+									 
+									}
+							
+						li.addEventListener('click',listgetcoupons);
+						
+						
+						
+						
+					});
+				});
+
+		
+	
+		
+		
+		
+		
+		
+	var listthecheckmar;
+	var listchecbarray121;
+	var getitemlist121;
+	getitemlist121 = [];
+	
+	var newArr = getitemlist121;
+		
+		
+		
+		
+		//This is the deals calling code.
+		 starCountRefdeal = firebase.database().ref("/deals_new/");
+						
+						
+				
+				starCountRefdeal.on('value', function (snapshot2) {
+				
+					 objects_arraydeal = snapshot2.val();
+					
+//					console.log(objects_array);
+					
+					
+//					console.log(objects_array); 8888
+					
+//					for(var i=0; i<objects_arraydeal.length; i++)
+//						
+//					{
+					objects_arraydeal.forEach(function(item,index){
+					
+						 const imageurl = item.image[0].imageUrl;
+//						console.log(objects_array[i]);
+//						
+						const name = item.name;
+						const offer = item.offer;
+						const description = item.description;
+						const cateogry = item.cateogry;
+						const ExpiryDate = item.expiryDate;
+						const discalmer = item.discalmer;
+						const address = item.address;
+						const code = item.code;
+						const zipcode = item.zipcode;
+						const placeid = item.placeid;
+						const logoimage = item.imagelogo;
+						const imagelink = item.imagelink;
+						const place = item.place;
+						const colorbackgroudurl = item.colorbackgroudurl;
+						const pos = index;
+						
+//						console.log(colorbackgroudurl);
+				
+						//neharverma
+		var ul = document.getElementById("couponsimagedeal");
+		var li=document.createElement('li');
+        li.innerHTML='<div class="dealsleft" style="padding: 10px; width: 92%; left: 0px; height: 218px; border-radius: 21px; position: relative; margin-top: 10px;" id="bgcolorfordeal"><div style="width: 100%; height: 100%; padding:0px; position: absolute; background: rgba(255, 0, 0,0.5); display:none; border-radius: 11px; z-index: 2; text-align:center;" class="highlightclk11"><h3 style="color:white; padding: 9px; color: white; margin-top: 39%; margin-left: 49px; border: 1px solid white; width: 61%;">SELECTED</h3></div><img src='+colorbackgroudurl+' style="width: 100%; height: 100%; object-fit: cover; position: absolute; border-radius: 11px;" id="photosearchlist"><div style="width: 100%; height: 205px; position: absolute; left: 10px; top: 16px;"><img src='+imageurl+' style="object-fit:cover; border-radius: 16px;" id="imagerightdeals"></div><div class="bottomdiv"><div class="delofferleft"><p id="dealsnameleft2">'+offer+'</p></div><div class="delofferleft2"><p id="dealsnameleft2" style="float:right;"><input type="checkbox" style="width: 30px; height: 23px;"></p></div></div></div>';
+        ul.appendChild(li);
+						
+						
+						
+						li.addEventListener('click',listgetsdeal);
+						
+							function listgetsdeal()
+									
+						           {
+									   
+									   
+									    getitemlist121.push(index);
+									     
+									    console.log(getitemlist121);
+									   
+for(var h = 0; h < getitemlist121.length; h++) {
+    var curItem = getitemlist121[h];
+    var foundCount = 0;
+    // search array for item  
+									   
+	
+    for(var i = 0; i < getitemlist121.length; i++) {
+        if (getitemlist121[i] == getitemlist121[h])
+            foundCount++;
+    }
+	
+	
+    if(foundCount > 1) {
+        // remove repeated item from new array
+        for(var j = 0; j < newArr.length; j++) {
+            if(newArr[j] == curItem) {                
+                newArr.splice(j, 1);
+                j = j - 1;
+					
+            }
+			
+			  
+        }  
+		
+    }
+		
+}	
+			var str = newArr.toString();
+ listthecheckmar121 = str.split();
+  listchecbarray121 = JSON.parse("[" + listthecheckmar121 + "]");
+console.log(listchecbarray121);	  
+									   
+								 
+									  
+									   
+									   
+									   
+								   }
+						
+						
+						
+						
+							
+					});
+				});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// when click on Deals cupons button will be off set
+		function myfun()
+		{
+			
+			y = document.getElementById("dataglu");
+			y.style.display = "none";
+			document.getElementById("cuposnimage").src="img/Icons/cuponsoff.png";
+			c = document.getElementById("btncupons");
+			c.style.background = "#D5D5D5";
+				c.style.boxShadow = "none";
+			
+		}
+		
+		// when click on cupons button deals button icon will be off set
+		function deals()
+		{
+			
+			y = document.getElementById("deals_dav");
+			y.style.display = "none";
+			document.getElementById("dealsimage").src="img/Icons/dealsoff.png";
+			c = document.getElementById("btndealsbg");
+			c.style.background = "#D5D5D5";
+			c.style.boxShadow = "none";
+		}
+		
+		
+		function myFunction() {
+  
+	x = document.getElementById("deals_dav");
+	y = document.getElementById("btndealsbg");		
+    x.style.display = "block";
+	y.style.background= "white";
+			y.style.boxShadow = "0px 2px 4px rgba(0, 0, 0, 0.5)";
+			
+			document.getElementById("couponstitle").innerHTML = "Your Deals";
+			
+
+			document.getElementById("dealsimage").src="img/Icons/dealslight.png";
+
+			
+	myfun();
+	
+	
+}
+		
+		function mycupons()
+		{
+			
+			y = document.getElementById("dataglu");
+			y.style.display = "block";
+			c = document.getElementById("btncupons");
+			c.style.background = "white";
+			c.style.boxShadow = "0px 2px 4px rgba(0, 0, 0, 0.5)";
+		document.getElementById("cuposnimage").src="img/Icons/cuponslight.png";
+			
+			
+				document.getElementById("couponstitle").innerHTML = "Your Coupons";
+			
+			deals();
+			
+		}
+		
+</script>	 
+
+	 
+	 
+	 
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+  </body>
+</html>

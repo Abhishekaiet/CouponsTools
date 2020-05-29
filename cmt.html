@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Wb Studio</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  
+  
+  <link href="css/bootstrap.min.css" rel="stylesheet"><!-- Being Css Bootstrap stylesheet Conrolling respsivness and design-->
+
+   
+	<link rel="stylesheet" type="text/css" href="css/cmt.css" />	<!-- Css Stylesheet Contolling page Design-->
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="js/responsive.css">
+<link rel="stylesheet" type="text/css" href="css/responsive.css">
+<link rel="stylesheet" type="text/css" href="css/cmt1.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/vid_control.js"></script>
+	<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+	<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+	
+	
+	
+	<!--CMT 1 JAVASCRIPT LINK-->
+
+
+<script type="text/javascript" src="js/cmt1.js"></script>
+
+
+   <!--END CMT 1 JAVASCRIPT LINK-->
+	
+	
+	<!--This Link for timeline-->
+
+<script type="text/javascript" src="src/timeline.js"></script>
+<script type="text/javascript" src="src/timeline-gui.js"></script>
+<script type="text/javascript" src="js/RequestAnimationFrame.js"></script>
+
+
+
+<!--This Link for timeline end-->
+
+	
+	<!--being dropzone upload image multiple js link-->
+	
+	<script type="text/javascript" src="js/dropzone.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="css/dropzone.css">
+	
+	<!-- end dropzone upload image multiple js link-->
+	
+	
+	
+	<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">-->
+     <!-- <link rel="stylesheet" href="css/style.css">-->
+		  
+        <script src="js/app.js"></script>
+        <script src="https://apis.google.com/js/client.js?onload=init"></script>
+	<style>
+	
+	.navbar{background:#000000!important; border:none;}
+	
+	</style>
+  </head>
+  <body style="background:#262626;">
+  
+ <div class="container-fluid">
+ <div class="row">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="img/logo.png" style="width:40px; height:40px; margin-top:-10px;"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               
+			   <ul class="nav navbar-nav">
+				<li><a href="index.html" style="color:#FFFFFF;">Operator</a></li>
+				<li><a href="#" style="color:#FFFFFF;">User Management</a></li>
+                <li><a href="#" style="color:#FFFFFF;">Fan Club</a></li>
+				<li><a href="#" style="color:#FFFFFF;">Categroy</a></li>
+                <li><a href="#" style="color:#FFFFFF;">Groups</a></li>
+				<li><a href="#" style="color:#FFFFFF;">Promotion</a></li>
+                <li><a href="#" style="color:#FFFFFF;">ITV</a></li>
+				
+                               
+					
+                </ul>
+			   
+                <ul class="nav navbar-nav navbar-right">
+				<li><a href="#" style="color:#FFFFFF;">Welcome Back : Martin Ragix</a></li>
+				<li><a href="index.html" style="color:#FFFFFF;">Go Back to Home</a></li>
+                    <li><a href="#search" style="color:#FFFFFF;"><img src="img/search_icon.png" style="widows:25px; height:25px;"></a></li>
+					
+                </ul>
+				
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+
+
+    </nav>
+</div>
+
+
+
+
+</div>
+
+<div id="demo1" class="collapse">
+
+<div class="edit_tool">
+<div class="edit_tool1">
+<span style="color:#FFFFFF; font-size:12px; margin-left:10px;">
+Add Image to your library
+</span>
+
+</div>
+
+
+
+<!--being here dropzone upload image-->
+
+
+<style>
+
+.drop_box{width:200px; height:110px; margin-left:150px;}
+#my-awesome-dropzone{background:none; border:3px dashed #FFFFFF; color:#FFFFFF; border-bottom:1px solid #FFFFFF;}
+</style>
+
+<div class="drop_box">
+
+<form action="uploads.php"
+      class="dropzone"
+      id="my-awesome-dropzone">
+	  </form>
+
+</div>
+
+
+
+<!--end here  here dropzone upload image-->
+
+
+<br>
+<br>
+
+<form action="uploads.php" method="post" enctype="application/x-www-form-urlencoded">
+<label for="file-upload" class="custom-file-upload">
+    <i class="fa fa-desktop" aria-hidden="true"></i> From My Computer
+</label>
+
+<input type="file"/ name="file">
+<div class="bottm">
+
+<button type="button" class="btn_tool_done" value="DONE">Submit</button>
+
+</div>
+</form>
+
+
+	
+<input id="inputBox" class="url1 url">
+
+	
+
+<script>
+
+$(".url").focusin(function() {
+      $(this).addClass("green");
+    });
+
+$("#loadImage").on('click', function(){
+    $("#image").attr("src", $("#inputBox").val());
+});
+
+</script>
+
+<button type="button" class="btn_tool_1 btn_url"> <i class="fa fa-upload" aria-hidden="true"></i> From Url</button>
+
+<script>
+$(document).ready(function(){
+    
+	$('.url').hide();
+	
+	$(".btn_url").click(function(){
+        $(this).hide(function (){
+		
+		 $(".url").show();
+		
+		
+		});
+    });
+	
+});
+</script>
+<!--
+<input type="text" placeholder="Past the image url here" class="filed_tool">
+-->
+
+<label for="file-upload" class="custom-file-upload btn_tool">
+    <img src="img/video-list/05media-icon.png" style="width:15px; height:15px;">From 05media
+</label>
+<input id="file-upload" type="file"/>
+
+</form>
+<hr style="margin-top:3px;">
+
+
+
+<p class="title_tool" align="center">
+YOUR IMAGE LIBRARY
+</p>
+<div class="row slide_tool">
+
+
+                            <div class="col-md-12">
+                               
+                                <div class="well-none">
+                                    <div id="myCarousel" class="carousel slide">
+                                        <!-- Carousel items -->
+                                        <div class="carousel-inner">
+                                            <div class="item active">
+                                                <div class="row">
+												<div class="output"></div>
+                                                    <div class="col-sm-3 col-xs-6 corl corl2"><div class="con">Select <input type="checkbox"></div>
+                                                        <a href="#x"><img src="img/change-thumb-bt.png" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-3 col-xs-6 corl corl2">
+													<div class="con">Select <input type="checkbox"></div>
+                                                        <a href="#x"><img src="img/channel.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-3 col-xs-6 corl corl2">
+													<div class="con">Select <input type="checkbox"></div>
+                                                        <a href="#x"><img src="img/chair2.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-3 col-xs-6 corl corl2">
+													<div class="con">Select <input type="checkbox"></div>
+                                                        <a href="#x"><img src="img/news-thumb.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													
+													
+                                                </div>
+                                                <!--/row-->
+                                            </div>
+                                            <!--/item-->
+                                            <div class="item">
+                                                <div class="row">
+                                                     <div class="col-sm-3 col-xs-6 corl corl2">
+													 <div class="con">Select <input type="checkbox"></div>
+                                                        <a href="#x"><img src="img/change-thumb-bt.png" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-3 col-xs-6 corl corl2">
+													<div class="con">Select <input type="checkbox"></div>
+                                                        <a href="#x"><img src="img/channel.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-3 col-xs-6 corl corl2">
+													<div class="con">Select <input type="checkbox"></div>
+                                                        <a href="#x"><img src="img/chair2.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-3 col-xs-6 corl corl2">
+													<div class="con">Select <input type="checkbox"></div>
+                                                        <a href="#x"><img src="img/news-thumb.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													<script>
+
+$("input[type='checkbox']").change(function(){
+    if($(this).is(":checked")){
+        $(this).parent().addClass("green"); 
+    }else{
+        $(this).parent().removeClass("green");  
+
+
+
+    }
+});
+
+</script>
+													
+													
+													
+													<style>
+ .green
+        {
+            background-color: green;
+        }
+</style>
+                                                </div>
+                                                <!--/row-->
+                                            </div>
+                                            <!--/item-->
+                                            <!--/item-->
+                                        </div>
+                                        <!--/carousel-inner-->
+                                        <a class="left carousel-control" href="#myCarousel" data-slide="prev"></a>
+                                        <a class="right carousel-control" href="#myCarousel" data-slide="next"></a>
+                                    </div>
+                                    <!--/myCarousel-->
+                                </div>
+                                <!--/well-->
+                            </div>
+                        </div>
+
+
+
+
+button space
+</div>
+
+</div>
+
+
+
+<div class="container-fluid">
+<div class="row">
+
+
+
+<div class="col-sm-2 search_block" style="border-right:3px solid #FFFFFF; padding:0px; width:20%;">
+
+
+		    <div class="input-group">
+                <div class="input-group-btn">
+                   
+                  
+                </div>
+				
+				<form action="#">
+               <button type="submit" style="float:left; margin-left:-26px; height:30px; border:none; background:none; margin-bottom:1px;">
+			   <IMG src="img/search-bt.png"></button>
+			    <input type="text" class="" placeholder="Search term..." id="search" placeholder="Search here for vides or link" style="width:98%; margin-left:25px; float:left; margin-top:-30px; height:33px; color:#000000;">             
+			   
+	   </form>
+
+           </div>
+		   
+		 
+		   
+		   <div class="filter_div">
+		  <select class="slct">
+		<option value="FILTER">FILTER</option>
+		<option value="FILTER">Demo</option>
+		<option value="FILTER">Demo</option>
+		<option value="FILTER">Demo</option>		  
+
+		  </select>
+		  
+		  <select class="slct">
+		<option value="FILTER">SORT</option>
+		<option value="05MEDIA">05MEDIA</option>
+		<option value="YOUTUBE">YOUTUBE</option>
+		<option value="OTHERS">OTHERS</option>		  
+
+		  </select>
+		 
+		 
+		  
+		 
+		  
+		 <span style="color:
+		 #FFFFFF; font-size:12px;">HISTORY 
+</span>
+<label class="switch"><input type="checkbox" id="togBtn"><div class="slider round"></div></label>
+		  </div>
+		 
+		   <br> 
+		   
+		   
+		   	  <div class="youtube tube">
+		  
+		  <div id="results"></div>
+		   
+		  
+		   
+		  </div>
+		  
+		  
+		  </div>
+		  
+		  
+		  <div class="col-sm-4 right_player">
+		  
+		<div class="wrap-vod">
+		
+		   <video id="video1" controls autoplay poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" class="vod" >
+              
+                <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">
+                <!-- <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4" type="video/mp4" size="1440"> -->
+
+                
+                <!-- Fallback for browsers that don't support the <video> element -->
+                <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>
+            </video>
+		
+		</div>
+		
+		
+		
+
+ 
+<style>
+
+
+.acitvness:hover{background:#535353;}
+
+
+</style>
+	 
+	<script>
+
+
+$(document).ready(function (){
+
+
+
+/**
+$('#box_tool').click(function (){
+
+  $(this).css("background", "blue");
+
+
+
+});
+
+**/
+
+});
+
+</script>
+
+	
+		
+		
+		<div class="icons">
+<div class="row icons-row">
+<div class="col-sm-1 cor couponcode2 acitvness" id="box_tool"><a href="#" data-toggle="collapse" data-target="#demo"><img src="Icons/img1.png" class="icons-img" id="image1"> </a><span class="coupontooltip2">ADD IMAGE</span></div>
+<div class="col-sm-1 cor couponcode2"><img src="Icons/img2.png" class="icons-img" id="image2"><span class="coupontooltip2">ADD LOGO</span></div>
+<div class="col-sm-1 cor couponcode2"><img src="Icons/img3.png" class="icons-img" id="image3"><span class="coupontooltip2">ADD BANNER</span></div>
+<div class="col-sm-1 cor couponcode4"><img src="Icons/img4.png" class="icons-img" id="image4"><span class="coupontooltip4">ADD BREAKING NEWS BANNER </span></div>
+<div class="col-sm-1 cor couponcode2"><img src="Icons/img5.png" class="icons-img" id="image5"><span class="coupontooltip2">ADD TEXT</span></div>
+<div class="col-sm-1 cor couponcode2"><img src="Icons/img6.png" class="icons-img" id="image6"><span class="coupontooltip2">ADD LIVE</span></div>
+<div class="col-sm-1 cor couponcode7"><img src="Icons/img7.png" class="icons-img" id="image7"><span class="coupontooltip7">ADD BROADCAST VIDEO</span></div>
+<div class="col-sm-1 cor couponcode2"><img src="Icons/img8.png" class="icons-img1" id="image8"><span class="coupontooltip2">ADD SOUND</span></div><!--button-->
+<div class="col-sm-1 cor couponcode2"><img src="Icons/img9.png" class="icons-img1" id="image9"><span class="coupontooltip2">EDIT MEDIA</span></div>
+
+<div class="col-sm-1 cor couponcode2"><img src="Icons/img10.png" class="icons-img1" id="image10"><span class="coupontooltip2">ZOOM MEDIA</span></div>
+<div class="col-sm-1 cor couponcode2"><img src="Icons/img11.png" class="icons-img1" id="image11"><span class="coupontooltip2">UNDEO</span></div>
+<div class="col-sm-1 cor couponcode2"><img src="Icons/img12.png" class="icons-img1" id="image12"><span class="coupontooltip2">REDO</span></div>
+
+</div>
+		
+		</div>
+		  
+		  </div>
+		  
+		  
+		  <script>
+		  
+		  $("#image1").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img1.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img1.png';
+  }
+});
+	
+	
+	$("#image2").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img2.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img2.png';
+  }
+});
+
+$("#image3").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img3.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img3.png';
+  }
+});
+	
+	
+	$("#image4").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img4.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img4.png';
+  }
+});
+		  
+		  $("#image5").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img5.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img5.png';
+  }
+});
+		  
+		  $("#image6").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img6.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img6.png';
+  }
+});
+		  
+		  $("#image7").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img7.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img7.png';
+  }
+});
+
+$("#image8").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img8.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img8.png';
+  }
+});
+
+
+$("#image9").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img9.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img9.png';
+  }
+});
+
+
+$("#image10").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img10.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img10.png';
+  }
+});
+
+$("#image11").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img11.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img11.png';
+  }
+});
+		  
+		  $("#image12").on({
+ "mouseover" : function() {
+    this.src = 'Icons/Iconshover/img12.png';
+  },
+  "mouseout" : function() {
+    this.src='Icons/img12.png';
+  }
+});
+		  
+		  </script>
+	
+	
+	 <div class="col-sm-4 right_player">
+		  
+		  
+		<div class="wrap-vod1" style="background:#FF0000;">
+		   <video id="video2" controls autoplay poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" class="vod">
+              
+                <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">
+                <!-- <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4" type="video/mp4" size="1440"> -->
+
+                
+                <!-- Fallback for browsers that don't support the <video> element -->
+                <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>
+            </video>
+		</div>
+	
+	
+	
+		
+		  <div class="icons1" align="center">
+		<img src="Icons/go live.png" style="width:22px; height:22px;">GO LIVE
+		</div>
+		  
+		  
+		  </div>
+		   
+		   
+		  
+		   
+		    <div class="col-sm-4 right_player1">
+	
+	<div class="result">
+	
+	
+<style>
+
+
+.con1
+{
+
+position:absolute;
+width:20%;
+height:20px;
+top:5px;
+right:0px;
+z-index:10;
+display:none;
+
+
+}
+
+#delt_logo{width:20px; height:20px;}
+
+.corl1:hover>.con1{display:block;}
+
+.corl1{margin-left:-10px;}
+
+</style>
+  <div id="demo" class="collapse">
+  
+<div class="row">
+
+                            <div class="col-md-12">
+                               
+                                <div class="well-none">
+                                    <div id="myCarousel" class="carousel slide">
+                                        <!-- Carousel items -->
+                                        <div class="carousel-inner">
+                                            <div class="item active">
+                                                <div class="row" style="margin:0px; padding:0px;">
+                                                    <div class="col-sm-2 col-xs-6 corl corl1">
+													<div class="con1"><img src="Icons/delete_icon.png" id="delt_logo"></div>
+													<div id="dvSource">
+                                                        <a href="#x"><img src="img/change-thumb-bt.png" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													</div>
+                                                    <div class="col-sm-2 col-xs-6 corl corl1">
+													<div class="con1"><img src="Icons/delete_icon.png" id="delt_logo"></div>
+													<div id="dvSource">
+                                                        <a href="#x"><img src="img/channel.jpg" alt="Image" class="img-responsive"></a>
+                                                   </div>
+													</div>
+                                                    <div class="col-sm-2 col-xs-6 corl corl1">
+													
+													<div class="con1"><img src="Icons/delete_icon.png" id="delt_logo"></div>
+                                                    <div id="dvSource">
+													    <a href="#x"><img src="img/chair2.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													</div>
+                                                    <div class="col-sm-2 col-xs-6 corl corl1">
+													<div class="con1"><img src="Icons/delete_icon.png" id="delt_logo"></div>
+                                                       <div id="dvSource">
+													    <a href="#x"><img src="img/news-thumb.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>													</div>
+													 <div class="col-sm-2 col-xs-6 corl corl1">
+													 <div class="con1"><img src="Icons/delete_icon.png" id="delt_logo"></div>
+                                                        <div id="dvSource">
+														<a href="#x"><img src="img/change-thumb-bt.png" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													</div>
+													 <div class="col-sm-2 col-xs-6 corl corl1">
+													 <div class="con1"><img src="Icons/delete_icon.png" id="delt_logo"></div>
+													 <div id="dvSource">
+
+                                                        <a href="#x"><img src="img/chair2.jpg" alt="Image" class="img-responsive"></a>
+                                                   </div>
+												    </div>
+													
+                                                </div>
+                                                <!--/row-->
+                                            </div>
+                                            <!--/item-->
+                                            <div class="item">
+                                                <div class="row">
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/change-thumb-bt.png" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/channel.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/chair2.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/news-thumb.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													 <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/change-thumb-bt.png" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													 <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/chair2.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													
+                                                </div>
+                                                <!--/row-->
+                                            </div>
+                                            <!--/item-->
+                                            <!--/item-->
+                                        </div>
+                                        <!--/carousel-inner-->
+                                        <a class="left carousel-control" href="#myCarousel" data-slide="prev"></a>
+                                        <a class="right carousel-control" href="#myCarousel" data-slide="next"></a>
+                                    </div>
+                                    <!--/myCarousel-->
+                                </div>
+                                <!--/well-->
+                            </div>
+                        </div>
+ </div>
+	
+</div>
+ 
+	
+
+  
+  
+ 	<style>
+	
+	.corl1{padding:0px; margin:0px;}
+	.result{width:98%; height:auto; background:#FF0000; float:right; margin-right:-14px;}
+	.result img{width:16%; height:100px; z-index:4;}
+	</style>
+	
+	<div class="left-col">
+	<a href="#" data-toggle="collapse" data-target="#demo1"><img src="Icons/plus.png" style="width:32px; height:32px;"></a>
+	</div>
+	<div class="left-col">
+	
+	<img src="Icons/delete.png" style="width:20px; height:27px;">
+	
+	</div>
+		
+	</div>
+		
+		<style type="text/css">
+
+
+div {
+  overflow: hidden;
+}
+
+h1 {
+  margin-left: 0.5em;
+}
+
+#canvas {
+  margin-left: 1em;
+  
+}
+
+</style>   
+<script type="text/javascript">
+
+function init() {
+  var canvas = document.getElementById("canvas");
+ 
+
+  var rect = {
+    
+    width: 50,
+    height: 40,
+	
+  
+  };
+
+ 
+
+  anim("Add image",rect).to({"":0}).to({"x":110});
+
+  
+ 
+
+  Timeline.getGlobalInstance().loop(-1); //loop forever yellow trac target
+
+ 
+
+  <!--draw();-->
+}
+
+window.onload = init;
+
+</script>
+
+
+
+<div class="cont" style="display:none;">
+<div class="container">
+<div class="col-sm-6">
+<div class="row">
+<canvas id="canvas"></canvas>
+</div>
+</div>
+</div></div>
+		  
+		
+		   
+		    
+		   <style>
+		   
+		   .corl{margin:0px; padding:0px;}
+		   .corl img{width:350px; height:90px;}
+		   .right_player4{margin-top:210px;}
+		   </style>
+		   
+		   
+		   
+		   	<div class="col-sm-4 right_player4">
+			
+ 
+
+			
+		<div class="row">
+
+                            <div class="col-md-12">
+                               
+                                <div class="well-none">
+                                    <div id="myCarousel" class="carousel slide">
+                                        <!-- Carousel items -->
+                                        <div class="carousel-inner">
+                                            <div class="item active">
+                                                <div class="row">
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/change-thumb-bt.png" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/channel.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/chair2.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/news-thumb.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													 <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/change-thumb-bt.png" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													 <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/chair2.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													
+                                                </div>
+                                                <!--/row-->
+                                            </div>
+                                            <!--/item-->
+                                            <div class="item">
+                                                <div class="row">
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/change-thumb-bt.png" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/channel.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/chair2.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/news-thumb.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													 <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/change-thumb-bt.png" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													 <div class="col-sm-2 col-xs-6 corl">
+                                                        <a href="#x"><img src="img/chair2.jpg" alt="Image" class="img-responsive"></a>
+                                                    </div>
+													
+                                                </div>
+                                                <!--/row-->
+                                            </div>
+                                            <!--/item-->
+                                            <!--/item-->
+                                        </div>
+                                        <!--/carousel-inner-->
+                                        <a class="left carousel-control" href="#myCarousel" data-slide="prev"></a>
+                                        <a class="right carousel-control" href="#myCarousel" data-slide="next"></a>
+                                    </div>
+                                    <!--/myCarousel-->
+                                </div>
+                                <!--/well-->
+                            </div>
+                        </div>
+
+		
+		
+		
+		
+		</div>
+		</div>  
+		
+		
+		
+		     <style type="text/css">
+      
+	  
+	
+    </style>
+       
+    <script type="text/javascript">
+        $(function () {
+            $("#dvSource img").draggable({
+                revert: "invalid",
+                refreshPositions: true,
+                drag: function (event, ui) {
+                    ui.helper.addClass("draggable");
+                },
+                stop: function (event, ui) {
+                    ui.helper.removeClass("draggable");
+                    var image = this.src.split("/")[this.src.split("/").length - 1];
+                    if ($.ui.ddmanager.drop(ui.helper.data("draggable"), event)) {
+                        alert(image + " dropped.");
+                    }
+                    else {
+                        alert(image + " not dropped.");
+                    }
+                }
+            });
+            $("#dvDest").droppable({
+                drop: function (event, ui) {
+                    if ($("#dvDest img").length == 0) {
+                        $("#dvDest").html("");
+                    }
+                    ui.draggable.addClass("dropped");
+                    $("#dvDest").append(ui.draggable);
+                }
+            });
+        });
+    </script>
+
+	
+    <hr />
+	
+	<button type="button">Hello Friend Chay Peelo</button>
+			
+
+</body>
+</html>
+
+
+
+
+
