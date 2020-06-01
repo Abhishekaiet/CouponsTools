@@ -1,0 +1,40 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js">
+</script>
+<script> 
+$(function(){
+  $.ajax({
+   url: "siteHeader.html",
+   dataType: "html",
+   success: function(html) {
+      $("#header").html(html);
+   }
+});
+});
+</script> 
+<style>
+body{
+background-color: #F8F8F8;
+}
+.content {
+    width: 75%;
+    height: 792px;
+    margin: auto;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 6px 6px 6px #00000021;
+border-radius: 20px;
+opacity: 1;
+
+}
+</style>
+</head>
+<body>
+<div id="header"></div>
+<div id="header"><a><i class="fa fa-home"></i> HOME</a></div>
+<div class="content">
+
+</div>
+</body>
+</html>
