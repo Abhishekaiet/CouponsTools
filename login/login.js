@@ -28,59 +28,57 @@
       });
   });
 
-
-
-
-
+  function onload() {
+	 const token = localStorage.getItem('_token');
+	  if(token){
+		window.location.href = "/project/CouponsTools/landing_page.html";
+	   }
+  }
   function login() {
-      debugger
+      //debugger
       let username = document.getElementById("usernm").value
       let password = document.getElementById("pass").value;
       let grant_type = document.getElementById("grant_type").value = "password";
       let client_id = document.getElementById("client_id").value = "web"
       let client_secret = document.getElementById("client_secret").value = "2567a5ec9705eb7ac2c984033e06189d"
+	  const loginAction = async () => {
+			  const response = await fetch('https://proxy.actv.05media.com/oauth/token?grant_type=password&username=' + username + '&client_id=web&client_secret=2567a5ec9705eb7ac2c984033e06189d&password=' + password, {
+				method: 'GET',
+				headers: {
+				  'Content-Type': 'application/json'
+				}
+			  });
+			  const loginData = await response.json();
+			   let token = loginData.access_token;
+			  let type = loginData.token_type;
+			  localStorage.setItem('_token', type +' '+token);
+			  if (loginData.error) {
 
-      // if (username == "" || password == "") {
-      //     alert("Missing Field value")
-      //     return;
-      // }
+				  iziToast.error({
+					  title: 'Error',
+					  message: 'Wrong username or password'
+				  });
 
-      // Create a request variable and assign a new XMLHttpRequest object to it.
-      var request = new XMLHttpRequest();
-
-
-      // Open a new connection, using the GET request on the URL endpoint
-      request.open('GET', 'https://proxy.actv.05media.com/oauth/token?grant_type=password&username=' + username + '&client_id=web&client_secret=2567a5ec9705eb7ac2c984033e06189d&password=' + password, true);
-
-      //   request.open('GET', 'http://6977d39e.ngrok.io/oauth/token?grant_type=password&username=' + username + '&client_id=android_phone&client_secret=c48da1c8110e4f15dab1a0d52b0609ce&password=' + password, true);
-
-
-      // let emailid = username
-      // let _passwor = password
-      // let res = user.concat(passw);
-      request.onload = function() {
-
-          let data = JSON.parse(this.response);
-          console.log(data)
-          let token = data.access_token
-          localStorage.setItem('_token', token);
-          if (data.error) {
-
-              iziToast.error({
-                  title: 'Error',
-                  message: 'Wrong username or password'
-              });
-
-          } else {
-
-              window.location.href = "http://localhost/webstdio27april/creatingcoupons.html";
-          }
-
-      }
-
-      //   window.localStorage.setItem(key, value);
-      // Send request
-      request.send();
-
+			  } else {
+				  const userDataAction = async () => {
+				  const response = await fetch('https://proxy.actv.05media.com:443/services/v1/profiles/me', {
+						method: 'GET',
+						headers: {
+						  'Accept': 'application/json',
+						  'Authorization':  localStorage.getItem('_token'),
+						  'Content-Type': 'application/json'
+						}
+					  });
+					  const userData = await response.json();
+					  console.log(userData);
+					  localStorage.setItem('userProfilePic', userData.user.gravatarURL);
+					   if(userData.user.businessUser){
+						window.location.href = "/project/CouponsTools/landing_page.html";
+					   }
+				  }
+				  userDataAction()
+			  }
+		}
+		loginAction();
 
   }

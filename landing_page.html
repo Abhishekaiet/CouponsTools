@@ -1,40 +1,200 @@
+<!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.js">
-</script>
-<script> 
-$(function(){
-  $.ajax({
-   url: "siteHeader.html",
-   dataType: "html",
-   success: function(html) {
-      $("#header").html(html);
-   }
-});
-});
-</script> 
-<style>
-body{
-background-color: #F8F8F8;
-}
-.content {
-    width: 75%;
-    height: 792px;
-    margin: auto;
-background: #FFFFFF 0% 0% no-repeat padding-box;
-box-shadow: 6px 6px 6px #00000021;
-border-radius: 20px;
-opacity: 1;
-
-}
-</style>
-</head>
-<body>
-<div id="header"></div>
-<div id="header"><a><i class="fa fa-home"></i> HOME</a></div>
-<div class="content">
-
-</div>
-</body>
+   <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="css/header.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      </script>
+      <script> 
+         function openMenu(x) {
+         	x.classList.toggle("change");
+         	var y = document.getElementById("menuItems");
+         	y.classList.toggle("display");
+         }
+         function onHoverImage(x){
+         	var src = $(x).attr("src").replace('.png','').replace('hover','');
+         	$(x).attr("src",src+'_hover.png')
+         };
+         function onMouseOut(x){
+         	var src = $(x).attr("src").replace('_hover','');
+         	$(x).attr("src",src)
+         };
+		 function getProfilePicture(){
+		    var defaultprofilePic="icons/img_avatar.png";
+			var UserprofilePicture = localStorage.getItem('userProfilePic');
+			if(UserprofilePicture){
+			$("#profilePic").attr('src',UserprofilePicture);
+			}else{
+		    $("#profilePic").attr('src',defaultprofilePic);
+			}
+         };
+      </script> 
+      <style>
+         body{
+         background-color: #F8F8F8;
+         font-family:roboto;
+         }
+         .content {
+         display: grid;
+         grid-template-columns: auto auto auto auto auto;
+         width: 75%;
+         margin: auto;
+         background: #FFFFFF 0% 0% no-repeat padding-box;
+         box-shadow: 6px 6px 6px #00000021;
+         border-radius: 20px;
+         opacity: 1;
+         max-width:1487px;
+         margin-top: 34px;
+         }
+         .content img{
+         width: 100px;
+		 height:100px;
+         margin: auto;
+         }
+         .content span{
+         margin-right: 46px;
+         margin-left: 13px;
+         margin-bottom: 50px;
+         margin-top: 40px;
+         text-align: center;
+         cursor:pointer;
+         letter-spacing: 0px;
+         color: #7F7F7F;
+         opacity: 1;
+         font-size:15px;
+         }
+         .content span a{
+         text-decoration:none;
+         color: #7F7F7F;
+         opacity: 1;
+         }
+         #Homeheader{
+         background: #FFFFFF 0% 0% no-repeat padding-box;
+         box-shadow: 0px 3px 6px #00000029;
+         opacity: 1;
+         padding: 11px;
+         }
+         #Homeheader i{ 
+         font-size:46px;
+         opacity: 0.4;
+         letter-spacing: 0px;
+         }
+         #Homeheader a{
+         color: #000000;
+         opacity: 0.5;
+         }
+         .support{
+         width: 32px;
+         margin-left: 0;
+         }
+         @media only screen and (max-width: 1024px) {
+         .content {
+         grid-template-columns: auto auto auto;
+         }
+         }
+         @media only screen and (max-width: 767px) {
+         .content {
+         grid-template-columns: auto auto;
+         }
+         .content a{
+         display:inline-block;
+         }
+         }
+      </style>
+   </head>
+   <body onload="getProfilePicture()">
+      <div id="header">
+         <header>
+            <div class="menuIcon" onclick="openMenu(this)">
+               <div class="bar1"></div>
+               <div class="bar2"></div>
+               <div class="bar3"></div>
+            </div>
+            <img class="logoImage" src="img/logo_mycommunity.png" />
+            <img class="searchicon" src="img/ch-list/search-channel-icon.png" />
+            <input id="searchInput" placeholder="Search users, group, setting" />
+            <div class="rightside">
+               <img  src="img/ch-list/report.png" />
+               <img  src="img/ch-list/issue.png" />
+               <img id="profilePic"/>
+            </div>
+            <div id="menuItems" class="display">
+               <div class="menuLinks">
+                  <a><i class="fa fa-home"></i> HOME</a>
+                  <a>  <i class="material-icons">dashboard</i> DASHBOARD</a>
+                  <a><i class="material-icons">feedback</i> ANALYTICS</a>
+                  <a class="menuborder"><i class="fa fa-user-circle"></i> ACCOUNTS</a>
+                  <a  class="menuborder"><i class="material-icons">settings</i> TOOLS <i class="fa fa-caret-right rightarrow"></i></a>
+                  <a  class="menuborder"><i class="material-icons">payment</i> BILLING <i class="fa fa-caret-right rightarrow"></i></a>
+                  <a  class="menuborder last"><i class="fa fa-cog"></i>SETTINGS <i class="fa fa-caret-right rightarrow"></i></a>
+                  <div class="bottom_links">
+                     <a><img class="support"  src="img/ch-list/Support.png" /> SUPPORT</a>
+                     <a><i class="material-icons">feedback</i> SEND FEEDBACK</a>
+                  </div>
+               </div>
+            </div>
+         </header>
+      </div>
+      <div id="Homeheader"><a><i class="fa fa-home"></i> HOME</a></div>
+      <div class="content">
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/operator_tool.png" />
+            <p>Operator</p>
+         </span>
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/usernamangment.png" />
+            <p>User Management</p>
+         </span>
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/contentmanage.png" />
+            <p>Content Management</p>
+         </span>
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/community_hub.png" />
+            <p>Community Hub</p>
+         </span>
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/maas_tool.png" />
+            <p>Mobile app as a service</p>
+         </span>
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/create.png" />
+            <p>Category</p>
+         </span>
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/groupicon.png" />
+            <p>Groups</p>
+         </span>
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/promotion.png" />
+            <p>Promotion</p>
+         </span>
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/itv.png" />
+            <p>ITV Tool</p>
+         </span>
+         <span>
+            <a href="creatingcoupons_new.html">
+               <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/deal_coupon_tool.png" />
+               <p>Deals & Coupon Tool</p>
+            </a>
+         </span>
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/Online_advertisement_tool.png" />
+            <p>Online Advertising Platform</p>
+         </span>
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/Store_management_tool.png" />
+            <p>Store Management</p>
+         </span>
+         <span>
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/Marketing_tool.png" />
+            <p>Marketing</p>
+         </span>
+      </div>
+   </body>
 </html>

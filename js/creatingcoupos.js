@@ -1,27 +1,3 @@
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 var multiple = document.getElementById('multiple');
 
