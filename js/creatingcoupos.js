@@ -69,10 +69,12 @@ inputBox2.onkeyup = function(){
 });
 
 
-
-
-
-
+function openMenu(x) {
+         	x.classList.toggle("change");
+         	var y = document.getElementById("menuItems");
+         	y.classList.toggle("display");
+ }
+	
 
 //for hiding the deals and coupons
 		  

@@ -1,3 +1,580 @@
+.exportDiv{
+    float: right;
+    text-align: left;
+    font-size: 18px
+    letter-spacing: 0px;
+    color: #272727;
+    opacity: 0.5;
+	margin-top: 10px;
+}
+.textdealimage{
+	display:block;
+	font-size: 15px;
+}
+.imageupload{
+	font-size: 110px;
+}
+.exportDiv span:first-child{
+	margin-right:40px;
+}
+.exportDiv i {
+	font-size: 18px;
+	margin-right: 3px;
+}
+.createlink{
+	float:left;
+	margin-left:4%;
+	letter-spacing: 0px;
+	color: #4B4B4B;
+	opacity: 1;
+	font-size:18px;
+	}
+.createlink i{
+	FONT-SIZE: 22PX;
+    vertical-align: bottom;
+}
+.createlink a, .ResetDel button{
+letter-spacing: 0px;
+color: #4B4B4B;
+opacity: 0.5;
+}
+.ResetDel{
+	float:right;
+	letter-spacing: 0px;
+	color: #4B4B4B;
+	opacity: 1;
+	font-size:18px;
+	margin-right: 5%;
+}
+.ResetDel i{
+	vertical-align: bottom;
+}
+.objectcoupons
+{
+width: 100%;
+height: 133px;
+background-image: url("img/blankcoupons/Things_to_do.png");
+position: relative;
+background-size: contain;	
+}
+.imgclass
+{
+width: 54px;
+height: 40px;
+background: red;
+position: absolute;
+left: 13px;
+top: 10px;
+}
+
+.namedd
+{
+width: 140px;
+left: 67px;
+top: 11px;
+position: absolute;
+height: 27px;
+overflow: auto;
+}
+#output1{
+	width: 100%;
+    position: absolute;
+    height: 100%;
+    float: left;
+    left: 0px;
+	z-index: -2;
+	visibility: hidden;																
+    top: 0;
+    border: none;
+    object-fit: contain;
+}
+#createnewcouponsbtn{
+    border: none;
+    font-size: 15px;
+    color: black;
+	background: none;
+    font-weight: 400;
+    border-radius: 19px;
+    right: 24%;
+    margin-top: 0%;
+    color: ;
+    color: #0a0a0a; display: none;
+}
+#delete{
+	background: none;
+    border: none;
+    font-size: 15px;
+    color: black;
+    font-weight: 400;
+    border-radius: 19px;
+    right: 24%;
+    margin-top: 0%;
+    color: ;
+    color: #0a0a0a;
+}
+#createnewcouponsdeals{
+    border: none;
+	background: none;
+    font-size: 15px;
+    color: black;
+    font-weight: 400;
+    border-radius: 19px;
+    right: 24%;
+    margin-top: 0%;
+    color: #0a0a0a; display: none;
+}
+#createnewcouponsbtn22{
+    border: none;
+    font-size: 15px;
+    color: black;
+    font-weight: 400;
+    border-radius: 19px;
+    right: 24%;
+    margin-top: 0%;
+    color: ;
+    color: #0a0a0a;
+	background: none;
+}
+#restbtnop{
+    border: none;
+	background: none;
+    font-size: 15px;
+    color: black;
+    font-weight: 400;
+    border-radius: 19px;
+    right: 10%;
+    margin-top: 0%;
+    color: ;
+    color: #0a0a0a;
+	margin-right:12px;
+}
+#imagesearch2{
+	width: 10%;
+    margin-left: -74px;
+    height: 39px;
+    background: none;
+    border: none;
+    color: #0c0b0b;
+    position: absolute;
+    font-size: 17px;
+}
+#logodelcalls{
+	width: 152px;
+    background: red;
+    border: none;
+    height: 36px;
+    position: absolute;
+    right: 79px;
+    color: white;
+    font-size: 16px;
+    border-radius: 18px;
+}
+#dl-logo-submit{
+	width: 8%;
+    height: 39px;
+    background: none;
+    border: none;
+    margin-left: -69px;
+    position: absolute;
+    color: #0c0b0b;
+    font-size: 17px;
+}
+#dllogosearch{
+	width: 65%;
+    border-radius: 19px;
+    border: 1px solid;
+    padding-left: 20px;
+    height: 39px;
+}
+#searhdata2{
+	width: 65%;
+    padding-left: 14px;
+    height: 39px;
+    border-radius: 21px;
+    border: 1px solid black;
+}
+#removeselted{
+	   position: absolute;
+    right: 42%;
+    width: 125px;
+    border: none;
+    top: 8px;
+    color: white;
+    background: red;
+    height: 33px;
+    display: none;
+}
+#submitBtn{
+	width: 20%;
+    height: 36px;
+    background: #23abe0;
+    color: white;
+    border: none;
+    position: absolute;
+    right: 38%;
+    top: 80%;
+    bottom: 10px;
+    border-radius: 30px;
+}
+#localsbtdeals4{
+	width: 20%;
+    height: 36px;
+    background: #23abe0;
+    color: white;
+    border: none;
+    position: absolute;
+    right: 38%;
+    bottom: 1px;
+    border-radius: 30px; display: none;
+}
+#sbtdeals4{
+	width: 20%;
+    height: 36px;
+    background: #23abe0;
+    color: white;
+    border: none;
+    position: absolute;
+    right: 38%;
+    bottom: 10px;
+    border-radius: 30px; display: none;
+}
+#delitemdeals{
+	position: absolute;
+    right: 41%;
+    width: 120px;
+    border: none;
+    top: 8px;
+    color: white;
+    background: #23abe0;
+    height: 33px;
+    display: none;
+}
+#cropimagewebslct{
+	position: absolute;
+    right: 61%;
+    width: 124px;
+    border: none;
+    top: 8px;
+    color: white;
+    background: red;
+    height: 33px;
+    display: none;
+}
+#searchtextfild{
+    margin-top: 21px;
+    width: 100%;
+    height: 45px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 6px;
+    opacity: 0.31;
+	padding-left: 10px;
+}
+#searchdeals{
+	width: 100%;
+    height: 39px;
+    margin-top: 21px;
+    border: none;
+    padding-left: 10px; display: none;
+}
+#getimgloclinmodule{
+	position: absolute;
+   right: 59%;
+    width: 117px;
+    border: none;
+    top: 8px;
+    color: white;
+    background: #23abe0;
+    height: 33px;
+    display: none;
+}
+#addnewplacezipcode{
+	width: 21%;
+    height: 39px;
+    border: none;
+    background: #d5d5d5;
+    font-size: 16px;
+    color: black;
+    font-weight: 400;
+    left: 3.6%;
+    border-radius: 19px;
+    margin-top: 29%;
+    position: absolute;
+    color: #060606;
+}
+#expiraydate2{
+	height: 19px;
+    width: 36%;
+    margin-top: 13px;
+    position: absolute;
+    left: 37%;
+    bottom: -21px;
+    padding-bottom: 15px;
+    font-size: 37px;
+    border: none; float:right;
+}
+#cmraeditlogo{
+width: 8%;
+
+position: absolute;
+left: 48%;
+top: 85%;
+bottom: 16%;
+z-index: 4;
+bottom: 7px; visibility: hidden;
+}
+#output{
+	width: 100%;
+	position: absolute;
+	height: 100%;
+	float: left;
+	left: 0px;
+	visibility: hidden;
+	z-index: -2;
+	top: 0;
+	border: none;
+	object-fit: contain;
+	background: white;"
+}
+#entcname{
+	width: 98%;
+    height: 55px;
+    padding-left: 0px;
+    border: none;
+    font-size: 33px;
+    background: white;
+    position: absolute;
+    visibility: hidden;
+}
+.input-search-new
+{
+width: 100%;
+height: 59px;
+margin-top: 0px;
+border-radius: 0px;
+border: none;
+background: #ffffff;
+text-align: left;
+font-size: 26px;
+}
+
+.input-search-new::placeholder
+{
+font-size: 24px;
+}
+.loader
+{
+width: 100%;
+height: 168vh;
+position: absolute;
+background:rgba(0,0,0,0.6);
+display: none;
+z-index: 10;
+top: 0;
+text-align: center;
+}
+
+#dynic-dlimagelist
+{
+list-style: none;
+}
+.input-search
+{
+width: 60%;
+height: 44px;
+margin-top: 12px;
+border-radius: 20px;
+padding-left: 17px;
+border: none;
+background: #e0dfdf;
+text-align: left;
+}
+.bodysearch
+{
+	width: 101%;
+height: 124vh;
+background: white;
+position: absolute;
+z-index: 3;
+padding: 0px;
+display: none;
+margin: 0px;
+margin-left: -28px;
+text-align: center;
+
+}
+.rigtimage
+{
+width: 110px;
+right: 13px;
+top: 11px;
+position: absolute;
+height: 104px;
+}
+.offerdd
+{
+width: 148px;
+left: 10px;
+top: 75px;
+position: absolute;
+height: 40px;
+overflow: auto;
+}
+#myImg{
+	z-index: 2;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute; object-fit:cover; visibility: hidden;"
+}
+ .showoption
+{
+width: 100%; 
+height: 100%; 
+position: absolute;
+top:0px;
+z-index: 10;
+}
+.desc
+{
+width: 140px;
+left: 67px;
+top: 40px;
+position: absolute;
+height: 32px;
+overflow: auto;
+}
+
+#imagecc
+{
+width: 100%;
+height: 100%;
+
+}
+#namedc
+{    margin: 0px;
+font-size: 9px;
+text-align: left;
+width: 100%;
+padding: 3px;
+}
+
+#desccc
+{    margin: 0px;
+font-size: 9px;
+text-align: left;
+width: 100%;
+padding: 3px;
+}
+#offerdc
+{        margin: 0px;
+font-size: 8px;
+text-align: left;
+width: 100%;
+padding: 3px;
+color: white;
+}
+#imagerightcc
+{
+width: 100%;
+height: 100%;
+}
+
+.chosebtn
+{
+padding:5px 10px;
+background:#ccc;
+padding-bottom: 94px;
+border:1px solid #ccc;
+position:relative;
+color:#fff;
+border-radius:2px;
+text-align:center;
+float:left;
+cursor:pointer
+			}
+		
+			.hide_file {
+position: absolute;
+z-index: 2;
+opacity: 0;
+cursor: pointer;
+right: 0;
+top: 0;
+height: 100%;
+font-size: 24px;
+width: 100%;
+
+}
+
+.hide_file1 {
+z-index: 2;
+opacity: 0;
+cursor: pointer;
+right: 0;
+top: 0;
+height: 100%;
+font-size: 24px;
+width: 100%;
+
+}
+			
+			
+.inconclick
+{
+width: 100%;
+height: 100%;
+position: absolute;
+z-index: 2;
+background:none;
+text-align: right;
+}
+.textusertop
+{
+ font-size: 24px;
+margin-right: 14px;
+}
+
+.backtoappbtn
+{
+width: 166px;
+border-radius: 17px;
+border: none;
+padding: 5px;
+font-size: 19px;
+font-weight: 500;
+margin-bottom: 13px;
+background: #E9E9E9;
+margin-top: 16px;
+margin-right: 35px;
+}
+
+.cupons{width: 50%;height: 40px; background: white; float: left; text-align: center;
+background: white;
+float: left;
+text-align: center;
+}
+.deals{width: 50%;height: 40px; background:#D5D5D5; float: left; text-align: center;}
+
+.cupons img{
+ width: 70px;
+height: 25px;
+margin-top: 6px;
+}
+
+.deals img{
+ width: 42px;
+height: 25px;
+margin-top: 6px;
+}
+
+.sreach{
+ width: 212px;
+height: 35px;
+background: #969494;
+padding-left: 19px;
+}
 .select2-container--open .select2-dropdown--below {
     margin-left: -273px;
     margin-top: -8px;
@@ -150,29 +727,34 @@
     width: 52%;
     margin-left: 13px;
 }
-
+#Homeheader{
+	margin-bottom:5px;
+}
 
 /* style="width: 52%; margin-left: 13px;" */
 
 .cupons {
-    width: 140px;
+    width: 50% !important;
     height: 40px;
     background: white;
-    float: left;
+    float: none;
     text-align: center;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    box-shadow: black 0px 2px 4px;
+    width: 150px;
+    height: 50px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 4px;
+	    border: none;
 }
-
+.searchDiv{
+	background-color: #fff;
+}
 .deals {
-    width: 140px;
-    height: 40px;
+    width: 50%;
+    height: 50px;
     background: #D5D5D5;
     float: left;
     text-align: center;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+	    border: none;
 }
 
 .cupons img {
@@ -221,8 +803,6 @@
 .couns_search {
     width: 100%;
     height: 800px;
-    background: #212121;
-    ;
     padding: 17px;
     overflow: overlay;
 }
@@ -295,9 +875,12 @@ cupons_intract .offer::before {
 }
 
 .offerdes {
-    font-size: 25px!important;
+    font-size: 18px;
     padding-left: 10px;
     border: none;
+	width: 480px;
+	height: 161px;
+    border: 1px dashed lightgray;
 }
 
 .offerdes:focus {
@@ -315,13 +898,23 @@ cupons_intract .offer::before {
 .offerdes::placeholder {
     font-size: 25px!important;
 }
+.buttons_divelement
+{
+	width: 74%;
+	height: 81px;
+	text-align: right;
+	display: inline-block;
+}
 
+#datacount
+{
+color: black!important;
+}
 .btn_proceed {
     background: #5cc8fd;
     width: 20%;
     height: 46px;
     color: white;
-    float: left;
     border: none;
     border-radius: 20px;
     font-size: 18px;
@@ -361,6 +954,9 @@ cupons_intract .offer::before {
     color: #8c8c8c;
     top: 3%;
     font-size: 38px;
+	margin-left:129px;
+	background: none;
+    border: 2px dashed lightgray;
 }
 
 .offer {
@@ -373,7 +969,21 @@ cupons_intract .offer::before {
     font-size: 30px;
     position: relative;
 }
-
+.links{
+	position: relative;
+    top: 13px;
+}
+#cancelbtn{
+	font-weight: 800;
+	width: 202px;
+	font-size: 16px;
+	background: #d5d5d5;
+	border: none;
+	margin-left: 31px;																				
+	color: #484646;
+	border-radius: 19px;
+	padding: 13px;
+}
 .offdescript {
     width: 40%;
     height: 161px;
@@ -395,32 +1005,63 @@ cupons_intract .offer::before {
 .cupons_intract {
     width: 100%;
     height: auto;
-    background: ;
+    background: #fff;
     position: relative;
     text-align: center;
+    top: -5px;
 }
 
 .cupons_intact2 {
     width: 1014px;
     height: 398px;
-    top: 19px;
+    top: 48px;
     left: 41px;
-    /*    background: white;*/
     position: absolute;
 }
-
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: lightgray !important;
+  opacity: 0.5;
+  font-size:15px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #373434 !important;
+  opacity: 0.5;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #373434 !important;
+  opacity: 0.5;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #373434 !important;
+  opacity: 0.5;
+}
 .addlogo {
-    width: 119px;
-    height: 82px;
-    background: #d5d5d5;
-    left: 10px;
+	border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid lightgray;
+    width: 95px;
+    height: 89px;
+    left: 23px;
     position: absolute;
     top: 10px;
     padding: 0px;
-    border-radius: 10px;
     font-size: 10px;
+	}
+.textdealimage{
+	letter-spacing: 0px;
+	color: #373434;
+	opacity: 1;
 }
-
+.imagescoupons{
+	margin-top:40px;
+}
+.addlogo i{
+	font-size: 28px;
+    position: relative;
+    right: 33px;
+    top: 9px;
+	opacity:0.6
+}
 
 /*This is the dropdown arrow css deals and coupons*/
 

@@ -1,6 +1,25 @@
+ #Homeheader{
+ background: #FFFFFF 0% 0% no-repeat padding-box;
+ box-shadow: 0px 3px 6px #00000029;
+ opacity: 1;
+ padding: 11px;
+ }
+ #Homeheader img{ 
+ width:42px;
+ }
+ #Homeheader a{
+ color: #000000;
+ opacity: 0.5;
+ }
+ .support{
+ width: 32px;
+ margin-left: 0;
+ }
 header img{
     width: 244px;
-	margin-left:41px;
+    margin-left: 41px;
+    vertical-align: unset;
+    margin-top: 0;
 }
 header {
  background-color: rgb(0,192,255);

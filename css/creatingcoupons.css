@@ -1,3 +1,242 @@
+.dbt
+{
+  margin-top: 57px!important;
+margin-left: 21px!important;
+margin-bottom: 33px;
+}
+
+.dbt1
+{
+	width: 40%;
+height: 41px;
+background: #5cc8fd;
+float: left;
+border: none;
+margin-top: 33px;
+color: white;
+margin-left: 23px;
+font-size: 18px;
+border-radius: 19px;
+}
+
+
+
+/* The Modal (background) */
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+padding-top: 40px; /* Location of the box */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+z-index: 4;
+}
+
+/* Modal Content */
+.modal-content {
+background-color: #fefefe;
+margin: auto;
+padding: 12px;
+border: 1px solid #888;
+width: 88%;
+height: 553px;
+/* left: 3%; */
+}
+
+/* The Close Button */
+.close {
+color: #aaaaaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+
+.close:hover,
+.close:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+
+
+#map {
+   height: 81%;
+width: 97%!important;
+position: absolute;
+	margin-top: 49px;
+
+}
+
+#floating-panel {
+	   position: absolute;
+top: -14px;
+line-height: 19px;
+left: 21%;
+z-index: 5;
+width: 70%;
+/* background-color: #fff; */
+padding: 5px;
+/* border: 1px solid #999; */
+text-align: center;
+font-family: 'Roboto','sans-serif';
+line-height: 30px;
+padding-left: 10px;
+}
+
+.inputsearch
+{
+	width: 67%;
+height: 46px;
+border-radius: 20px;
+margin-top: 37px;
+margin-left: -125px;
+padding-left: 15px;
+
+}
+
+.btnsearch
+{
+	width: 100px;
+height: 41px;
+background: #0dbaff;
+color: white;
+border: none;
+}
+
+.content-list {
+width: 24%;
+height: 91%;
+/* top: 78px; */
+background: #fffefe;
+position: absolute;
+z-index: 3;
+overflow: scroll;
+display: none;
+}
+
+/* Hidden by default. */
+#panel {
+height: 100%;
+width: null;
+background-color: white;
+position: fixed;
+z-index: 1;
+overflow-x: hidden;
+transition: all .2s ease-out;
+}
+.open {
+width: 250px;
+}
+/* Styling for place details */
+.hero {
+width: 100%;
+height: auto;
+max-height: 166px;
+display: block;
+}
+.place,
+p {
+font-family: 'open sans', arial, sans-serif;
+padding-left: 18px;
+padding-right: 18px;
+}
+.details {
+color: darkslategrey;
+}
+a {
+text-decoration: none;
+color: cadetblue;
+}
+
+
+#list
+{
+  width: 20%; 
+  height: 80%; 
+  background: red;
+  position: absolute;
+  z-index: 3;
+}
+
+.list1
+{
+  width: 100%; 
+  height: 100px;
+  
+  
+  
+}
+
+.name
+{
+  font-size:10px;
+}
+
+.ulist li
+{
+  width: 100%;
+  height: 100%;
+  background: blue;
+  
+}
+
+#dynamic-list li
+{
+			list-style: none;
+width: 100%;
+/* margin-left: -24px; */
+left: 0p;
+float: left;
+height: a;
+height: auto;
+/* border: 1px solid white; */
+/* background: #f5f7f5; */
+border-bottom: 1px solid #b9b3b3;
+  
+}
+
+.couns_search
+{
+		height: 1034px!important;
+box-shadow: 2px 2px 3px black;
+	padding-right:0px;
+   
+   
+}
+
+
+#webimageslist
+{	
+position: absolute!important;
+list-style: none!important;
+	margin-top: 49px;
+
+}
+#webimageslist li
+{
+float: left;
+
+}
+
+
+#imagelistlocal
+{
+	position: absolute!important;
+list-style: none!important;
+margin-top: 46px;
+
+}
+#imagelistlocal li
+{
+float: left;
+
+}
  .select_catego {
      width: 30%;
      padding: 5px;
@@ -17,7 +256,8 @@
  .maincontainer {
      width: 100%;
      height: auto;
-     background: ;
+     background: #fff;
+    position: absolute;
  }
  
  .cuonsaddQRCODE {
@@ -45,6 +285,7 @@
  .cupons_intact1 {
      width: 94%;
      height: 435px;
+	 top:35px;
      background: url("img/Food_&_Drinks.png");
      margin-left: 31px;
      background-size: 100% 100%;
@@ -333,7 +574,9 @@
      float: left;
      margin-left: 24px;
  }
- 
+ .details{
+    padding: 0 50px;
+ }
  .rightpos {
      width: 40%;
      height: 611px;
@@ -341,6 +584,38 @@
      float: left;
      margin-left: 10px;
  }
+ .searchbtn
+{
+	width: 18%;
+margin-left: 1px;
+height: 40px;
+position: absolute;
+margin-top: 21px;
+	
+}
+.searchbtn img
+{
+		width: 28%;
+margin-top: 0px;
+height: 20px;
+}
+
+#delcouons2
+{
+	width: 100%;
+height: 100%;
+padding-top: 10px;
+	display: none;
+}
+
+#deldeals222
+{
+	width: 100%;
+height: 100%;
+padding-top: 10px;
+	display: none;
+	
+}
  /* Add Animation */
  
  @-webkit-keyframes slideIn {

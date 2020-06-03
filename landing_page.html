@@ -24,6 +24,10 @@
          	$(x).attr("src",src)
          };
 		 function getProfilePicture(){
+			const token = localStorage.getItem('_token');
+			  if(!token){
+				window.location.href = "login.html";
+			   }
 		    var defaultprofilePic="icons/img_avatar.png";
 			var UserprofilePicture = localStorage.getItem('userProfilePic');
 			if(UserprofilePicture){
@@ -158,7 +162,7 @@
             <p>Community Hub</p>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/maas_tool.png" />
+            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/Maas_tool.png" />
             <p>Mobile app as a service</p>
          </span>
          <span>
@@ -178,7 +182,7 @@
             <p>ITV Tool</p>
          </span>
          <span>
-            <a href="creatingcoupons_new.html">
+            <a href="creatingcoupons.html">
                <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/deal_coupon_tool.png" />
                <p>Deals & Coupon Tool</p>
             </a>

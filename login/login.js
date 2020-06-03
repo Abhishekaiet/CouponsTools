@@ -31,7 +31,7 @@
   function onload() {
 	 const token = localStorage.getItem('_token');
 	  if(token){
-		window.location.href = "/project/CouponsTools/landing_page.html";
+		window.location.href = "landing_page.html";
 	   }
   }
   function login() {
@@ -49,11 +49,12 @@
 				}
 			  });
 			  const loginData = await response.json();
-			   let token = loginData.access_token;
+			  let token = loginData.access_token;
 			  let type = loginData.token_type;
 			  localStorage.setItem('_token', type +' '+token);
 			  if (loginData.error) {
-
+				  $("#loader").css('display',"none");
+				  window.localStorage.removeItem("_token");
 				  iziToast.error({
 					  title: 'Error',
 					  message: 'Wrong username or password'
@@ -70,15 +71,22 @@
 						}
 					  });
 					  const userData = await response.json();
-					  console.log(userData);
 					  localStorage.setItem('userProfilePic', userData.user.gravatarURL);
 					   if(userData.user.businessUser){
-						window.location.href = "/project/CouponsTools/landing_page.html";
+						window.location.href = "landing_page.html";
+					   } else {
+						   $("#loader").css('display',"none");
+						   window.localStorage.removeItem("_token");
+						   iziToast.error({
+							  title: 'Error',
+							  message: 'You are not a business user'
+						  });
 					   }
 				  }
 				  userDataAction()
 			  }
 		}
+		$("#loader").css('display',"block");
 		loginAction();
 
   }

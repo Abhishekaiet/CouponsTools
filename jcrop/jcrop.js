@@ -194,7 +194,7 @@ jQuery(function($) {
     //		
     //	});
 
-    document.getElementById('resetCoupLogo').addEventListener('click', resetCoupLogodialog);
+    //document.getElementById('resetCoupLogo').addEventListener('click', resetCoupLogodialog);
 
     function resetCoupLogodialog() {
         var coupresetimg = localStorage.getItem('originalImage');

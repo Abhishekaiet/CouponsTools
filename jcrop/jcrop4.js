@@ -124,7 +124,7 @@ $(function() {
     //		
     //	});
 
-    document.getElementById('resetdeallogo').addEventListener('click', resetDealdialog);
+    //document.getElementById('resetdeallogo').addEventListener('click', resetDealdialog);
 
     function resetDealdialog() {
         var delresetimg = localStorage.getItem('originalImage');
