@@ -267,7 +267,6 @@ overflow: auto;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #707070;
     border-radius: 6px;
-    opacity: 0.31;
 	padding-left: 10px;
 }
 #searchdeals{
@@ -289,18 +288,28 @@ overflow: auto;
     display: none;
 }
 #addnewplacezipcode{
-	width: 21%;
-    height: 39px;
     border: none;
     background: #d5d5d5;
     font-size: 16px;
     color: black;
     font-weight: 400;
-    left: 3.6%;
     border-radius: 19px;
-    margin-top: 29%;
-    position: absolute;
     color: #060606;
+	width: 498px;
+    height: 53px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #0000000F;
+    border-radius: 10px;
+    opacity: 0.7;
+	text-align:left;
+	padding-left: 21px;
+
+}
+#addnewplacezipcode i {
+	    float: right;
+    font-size: 26px;
+    margin-right: 29px;
+    opacity: 0.3;
 }
 #expiraydate2{
 	height: 19px;
@@ -445,16 +454,95 @@ position: absolute;
 height: 32px;
 overflow: auto;
 }
+#cropgetimagecode1{
+	position: absolute;
+    width: 19%;
+    height: 34px;
+    margin-top: 40px; visibility:hidden;
+}
+#selectapiimage22{
+	position: absolute;
+    width: 19%;
+    height: 34px;
+    margin-top: 55px; visibility:hidden;
+}
+#cropgetimagecode{
+	position: absolute;
+    width: 19%;
+    height: 34px;
+    margin-top: 55px; visibility:hidden;
+}
+#selector{
+	width: 30%;
+    border-radius: 25px;
+    left: 66.9%;
+    margin-top: 29%;
+    position: absolute; display: none;
+}
+#zipaddednotification{
+	position: absolute;
+    right: 9%;
+    margin-top: 58px;
+    color: black; display: none;
+}
+#seezipadded{
+	left: 75%;
+    top: 85%;
+    width: 13%;
+    background: none;
+    color: white;
+    position: absolute; display: none;
+}
+#addnewonebtton{
+	top: 90.7%;;
+    left: 3.6%;
+    width: 15%;
+    background: white;
+    border-radius: 15px;
+    border: none;
+    height: 26px;
 
+    width: 16%;
+    color: black;
+    position: absolute;
+    display: none;
+}
+#addbtn{left: 3.6%;
+    top: 91%;
+    width: 13%;
+    border: none;
+    padding: 2px;
+    background: white;
+    border-radius: 11px;
+    color: black;
+    position: absolute;
+    display: block;}
+#tersconditons{
+    margin-top: 33px;
+    height: 202px;
+	border:none;
+    padding: 10px;
+   background: #FFFFFF 0% 0% no-repeat padding-box;
+	box-shadow: 0px 3px 6px #0000000F;
+	border-radius: 10px
+}
+#expiraydate2:focus
+{
+	outline: none;
+}
 #imagecc
 {
 width: 100%;
 height: 100%;
 
 }
+#couponsimage{
+	text-align: -webkit-center;
+}
 #namedc
 {    margin: 0px;
-font-size: 9px;
+font-size: 14px;
+font-weight: bold;
 text-align: left;
 width: 100%;
 padding: 3px;
@@ -550,12 +638,12 @@ margin-top: 16px;
 margin-right: 35px;
 }
 
-.cupons{width: 50%;height: 40px; background: white; float: left; text-align: center;
+.cupons{width: 50%;height: 40px; background: white; float: left; text-align: center;outline:none;
 background: white;
 float: left;
 text-align: center;
 }
-.deals{width: 50%;height: 40px; background:#D5D5D5; float: left; text-align: center;}
+.deals{width: 50%;height: 40px; background:#D5D5D5; float: left; text-align: center;outline:none;}
 
 .cupons img{
  width: 70px;
@@ -565,7 +653,7 @@ margin-top: 6px;
 
 .deals img{
  width: 42px;
-height: 25px;
+height: auto;
 margin-top: 6px;
 }
 
@@ -878,8 +966,8 @@ cupons_intract .offer::before {
     font-size: 18px;
     padding-left: 10px;
     border: none;
-	width: 480px;
-	height: 161px;
+    width: 427px;
+    height: 145px;
     border: 1px dashed lightgray;
 }
 
@@ -923,51 +1011,69 @@ color: black!important;
 }
 
 .input_form {
-    width: 30%;
-    height: 43px;
-    margin-left: 25px;
+   width: 498px;
+	height: 53px;
+    margin-left: 0;
     border: none;
     /* box-shadow: 2px 3px 3px black; */
     border-radius: 25px;
     padding-left: 18px;
     margin-top: 33px;
     font-size: 15px;
-    margin-left: 25px;
+    margin-left: 0;
     margin-top: 12px;
-    float: left;
 }
 
 .formdeal {
     width: 100%;
-    height: 42px;
     margin-top: 11px;
-    background: ;
+    background: rgb(219,219,219,0.3);
+	border-radius: 26px;
+	display: grid;
+    grid-template-columns: auto auto;
+	padding: 44px 50px;
 }
-
+.formdeal input,.formdeal select, .formdeal textarea{
+	width: 498px;
+    height: 53px;
+}
+.selectall{
+	opacity: 0.5;
+    padding: 12px;
+	background-color:#fff;
+}
+.selectall i{
+	margin-left: 12px;
+    margin-right: 3px;
+    vertical-align: middle;
+    font-size: 17px;
+	opacity: 0.5;
+}
+.formdeal span{
+	margin-bottom:50px;
+}
 .adding_image {
     width: 44%;
-    height: 363px;
+    height: 339px;
     background: #cac9c9;
     position: absolute;
     padding: 53px!important;
-    left: 55%;
+    left: 44%;
     color: #8c8c8c;
-    top: 3%;
+    top: 5%;
     font-size: 38px;
-	margin-left:129px;
-	background: none;
+    margin-left: 129px;
+    background: none;
     border: 2px dashed lightgray;
 }
 
 .offer {
     width: 50%;
     height: 136px;
-    /*    background: #c1272d;*/
     position: absolute;
     left: 0%;
     top: 60%;
     font-size: 30px;
-    position: relative;
 }
 .links{
 	position: relative;
@@ -985,7 +1091,6 @@ color: black!important;
 	padding: 13px;
 }
 .offdescript {
-    width: 40%;
     height: 161px;
     background: ;
     position: absolute;
@@ -1009,10 +1114,15 @@ color: black!important;
     position: relative;
     text-align: center;
     top: -5px;
+    max-width: 1300px;
+	margin: auto;
 }
-
+.details{
+    max-width: 1300px;
+    margin: auto;
+}
 .cupons_intact2 {
-    width: 1014px;
+    width: 92%;
     height: 398px;
     top: 48px;
     left: 41px;
@@ -1041,7 +1151,7 @@ color: black!important;
     border: 1px solid lightgray;
     width: 95px;
     height: 89px;
-    left: 23px;
+    left: 25px;
     position: absolute;
     top: 10px;
     padding: 0px;
@@ -1377,23 +1487,17 @@ select::-ms-expand {
 
 .selectdivedccate {
     position: relative;
-    float: left;
-    width: 30%;
+    width: 100%;
     margin-top: 4px;
-    margin-left: 30px;
 }
 
 .selectdivedccate:after {
-    content: '\f078';
+    content: '\25BC';
     font: normal normal normal 17px/1 FontAwesome;
-    color: #0ebeff;
-    /* right: 39px; */
-    top: 12px;
-    height: 34px;
-    /* left: 83%; */
-    right: 6px;
-    padding: 7px 6px 0px 11px;
-    border-left: 1px solid #0ebeff;
+    color: #000;
+    top: 19px;
+    height: 33px;
+    right: 86px;
     position: absolute;
     pointer-events: none;
 }
@@ -1410,8 +1514,6 @@ select::-ms-expand {
     -moz-appearance: none;
     appearance: none;
     display: block;
-    width: 99%;
-    height: 43px;
     border: none;
     margin-left: 2px;
     margin-top: 8px;
@@ -1431,23 +1533,16 @@ select::-ms-expand {
 
 .selectdivedsreachtype {
     position: relative;
-    float: left;
-    margin-top: 32px;
-    margin-left: 24px;
-    width: 30%;
+    width: 100%;
 }
 
 .selectdivedsreachtype:after {
-    content: '\f078';
+    content: '\25BC';
     font: normal normal normal 17px/1 FontAwesome;
-    color: #0ebeff;
-    /* right: 39px; */
-    top: 12px;
-    height: 34px;
-    /* left: 83%; */
-    right: 6px;
-    padding: 7px 6px 0px 11px;
-    border-left: 1px solid #0ebeff;
+    color: #000;
+    top: 19px;
+    height: 33px;
+    right: 86px;
     position: absolute;
     pointer-events: none;
 }
@@ -1464,8 +1559,6 @@ select::-ms-expand {
     -moz-appearance: none;
     appearance: none;
     display: block;
-    width: 99%;
-    height: 43px;
     border: none;
     margin-left: 2px;
     margin-top: 8px;
@@ -1485,23 +1578,16 @@ select::-ms-expand {
 
 .selectdiveddatedcoupons {
     position: relative;
-    float: left;
-    width: 30%;
-    margin-left: 30px;
-    margin-top: 33px;
+    width: 100%;
 }
 
 .selectdiveddatedcoupons:after {
-    content: '\f078';
+    content: '\25BC';
     font: normal normal normal 17px/1 FontAwesome;
-    color: #0ebeff;
-    /* right: 39px; */
-    top: 12px;
-    height: 34px;
-    /* left: 83%; */
-    right: 6px;
-    padding: 7px 6px 0px 11px;
-    border-left: 1px solid #0ebeff;
+    color: #000;
+    top: 19px;
+    height: 33px;
+    right: 86px;
     position: absolute;
     pointer-events: none;
 }
@@ -1518,8 +1604,6 @@ select::-ms-expand {
     -moz-appearance: none;
     appearance: none;
     display: block;
-    width: 99%;
-    height: 43px;
     border: none;
     margin-left: 2px;
     margin-top: 8px;
@@ -1539,23 +1623,16 @@ select::-ms-expand {
 
 .selectdivedpriorities {
     position: relative;
-    float: left;
-    margin-left: 35%;
-    margin-top: -4%;
-    width: 30%
+    width: 100%
 }
 
 .selectdivedpriorities:after {
-    content: '\f078';
+    content: '\25BC';
     font: normal normal normal 17px/1 FontAwesome;
-    color: #0ebeff;
-    /* right: 39px; */
-    top: 12px;
-    height: 34px;
-    /* left: 83%; */
-    right: 6px;
-    padding: 7px 6px 0px 11px;
-    border-left: 1px solid #0ebeff;
+    color: #000;
+    top: 19px;
+    height: 33px;
+    right: 86px;
     position: absolute;
     pointer-events: none;
 }
@@ -1572,8 +1649,6 @@ select::-ms-expand {
     -moz-appearance: none;
     appearance: none;
     display: block;
-    width: 99%;
-    height: 43px;
     border: none;
     margin-left: 2px;
     margin-top: 8px;
@@ -1593,10 +1668,7 @@ select::-ms-expand {
 
 .selectdivedpromecoupons {
     position: relative;
-    float: left;
     width: 30%;
-    margin-left: -30.2%;
-    margin-top: -13.4%;
 }
 
 .selectdivedpromecoupons:after {

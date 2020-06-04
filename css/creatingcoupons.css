@@ -198,16 +198,20 @@ height: auto;
 /* border: 1px solid white; */
 /* background: #f5f7f5; */
 border-bottom: 1px solid #b9b3b3;
-  
+ }
+ .star{
+	 color:red;
+ }
+ .labelterms{
+	 width:100%;
+ }
+#selectapiimage22{
+	
 }
-
 .couns_search
 {
-		height: 1034px!important;
-box-shadow: 2px 2px 3px black;
-	padding-right:0px;
-   
-   
+	height: 1034px!important;
+	padding-right:0px; 
 }
 
 

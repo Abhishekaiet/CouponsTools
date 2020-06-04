@@ -13,9 +13,6 @@
     #addbtn {
         top: 91%!important;
     }
-    #addnewplacezipcode {
-        margin-top: 30%!important;
-    }
 }
 
 @media(max-width:1500px) and (min-width:1450px) {
@@ -29,9 +26,6 @@
     }
     #addbtn {
         top: 92%!important;
-    }
-    #addnewplacezipcode {
-        margin-top: 32%!important;
     }
 }
 
@@ -68,9 +62,6 @@
     #addbtn {
         top: 91.4%!important;
     }
-    #addnewplacezipcode {
-        margin-top: 33%!important;
-    }
 }
 
 @media(max-width:1400px) and (min-width:1350px) {
@@ -103,7 +94,7 @@
     #addbtn {
         top: 92.4%!important;
     }
-    #addnewplacezipcode {
-        margin-top: 35%!important;
-    }
+	#addnewplacezipcode{
+		width:75%;
+	}
 }

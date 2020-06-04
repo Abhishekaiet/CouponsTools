@@ -164,16 +164,10 @@ function openMenu(x) {
 		
 			
 			  
-//			document.getElementById("dealsimage").src="img/Icons/dealslight.png";
+			document.getElementById("dealsimage").src="img/Icons/dealslight.png";
 			  
 //			  x = document.getElementById("cuponscodeQR");
-//			  x.style.display = "none";
-
-			  
-			
-			  
-			
-			  
+//			  x.style.display = "none";  
 		  }
 
 
@@ -200,10 +194,7 @@ function openMenu(x) {
 			  createnewcouponsdeals = document.getElementById("createnewcouponsdeals");
 			createnewcouponsdeals.style.display = "none";
 			  
-			   createnewcouponsbtn = document.getElementById("createnewcouponsbtn");
-			  createnewcouponsbtn.style.display = "block";
-			  
-			  
+
 			   z = document.getElementById("mainconainercup");
 			z.style.display = "block";
 			   cupbt = document.getElementById("cubtcolor");
