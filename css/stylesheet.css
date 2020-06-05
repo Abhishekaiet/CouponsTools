@@ -2,8 +2,6 @@
 body{background:#F5F5F5;
 }
 
-
-
 .navbar{background:#000000; border:0px;}
 .logo_icon img{width:70px; height:70px;}
 .logo_icon{margin-top:70px;}
@@ -316,7 +314,7 @@ select.minimal:focus {
 
 /*Being the pop frind choose list module*/
 .fade{background:none!important;}
-.modal-content{background:#FFFFFF; height:400px; width:200px; margin-left:400px; margin-top:105px; border-radius:0px;}
+.modal-content{background:#FFFFFF; height:530px; border-radius:0px;}
 .modal-header{background:#424242; height:20px!important; color:#FFFFFF; font-size:14px; text-align:center;}
 .modal-title{margin-top:-10px;}
 .modal-body{margin:0px; padding:5px;}

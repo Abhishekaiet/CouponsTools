@@ -114,7 +114,7 @@ function openMenu(x) {
 			y.style.background = "#D5D5D5";
 			 y.style.boxShadow = "0px 0px 0px black";
 			  
-//			  document.getElementById("dealsimage").src="img/Icons/dealsoff.png";
+			document.getElementById("dealsimage").src="img/Icons/dealsoff.png";
 			  
 			  
 		  }
@@ -126,7 +126,7 @@ function openMenu(x) {
 			  ylw.style.boxShadow = "0px 2px 4px black";
 			  ylw.style.background = "white";
 			  
-			  
+			  document.getElementById("dealsimage").src="img/Icons/dealsoff.png";
 			   searchdeals = document.getElementById("searchdeals");
 			  searchdeals.style.display = "block"; 
 			  

@@ -1,9 +1,13 @@
- @media only screen and (max-width: 1366px) {
+ @media only screen and (max-width: 1520px) {
 	.addlogo {
 	left:2%;
 	}
 	.offerdes{
 		width:310px;
+	}
+	.dealimage{
+	 top: 90px;
+	 position:absolute
 	}
 	.adding_image {
     width: 45%;
@@ -16,12 +20,40 @@
 		width:69%;
 	}
 	.formdeal input,.formdeal select, .formdeal textarea{
-		width: 369px;
+	width: 369px;
     height: 53px;
     position: relative;
 	}
-	.formdeal label {
+	.drightform input,.drightform select, .drightform textarea, #addnewplacezipcode{
+	width: 369px !important;
+    height: 53px !important;
+    position: relative !important;
+	outline:none;
+	}
+	.selectdivedcategory:after{
+		right: 140px;
+	}
+	.selectdived:after{
+		right: 140px;
+		top: 22px;
+	}
+	.selectdivedpriotry:after{
+		right:136px;
+	}
+	drighttextarea{
+		height:197px;
+	}
+	.selectdivedsreachtype:after,.selectdivedpriorities:after{
+		right:38px;
+	}
+	.selectdivedated:after{
+		right:150px;
+	}
+	.formdeal label,.drightform label{
 		width: 198px;
+	}
+	.drightform{
+		width:95%;
 	}
 	.selectdivedccate:after,selectdivedccate:after{
 		right:40px;
@@ -35,4 +67,5 @@
     top: 11px;
     position: absolute;
     height:100px;
+    }
 }

@@ -1,3 +1,79 @@
+ .dellogo
+{
+width: 100%; 
+height: 100%;
+position: absolute;
+object-fit: cover;
+top: 0;
+left: 0;
+z-index: 3;;*/
+}
+.dealsdetail{
+	font-size: 30px; font-weight: bold;width:20%;display:inline-block;
+}
+.actionbutton{display: inline-block;
+    width: 75%;
+	text-align: right;}
+.categoriestextnode
+{
+width: 30%;
+height: 16%;
+margin-top: 10px;
+background: whitesmoke;
+float: right;
+text-align: center;
+padding-top: 5px;
+visibility: hidden;
+}
+
+.drightinputh2
+{
+width: 22%;
+height: 43px;
+border-radius: 20px;
+padding-left: 13px;
+margin-top: 10px;
+margin-left: 22px;
+border: none;
+}
+
+.div_forbottom
+{
+
+width: 169%;
+height: 300px;
+
+margin-top: 75px;
+
+}
+.formargin
+{
+    width: 498px;
+    height: 53px
+}
+
+.borderline
+{
+width: 100%;
+height: 2px;
+background: black;
+}
+
+.multizicode
+{
+margin-top: 91px!important;
+position: relative;
+}
+#listsearch1{
+	margin-left:10px;
+	outline:none;
+}
+.secondsearchbar
+{
+height: 88px!important;
+position: absolute;
+width: 72%!important;
+}
 .dbt
 {
   margin-top: 57px!important;
@@ -10,7 +86,6 @@ margin-bottom: 33px;
 	width: 40%;
 height: 41px;
 background: #5cc8fd;
-float: left;
 border: none;
 margin-top: 33px;
 color: white;
@@ -356,10 +431,9 @@ float: left;
  }
  
  .dbt {
-     width: 22%;
+     width: 17%;
      height: 41px;
      background: #5cc8fd;
-     float: left;
      border: none;
      margin-top: 33px;
      color: white;
@@ -370,7 +444,6 @@ float: left;
  
  .drighttextarea {
      width: 89%;
-     margin-left: 15px;
      border-radius: 11px;
      padding-left: 10px;
      height: 197px;
@@ -380,25 +453,32 @@ float: left;
  }
  
  .drightinput {
-     width: 90%;
-     height: 43px;
+    width: 90%;
+    height: 53px;
      border-radius: 20px;
      border: none;
      padding-left: 12px;
-     margin-top: 29px;
-     margin-left: 10px;
+	 margin-top: 12px;
  }
  
  .drightform {
      width: 87%;
-     height: 550px;
      margin-left: 24px;
      margin-top: 25px;
      border-radius: 30px;
+	 display: grid;
+	 grid-template-columns: auto auto;
+	 padding: 44px 50px;
+	 background: rgb(219,219,219,0.3);
+}
+
+.drightform span{
+	margin-bottom: 50px;
+}
+ .drightform select {
+	 margin-top:12px;
  }
- 
  .ddateinpt {
-     width: 100%;
      height: 29px;
      border: none;
      padding-left: 12px;
@@ -406,14 +486,17 @@ float: left;
  }
  
  .deoffdesinput {
-     width: 100%;
      border: none;
-     height: 68px;
      background: none;
      font-size: 24px;
      padding: 13px;
      margin-top: 3px;
      padding-left: 18px;
+	 width: 494px;
+    height: 113px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px dashed #707070;
+    opacity: 0.8;
  }
  
  .deoffdesinput::placeholder {
@@ -448,7 +531,7 @@ float: left;
  
  .decoffer {
      width: 100%;
-     height: 93px;
+     height: auto;
      padding-left: 26px;
      font-size: 26px;
      background: none;
@@ -468,10 +551,9 @@ float: left;
  .dedate {
      width: 29%;
      height: 16%;
-     margin-top: 12px;
+     margin-top: 49px;
      margin-left: 3px;
      text-align: center;
-     background: whitesmoke;
      background: ;
      float: right;
  }
@@ -482,7 +564,6 @@ float: left;
      margin-top: 4px;
      margin-left: 12px;
      border-radius: 10px;
-     background: whitesmoke;
      background: ;
      float: left;
  }
@@ -498,11 +579,202 @@ float: left;
  
  .deoffer {
      width: 81%;
-     height: 50%;
+     height: 17%;
      margin-top: 5px;
      float: left;
  }
- 
+	.bntconf
+	{
+	margin-left: : 36%!important;
+	}
+
+	.btn_proceed2
+	{
+	background: #5cc8fd;
+	width: 21%;
+	height: 46px;
+	/* margin-top: 343px; */
+	color: white;
+	position: relative;
+	margin-left: 24%;
+	border: none;
+	border-radius: 20px;
+	font-size: 18px;
+	font-weight: 600;
+	}
+
+	#couponsimage
+	{
+	list-style:none;
+	}
+
+	#couponsimagedeal
+	{
+	list-style:none;
+	display: none;
+	}
+
+	#cupsearch
+	{
+	list-style:none;
+	}
+
+	#listsearch:focus
+	{
+
+	outline: none;
+	background: white;
+
+	}
+	.imagebackground
+	{
+	width: 93%;
+	top: 5px;
+	left: 9px;
+	border-radius: 13px;
+	height: 139px;
+	background: blue;
+	position: absolute;
+	}
+	.bottomdiv
+	{
+	width: 113%;
+	height: 186px;
+	border-radius: 13px;
+	border: radiu;
+	position: relative;
+	margin-left: 3px;
+	}
+	.logoimageleft
+	{
+	width: 40px;
+	height: 40px;
+	background: green;
+	position: absolute;
+	left: 10px;
+	top: 4px;
+	}
+	.deslnameleft
+	{
+	width: 100%;
+	height: 61px;
+	position: absolute;
+	overflow: auto;
+	padding: 3px;
+	border-radius: 10px;
+	bottom: 0px;
+	}
+	.delofferleft
+	{
+	width: 70%;
+	height: 30px;
+	position: absolute;
+	padding: 3px;
+	overflow: auto;
+	top: 36px;
+	right: 21px;
+	}
+	.offerdescleft
+	{
+	width: 70%;
+	height: 30px;
+	position: absolute;
+	padding: 3px;
+	overflow: auto;
+	top: 68px;
+	left: 11px;
+	}
+	.dealsdateleft
+	{
+	width: 22%;
+	height: 30px;
+	/*    background: #8c6868;*/
+	position: absolute;
+	padding: 3px;
+
+	top: 68px;
+	right: 5px;
+	/* left: 11px; */
+
+	}
+	#imagerightdeals
+	{
+	width: 97%;
+	height: 100%;
+	}
+	#logodealsimage
+	{
+	width: 100%;
+	height: 100%;
+	}
+
+	#dealsnameleft1
+	{
+	padding: 0;
+	font-size: 9px;
+	margin: 0px;
+	font-size: 16px;
+	padding-left: 11px;
+	color: white;
+	}
+	#dealsnameleft2
+	{
+	padding: 0;
+	font-size: 9px;
+	margin: 0px;
+	}
+	#dealsnameleft3
+	{
+	padding: 0;
+	font-size: 9px;
+	margin: 0px;
+	}
+	#dealsnameleft4
+	{
+	padding: 0;
+	font-size: 9px;
+	margin: 0px;
+	}
+	.cupons_intact1
+	{
+	width: 94%;
+	height: 435px;
+	/*    background:url("img/Food_&_Drinks.png");*/
+	margin-left: 31px;
+	background-size:100% 100%;
+	position: relative;
+
+	}
+
+
+
+	::placeholder {
+	color: black;
+	opacity: 1; /* Firefox */
+	 
+	 
+
+	}
+
+	.dlgetmv
+	{
+		width: 100%;
+	height: 100%;
+	/*    background: rgba(0,0,0,0.5);*/
+	position: absolute;
+		z-index: 3;
+	}
+
+
+	.topnamelogo
+	{
+		   width: 100%;
+	height: 107px;
+	background: white;
+	border-top-right-radius: 17px;
+	position: relative;
+	border-top-left-radius: 17px;
+	}
  .decomname {
      width: 74%;
      height: 26%;
@@ -513,7 +785,7 @@ float: left;
  }
  
  .deallogo {
-     width: 112px;
+     width: 100px;
      height: 91px;
      text-align: center;
      padding: 10px;
@@ -522,8 +794,21 @@ float: left;
      position: relative;
      background: #f5f5f5;
      float: left;
+	 border-radius: 50%;
+    background: #fff;
+    border: 1px solid lightgray;
  }
- 
+ .deallogo i{
+	 font-size: 28px;
+    position: relative;
+    opacity: 0.6;
+	top: 9px;
+ }
+ .deallogo p{
+	font-size: 7px;
+	text-align: center;
+	margin-top: 13px;
+ }
  .icondeal {
      width: 43px;
      height: 40px;
@@ -537,7 +822,18 @@ float: left;
      width: 100%;
      height: 100%;
  }
- 
+ #dlimageoutput{
+	 width: 100%;
+    position: absolute;
+    height: 100%;
+    float: left;
+    left: 0px;
+	z-index: -1;
+    top: 0;
+    border: none;
+    object-fit: contain;
+    background: white;
+ }
  .dealdetail {
      width: 100%;
      height: 185px;
@@ -548,45 +844,113 @@ float: left;
      position: absolute;
      bottom: 0px;
  }
- 
+ .dealimage .imageupload{
+	font-size: 110px;
+    opacity: 0.7;
+ }
+ #delimagelink{
+	 position: absolute;left: 0;
+    position: absolute;
+    top: 0;
+    height: 20px; visibility: hidden;
+ }
+ #deldescription{
+	 position: absolute;left: 0;
+    position: absolute;
+    top: 0;
+    height: 20px; visibility: hidden;
+ }
+ #deladdbtn2{
+	 width: 39%;
+    height: 41px;
+    background: rgb(233, 233, 233);
+    float: left;
+    border: none;
+    margin-top: 33px;
+    color: black;
+    margin-left: 17px;
+    font-size: 13px;
+    border-radius: 19px;
+    display: none;
+ }
+ #deladdbtn{
+	 width: 34%;
+    height: 27px;
+   background: #e9e9e9;
+    float: left;
+    border: none;
+    margin-top: 33px;
+    margin-bottom: 10px;																								 
+    color: black;
+    margin-left: 20px;
+    font-size: 14px;
+    border-radius: 19px;
+ }
+ #deladdnewplacezipcode{
+	 text-align: left;
+    width: 88%;
+    height: 41px;
+   background: #e9e9e9;
+    float: left;
+    border: none;
+    margin-top: 14px;
+    padding-left: 21px;
+    color: black;
+    margin-left: 16px;
+    font-size: 18px;
+    border-radius: 19px;
+ }
+ #delselector{
+	position: absolute;left: 0;
+	position: absolute;
+	top: 0;
+	height: 20px; visibility: hidden;
+ }
  .dealimageupload {
-     width: 95%;
+     width: 100%;
      height: 332px;
      background: #f5f5f5;
-     margin-left: 15px;
      text-align: center;
      margin-top: 13px;
      border-radius: 1px;
      position: absolute;
+	 background: #C1C1C1 0% 0% no-repeat padding-box;
  }
  
  .dealimage {
-     width: 95%;
-     height: 653px;
-     /* background: #be252b; */
-     /* top: 10px; */
-     margin-top: 23px;
-     margin-left: 17px;
-     border-radius: 20px;
-     position: relative;
+   width: 942px;
+    height: 653px;
+    margin-top: 23px;
+    margin-left: 17px;
+    border-radius: 20px;
+    position: relative;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 10px #00000029;
+	margin:auto;
  }
  
  .leftpos {
-     width: 55%;
+     width: 100%;
      height: 611px;
-     background: ;
-     float: left;
      margin-left: 24px;
+	 display: inline-table;
+    margin-bottom: 46px;
+ }
+ .leftpos{
+	 position: relative;
+    top: 19px;
+ }
+ .dealimage{
+	 top: 90px;
  }
  .details{
     padding: 0 50px;
  }
  .rightpos {
-     width: 40%;
+     width: 100%;
      height: 611px;
-     background: ;
-     float: left;
      margin-left: 10px;
+	 margin-top: 100px;
  }
  .searchbtn
 {

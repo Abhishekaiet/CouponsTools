@@ -1,9 +1,4 @@
 @media(max-width:1570px) and (min-width:1500px) {
-    #photosearchlist {
-        width: 105%!important;
-        margin-left: -6px!important;
-        object-fit: none!important;
-    }
     /* #multiple
 	{
 		

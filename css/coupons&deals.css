@@ -7,6 +7,7 @@
     opacity: 0.5;
 	margin-top: 10px;
 }
+
 .textdealimage{
 	display:block;
 	font-size: 15px;
@@ -844,16 +845,34 @@ padding-left: 19px;
     text-align: center;
 	    border: none;
 }
-
+  .carousel{position: absolute!important;}
+#dellogo{
+	z-index: 2;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0; object-fit: cover;visibility: hidden
+}
 .cupons img {
     width: 70px;
     height: 25px;
     margin-top: 6px;
 }
-
+#output3{
+	width: 100%;
+    position: absolute;
+    height: 100%;
+    float: left;
+    left: 0px;
+	z-index: -1;
+    top: 0;
+    border: none;
+    object-fit: contain;
+    background: white;
+}
 .deals img {
     width: 42px;
-    height: 25px;
+    height: auto;
     margin-top: 6px;
 }
 
@@ -988,7 +1007,7 @@ cupons_intract .offer::before {
 }
 .buttons_divelement
 {
-	width: 74%;
+	width: 70%;
 	height: 81px;
 	text-align: right;
 	display: inline-block;
@@ -1116,6 +1135,7 @@ color: black!important;
     top: -5px;
     max-width: 1300px;
 	margin: auto;
+	min-width: 950px;
 }
 .details{
     max-width: 1300px;
@@ -1181,19 +1201,6 @@ color: black!important;
     width: 100%;
 }
 
-.selectdived:after {
-    content: '\f078';
-    font: normal normal normal 17px/1 FontAwesome;
-    color: #0ebeff;
-    right: 39px;
-    top: 32px;
-    height: 34px;
-    padding: 7px 6px 0px 11px;
-    border-left: 1px solid #0ebeff;
-    position: absolute;
-    pointer-events: none;
-}
-
 
 /* IE11 hide native button (thanks Matt!) */
 
@@ -1202,15 +1209,12 @@ select::-ms-expand {
 }
 
 #delsearchtype {
-    -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     display: block;
-    width: 90%;
-    height: 43px;
+    width: 498px;
+    height: 53px;
     border: none;
-    margin-left: 12px;
-    margin-top: 27px;
     border-radius: 22px;
     padding: 0px 24px;
     font-size: 16px;
@@ -1231,20 +1235,6 @@ select::-ms-expand {
     width: 23%;
 }
 
-.selectdivedcategory:after {
-    content: '\f078';
-    font: normal normal normal 17px/1 FontAwesome;
-    color: #0ebeff;
-    /* right: 39px; */
-    top: 12px;
-    height: 34px;
-    /* left: 83%; */
-    right: 6px;
-    padding: 7px 6px 0px 11px;
-    border-left: 1px solid #0ebeff;
-    position: absolute;
-    pointer-events: none;
-}
 
 
 /* IE11 hide native button (thanks Matt!) */
@@ -1258,8 +1248,8 @@ select::-ms-expand {
     -moz-appearance: none;
     appearance: none;
     display: block;
-    width: 99%;
-    height: 43px;
+    width: 498px;
+    height: 53px;
     border: none;
     margin-left: 2px;
     margin-top: 8px;
@@ -1282,22 +1272,6 @@ select::-ms-expand {
     float: left;
     width: 22%;
 }
-
-.selectdivedpriotry:after {
-    content: '\f078';
-    font: normal normal normal 17px/1 FontAwesome;
-    color: #0ebeff;
-    /* right: 39px; */
-    top: 12px;
-    height: 34px;
-    /* left: 83%; */
-    right: 6px;
-    padding: 7px 6px 0px 11px;
-    border-left: 1px solid #0ebeff;
-    position: absolute;
-    pointer-events: none;
-}
-
 
 /* IE11 hide native button (thanks Matt!) */
 
@@ -1334,22 +1308,6 @@ select::-ms-expand {
     float: left;
     width: 22%;
 }
-
-.selectdivedpromot:after {
-    content: '\f078';
-    font: normal normal normal 17px/1 FontAwesome;
-    color: #0ebeff;
-    /* right: 39px; */
-    top: 12px;
-    height: 34px;
-    /* left: 83%; */
-    right: 6px;
-    padding: 7px 6px 0px 11px;
-    border-left: 1px solid #0ebeff;
-    position: absolute;
-    pointer-events: none;
-}
-
 
 /* IE11 hide native button (thanks Matt!) */
 
@@ -1387,21 +1345,6 @@ select::-ms-expand {
     width: 23%;
 }
 
-.selectdivedated:after {
-    content: '\f078';
-    font: normal normal normal 17px/1 FontAwesome;
-    color: #0ebeff;
-    /* right: 39px; */
-    top: 12px;
-    height: 34px;
-    /* left: 83%; */
-    right: 6px;
-    padding: 7px 6px 0px 11px;
-    border-left: 1px solid #0ebeff;
-    position: absolute;
-    pointer-events: none;
-}
-
 
 /* IE11 hide native button (thanks Matt!) */
 
@@ -1414,8 +1357,8 @@ select::-ms-expand {
     -moz-appearance: none;
     appearance: none;
     display: block;
-    width: 99%;
-    height: 43px;
+        width: 498px;
+    height: 53px;
     border: none;
     margin-left: 2px;
     margin-top: 8px;
@@ -1439,20 +1382,6 @@ select::-ms-expand {
     width: 22%;
 }
 
-.selectdivedpromot:after {
-    content: '\f078';
-    font: normal normal normal 17px/1 FontAwesome;
-    color: #0ebeff;
-    /* right: 39px; */
-    top: 12px;
-    height: 34px;
-    /* left: 83%; */
-    right: 6px;
-    padding: 7px 6px 0px 11px;
-    border-left: 1px solid #0ebeff;
-    position: absolute;
-    pointer-events: none;
-}
 
 
 /* IE11 hide native button (thanks Matt!) */
@@ -1466,8 +1395,8 @@ select::-ms-expand {
     -moz-appearance: none;
     appearance: none;
     display: block;
-    width: 99%;
-    height: 43px;
+        width: 498px;
+    height: 53px;
     border: none;
     margin-left: 2px;
     margin-top: 8px;
@@ -1490,18 +1419,6 @@ select::-ms-expand {
     width: 100%;
     margin-top: 4px;
 }
-
-.selectdivedccate:after {
-    content: '\25BC';
-    font: normal normal normal 17px/1 FontAwesome;
-    color: #000;
-    top: 19px;
-    height: 33px;
-    right: 86px;
-    position: absolute;
-    pointer-events: none;
-}
-
 
 /* IE11 hide native button (thanks Matt!) */
 
@@ -1534,17 +1451,6 @@ select::-ms-expand {
 .selectdivedsreachtype {
     position: relative;
     width: 100%;
-}
-
-.selectdivedsreachtype:after {
-    content: '\25BC';
-    font: normal normal normal 17px/1 FontAwesome;
-    color: #000;
-    top: 19px;
-    height: 33px;
-    right: 86px;
-    position: absolute;
-    pointer-events: none;
 }
 
 
@@ -1581,17 +1487,6 @@ select::-ms-expand {
     width: 100%;
 }
 
-.selectdiveddatedcoupons:after {
-    content: '\25BC';
-    font: normal normal normal 17px/1 FontAwesome;
-    color: #000;
-    top: 19px;
-    height: 33px;
-    right: 86px;
-    position: absolute;
-    pointer-events: none;
-}
-
 
 /* IE11 hide native button (thanks Matt!) */
 
@@ -1626,17 +1521,6 @@ select::-ms-expand {
     width: 100%
 }
 
-.selectdivedpriorities:after {
-    content: '\25BC';
-    font: normal normal normal 17px/1 FontAwesome;
-    color: #000;
-    top: 19px;
-    height: 33px;
-    right: 86px;
-    position: absolute;
-    pointer-events: none;
-}
-
 
 /* IE11 hide native button (thanks Matt!) */
 
@@ -1669,21 +1553,6 @@ select::-ms-expand {
 .selectdivedpromecoupons {
     position: relative;
     width: 30%;
-}
-
-.selectdivedpromecoupons:after {
-    content: '\f078';
-    font: normal normal normal 17px/1 FontAwesome;
-    color: #0ebeff;
-    /* right: 39px; */
-    top: 12px;
-    height: 34px;
-    /* left: 83%; */
-    right: 6px;
-    padding: 7px 6px 0px 11px;
-    border-left: 1px solid #0ebeff;
-    position: absolute;
-    pointer-events: none;
 }
 
 

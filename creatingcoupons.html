@@ -44,6 +44,15 @@
     <link rel="stylesheet" href="jcropcss/jquery.Jcrop.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
     <!-- Css Stylesheet Contolling page Design-->
+	<style>
+	select {
+		background-color: white !important;
+		background-image: url(img/icons/arrow-triangle.png) !important;
+		background-position: right 15px center  !important;
+		background-repeat: no-repeat;
+		background-size: auto 30%;
+	}
+	</style>
 	<script>
 
 	$(document).ready(function() {
@@ -66,6 +75,16 @@
 		
 		document.getElementById('openDLimagemodal').addEventListener('click', function (){
 		var cropmodalclose = document.getElementById('image-deal-web-modal');
+		cropmodalclose.style.display="block";
+		});
+		
+		document.getElementById('close-dlimagemodal').addEventListener('click', function (){
+		var cropmodalclose = document.getElementById('deal-image-modal');
+		cropmodalclose.style.display="none";
+		});
+		
+		document.getElementById('dlgetmodal').addEventListener('click', function (){		
+		var cropmodalclose = document.getElementById('deal-image-modal');
 		cropmodalclose.style.display="block";
 		});
 	
@@ -1372,7 +1391,7 @@
 				<img src="img/Icons/cuponslight.png" id="cuposnimage" onClick="mycupons()">
 				</button>
 				<button class="deals" onclick="mydeal()" id="btncolor">
-					<img src="img/Icons/dealsoff.png">
+					<img id="dealsimage" src="img/Icons/dealsoff.png">
 				</button>
                 <input type="text" placeholder="Search for coupons" id="searchtextfild" onKeyUp="myFunction()">
                 <input type="text" placeholder="Search for deals " id="searchdeals" onKeyUp="myFunction2()">
@@ -1383,156 +1402,6 @@
 			<div style="float:right"><i class="fa fa-filter"></i>Sort & filters
 			<i class="material-icons">delete</i>Delete</div>
 			</div>
-                <style>
-                    #couponsimage
-                    	{
-                    		list-style:none;
-                    	}
-                    					
-                    					#couponsimagedeal
-                    	{
-                    		list-style:none;
-                    		display: none;
-                    	}
-                    					
-                    					#cupsearch
-                    	{
-                    		list-style:none;
-                    	}
-                    					
-                    				#listsearch:focus
-                    					{
-                    						
-                    						outline: none;
-                    /*						box-shadow: 2px 2px 2px 2px black;*/
-                    						background: white;
-                    
-                    					}
-                    					
-                    					.dealsleft
-                    					{
-                    						
-                    						
-                    					}
-                    					
-                    					.imagebackground
-                    					{
-                    						width: 93%;
-                        top: 5px;
-                        left: 9px;
-                        border-radius: 13px;
-                        height: 139px;
-                        background: blue;
-                        position: absolute;
-                    					}
-                    					.bottomdiv
-                    					{
-                    						   width: 113%;
-                        height: 186px;
-                        border-radius: 13px;
-                        border: radiu;
-                        /* left: 13px; */
-                        /* bottom: -4px; */
-                        position: relative;
-                    						background-image: linear-gradient(to bottom,rgba(0,0,0,0.1) 40%,black);
-                    						    margin-left: 3px;
-                    					}
-                    					.logoimageleft
-                    					{
-                    						width: 40px;
-                        height: 40px;
-                        background: green;
-                        position: absolute;
-                        left: 10px;
-                        top: 4px;
-                    					}
-                    					.deslnameleft
-                    					{
-                    					width: 100%;
-                        height: 61px;
-                    /*    background: orange;*/
-                        position: absolute;
-                        overflow: auto;
-                        padding: 3px;
-                        border-radius: 10px;
-                        /* top: 4px; */
-                        bottom: 0px;
-                    					}
-                    					.delofferleft
-                    					{
-                    						width: 70%;
-                        height: 30px;
-                    /*    background: #da00ff;*/
-                        position: absolute;
-                    						padding: 3px;
-                    						    overflow: auto;
-                        top: 36px;
-                        right: 21px;
-                    					}
-                    					.offerdescleft
-                    					{
-                    						width: 70%;
-                        height: 30px;
-                    /*    background: #ff0200;*/
-                        position: absolute;
-                    						padding: 3px;
-                    						    overflow: auto;
-                        top: 68px;
-                        /* right: 35px; */
-                        left: 11px;
-                    }
-                    					.dealsdateleft
-                    					{
-                    						width: 22%;
-                        height: 30px;
-                    /*    background: #8c6868;*/
-                        position: absolute;
-                    						padding: 3px;
-                    						
-                        top: 68px;
-                        right: 5px;
-                        /* left: 11px; */
-                    						
-                    					}
-                    					#imagerightdeals
-                    					{
-                    						width: 100%;
-                    						height: 100%;
-                    					}
-                    					#logodealsimage
-                    					{
-                    						width: 100%;
-                    						height: 100%;
-                    					}
-                    					
-                    					#dealsnameleft1
-                    					{
-                    	padding: 0;
-                        font-size: 9px;
-                        margin: 0px;
-                        font-size: 16px;
-                        padding-left: 11px;
-                        color: white;
-                    					}
-                    					#dealsnameleft2
-                    					{
-                    	padding: 0;
-                        font-size: 9px;
-                        margin: 0px;
-                    					}
-                    					#dealsnameleft3
-                    					{
-                    	padding: 0;
-                        font-size: 9px;
-                        margin: 0px;
-                    					}
-                    					#dealsnameleft4
-                    					{
-                    	padding: 0;
-                        font-size: 9px;
-                        margin: 0px;
-                    					}
-                </style>
                 <div class="filter">
 
                     <div id="delcouons2">
@@ -1684,9 +1553,8 @@
                                 </div>
                                 <div class="adding_image">
                                     <div class="imagescoupons" id="images_coupons">
-								<i class="fas fa-image imageupload"></i>
-								  <span class="textdealimage">Upload image here</span></span>
-
+									<i class="fas fa-image imageupload"></i>
+									<span class="textdealimage">Upload image here</span></span>
 								<img id="output" src="">
 
 								<img src="img/camera.png" id="cmraeditlogo">
@@ -1823,7 +1691,6 @@
 	<script>
 				document.getElementById('backgrondurl').value = "https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FFood_%26_Drinks.png?alt=media&token=e2cb1649-fc0f-4f66-a8e0-907376d9f040";
 
-
 				function myNewFunction(sel) {
 				//  alert(sel.options[sel.selectedIndex].value); gulgul
 
@@ -1836,17 +1703,11 @@
 
 				document.getElementById('backgrondurl').value = valuebgselect;
 
-
-
-
 				var imagebackgrond = document.getElementById('imagebackground');
 				imagebackgrond.src=valuebgselect;
-
 				}
 
-
 				document.getElementById('images_coupons').addEventListener('click',function(){
-
 
 				var imagecoupons_coupons = document.getElementById('close-image-coupons');
 				imagecoupons_coupons.style.display="block";
@@ -1859,7 +1720,6 @@
 
 				});
 
-
 				document.getElementById('openmodalwebsearch').addEventListener('click',function(){
 
 				var imagecoupons_couponsclose = document.getElementById('closewebsearch2');
@@ -1867,41 +1727,22 @@
 
 				});
 
-										   
-							
 				$(function() {
 				$( "#expiraydate" ).datepicker({ minDate: 0});
-
-
-
 				});
+				
+				
 				$(function() {
-
 				$( "#delexpirydate" ).datepicker({ minDate: 0});
-
-
-
 				});
 
 				$(function() {
-
 				$( "#expiraydate2" ).datepicker({ minDate: 0});
-
-
-
 				});
-
 
 				$(function() {
-
 				$( "#deldate" ).datepicker({ minDate: 0});
-
-
-
 				});
-
-
-
 
 				function handlerdel(e){
 
@@ -1933,9 +1774,6 @@
 				//				
 				}	
 
-
-
-
 				function handler(e){
 
 				document.getElementById('dateon').innerHTML = e.target.value;
@@ -1966,225 +1804,79 @@
 
 
 
-				}															   });
-			</script>
+				}															  
+				});
+
+					$('#priority').change(function(){
+
+						var bb = document.getElementById('priority').value;
+						
+						document.getElementById('oferrdescdublicate').value = bb;
+						
+					});
+                    					
+                    function showDiv(select){
+						if(select.value==2){
+
+						document.getElementById('multiple').value ="";						
+						document.getElementById('multiple').style.display = "block";
+						document.getElementById('addbtn').style.display = "block";
+						document.getElementById('clearbtn').style.display = "block";
 
 
-                <script>
-                    $('#priority').change(function(){
-                        
-                    					var bb = document.getElementById('priority').value;
-                    					
-                    					document.getElementById('oferrdescdublicate').value = bb;
-                    					
-                    });
-                    					
-                    					
-                    					function showDiv(select){
-                    						
-                    						
-                    //   if(select.value==1){
-                    //    document.getElementById('zipcode').style.display = "block";
-                    //   }
-                    //						else{
-                    //							document.getElementById('zipcode').style.display = "none";
-                    //						}
-                    
-                    						if(select.value==2){
-                    							
-                    	document.getElementById('multiple').value ="";						
-                         document.getElementById('multiple').style.display = "block";
-                    	 document.getElementById('addbtn').style.display = "block";
-                    	 document.getElementById('clearbtn').style.display = "block";
-                    	
-                    							
-                       }
-                    //						else{
-                    ////							document.getElementById('multiple').style.display = "none";
-                    //						}
-                    						
-                    						
-                    						if(select.value==4){
-                    							document.getElementById('multiple').value ="00000";
-                        document.getElementById('multiple').style.display = "block";
-                    	document.getElementById('addbtn').style.display = "block";
-                    	document.getElementById('clearbtn').style.display = "block";
-                    //	document.getElementById("multiple").disabled = true;
-                    							
-                       }
-                    //						else{
-                    //							document.getElementById('multiple').style.display = "none";
-                    //						}
-                    						
-                    						if(select.value==5){
-                        document.getElementById('range').style.display = "block";
-                       }
-                    						else{
-                    							document.getElementById('range').style.display = "none";
-                    						}
+						}
+						if(select.value==4){
+						document.getElementById('multiple').value ="00000";
+						document.getElementById('multiple').style.display = "block";
+						document.getElementById('addbtn').style.display = "block";
+						document.getElementById('clearbtn').style.display = "block";
+
+						}
+						if(select.value==5){
+						document.getElementById('range').style.display = "block";
+						}
+						else{
+						document.getElementById('range').style.display = "none";
+						}
                     }
                 </script>
-                <style>
-                    .bntconf
-                    				{
-                    					margin-left: : 36%!important;
-                    				}
-                    				
-                    				.btn_proceed2
-                    		  {
-                    			   background: #5cc8fd;
-                        width: 21%;
-                        height: 46px;
-                        /* margin-top: 343px; */
-                        color: white;
-                        position: relative;
-                        margin-left: 24%;
-                        border: none;
-                        border-radius: 20px;
-                        font-size: 18px;
-                        font-weight: 600;
-                    		  }
-                    
-                    				
-                    				.cupons_intact1
-                    		  {
-                    			 width: 94%;
-                        height: 435px;
-                    /*    background:url("img/Food_&_Drinks.png");*/
-                        margin-left: 31px;
-                    			  background-size:100% 100%;
-                    			  position: relative;
-                    			  
-                    		  }
-                    				
-                    				
-                    				
-                    				 ::placeholder {
-                      color: black;
-                      opacity: 1; /* Firefox */
-                    					 
-                    					 
-                    		
-                    }
-                    
-                    				.dlgetmv
-                    				{
-                    					    width: 100%;
-                        height: 100%;
-                    /*    background: rgba(0,0,0,0.5);*/
-                    					position: absolute;
-                    					    z-index: 3;
-                    				}
-                    				
-                    
-                    				.topnamelogo
-                    				{
-                    					       width: 100%;
-                        height: 107px;
-                        background: white;
-                        border-top-right-radius: 17px;
-                        position: relative;
-                        border-top-left-radius: 17px;
-                    				}
-                </style>
-
-
 
                 <!--Main Container Deal-->
                 <div class="maincontainerdeal" id="maincondeal">
 
                     <div class="leftpos">
-
+						<div class="links">
+						<span class="createlink">
+						<a href="creatingcoupons.html"><button id="createnewcouponsbtn"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Create New Coupons</button></a>
+						<a href="creatingcoupons.html"><button id="createnewcouponsbtn22"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Create New Coupons</button></a>
+						<a href="creatingcoupons.html"><button id="createnewcouponsdeals">  <i class="fa fa-plus-circle" aria-hidden="true"></i> Create New Deals</button></a>
+						</span>
+						<span class="ResetDel">
+						<button id="restbtnop"><i class="material-icons">refresh</i> Reset</button>
+						<button  id="delete"><i class="material-icons">delete_forever</i>Delete</button>
+						</span>
+					</div>
                         <div class="dealimage" id="delbackgroundurl">
-
-                            <img src="img/dealsimagebg/food.png" style="width:100%; height: 100%; border-radius: 19px; position: absolute;" id="backgroundurlimage">
                             <div class="topnamelogo">
 
 
                                 <div class="deallogo">
-
-
-
-                                    <span class="logotext" style="font-size:13px;"><span>Upload Your logo here</span><span>*</span>
-                                    <p>Max Size 500x500px</p>
+								    <i class="fas fa-image"></i>
+                                    <p class="logotext">Upload Your logo here</p>
                                     </span>
 
                                     <input type="file" name="image" id="file1" accept="image/*" onchange="loadFile3(event)" class="hide_file">
 
-                                    <img id="output3" src="" style="width: 100%;
-    position: absolute;
-    height: 100%;
-    float: left;
-    left: 0px;
-	z-index: -1;
-    top: 0;
-    border: none;
-    object-fit: contain;
-    background: white;">
-
-
-
-                                    <script>
-                                        //		
-                                        //		
-                                        		document.getElementById('close-dlimagemodal').addEventListener('click', function (){
-                                        			
-                                        			var cropmodalclose = document.getElementById('deal-image-modal');
-                                        			
-                                        			cropmodalclose.style.display="none";
-                                        			
-                                        		});
-                                    </script>
-                                    <style>
-                                        .dellogo
-                                        	{
-                                        		width: 100%; 
-                                        		height: 100%;
-                                        		position: absolute;
-                                        		object-fit: cover;
-                                        		top: 0;
-                                            left: 0;
-                                        		z-index: 3;
-                                        		
-                                        /*		background: rgba(0,0,0,0.5);*/
-                                        	}
-                                        	
-                                        	.secondsearchbar
-                                        	{
-                                        		background: #f5f5f5!important;
-                                            height: 88px!important;
-                                            /* position: relative; */
-                                            position: absolute;
-                                            width: 72%!important;
-                                        	}
-                                    </style>
+                                    <img id="output3" src="">
                                     <div class="dellogo" id="mv-del-logo">
                                         <img src="" style="width: 100%; height: 100%; visibility: hidden; background: white; object-fit: contain;" id="deloutput">
 
                                     </div>
-                                    <!--
-								<p align="center" style="color: black;
-    text-align: center;
-    font-size: 12px;
-    margin-top: 9px;">Upload image  here</p>
--->
-                                    <img id="dellogo" src="compman.gif" style="z-index: 2;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0; object-fit: cover;visibility: hidden">
-
-
-
+                                    <img id="dellogo" src="compman.gif">
                                 </div>
-
-                                <style>
-                                    .carousel{position: absolute!important;}
-                                </style>
-
                                 <div class="decomname">
-                                    <input type="text" class="input-search-new secondsearchbar" id="listsearch1" placeholder="Company Name Here" list="searchresults" autocomplete="off">
-                                    <input type="text" placeholder="company name here*" class="deconame" id="entcname3" value="" style="background: whitesmoke;">
+                                    <input type="text" class="input-search-new secondsearchbar" id="listsearch1" placeholder="Your Company name here" list="searchresults" autocomplete="off">
+                                    <input type="text" placeholder="company name here*" class="deconame" id="entcname3" value="">
                                 </div>
 
                             </div>
@@ -2209,345 +1901,131 @@
 
                                     </ul>
 
-                                    <!-- Left and right controls -->
-                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-                                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-                                </div>
-
-
-                                <div class="dlgetmv" id="dlgetmodal">
-                                    <img src="img/editicons.png" style="width: 9%;
-    position: absolute;
-    right: 0px;" id="editiconsdeals">
+								<!-- Left and right controls -->
+								<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+								  <span class="glyphicon glyphicon-chevron-left"></span>
+								  <span class="sr-only">Previous</span>
+								</a>
+								<a class="right carousel-control" href="#myCarousel" data-slide="next">
+								  <span class="glyphicon glyphicon-chevron-right"></span>
+								  <span class="sr-only">Next</span>
+								</a>
                                 </div>
                                 <br>
                                 <br>
                                 <br>
                                 <br>
                                 <br>
-                                <!--							<img src="img/camera.png" style="width: 35%; margin-top: 7px;"><br>-->
-                                <span style="font-size: 26px;
-    text-align: center;
-    margin-left: 16px;
-    color: dimgrey;">Add your <span>*</span> <br>image Here <br> max-size<br>1200X1000</span>
+								<i class="fas fa-image imageupload"></i><br>
+                                <span style="font-size: 26px;text-align: center;margin-left: 16px;color: dimgrey;">Upload image Here</span>
 
                                 <input type="file" name="image" id="dlimage" accept="image/*" onchange="loadFile3(event)" class="hide_file">
 
-                                <img id="dlimageoutput" src="" style="width: 100%;
-    position: absolute;
-    height: 100%;
-    float: left;
-    left: 0px;
-	z-index: -1;
-    top: 0;
-    border: none;
-    object-fit: contain;
-    background: white;">
-                                <!--
-
-							
-							<p style="font-size: 34px;
-    margin-top: 106px;
-    margin-left: 124px;" id="textdealimage">Add your image Here</p>
-							<p style="    font-size: 34px;
-    margin-left: 127px;">max-size 1200X1000</p>
--->
-
-                                <div class="icondeal">
-                                    <img src="img/Icons/uploadiocn.png">
-                                </div>
+                                <img id="dlimageoutput" src="" >
                             </div>
 
                             <div class="dealdetail">
-
-                                <script>
-                                    document.getElementById('dlgetmodal').addEventListener('click', function (){
-                                    //			
-                                    	
-                                    			var cropmodalclose = document.getElementById('deal-image-modal');
-                                    			
-                                    			cropmodalclose.style.display="block";
-                                    			
-                                    		});
-                                </script>
-
-                                <style>
-                                    .deoffer
-                                    								{
-                                    									background-image: url("img/Icons/dealbottomname.png")!important;
-                                    									background-size: contain;
-                                    								}
-                                </style>
-
-
                                 <div class="deoffer">
                                     <input type="text" placeholder="Your offer here*" class="decoffer" id="delofferc">
                                 </div>
-
                                 <div class="determs">
-
-                                    <input type="text" id="trmsdelpreivew" style="width: 114%;
-    background: none;
-    border: none; padding-left: 13px;">
-
+                                    <input type="text" id="trmsdelpreivew" placeholder="Deal category here" style="background: none;border: none; padding-left: 13px;">
                                 </div>
-
                                 <div class="deoffdes">
-
                                     <textarea rows="3" placeholder="Offer description here" class="deoffdesinput" id="deldescriptnc"></textarea>
-
                                 </div>
-
                                 <div class="categoriestextnode"><span>Category here</span></div>
                                 <div class="dedate">
-
-                                    <input type="text" placeholder="Expiration Date here" class="ddateinpt" id="deldate" onchange="handlerdel(event);">
+                                    <input type="text" placeholder="Deal expiration Date here" class="ddateinpt" id="deldate" onchange="handlerdel(event);">
                                     <p style="font-size: 11px; display: none; margin-top: 0px;" id="deldateshow">Deal will expire on <span id="dateon1" style="margin-left: 4px; display: none;"></span></p>
-
                                 </div>
-
                             </div>
-
                         </div>
-                        <style>
-                            .categoriestextnode
-                            						{
-                            						    width: 30%;
-                                height: 16%;
-                                margin-top: 10px;
-                                background: whitesmoke;
-                                float: right;
-                                text-align: center;
-                                padding-top: 5px;
-                            							visibility: hidden;
-                            						}
-                            						
-                            					.drightinputh2
-                            						{
-                            							       width: 22%;
-                                height: 43px;
-                                border-radius: 20px;
-                                padding-left: 13px;
-                                margin-top: 10px;
-                                margin-left: 22px;
-                            							border: none;
-                            						}
-                            						
-                            						.div_forbottom
-                            						{
-                            						
-                            						width: 169%;
-                                height: 300px;
-                            						
-                            							margin-top: 75px;
-                              
-                            						}
-                            						
-                            						
-                            
-                            						.formargin
-                            						{
-                            							margin-left:15px;
-                            							
-                            						}
-                            						
-                            						.borderline
-                            						{
-                            							width: 100%;
-                                height: 2px;
-                                background: black;
-                            						}
-                            						
-                            						.multizicode
-                            						{
-                            							    margin-top: 91px!important;
-                                position: relative;
-                            						}
-                        </style>
-                        <div class="div_forbottom">
-                            <div class="selectdivedated">
-                                <input type="text" class="drightinputh2" placeholder="Expiry date" id="delexpirydate" onchange="delhandler(event);" onkeyup="m3()">
-                            </div>
-                            <input type="text" placeholder="Select category" class="" id="delcate" style="visibility: hidden; position: absolute;">
-                            <!--						saba-->
-
-                            <div class="selectdivedcategory formargin">
-
-                                <select class="drightinputh2" id="selectdel" onChange="myNewFunction1(this);">
-					
-    <option value="blue">Select category</option>
-							
-    <option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Ffood.png?alt=media&token=f891778b-cefa-4df3-b5fe-4eeb4c5bb8c1">Food and Drinks</option>
-    <option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fhealth.png?alt=media&token=63493c6c-e61f-47a1-9532-42e7a630fbc1">Healths</option>
-    <option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fprofessnal_services.png?alt=media&token=41bd36cb-d0a4-47af-a328-058e8b733332">professnals services</option>
-    <option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fservices.png?alt=media&token=4326dbc5-7c6c-4903-b87b-31103dabae89">services</option>
-    <option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fshopping.png?alt=media&token=b0ac1b20-d76b-450c-b8b7-97c0e45110b9">Shoppings</option>
-	<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fthingstodo.png?alt=media&token=ec0e9b0f-1a68-4f65-b34d-caeb601e9788">Gym</option>
-							
-							
-							
-    
-				<input type="text" placeholder="Category *"  id="backgrondurl" value="" style="position: absolute; visibility: hidden;">	
-   
-  </select>
-
-                            </div>
-
-                            <div class="selectdivedpriotry formargin" id="promdealsdopdown1">
-                                <select id="delpriority">
-					<option>Priority Values</option>
-  <option value="0">0</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-</select>
-                            </div>
-
-                            <div class="selectdivedpriotry formargin" id="promdealsdopdown">
-                                <select id="dltrfl">	
-						<option>PROMOTED SELECT</option>
-  <option value="true">TRUE</option>
-  <option value="false">FALSE</option>
-</select>
-
-                            </div>
-
-
-
-                            <button type="button" class="dbt" onClick="delupdate()" id="update_dealbtn" style="display: none;">Update</button>
-                            <button type="button" class="dbt" onClick="addnewonedel()" id="addnewonedel" style="display: none;">Add New One</button>
-                            <button type="button" class="dbt" onClick="delsubmit()" id="confrm_dealbtn">Confirm</button>
-                            <button type="button" class="dbt" style="background: #E9E9E9;
-    color: black;">Cancel</button>
-
-
-                            <!--					<button type="button" class="dbt1" id="deldelete">Delete Deals</button>-->
-
-
-                        </div>
-
-
-
-
 
                     </div>
-
-
-                    <!--				samreenkhan-->
-
-
                     <div class="rightpos">
+						   <span class="dealsdetail">Deal Details</span>
+						   <div class="actionbutton"><button type="button" class="dbt" onClick="delsubmit()" id="confrm_dealbtn">Save</button>
+                           <button type="button" class="dbt" style="background: #E9E9E9;color: black;">Cancel</button></div>
+							<div class="drightform" id="drightform1">
+							<span><label for="area">Business Address/Location <b class="star">*</b></label>
+                             <input type="text" placeholder="Address " class="drightinput input_form" id="deladdress"></span>
+							 <span><label for="address1">Select Category <b class="star">*</b></label>
+                            <input type="text" placeholder="Select category" class="" id="delcate" style="display:none; position: absolute;">
+                            <div class="selectdivedcategory formargin">
 
-                        <div class="drightform" id="drightform1">
+							<select class="drightinputh2" id="selectdel" onChange="myNewFunction1(this);">
+							<option value="blue">Select category</option>
+							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Ffood.png?alt=media&token=f891778b-cefa-4df3-b5fe-4eeb4c5bb8c1">Food and Drinks</option>
+							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fhealth.png?alt=media&token=63493c6c-e61f-47a1-9532-42e7a630fbc1">Healths</option>
+							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fprofessnal_services.png?alt=media&token=41bd36cb-d0a4-47af-a328-058e8b733332">professnals services</option>
+							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fservices.png?alt=media&token=4326dbc5-7c6c-4903-b87b-31103dabae89">services</option>
+							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fshopping.png?alt=media&token=b0ac1b20-d76b-450c-b8b7-97c0e45110b9">Shoppings</option>
+							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fthingstodo.png?alt=media&token=ec0e9b0f-1a68-4f65-b34d-caeb601e9788">Gym</option>
+							<input type="text" placeholder="Category *"  id="backgrondurl" value="" style="position: absolute; visibility: hidden;">	 
+							</select>
+                            </div></span>
+							<span><label for="area">Coupon Code/Link <b class="star">*</b></label>
+							<input type="text" placeholder="Add deal code or links here" class="drightinput" id="delqrcode" onkeyup="m5()"></span>
+							<span><label for="area">Select Area <b class="star">*</b></label>
+							<input type="text" name="area" placeholder="Select nearby area" class="input_form" id="qrcode" value=""></span>
+							<span><label for="area">Expiration Date <b class="star">*</b></label>
+							<div class="selectdivedated formargin">
+                                <input type="text" class="drightinputh2" placeholder="Expiry date" id="delexpirydate" onchange="delhandler(event);" onkeyup="m3()">
+                            </div></span>
+							<span><label for="expiraydate">Promotion Type <b class="star">*</b></label>
+							<div class="selectdived">
+                            <select id="delsearchtype" onchange="delshowDiv(this)">	
+							<option selected>Search Type</option>
+							  <option value="2">Single / Multiple</option>
+							  <option value="4">Global</option>
+							  <option value="5">Range</option>
+							</select>
+                            </div></span>
+							<span><label for="">Zipcode <b class="star">*</b></label>
+								<input type="text" placeholder="Enter a single zipcode" class="input_form" id="zipcode" required value="">
+								<input type="text" placeholder="Single / multiple zipcode" class="input_form" style=" display: none;" id="multiple" onkeypress="document.getElementById('multiple').style.border='none';">
+								<input type="submit" value="Add muliple zipcode" onClick="addingobjects()" id="addbtn" style=" display: none;" >
+								<input type="submit" value="Add zipcode for new deals" onClick="addingobjectsaddnew()"  id="addnewonebtton">
+								<input type="submit" value="See added zipcode" onClick="" id="seezipadded">
+								<p id="zipaddednotification">The <span id="datacount"></span> zipcode has been added.</p></span>
+								
+							<span><label for="priority">Priority value  <b class="star">*</b></label>
+                            <div class="selectdivedpriotry formargin" id="promdealsdopdown1">
+							<select id="delpriority">
+								<option>Priority Values</option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
 
-                            <span style="font-size: 30px; font-weight: bold;">Deal Details</span>
-                            <div class="borderline"></div>
-
-                            <input type="text" placeholder="company Name Here*" class="" id="delcomname" value="" style="visibility: hidden;">
-                            <input type="text" placeholder="Your offer here*" class="" id="deloffer" onkeyup="m1()" style="visibility: hidden;">
-
-                            <input type="text" placeholder="Address " class="drightinput" id="deladdress">
-
-                            <div class="selectdived">
-
-                                <select id="delsearchtype" onchange="delshowDiv(this)">	
-						<option selected>Search Type</option>
-  <option value="2">Single / Multiple</option>
-  <option value="4">Global</option>
-  <option value="5">Range</option>
-</select>
-
-
-                            </div>
-
-
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+							</select>
+                            </div></span>
+                            <button type="button" class="dbt" onClick="delupdate()" id="update_dealbtn" style="display: none;">Update</button>
+                            <button type="button" class="dbt" onClick="addnewonedel()" id="addnewonedel" style="display: none;">Add New One</button>
+                            
+                         
+                         
+                            <input type="text" placeholder="company Name Here*" class="" id="delcomname" value="" style="display:none;">
+                            <input type="text" placeholder="Your offer here*" class="" id="deloffer" onkeyup="m1()" style="display:none;">
+                            
                             <input type="text" placeholder="Single / multiple zipcode" class="drightinput multizicode" style=" display: none;" id="delmultiple" onkeypress="document.getElementById('addbtn').style.border='2px solid white';">
 
 
-                            <input type="submit" value="Add muliple zipcode" onClick="deladdingobjects2()" style="width: 39%;
-    height: 41px;
-    background: rgb(233, 233, 233);
-    float: left;
-    border: none;
-    margin-top: 33px;
-    color: black;
-    margin-left: 17px;
-    font-size: 13px;
-    border-radius: 19px;
-    display: none;" id="deladdbtn2">
-
-
-                            <input type="submit" value="Add zipcode" onClick="deladdingobjects()" style="width: 34%;
-    height: 27px;
-   background: #e9e9e9;
-    float: left;
-    border: none;
-    margin-top: 33px;
-    margin-bottom: 10px;																								 
-    color: black;
-    margin-left: 20px;
-    font-size: 14px;
-    border-radius: 19px;" id="deladdbtn">
-
-                            <button style="text-align: left;
-    width: 88%;
-    height: 41px;
-   background: #e9e9e9;
-    float: left;
-    border: none;
-    margin-top: 14px;
-    padding-left: 21px;
-    color: black;
-    margin-left: 16px;
-    font-size: 18px;
-    border-radius: 19px;" id="deladdnewplacezipcode"><i class="fa fa-map-marker" aria-hidden="true"></i> Select Area</button>
-
-                            <input type="text" placeholder="Add deal code or links here" class="drightinput" id="delqrcode" onkeyup="m5()">
-
-
-                            <textarea placeholder="Offer desciption Here*" class="" rows="4" id="deldescription" onkeyup="m2()" style="position: absolute;left: 0;
-    position: absolute;
-    top: 0;
-    height: 20px; visibility: hidden;"></textarea>
-
-
-
-                            <input type="text" placeholder="Zipcode" class="" id="delzipcode" onkeyup="m4()" style="visibility: hidden; position: absolute;">
-
-
-                            <textarea placeholder="Term & conditions here*" class="drighttextarea" rows="4" id="delcondtions"></textarea>
-
-
-                            <input type="text" placeholder="deal image link" class="" id="delimagelink" onkeyup="m6()" style="position: absolute;left: 0;
-    position: absolute;
-    top: 0;
-    height: 20px; visibility: hidden;">
-
-
-
-
-                            <select id="delselector" style="position: absolute;left: 0;
-    position: absolute;
-    top: 0;
-    height: 20px; visibility: hidden;">
-					
-</select>
-
-
-
+                            <input type="submit" value="Add muliple zipcode" onClick="deladdingobjects2()" id="deladdbtn2">
+                            <button id="addnewplacezipcode"> <p style="margin: 0;display: inline;">Select Location</p> <i class="fa fa-map-marker" aria-hidden="true"></i></button>
+                            
+                            <textarea placeholder="Offer desciption Here*" class="" rows="4" style="display: none;" id="deldescription" onkeyup="m2()"></textarea>
+                            <input type="text" placeholder="Zipcode" class="" id="delzipcode" onkeyup="m4()" style="display: none; position: absolute;">
+                            <span><label for="priority">Terms & Conditions  <b class="star">*</b></label><textarea placeholder="Term & conditions here*" class="drighttextarea" rows="4" id="delcondtions"></textarea></span>
+                            <input type="text" placeholder="deal image link" class="" id="delimagelink" onkeyup="m6()">
+							<select id="delselector"></select>
                             <input type="text" placeholder="placeid" class="" id="delplaceid" style="visibility: hidden; position: absolute;">
                             <input type="text" placeholder="imagelogodel" id="imagelogodel" style="visibility: hidden; position: absolute;">
                             <input type="text" placeholder="imagedel" id="imagedel" style="visibility: hidden; position: absolute;">
@@ -2555,66 +2033,25 @@
                             <input type="text" id="rimgeurlmpapi1" style="position: absolute; visibility: hidden;">
                             <input type="text" id="webrightsearchlink" style="position: absolute; margin-top: 30px; visibility: hidden;">
                             <input type="text" id="colorbackgroudurl" style="position: absolute; visibility: hidden;">
-
                             <input type="text" id="cropgetimagecode3" style="position: absolute; margin-top: 20px; visibility: hidden;">
                             <input type="text" id="cropgetimagecode4" style="position: absolute; margin-top: 10px; visibility: hidden;">
-
                         </div>
-
-
-
-
-
-
                     </div>
-
-
                     <!--End Deal and coupns modal 500-->
-
                     <!--Being coupns qr code -->
-
-
                     <!--Bing deals qr code -->
-
                     <div class="dealaddQRCODE" id="dealscodeQR" style="display: none;">
-
-
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-
-
-
-
                         <div class="addcupancode" id="dealcodeQR">
-                            <p style="text-align: center;
-    font-size: 27px;
-    padding: 24px;">Add coupons code here</p>
+                            <p style="text-align: center;font-size: 27px;padding: 24px;">Add coupons code here</p>
                         </div>
                         <h2 align="center" style="color: white;">AND</h2>
                         <div class="addlink">
-                            <p style="    font-size: 24px;
-    padding: 8px;
-    padding-left: 22px;">Pest Link Here</p>
+                            <p style="font-size: 24px;padding: 8px;padding-left: 22px;">Pest Link Here</p>
                         </div>
 
                         <button type="button" class="btn_proceed">CONFIRM</button>
                     </div>
-
                     <!--Ends deals qr code -->
-
-
-
-
-
-
-
                 </div>
                 <!--Main Container Deal End--
 				</div><!--Main Container-->
@@ -2624,92 +2061,50 @@
         <!--End Here The page-->
 
         <script>
-            //zohankhan
-            	document.getElementById('deladdnewplacezipcode').addEventListener('click', function() {
-                      
-            
-            modal.style.display = "block";	
-            		
-            //		var getlistnew = document.getElementById("getlistnew");
-            //    getlistnew.style.display = "block";	
-            		
-            //	var getlist = document.getElementById("getlist");
-            //    getlist.style.display = "none";
-            		
-            //			getlist = document.getElementById("getlist");
-            //			       getlist.style.display = "none";
-            //		
-                    });
-            		
-            		
-            		
-            		function delshowDiv(select){
-            			
-            	
-            
-            						if(select.value==2){
-            							document.getElementById('delmultiple').value ="";
-                 document.getElementById('delmultiple').style.display = "block";
-            	 document.getElementById('deladdbtn').style.display = "block";
-            //	 document.getElementById('delclearbtn').style.display = "block";
-            	
-            							
-               }
-            //						else{
-            ////							document.getElementById('multiple').style.display = "none";
-            //						}
-            						
-            						
-            						if(select.value==4){
-            	document.getElementById('delmultiple').value ="00000";
-                document.getElementById('delmultiple').style.display = "block";
-            	document.getElementById('deladdbtn').style.display = "block";
-            	document.getElementById('delclearbtn').style.display = "block";
-            //	document.getElementById("multiple").disabled = true;
-            							
-               }
-            //						else{
-            //							document.getElementById('multiple').style.display = "none";
-            //						}
-            						
-            //						if(select.value==5){
-            //    document.getElementById('range').style.display = "block";
-            //   }
-            //						else{
-            //							document.getElementById('range').style.display = "none";
-            //						}
-            }
-            
-            
-            		
-            		
-            		
-            		
-            		
-            		
-            		function myNewFunction1(sel) {
-            //  alert(sel.options[sel.selectedIndex].value);
-            			
-            			var valuebgselect = sel.options[sel.selectedIndex].value;
-            						var valuetextselect = sel.options[sel.selectedIndex].text;
-            						
-            						console.log(valuetextselect);
-            						
-            						document.getElementById('colorbackgroudurl').value = valuebgselect;
-            						
-            						
-            						
-            						var backgroundurlimage = document.getElementById('backgroundurlimage');
-            						     backgroundurlimage.src=valuebgselect;
-            						
+				document.getElementById('deladdnewplacezipcode').addEventListener('click', function() {
+				modal.style.display = "block";	
+				});
+
+
+
+				function delshowDiv(select){
+
+
+
+				if(select.value==2){
+				document.getElementById('delmultiple').value ="";
+				document.getElementById('delmultiple').style.display = "block";
+				document.getElementById('deladdbtn').style.display = "block";
+
+
+				}
+
+				if(select.value==4){
+				document.getElementById('delmultiple').value ="00000";
+				document.getElementById('delmultiple').style.display = "block";
+				document.getElementById('deladdbtn').style.display = "block";
+				document.getElementById('delclearbtn').style.display = "block";
+				}
+			}
+
+
+            function myNewFunction1(sel) {            			
+					var valuebgselect = sel.options[sel.selectedIndex].value;
+					var valuetextselect = sel.options[sel.selectedIndex].text;
+
+					console.log(valuetextselect);
+
+					document.getElementById('colorbackgroudurl').value = valuebgselect;
+
+
+
+					var backgroundurlimage = document.getElementById('backgroundurlimage');
+					 backgroundurlimage.src=valuebgselect;
+
             }
         </script>
         </head>
-
         <body>
-
-
-
             <!-- The Modal -->
             <div id="myModal" class="modal">
 
@@ -3755,100 +3150,8 @@
                 	
                 	
                 	
-                	
-                	
-                //	
-                //	//	This is calling search image api being here
-                //	
-                //	document.getElementById('dl-image-submit').addEventListener('click',imageDLwebsearch);
-                //	
-                //		
-                //	var selectedlink4;
-                //
-                //		function imageDLwebsearch()
-                //			{
-                //				
-                //				
-                //			list = document.getElementById("dynic-dlimagelist");
-                //			
-                //			for (var i=document.getElementById("dynic-dlimagelist").getElementsByTagName("li").length-1; i>=0; i--)
-                //				{
-                //					
-                //					var itemview = document.getElementById("dynic-dlimagelist").getElementsByTagName("li")[i];
-                //					list.removeChild(itemview);
-                //					
-                //								console.log(' remove'+i);
-                //
-                //				}
-                //				
-                //			var searchkeyword =  document.getElementById('dlimagesearch').value;
-                //				
-                //					for (var i = 1; i < 100; i+=10)
-                //    {
-                //				
-                //					
-                //		        const pos = i;
-                //				
-                //				var values = httpGetAsync("https://www.googleapis.com/customsearch/v1?key=AIzaSyCM641AP5CCKjh30Z1_p8tEj-PccFZdx50&cx=010919822463553969394:ngczdhj2s08&q="+searchkeyword+"&searchType=image&num=10&start="+pos+"&imgSize=large",function(response){
-                //					
-                //					
-                //					
-                ////					console.log(response);
-                //					
-                //					var obj = JSON.parse(response);
-                //					
-                //					console.log(obj);
-                //								
-                //								for (var i = 0; i < obj.items.length; i++) {
-                //				
-                //                                      const item = obj.items[i];
-                //									
-                //									const datalink = item.link;
-                //      
-                //									
-                //									var ul = document.getElementById("dynic-dlimagelist");
-                //		  var li=document.createElement('li');
-                //        li.innerHTML='<img src='+item.link+'style="float:left;  width: 180px; margin-top: 10px; height: 126px; object-fit: cover; margin-left: 3%;" id="photosearchlist">';
-                //        ul.appendChild(li);
-                //								
-                //									
-                //									li.addEventListener('click',searchwebimage2);
-                //									
-                //									
-                //									function searchwebimage2()
-                //									{
-                //										
-                //										console.log(datalink);
-                //										
-                //										selectedlink4 = datalink;
-                //										
-                //								 document.getElementById('dlimageoutput').src = selectedlink4;
-                //										
-                //										
-                //										
-                //										var closemodalimagesearch = document.getElementById('image-deal-web-modal');
-                //										    closemodalimagesearch.style.display="none";
-                //										
-                //										var closemodalimagesearch = document.getElementById('deal-image-modal');
-                //										    closemodalimagesearch.style.display="none";
-                //										
-                ////									
-                //										var output_image_cpupons = document.getElementById('dlimageoutput');
-                //										    output_image_cpupons.style.zIndex="2";
-                //										
-                //									
-                //									};
-                //										
-                //								}
-                //				});
-                //	}
-                //			}
-                	
-                	
-                	
-                	
-                		
-                		
+      
+     
                 			
                 			function httpGetAsync(theUrl, callback)
                 {
@@ -3860,27 +3163,14 @@
                     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
                     xmlHttp.send(null);
                 }
-                	
-                
-                	
-                	
-                	
-                	
-                //	This is calling search image here end here 
-                	
-                	//julfikar
-                
-                	
+
                 	
                 document.getElementById("xclosemodal").addEventListener("click", function(){
                   
                 	document.getElementById("listsearch").value='';
                 	
                 });
-                
-                	
-                	
-                	
+             	
                 var inputBoxoffer = document.getElementById('printoffer');
                 
                 inputBoxoffer.onkeyup = function(){
@@ -3890,8 +3180,7 @@
                 	document.getElementById('oferrdescdublicate').value = this.value;
                 	
                 }
-                
-                
+                             
                 var delcnamec = document.getElementById('delcomname');
                 
                 delcnamec.onkeyup = function(){
@@ -3906,8 +3195,7 @@
                 	
                 	 var x = document.getElementById("delzipcode");
                   x.style.border="0px solid red";
-                	
-                	
+                
                 }
                 
                 var delexpirydate = document.getElementById('delexpirydate');
@@ -3964,10 +3252,7 @@
                 	
                 	
                 }
-                
-                
-                
-                
+
                 var deldescription = document.getElementById('deldescription');
                 
                 deldescription.onkeyup = function(){
@@ -3977,11 +3262,7 @@
                 	
                     document.getElementById('deldescriptnc').value = this.value;
                 }
-                
-                
-                
-                
-                
+
                 var inputdes = document.getElementById('printdes');
                 
                 inputdes.onkeyup = function(){
@@ -4034,7 +3315,7 @@
                 	{
                 	
                 			list = document.getElementById("imagelistlocal");
-                //			
+                			
                 			for (var i=document.getElementById("imagelistlocal").getElementsByTagName("li").length-1; i>=0; i--)
                 				{
                 					
@@ -4489,7 +3770,7 @@
                 						
                 						var ul = document.getElementById("couponsimage");
                 		  var li=document.createElement('li');
-                        li.innerHTML='<div style="width: 81%; height: 123px; margin-top: 10px; padding:0px; position: relative;" id="cplframe"><div style="width: 100%; height: 123px; padding:0px; position: absolute; background: rgba(255, 0, 0,0.5); z-index: 2; display:none; text-align:center;" class="highlightclk"><h3 style="color:white; padding: 9px; color: white; margin-top: 11%; margin-left: 62px; border: 1px solid white; width: 61%;">SELECTED</h3></div><img src='+backgroundurl+' style="width: 100%; height: 100%; object-fit: contain;" id="photosearchlist"><div style="width: 54px;height: 40px; position: absolute;left: 13px;top: 10px;" id="logodiv"><img src='+imagelogo+' style="width: 100%; height: 100%; object-fit: cover;" id="photosearchlist1"></div>'+'<div class="namedd"><p id="namedc">'+name+'</p></div><div class="desc"><p id="desccc">'+description+'</p></div><div class="offerdd"><p id="offerdc">'+offer+'</p></div><input type="checkbox" style="width:15px; height:25px; position: absolute; top: 2px; right: 6px; z-index: 1;" id="checkboxclicks"><div class="rigtimage"><img src='+imageurl+' style="width: 100%; height: 100%; object-fit: cover;"></div></div>';
+                        li.innerHTML='<div style="width: 81%; height: 123px; margin-top: 10px; padding:0px; position: relative;" id="cplframe"><div style="width: 100%; height: 123px; padding:0px; position: absolute; background: rgba(255, 0, 0,0.5); z-index: 2; display:none; text-align:center;" class="highlightclk"><h3 style="color:white; padding: 9px; color: white; margin-top: 11%; margin-left: 62px; border: 1px solid white; width: 61%;">SELECTED</h3></div><img src='+backgroundurl+' style="width: 100%; height: 100%; object-fit: contain;" id="photosearchlist"><div style="width: 54px;height: 40px; position: absolute;left: 13px;top: 17px;" id="logodiv"><img src='+imagelogo+' style="width: 100%; height: 100%; object-fit: cover;" id="photosearchlist1"></div>'+'<div class="namedd"><p id="namedc">'+name+'</p></div><div class="desc"><p id="desccc">'+description+'</p></div><div class="offerdd"><p id="offerdc">'+offer+'</p></div><input type="checkbox" style="width:15px; height:25px; position: absolute; top: 2px; right: 6px; z-index: 1;" id="checkboxclicks" class="checkboxclicks"><div class="rigtimage"><img src='+imageurl+' style="width: 100%; height: 100%; object-fit: cover;"></div></div>';
                         ul.appendChild(li);
                 						
                 						
