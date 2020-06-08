@@ -135,12 +135,7 @@ function openMenu(x) {
 			   searchtextfild = document.getElementById("searchtextfild");
 			  searchtextfild.style.display = "none";
 			  
-			  createnewcouponsdeals = document.getElementById("createnewcouponsdeals");
-			  createnewcouponsdeals.style.display = "block";
-			  
-			  createnewcouponsbtn = document.getElementById("createnewcouponsbtn");
-			  createnewcouponsbtn.style.display = "none";
-			 
+			
 			  
 			   cupbt = document.getElementById("cubtcolor");
 			  cupbt.style.background="#d3d4d3";
@@ -156,13 +151,25 @@ function openMenu(x) {
 			  cuponslist.style.display = "block"; 
 			 
 			  
+			   var selectcoupons = document.getElementById("coupon_selectall");
+			  selectcoupons.style.display = "none"; 
+			  
+			   var selectdeals = document.getElementById("deals_selectall");
+			  selectdeals.style.display = "inline-block"; 
+			 
+			  
 			   var cuponslist1 = document.getElementById("couponsimage");
 			  cuponslist1.style.display = "none"; 
 			  
 			 y = document.getElementById("mainconainercup");
 			y.style.display = "none";
 		
-			
+			  createnewcouponsdeals = document.getElementById("createnewcouponsdeals");
+			  createnewcouponsdeals.style.display = "block";
+			  
+			  createnewcouponsbtn = document.getElementById("createnewcouponsbtn22");
+			  createnewcouponsbtn.style.display = "none";
+			 
 			  
 			document.getElementById("dealsimage").src="img/Icons/dealslight.png";
 			  
@@ -173,7 +180,34 @@ function openMenu(x) {
 
 
      
-		  
+		  function selectAllChangeDeals() {
+			   var inputs = document.getElementsByClassName("dealsCheckboxes");
+				for(var i = 0; i < inputs.length; i++) {
+					if(inputs[i].type == "checkbox") { 
+						if(inputs[i].checked == false) {
+							inputs[i].checked = true; 
+						} else {
+							if(inputs[i].checked == true) {
+								inputs[i].checked = false; 
+							}   
+						}
+					}  
+				} 
+		  }
+		   function selectAllChangeCoupons() {
+			   var inputs = document.getElementsByClassName("checkboxclicks");
+				for(var i = 0; i < inputs.length; i++) {
+					if(inputs[i].type == "checkbox") { 
+						if(inputs[i].checked == false) {
+							inputs[i].checked = true; 
+						} else {
+							if(inputs[i].checked == true) {
+								inputs[i].checked = false; 
+							}   
+						}
+					}  
+				} 
+		  }
 		  function mycupons()
 		  {
 			  
@@ -191,10 +225,18 @@ function openMenu(x) {
 			couplist.style.display = "block";
 			  
 			  
-			  createnewcouponsdeals = document.getElementById("createnewcouponsdeals");
-			createnewcouponsdeals.style.display = "none";
+			   createnewcouponsdeals = document.getElementById("createnewcouponsdeals");
+			  createnewcouponsdeals.style.display = "none";
 			  
-
+			  createnewcouponsbtn = document.getElementById("createnewcouponsbtn22");
+			  createnewcouponsbtn.style.display = "inline-block";
+			  
+				  var selectcoupons = document.getElementById("coupon_selectall");
+			  selectcoupons.style.display = "inline-block"; 
+			  
+			   var selectdeals = document.getElementById("deals_selectall");
+			  selectdeals.style.display = "none"; 
+			 
 			   z = document.getElementById("mainconainercup");
 			z.style.display = "block";
 			   cupbt = document.getElementById("cubtcolor");
@@ -206,16 +248,63 @@ function openMenu(x) {
 			  
 			  
 			  dealhide();
-			  
-			  
-			  
+			    
 		  }
 		  
-		  
-		  	
-
-
-
-
-
+		  function ResetDeal() {
+				document.getElementById('delcomname').value = "";
+				document.getElementById('entcname3').value = "";
+				document.getElementById('deloffer').value = "";
+				document.getElementById('delofferc').value = "";
+				document.getElementById('delplaceid').value = "";
+				document.getElementById('deldescription').value = "";
+				document.getElementById('deldescriptnc').value = "";
+				document.getElementById('delcate').value = "";
+				document.getElementById('delexpirydate').value ="";
+				document.getElementById('delcondtions').value = "";
+				document.getElementById('deladdress').value = "";
+				document.getElementById('delzipcode').value ="";
+				document.getElementById('delqrcode').value = "";
+				document.getElementById('imagedel').value = "";
+				document.getElementById('delimagelink').value = "";
+				document.getElementById('imagelogodel').value = "";
+				document.getElementById('dellogo').src = "";
+				document.getElementById('dlimageoutput').src ="";
+				document.getElementById('colorbackgroudurl').value = "";
+				document.getElementById("dlimage").style.display="block";
+				document.getElementById("dlimageoutput").style.display="none";
+			}
+			function ResetCoupons() {
+				document.getElementById('entcname1').value  = "";
+			document.getElementById('entcname').value  = "";
+			document.getElementById('printdes').value  = "";
+			document.getElementById('printoffer').value = "";
+			document.getElementById('offer').value  = "";
+			document.getElementById('entdesc').value  = "";
+			document.getElementById('category').value = "";
+			document.getElementById('expiraydate').value  = "";
+			document.getElementById('tersconditons').value = "";
+			document.getElementById('address1').value  = "";
+			document.getElementById('qrcode').value = "";
+			document.getElementById('zipcode').value  = "";
+			document.getElementById('editplaceid').value  = "";
+			document.getElementById('myImg').src  = "";
+			document.getElementById('output').src  = "";
+		   
+			document.getElementById('imageurl11').value = "";
+			document.getElementById('logourl11').value  = "";
+			document.getElementById("priority").value = "";
+			document.getElementById("myImg").style.display="none";
+			document.getElementById("output").style.display="none";
+			}
+				//allowTaint: true,foreignObjectRendering: true
+			document.querySelector('#download_btn').addEventListener('click', function() {
+				html2canvas(document.getElementsByClassName('cupons_intact1'), {onrendered : function(canvas) {
+					//document.body.appendChild(canvas);
+					return Canvas2Image.saveAsPNG(canvas);
+				}
+			});
+			});
+			
+		 
 // JavaScript Document

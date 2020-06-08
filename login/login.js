@@ -71,7 +71,9 @@
 						}
 					  });
 					  const userData = await response.json();
+					  console.log(userData);
 					  localStorage.setItem('userProfilePic', userData.user.gravatarURL);
+					  localStorage.setItem('sinid', userData.user.sinUsername);
 					   if(userData.user.businessUser){
 						window.location.href = "landing_page.html";
 					   } else {

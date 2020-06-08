@@ -6,7 +6,21 @@ position: absolute;
 object-fit: cover;
 top: 0;
 left: 0;
-z-index: 3;;*/
+z-index: 3;
+border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid lightgray
+}
+#deloutput{
+	    visibility: visible;
+    background: white;
+    object-fit: contain;
+    z-index: 9;
+    width: 85px;
+    left: 5px;
+    top: 28px;
+    position: absolute;
+
 }
 .dealsdetail{
 	font-size: 30px; font-weight: bold;width:20%;display:inline-block;
@@ -365,7 +379,6 @@ float: left;
      width: 94%;
      height: 435px;
 	 top:35px;
-     background: url("img/Food_&_Drinks.png");
      margin-left: 31px;
      background-size: 100% 100%;
      position: relative;
@@ -549,7 +562,7 @@ float: left;
  }
  
  .dedate {
-     width: 29%;
+     width: auto;
      height: 16%;
      margin-top: 49px;
      margin-left: 3px;
@@ -596,7 +609,7 @@ float: left;
 	/* margin-top: 343px; */
 	color: white;
 	position: relative;
-	margin-left: 24%;
+	margin-left: 5%;
 	border: none;
 	border-radius: 20px;
 	font-size: 18px;
@@ -796,7 +809,6 @@ float: left;
      float: left;
 	 border-radius: 50%;
     background: #fff;
-    border: 1px solid lightgray;
  }
  .deallogo i{
 	 font-size: 28px;
@@ -828,11 +840,12 @@ float: left;
     height: 100%;
     float: left;
     left: 0px;
-	z-index: -1;
+	z-index: 9;
     top: 0;
     border: none;
     object-fit: contain;
     background: white;
+	display:none;
  }
  .dealdetail {
      width: 100%;
@@ -941,7 +954,7 @@ float: left;
     top: 19px;
  }
  .dealimage{
-	 top: 90px;
+	 top:70px;
  }
  .details{
     padding: 0 50px;
