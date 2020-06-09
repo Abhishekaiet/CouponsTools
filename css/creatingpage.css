@@ -68,4 +68,13 @@
     position: absolute;
     height: 87px;
     }
+	#cplframe{
+	width: 273px;
+	}
+	#expiraydate2{
+		bottom:-24px;
+	}
+	.rightpos{
+		width:100%;
+	}
 }

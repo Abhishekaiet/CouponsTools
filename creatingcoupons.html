@@ -58,24 +58,439 @@
 
 	$(document).ready(function() {
 		const sinId= localStorage.getItem('sinid');
+		const token = localStorage.getItem('_token');
+		var name,description,offer,ExpiryDate,discalmer,address,code,zipcode,placeid,imagelogo,imageurl = '';
 		const userDataAction = async () => {
 			  const response = await fetch('https://proxy.actv.05media.com/rest/private/sincommunityhubservice/getBusiness/'+sinId, {
 					method: 'GET',
 					headers: {
 					  'Accept': 'application/json',
-					  'Authorization':  localStorage.getItem('_token'),
+					  'Authorization':  token,
 					  'Content-Type': 'application/json'
 					}
 				  });
 				  const userData = await response.json();
+				  const responseCode = await response.ok;
+				  if(!responseCode){
+					window.location.href = "login.html";
+				  }
+				  var category = userData.business.category;
+				  $('select[name="category"]').first().val(category);
+				   $('select[name="selectdel"]').first().val(category);
 				  $("#myImg").attr('src',userData.business.image_logo);
 				  $("#deloutput").attr('src',userData.business.image_logo);
 				  $("#listsearch").val(userData.business.displayName);
 				  $("#listsearch1").val(userData.business.displayName);
-				  console.log(userData);
-		 }
-		  userDataAction()
-		const token = localStorage.getItem('_token');
+				  $("#address1").val(userData.business.address);
+				   $("#deladdress").val(userData.business.address);
+					 userData.coupons.forEach(function(item,index){
+						const imageurl = item.image[0].imageUrl;
+						const name = item.name;
+						const offer =item.offer;
+						const description = item.description;
+						const cateogry = item.cateogry;
+						const ExpiryDate = item.expiryDate;
+						const discalmer = item.discalmer;
+						const address = item.address;
+						const code = item.code;
+						const placeid = item.placeid;
+						const imagelogo = item.imagelogo;
+						const id = item.id;
+						const place = item.place;
+						const pos = index;
+						const priority = item.priority;
+						const isPromoted = item.isPromoted;
+						const backgroundurl = 'img/blankcoupons/'+category+'.png';
+						const zipcode = item.address.substr(-5);
+							
+							
+						
+						var ul = document.getElementById("couponsimage");
+						var li=document.createElement('li');
+						li.innerHTML='<div id="cplframe"><div style="width: 100%; height: 123px; padding:0px; position: absolute; background: rgba(255, 0, 0,0.5); z-index: 2; display:none; text-align:center;" class="highlightclk"><h3 style="color:white; padding: 9px; color: white; margin-top: 11%; margin-left: 62px; border: 1px solid white; width: 61%;">SELECTED</h3></div><img src='+backgroundurl+' style="width: 100%; height: 100%; object-fit: contain;" id="photosearchlist"><div style="width: 54px;height: 40px; position: absolute;left: 13px;top: 17px;" id="logodiv"><img src='+imagelogo+' style="width: 45px;object-fit: cover;" id="photosearchlist1"></div>'+'<div class="namedd"><p id="namedc">'+name+'</p></div><div class="desc"><p id="desccc">'+description+'</p></div><div class="offerdd"><p id="offerdc">'+offer+'</p></div><input type="checkbox" style="width:17px; height:25px; position: absolute; top: 8px; right: 9px; z-index: 1;" id="checkboxclicks" class="checkboxclicks"><div class="rigtimage"><img src='+imageurl+' style="width: 100%; height: 100%; object-fit: cover;"></div></div>';
+						ul.appendChild(li);
+                						
+                						
+                					
+			function listgetcoupons()
+
+			{
+				var DateParts =ExpiryDate.split('/');
+				var ExpDate = new Date(DateParts[2],DateParts[0],DateParts[1]); 
+				
+				var entcname = document.getElementById("entcname");
+				entcname.style.visibility = "visible";
+
+
+				var unslctcoups = document.getElementById("unslctcoups").value;
+
+				getitemlist.push(index);
+
+				console.log(getitemlist);
+
+
+				for (var h = 0; h < getitemlist.length; h++) {
+					var curItem = getitemlist[h];
+					var foundCount = 0;
+					// search array for item  
+
+
+					for (var i = 0; i < getitemlist.length; i++) {
+						if (getitemlist[i] == getitemlist[h])
+							foundCount++;
+					}
+
+
+					if (foundCount > 1) {
+						// remove repeated item from new array
+						for (var j = 0; j < newArr.length; j++) {
+							if (newArr[j] == curItem) {
+								newArr.splice(j, 1);
+								j = j - 1;
+
+							}
+
+
+						}
+
+					}
+
+				}
+				var str = newArr.toString();
+				listthecheckmar = str.split();
+				listchecbarray = JSON.parse("[" + listthecheckmar + "]");
+				console.log(listchecbarray);
+
+				document.getElementById('entcname1').value = name;
+				document.getElementById('entcname').value = name;
+				document.getElementById('printdes').value = description;
+				document.getElementById('printoffer').value = offer;
+				document.getElementById('offer').value = offer;
+				document.getElementById('entdesc').value = description;
+				document.getElementById('category').value = cateogry;
+				document.getElementById('expiraydate').value = ExpDate.getFullYear() +'-'+ (ExpDate.getMonth() < 10 ? '0' + ExpDate.getMonth() : '' + ExpDate.getMonth()) +'-'+ (ExpDate.getDate() < 10 ? '0' + ExpDate.getDate() : '' + ExpDate.getDate());
+;
+				document.getElementById('expiraydate2').value = ExpiryDate;
+				document.getElementById('expiraydate2').style.display = "block";
+				document.getElementById('tersconditons').value = discalmer;
+				document.getElementById('address1').value = address;
+				document.getElementById('qrcode').value = code;
+				document.getElementById('zipcode').value = zipcode;
+				document.getElementById('editplaceid').value = placeid;
+				document.getElementById('myImg').src = imagelogo;
+				document.getElementById('output').src = imageurl;
+
+				document.getElementById('imageurl11').value = imageurl;
+				document.getElementById('logourl11').value = imagelogo;
+
+
+				dataobjects = zipcode;
+
+				if (zipcode)
+					zipcode.forEach(function(item) {
+						var option = document.createElement('option');
+
+						var dataconent = Object.keys(item);
+						option.value = Object.keys(item);
+						option.innerHTML = Object.keys(item);
+						selector.appendChild(option);
+
+						selector.style.display = "block";
+					});
+
+
+				document.getElementById('backgrondurl').value = backgroundurl;
+
+
+				var backur = document.getElementById('imagebackground');
+				backur.src = backgroundurl;
+
+
+				var setvalue = document.getElementById('priority').value = priority;
+				var setvalue1 = document.getElementById('trfl').value = isPromoted;
+
+				//                                    
+
+
+
+				selectedplace_get = place;
+
+				starCountRef1 = firebase.database().ref("/coupons_new/" + index);
+
+
+				var editshow = document.getElementById('bodysearch1');
+				var editshow = document.getElementById('bodysearch1');
+				editshow.style.display = "none";
+
+				document.getElementById('dateon').innerHTML = ExpiryDate;
+
+				var datepcoupons = document.getElementById('datepicc');
+				datepcoupons.style.display = "block";
+
+
+				var oncoupons = document.getElementById('dateon');
+				oncoupons.style.display = "block";
+
+
+				var editshow = document.getElementById('output');
+				editshow.style.visibility = "visible";
+
+				var coupons_frame = document.getElementById('mainconainercup');
+				coupons_frame.style.display = "block";
+
+				var updatebtn = document.getElementById('updatebtn');
+				updatebtn.style.display = "inline-block";
+
+				var addnewbtn121 = document.getElementById('addnewbtn121');
+				addnewbtn121.style.display = "inline-block";
+
+				var confbtncou = document.getElementById('confim_copons');
+				confbtncou.style.display = "none";
+
+				var cancelbtn = document.getElementById('cancelbtn');
+				cancelbtn.style.display = "none";
+
+
+				var deal_frame = document.getElementById('maincondeal');
+				deal_frame.style.display = "none";
+				//									   
+
+				var myImg2 = document.getElementById('myImg');
+				myImg2.style.visibility = "visible";
+
+				var selectlogotext = document.getElementById('selectlogotext');
+				selectlogotext.style.display = "none";
+
+
+				document.getElementById('delete').addEventListener('click', function() {
+
+					console.log(starCountRef1);
+
+					var r = confirm("Are you Sure to delete this Deals");
+					if (r == true) {
+
+						starCountRef1.remove()
+
+							.then(function() {
+
+								alert('Data Has been Deleted');
+
+								window.location.href = "creatingcoupons.html";
+
+							})
+
+							.catch(function(error) {
+								console.log("Remove failed: " + error.message)
+							});
+
+					} else {
+						return;
+					}
+
+
+				});
+
+			}
+
+			li.addEventListener('click', listgetcoupons);
+			});
+					userData.deals.forEach(function(item,index){
+					
+						const imageurl = item.image[0].imageUrl;
+						const name = item.name;
+						const offer = item.offer;
+						const description = item.description;
+						const cateogry = item.cateogry;
+						const ExpiryDate = item.expiryDate;
+						const discalmer = item.discalmer;
+						const address = item.address;
+						const code = item.code;
+						const zipcode = item.address.substr(-5);
+						const placeid = item.placeid;
+						const logoimage = item.imagelogo;
+						const imagelink = item.imagelink;
+						const place = item.place;
+						const colorbackgroudurl = 'img/dealsimagebg/'+cateogry+'.png';
+						const pos = index;
+						
+				
+                					
+                		var ul = document.getElementById("couponsimagedeal");
+                		var li=document.createElement('li');
+                        li.innerHTML='<div class="dealsleft" style="padding: 10px; width: 80%; left: 0px; height: 193px; border-radius: 21px; position: relative; margin-top: 10px;" id="bgcolorfordeal"><input type="checkbox" style="width:22px; height:25px; position: absolute; top: 17px; right: -2px; z-index: 1;" class="dealsCheckboxes"><div style="width: 100%; height: 100%; padding:0px; position: absolute; background: rgba(255, 0, 0,0.5); display:none; border-radius: 11px; z-index: 2; text-align:center;" class="highlightclk11"><h3 style="color:white; padding: 9px; color: white; margin-top: 39%; margin-left: 49px; border: 1px solid white; width: 61%;">SELECTED</h3></div><img src='+colorbackgroudurl+' style="width: 100%; height: 100%; object-fit: cover; position: absolute; border-radius: 11px;" id="photosearchlist"><div style="width: 100%; height: 180px; position: absolute; top: 16px; margin-left: 4px;"><img src='+imageurl+' style="object-fit:cover; border-radius: 16px;" id="imagerightdeals"></div><div class="bottomdiv"><div class="deslnameleft"><p id="dealsnameleft1">'+name+'</p></div></div></div>';
+                        ul.appendChild(li);
+
+						li.addEventListener('click',listgetsdeal);
+
+						function listgetsdeal(){
+							var listsearch1 = document.getElementById("listsearch1"); 
+							listsearch1.style.display="none";
+							var DateParts =ExpiryDate.split('/');
+							var ExpDate = new Date(DateParts[2],DateParts[0],DateParts[1]); 
+
+							document.getElementById("dlimage").style.display="none";
+							
+							var unslctcoups1 = document.getElementById("unslctcoups1").value;
+
+							var str = newArr.toString();
+							listthecheckmar121 = str.split();
+							listchecbarray121 = JSON.parse("[" + listthecheckmar121 + "]");
+							console.log(listchecbarray121);	  
+							var editshow = document.getElementById('bodysearch1');
+							editshow.style.display="none";
+						
+							document.getElementById('delcomname').value = name;
+							document.getElementById('entcname3').value = name;
+
+
+							document.getElementById('deloffer').value = offer;
+							document.getElementById('delofferc').value = offer;
+							document.getElementById('delplaceid').value = placeid;
+							document.getElementById('deldescription').value = description;
+							document.getElementById('deldescriptnc').value = description;
+							document.getElementById('trmsdelpreivew').value = cateogry;
+							document.getElementById('deldate').value = ExpiryDate;
+							document.getElementById('delexpirydate').value = ExpDate.getFullYear() +'-'+ (ExpDate.getMonth() < 10 ? '0' + ExpDate.getMonth() : '' + ExpDate.getMonth()) +'-'+ (ExpDate.getDate() < 10 ? '0' + ExpDate.getDate() : '' + ExpDate.getDate());
+							document.getElementById('delcondtions').value = discalmer;
+							document.getElementById('deladdress').value = address;
+							document.getElementById('delzipcode').value = zipcode;
+							document.getElementById('delqrcode').value = code;
+							document.getElementById('imagedel').value = imageurl;
+							document.getElementById('delimagelink').value = imagelink;
+							document.getElementById('imagelogodel').value = logoimage;
+							document.getElementById('dellogo').src = logoimage;
+							document.getElementById('dlimageoutput').src = imageurl;
+							document.getElementById('colorbackgroudurl').value = colorbackgroudurl;
+							document.getElementById("dlimageoutput").style.display="block";
+
+
+							deldataobjects = zipcode;
+							console.log(zipcode)
+
+							var deladdbtn =  document.getElementById('deladdbtn');
+							deladdbtn.style.visibility="hidden";
+
+							var deladdbtn2 =  document.getElementById('deladdbtn2');
+							deladdbtn2.style.display="block";
+
+							var backgroundurlimage =  document.getElementById('backgroundurlimage');
+							backgroundurlimage.src=colorbackgroudurl;
+
+							var myCarousel =  document.getElementById('myCarousel');
+							myCarousel.style.zIndex="4";
+
+							imageurl.forEach(function(item,index){
+
+							console.log(item);
+
+							var ul = document.getElementById("sliderlist");
+							var div = document.createElement('div');
+							div.className = "item";
+							div.innerHTML = '<div style="width: 489px; height: 332px; background: white;"><img src='+item+' style="width:100%; height:100%;"></div>';
+							ul.appendChild(div);
+
+							});
+
+							zipcode.forEach(function(item){
+							var option = document.createElement('option');
+
+							var dataconent = Object.keys(item);
+							option.value = Object.keys(item);
+							option.innerHTML = Object.keys(item);
+							delselector.appendChild(option);
+
+							delselector.style.display="block";	
+							});
+
+							var dlimageoutput =  document.getElementById('dlimageoutput');
+							dlimageoutput.style.zIndex="0";
+							var delllogo = document.getElementById('dellogo');
+							delllogo.style.visibility="inherit";
+							delllogo.style.position="absolute";
+
+
+
+							selectedplace_get = place;
+
+							starCountRef1 = firebase.database().ref("/deals_new/"+index);
+
+
+
+
+							var deldateshow=  document.getElementById('deldateshow');
+							deldateshow.style.display="block";
+
+							document.getElementById('dateon1').innerHTML = ExpiryDate;
+							var datedel=  document.getElementById('dateon1');
+							datedel.style.display="block";
+
+							var maincoupons_frame = document.getElementById('mainconainercup');
+							maincoupons_frame.style.display="none";
+
+
+
+							var deal_frame = document.getElementById('maincondeal');
+							deal_frame.style.display="block";
+
+							var deldate = document.getElementById('deldate');
+							deldate.style.display="none";
+
+
+
+
+
+							var dealimage = document.getElementById('dlimageoutput');
+							dealimage.style.zIndex="0";
+
+							var deal_frame = document.getElementById('confrm_dealbtn');
+							deal_frame.style.display="none";
+
+							var deloutput = document.getElementById('deloutput');
+							deloutput.style.visibility="hidden";
+
+							var deal_frame = document.getElementById('update_dealbtn');
+							deal_frame.style.display="block";
+
+							var addnewonedel = document.getElementById('addnewonedel');
+							addnewonedel.style.display="block";
+
+							var removedel = document.getElementById('removedel');
+							removedel.style.display="none";
+
+							var confbtncou = document.getElementById('confim_copons');
+							confbtncou.style.display="none";
+
+
+
+							document.getElementById('deldelete').addEventListener('click',function (){
+
+							console.log(starCountRef1);
+
+
+							var r = confirm("Are you Sure to delete this Deals");
+							if (r == true) {
+
+							starCountRef1.remove()
+							.then(function() {
+
+							alert('Coupons Has Been Deleted');
+							window.location.href = "creatingcoupons.html";
+
+							})
+							.catch(function(error) {
+							console.log("Remove failed: " + error.message)
+							}); 
+
+							} else {
+							return;
+							}
+							});   
+							}
+							});
+
+						  console.log(userData);
+		}
+		  userDataAction();
 		if(!token){
 		window.location.href = "login.html";
 		}
@@ -101,9 +516,6 @@
 		var cropmodalclose = document.getElementById('deal-image-modal');
 		cropmodalclose.style.display="none";
 		});
-		
-		
-	
 	});
 	
 	</script>
@@ -478,241 +890,6 @@
 
     </div>
     <!--this is web modal close here-->
-
-
-
-    <!--croppp modal-->
-
-    <style>
-        #dynamic-list1
-        		  {
-        			  
-        			  list-style: none;
-        		  }
-        		.results_imagesearch
-        		{
-        			
-        			    width: 88%;
-            height: 84%;
-            margin-left: 7%;
-        			overflow: scroll;
-        			
-        		}
-        		
-        		#dynamic-list22
-        		  {
-        			  
-        			  list-style: none;
-        		  }
-        		
-        		#dynic-dllogolist
-        		  {
-        			  
-        			  list-style: none;
-        		  }
-        		.results_imagesearch
-        		{
-        			
-        			   width: 100%;
-            height: 84%;
-            margin-left: 0%;
-        
-        			
-        		}
-        		
-        		.input_searh_web
-        		{
-        		        width: 100%;
-            height: 45px;
-            /* border-radius: 21px; */
-            margin-top: 21px;
-            margin-left: -109px;
-        		}
-        		
-        		.closexoptn
-        		{
-        			          float: right;
-            font-size: 27px;
-            margin-right: 13px;
-            color: white;
-            margin-right: 0%;
-            margin-top: 5px;
-        		}
-        		
-        		.closexoptn1_web
-        		{
-        			            float: right;
-            font-size: 27px;
-            margin-top: 8px;
-            margin-right: 0px;
-        		}
-        		
-        		.modal-chooption
-        		{
-        			          width: 58%;
-            height: 42%;
-            border-radius: 17px;
-            top: 3%;
-            text-align: center;
-            background: #e2e2e2;
-            left: 19%;
-            position: absolute;
-        		
-        		}
-        		
-        		.icon-computer
-        		{
-        			    font-size: 24px;
-            margin-left: 13px;
-        			
-        		}
-        	
-        		.chfrocom
-        		{
-        			font-size: 17px;
-            position: red;
-            position: absolute;
-            color: #797171;
-            /* top: 28%; */
-            margin-top: 59px;
-            left: 18%;
-        		}
-        		
-        		.chfrocom2
-        		{
-        			font-size: 17px;
-            position: absolute;
-            color: #797171;
-            margin-top: 63px;
-            left: 63.9%;
-        			
-        		}
-        		
-        		.optionbtn
-        		{
-        			width: 40%;
-            height: 194px;
-            outline: 1px solid #969393;
-            outline-offset: -9px;
-            outline-style: dashed;
-        			    float: left;
-            border-radius: 13px;
-            background: white;
-            /* background-image: linear-gradient(to right, #36b5bb , black); */
-            margin-top: 7%;
-            margin-left: 8%;
-        		}
-        		
-        		.optionbtn2
-        		{
-        		    width: 40%;
-            height: 194px;
-            outline: 1px solid #969393;
-            outline-offset: -9px;
-            float: left;
-            outline-style: dashed;
-            border-radius: 13px;
-            background: white;
-            /* background-image: linear-gradient(to right, #36b5bb , black); */
-            margin-top: 4.6%;
-            margin-left: 4%;
-        		}
-        		
-        		.callingtoption
-        		{
-        			text-align: center;
-            width: 100%;
-            height: 210%;
-            top: 0px;
-            display: none;
-            background: rgba(0,0,0,0.7);
-            position: absolute;
-            z-index: 10;
-        		}
-        		
-        		.cropmodal
-        		{
-        		    width: 100%;
-            left: 10;
-            height: 100vh;
-        			display: none;
-            /* height: 100%; */
-            top: 0;
-            position: absolute;
-            z-index: 10;
-            background: rgba(0,0,0,0.7);
-        			text-align: center;
-        			
-        		}
-        		
-        		.cropmodalcontent
-        		{
-        			
-				width: 30%;
-				left: 30%;
-				border-radius: 33px;
-				height: 69%;
-				position: absolute;
-				top: 11%;
-				overflow: auto;
-				background: white;
-        				
-        		}
-        		.imagecroppart
-        		{
-        			
-        			          width: 98%;
-            height: 85%;
-            margin-top: -2px;
-            margin-left: 9px;
-            background: #dcdcdc;
-            float: left;
-            overflow: scroll!important;
-        			
-        		}
-        		
-        		.buttonsright
-        		{
-        			    width: 100%;
-            height: 16%;
-            background: #ffffff;
-            float: left;
-            position: absolute!important;
-            z-index: 800;
-        		}
-        		
-        .leftsupport
-        		{
-        			      width: 0%;
-            /* height: 66%; */
-            /* float: left; */
-            background: ;
-            float: left;
-        		}
-        	
-        
-        		.bottomsearchdiv
-        		{
-        			        width: 100%;
-            /* bottom: 3%; */
-            top: 51%;
-            border-radius: 17px;
-            /* border: 19px; */
-            position: relative;
-            height: 44%;
-            background: white;
-        		}
-        		
-        		#closecropmodal4
-        		{
-        			z-index: 220!important;
-        			
-        		}
-    </style>
-
-
-
-
 
     <div class="cropmodal" id="cropmodal">
 
@@ -1401,7 +1578,7 @@
         <div class="row">
 
 
-            <div class="col-sm-3">
+            <div class="col-sm-3" style="box-shadow: 0px 3px 6px #00000029;">
 			<div class="searchDiv">
 			   <button class="cupons" onclick="mycupons()" id="cubtcolor">
 				<img src="img/Icons/cuponslight.png" id="cuposnimage" onClick="mycupons()">
@@ -1514,17 +1691,17 @@
 
 					<div class="selectdivedccate">
 
-					<select class="select_catego" id="select" onChange="myNewFunction(this);">
-						<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FFood_%26_Drinks.png?alt=media&token=e2cb1649-fc0f-4f66-a8e0-907376d9f040">Select category</option>
-						<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FFood_%26_Drinks.png?alt=media&token=e2cb1649-fc0f-4f66-a8e0-907376d9f040">Food & Drinks</option>
-						<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FServices.png?alt=media&token=5c7342bd-9b24-49c4-bd4c-4c59b983fa84">Services</option>	
-						<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FShopping.png?alt=media&token=3fdd3e6a-de94-4c59-8831-03a4e7966693">Shoppings</option>				
-						<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FThings_to_do.png?alt=media&token=ee8241c3-3412-42fe-92a7-cf8ca3fd6a71">Things to Do</option>
-						<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FProfessional_Services.png?alt=media&token=32ee81f7-9524-4f1a-a5b6-5f70aac50737">Professional Services</option>				
-						<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FHealth.png?alt=media&token=498cfcfc-fd82-4b51-b1c1-eb383d3ab34e">Health</option>	
-						<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FThings_to_do.png?alt=media&token=ee8241c3-3412-42fe-92a7-cf8ca3fd6a71">Education</option>
-						<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FThings_to_do.png?alt=media&token=ee8241c3-3412-42fe-92a7-cf8ca3fd6a71">Place of WorkShip</option>
-						<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FThings_to_do.png?alt=media&token=ee8241c3-3412-42fe-92a7-cf8ca3fd6a71">Government Facilities</option>
+					<select class="select_catego" name="category" id="select" onChange="myNewFunction(this);">
+						<option>Select category</option>
+						<option value="Food & Drinks">Food & Drinks</option>
+						<option value="Services">Services</option>	
+						<option value="Shoppings">Shoppings</option>				
+						<option value="Things to Do">Things to Do</option>
+						<option value="Professional Services">Professional Services</option>				
+						<option value="Health">Health</option>	
+						<option value="Education">Education</option>
+						<option value="Place of WorkShip">Place of WorkShip</option>
+						<option value="Government Facilities">Government Facilities</option>
 						<input type="text" placeholder="Category *"  id="backgrondurl" value="" style="position: absolute; visibility: hidden;">	
 					</select>
 					</div></span>
@@ -1609,17 +1786,16 @@
 				document.getElementById('backgrondurl').value = "https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/couponsblnk%2FFood_%26_Drinks.png?alt=media&token=e2cb1649-fc0f-4f66-a8e0-907376d9f040";
 
 				function myNewFunction(sel) {
-				//  alert(sel.options[sel.selectedIndex].value); gulgul
-
+			
 				var valuebgselect = sel.options[sel.selectedIndex].value;
 				var valuetextselect = sel.options[sel.selectedIndex].text;
 
 				document.getElementById('category').value = valuetextselect;
 
-				document.getElementById('backgrondurl').value = valuebgselect;
+				document.getElementById('backgrondurl').value = 'img/dealsimagebg/'+valuebgselect+'.png';
 
 				var imagebackgrond = document.getElementById('imagebackground');
-				imagebackgrond.src=valuebgselect;
+				imagebackgrond.src='img/dealsimagebg/'+valuebgselect+'.png';
 				}
 
 				document.getElementById('images_coupons').addEventListener('click',function(){
@@ -1829,14 +2005,14 @@
                             <input type="text" placeholder="Select category" class="" id="delcate" style="display:none; position: absolute;">
                             <div class="selectdivedcategory formargin">
 
-							<select class="drightinputh2" id="selectdel" onChange="myNewFunction1(this);">
+							<select class="drightinputh2" id="selectdel" name="selectdel" onChange="myNewFunction1(this);">
 							<option value="blue">Select category</option>
-							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Ffood.png?alt=media&token=f891778b-cefa-4df3-b5fe-4eeb4c5bb8c1">Food and Drinks</option>
-							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fhealth.png?alt=media&token=63493c6c-e61f-47a1-9532-42e7a630fbc1">Healths</option>
-							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fprofessnal_services.png?alt=media&token=41bd36cb-d0a4-47af-a328-058e8b733332">professnals services</option>
-							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fservices.png?alt=media&token=4326dbc5-7c6c-4903-b87b-31103dabae89">services</option>
-							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fshopping.png?alt=media&token=b0ac1b20-d76b-450c-b8b7-97c0e45110b9">Shoppings</option>
-							<option value="https://firebasestorage.googleapis.com/v0/b/mycommunity-a734d.appspot.com/o/dealsbackgroudurl%2Fthingstodo.png?alt=media&token=ec0e9b0f-1a68-4f65-b34d-caeb601e9788">Gym</option>
+							<option value="Food and Drinks">Food and Drinks</option>
+							<option value="Healths">Healths</option>
+							<option value="professnals services">professnals services</option>
+							<option value="Services">Services</option>
+							<option value="Shoppings">Shoppings</option>
+							<option value="Gym">Gym</option>
 							<input type="text" placeholder="Category *"  id="backgrondurl" value="" style="position: absolute; visibility: hidden;">	 
 							</select>
                             </div></span>
@@ -3466,230 +3642,18 @@
                 	
                 	var newArr = getitemlist;
                 	
-                
-                						starCountRef = firebase.database().ref("/coupons_new/");
-                						
-                				starCountRef.on('value', function (snapshot2) {
-                					
-                				
-                					 objects_array = snapshot2.val();
-                					
-                					
-                					var listIndex = 1;
-                					
-                					objects_array.forEach(function(item,index){
-                					
-                						const imageurl = item.image[0].imageUrl;
-                						const name = item.name;
-                						const offer =item.offer;
-                						const description = item.description;
-                						const cateogry = item.cateogry;
-                						const ExpiryDate = item.expiryDate;
-                						const discalmer = item.discalmer;
-                						const address = item.address;
-                						const code = item.code;
-                						const placeid = item.placeid;
-                						const imagelogo = item.imagelogo;
-                						const id = item.id;
-                						const place = item.place;
-                						const pos = index;
-                						const priority = item.priority;
-                						const isPromoted = item.isPromoted;
-                						const backgroundurl = item.backgroundurl;
-                						const zipcode = item.zipcode;
-                							
-                							
-                						
-                						var ul = document.getElementById("couponsimage");
-                		  var li=document.createElement('li');
-                        li.innerHTML='<div style="width: 81%; height: 123px; margin-top: 10px; padding:0px; position: relative;" id="cplframe"><div style="width: 100%; height: 123px; padding:0px; position: absolute; background: rgba(255, 0, 0,0.5); z-index: 2; display:none; text-align:center;" class="highlightclk"><h3 style="color:white; padding: 9px; color: white; margin-top: 11%; margin-left: 62px; border: 1px solid white; width: 61%;">SELECTED</h3></div><img src='+backgroundurl+' style="width: 100%; height: 100%; object-fit: contain;" id="photosearchlist"><div style="width: 54px;height: 40px; position: absolute;left: 13px;top: 17px;" id="logodiv"><img src='+imagelogo+' style="width: 100%; height: 100%; object-fit: cover;" id="photosearchlist1"></div>'+'<div class="namedd"><p id="namedc">'+name+'</p></div><div class="desc"><p id="desccc">'+description+'</p></div><div class="offerdd"><p id="offerdc">'+offer+'</p></div><input type="checkbox" style="width:17px; height:25px; position: absolute; top: 8px; right: 9px; z-index: 1;" id="checkboxclicks" class="checkboxclicks"><div class="rigtimage"><img src='+imageurl+' style="width: 100%; height: 100%; object-fit: cover;"></div></div>';
-                        ul.appendChild(li);
-                						
-                						
-                					
-                						function listgetcoupons()
-                									
-                						           {
-                									   
-                									   var entcname = document.getElementById("entcname"); 
-                											       entcname.style.visibility="visible";
-                									  
-                									  
-                									   var unslctcoups = document.getElementById("unslctcoups").value;
-                									      	   
-                								 getitemlist.push(index);
-                									     
-                							     console.log(getitemlist);
-                								
-                									   
-                for(var h = 0; h < getitemlist.length; h++) {
-                    var curItem = getitemlist[h];
-                    var foundCount = 0;
-                    // search array for item  
-                									   
-                	
-                    for(var i = 0; i < getitemlist.length; i++) {
-                        if (getitemlist[i] == getitemlist[h])
-                            foundCount++;
-                    }
-                	
-                	
-                    if(foundCount > 1) {
-                        // remove repeated item from new array
-                        for(var j = 0; j < newArr.length; j++) {
-                            if(newArr[j] == curItem) {                
-                                newArr.splice(j, 1);
-                                j = j - 1;
-                					
-                            }
-                			
-                			  
-                        }  
-                		
-                    }
-                		
-                }	
-var str = newArr.toString();
-listthecheckmar = str.split();
-listchecbarray = JSON.parse("[" + listthecheckmar + "]");
-console.log(listchecbarray);	  
 
-			document.getElementById('entcname1').value = name;  
-			document.getElementById('entcname').value = name;
-			document.getElementById('printdes').value = description;
-			document.getElementById('printoffer').value = offer;
-			document.getElementById('offer').value = offer;
-			document.getElementById('entdesc').value = description;
-			document.getElementById('category').value = cateogry;
-			document.getElementById('expiraydate').value = ExpiryDate;
-			document.getElementById('expiraydate2').value = ExpiryDate;
-			document.getElementById('expiraydate2').style.display="block";
-			document.getElementById('tersconditons').value = discalmer;
-			document.getElementById('address1').value = address;
-			document.getElementById('qrcode').value = code;
-			document.getElementById('zipcode').value = zipcode;
-			document.getElementById('editplaceid').value = placeid;
-			document.getElementById('myImg').src = imagelogo;
-			document.getElementById('output').src = imageurl;
-		   
-			document.getElementById('imageurl11').value = imageurl;
-			document.getElementById('logourl11').value = imagelogo;
-			 
-		   
-		   dataobjects = zipcode;
-			
-			if(zipcode)
-			zipcode.forEach(function(item){
-		    var option = document.createElement('option');	 
-				 
-		   var dataconent = Object.keys(item);
-		   option.value = Object.keys(item);
-		   option.innerHTML = Object.keys(item);
-		   selector.appendChild(option);
-				 
-			selector.style.display="block";	 
-		});
-                									   
-                									   
-                									    document.getElementById('backgrondurl').value = backgroundurl;
-                									   
-                									   
-                									    var backur =  document.getElementById('imagebackground');
-                									       backur.src=backgroundurl;
-                									   
-                									   
-                									           var setvalue =  document.getElementById('priority').value = priority;
-                									             var setvalue1 =  document.getElementById('trfl').value = isPromoted;
-                								  
-                //                                    
-                									   
-                									   
-                									   
-                									   selectedplace_get = place;
-                									   
-                									   starCountRef1 = firebase.database().ref("/coupons_new/"+index);
-                									   
-                									   
-                								       var editshow = document.getElementById('bodysearch1');
-                								       var editshow = document.getElementById('bodysearch1');
-                										editshow.style.display="none";
-                									   
-                									   document.getElementById('dateon').innerHTML = ExpiryDate;
-                									   
-                									  var datepcoupons =  document.getElementById('datepicc');
-                									   datepcoupons.style.display="block";
+					starCountRef = firebase.database().ref("/coupons_new/");
+
+					starCountRef.on('value', function (snapshot2) {
 
 
-                									   var oncoupons =  document.getElementById('dateon');
-                									       oncoupons.style.display="block";
-                									   
-                									   
-                									     var editshow = document.getElementById('output');
-                										editshow.style.visibility="visible";
-                									   
-                									   var coupons_frame = document.getElementById('mainconainercup');
-                										coupons_frame.style.display="block";
-                									   
-                									    var updatebtn = document.getElementById('updatebtn');
-                										updatebtn.style.display="inline-block";
-                									   
-                									    var addnewbtn121 = document.getElementById('addnewbtn121');
-                										addnewbtn121.style.display="inline-block";
-                									   
-                									   var confbtncou = document.getElementById('confim_copons');
-                										confbtncou.style.display="none";
-                									   
-                									    var cancelbtn = document.getElementById('cancelbtn');
-                										cancelbtn.style.display="none";
-                									   
-                									   
-                									   var deal_frame = document.getElementById('maincondeal');
-                										deal_frame.style.display="none";
-                //									   
-                									   
-                									   var myImg2 = document.getElementById('myImg');
-                										myImg2.style.visibility="visible";
-                									   
-                									    var selectlogotext = document.getElementById('selectlogotext');
-                										selectlogotext.style.display="none";
-                									   
-                									   
-                									   document.getElementById('delete').addEventListener('click',function (){
-                							
-                										   console.log(starCountRef1);
-                										   
-                   var r = confirm("Are you Sure to delete this Deals");
-                  if (r == true) {
-                 
-                	  starCountRef1.remove()
-                	  
-                  .then(function() {
-                		
-                		  alert('Data Has been Deleted');
-                	
-                		  window.location.href = "creatingcoupons.html";
-                	
-                  })
-                	  
-                  .catch(function(error) {
-                    console.log("Remove failed: " + error.message)
-                  }); 
-                	  
-                  } else {
-                    return;
-                  }								   
-                												   
-                							
-                						});
-                									 	
-                									}
-                							
-                						li.addEventListener('click',listgetcoupons);		
-                						
-                  
-                });
-                				
-                					});
+					objects_array = snapshot2.val();
+
+
+					var listIndex = 1;           
+
+					});
                 	
                 	function myFunction() {
 						var input, filter, ul, li, a, i, txtValue;
@@ -3775,277 +3739,7 @@ console.log(listchecbarray);
                   }, 1000);
  		
                 }
-                refdeal.once("value")
-                        .then(function (snapshot) {
-                	
-                	var listthecheckmar;
-                	var listchecbarray121;
-                	var getitemlist121;
-                	getitemlist121 = [];
-                	
-                	var newArr = getitemlist121;
-                	
-                				
-                                starCountRefdeal = firebase.database().ref("/deals_new/");
-                						
-                						
-                				
-                				starCountRefdeal.on('value', function (snapshot2) {
-                				
-                					 objects_arraydeal = snapshot2.val();
-                					
-                					objects_arraydeal.forEach(function(item,index){
-                					
-                						 const imageurl = item.image[0].imageUrl;
-                //						console.log(objects_array[i]);
-                //						
-                						const name = item.name;
-                						const offer = item.offer;
-                						const description = item.description;
-                						const cateogry = item.cateogry;
-                						const ExpiryDate = item.expiryDate;
-                						const discalmer = item.discalmer;
-                						const address = item.address;
-                						const code = item.code;
-                						const zipcode = item.zipcode;
-                						const placeid = item.placeid;
-                						const logoimage = item.imagelogo;
-                						const imagelink = item.imagelink;
-                						const place = item.place;
-                						const colorbackgroudurl = item.colorbackgroudurl;
-                						const pos = index;
-                						
-                				
-                					
-                		var ul = document.getElementById("couponsimagedeal");
-                		var li=document.createElement('li');
-                        li.innerHTML='<div class="dealsleft" style="padding: 10px; width: 80%; left: 0px; height: 193px; border-radius: 21px; position: relative; margin-top: 10px;" id="bgcolorfordeal"><input type="checkbox" style="width:22px; height:25px; position: absolute; top: 17px; right: -2px; z-index: 1;" class="dealsCheckboxes"><div style="width: 100%; height: 100%; padding:0px; position: absolute; background: rgba(255, 0, 0,0.5); display:none; border-radius: 11px; z-index: 2; text-align:center;" class="highlightclk11"><h3 style="color:white; padding: 9px; color: white; margin-top: 39%; margin-left: 49px; border: 1px solid white; width: 61%;">SELECTED</h3></div><img src='+colorbackgroudurl+' style="width: 100%; height: 100%; object-fit: cover; position: absolute; border-radius: 11px;" id="photosearchlist"><div style="width: 100%; height: 180px; position: absolute; top: 16px; margin-left: 4px;"><img src='+imageurl[0]+' style="object-fit:cover; border-radius: 16px;" id="imagerightdeals"></div><div class="bottomdiv"><div class="deslnameleft"><p id="dealsnameleft1">'+name+'</p></div></div></div>';
-                        ul.appendChild(li);
 
-
-
-						li.addEventListener('click',listgetsdeal);
-
-						function listgetsdeal(){
-							var listsearch1 = document.getElementById("listsearch1"); 
-							listsearch1.style.display="none";
-
-
-							document.getElementById("dlimage").style.display="none";
-							
-							var unslctcoups1 = document.getElementById("unslctcoups1").value;
-
-							getitemlist121.push(index);
-
-							console.log(getitemlist121);
-
-							for(var h = 0; h < getitemlist121.length; h++) {
-							var curItem = getitemlist121[h];
-							var foundCount = 0;
-							// search array for item  
-
-
-							for(var i = 0; i < getitemlist121.length; i++) {
-								if (getitemlist121[i] == getitemlist121[h])
-								foundCount++;
-							}
-							if(foundCount > 1) {
-								// remove repeated item from new array
-									for(var j = 0; j < newArr.length; j++) {
-										if(newArr[j] == curItem) {                
-										newArr.splice(j, 1);
-										j = j - 1;
-									}
-								}  
-							}
-
-							}	
-							var str = newArr.toString();
-							listthecheckmar121 = str.split();
-							listchecbarray121 = JSON.parse("[" + listthecheckmar121 + "]");
-							console.log(listchecbarray121);	  
-							var editshow = document.getElementById('bodysearch1');
-							editshow.style.display="none";
-						
-							document.getElementById('delcomname').value = name;
-							document.getElementById('entcname3').value = name;
-
-
-							document.getElementById('deloffer').value = offer;
-							document.getElementById('delofferc').value = offer;
-							document.getElementById('delplaceid').value = placeid;
-							document.getElementById('deldescription').value = description;
-							document.getElementById('deldescriptnc').value = description;
-							document.getElementById('trmsdelpreivew').value = cateogry;
-							document.getElementById('deldate').value = ExpiryDate;
-							document.getElementById('delexpirydate').value = ExpiryDate;
-							document.getElementById('delcondtions').value = discalmer;
-							document.getElementById('deladdress').value = address;
-							document.getElementById('delzipcode').value = zipcode;
-							document.getElementById('delqrcode').value = code;
-							document.getElementById('imagedel').value = imageurl;
-							document.getElementById('delimagelink').value = imagelink;
-							document.getElementById('imagelogodel').value = logoimage;
-							document.getElementById('dellogo').src = logoimage;
-							document.getElementById('dlimageoutput').src = imageurl[0];
-							document.getElementById('colorbackgroudurl').value = colorbackgroudurl;
-							document.getElementById("dlimageoutput").style.display="block";
-
-
-							deldataobjects = zipcode;
-							console.log(zipcode)
-
-							var deladdbtn =  document.getElementById('deladdbtn');
-							deladdbtn.style.visibility="hidden";
-
-							var deladdbtn2 =  document.getElementById('deladdbtn2');
-							deladdbtn2.style.display="block";
-
-							var backgroundurlimage =  document.getElementById('backgroundurlimage');
-							backgroundurlimage.src=colorbackgroudurl;
-
-							var myCarousel =  document.getElementById('myCarousel');
-							myCarousel.style.zIndex="4";
-
-							imageurl.forEach(function(item,index){
-
-							console.log(item);
-
-							var ul = document.getElementById("sliderlist");
-							var div = document.createElement('div');
-							div.className = "item";
-							div.innerHTML = '<div style="width: 489px; height: 332px; background: white;"><img src='+item+' style="width:100%; height:100%;"></div>';
-							ul.appendChild(div);
-
-							});
-
-							zipcode.forEach(function(item){
-							var option = document.createElement('option');
-
-							var dataconent = Object.keys(item);
-							option.value = Object.keys(item);
-							option.innerHTML = Object.keys(item);
-							delselector.appendChild(option);
-
-							delselector.style.display="block";	
-
-
-
-
-
-							});
-
-
-
-
-
-
-							var dlimageoutput =  document.getElementById('dlimageoutput');
-							dlimageoutput.style.zIndex="0";
-
-
-
-
-							var delllogo = document.getElementById('dellogo');
-							delllogo.style.visibility="inherit";
-							delllogo.style.position="absolute";
-
-
-
-							selectedplace_get = place;
-
-							starCountRef1 = firebase.database().ref("/deals_new/"+index);
-
-
-
-
-							var deldateshow=  document.getElementById('deldateshow');
-							deldateshow.style.display="block";
-
-							document.getElementById('dateon1').innerHTML = ExpiryDate;
-							var datedel=  document.getElementById('dateon1');
-							datedel.style.display="block";
-
-							var maincoupons_frame = document.getElementById('mainconainercup');
-							maincoupons_frame.style.display="none";
-
-
-
-							var deal_frame = document.getElementById('maincondeal');
-							deal_frame.style.display="block";
-
-							var deldate = document.getElementById('deldate');
-							deldate.style.display="none";
-
-
-
-
-
-							var dealimage = document.getElementById('dlimageoutput');
-							dealimage.style.zIndex="0";
-
-							var deal_frame = document.getElementById('confrm_dealbtn');
-							deal_frame.style.display="none";
-
-							var deloutput = document.getElementById('deloutput');
-							deloutput.style.visibility="hidden";
-
-							var deal_frame = document.getElementById('update_dealbtn');
-							deal_frame.style.display="block";
-
-							var addnewonedel = document.getElementById('addnewonedel');
-							addnewonedel.style.display="block";
-
-							var removedel = document.getElementById('removedel');
-							removedel.style.display="none";
-
-							var confbtncou = document.getElementById('confim_copons');
-							confbtncou.style.display="none";
-
-
-
-							document.getElementById('deldelete').addEventListener('click',function (){
-
-							console.log(starCountRef1);
-
-
-							var r = confirm("Are you Sure to delete this Deals");
-							if (r == true) {
-
-							starCountRef1.remove()
-							.then(function() {
-
-							alert('Coupons Has Been Deleted');
-							window.location.href = "creatingcoupons.html";
-
-							})
-							.catch(function(error) {
-							console.log("Remove failed: " + error.message)
-							}); 
-
-							} else {
-							return;
-							}
-							//										   
-							//
-							//										   						   				   
-
-							});   
-						}
-                					
-                					
-                				});
-                					
-                					
-                				});
-                						
-                //					}
-                				
-                				
-                //            });
-                        });
-                	
-                	
                 	
                 	function myFunction2() {
                     var input, filter, ul, li, a, i, txtValue;
