@@ -29,7 +29,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!--	  ends here -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
@@ -72,6 +71,7 @@
 				  const userData = await response.json();
 				  const responseCode = await response.ok;
 				  if(!responseCode){
+				    window.localStorage.removeItem("_token");
 					window.location.href = "login.html";
 				  }
 				  var category = userData.business.category;
@@ -185,20 +185,6 @@
 
 
 				dataobjects = zipcode;
-
-				if (zipcode)
-					zipcode.forEach(function(item) {
-						var option = document.createElement('option');
-
-						var dataconent = Object.keys(item);
-						option.value = Object.keys(item);
-						option.innerHTML = Object.keys(item);
-						selector.appendChild(option);
-
-						selector.style.display = "block";
-					});
-
-
 				document.getElementById('backgrondurl').value = backgroundurl;
 
 
@@ -208,11 +194,6 @@
 
 				var setvalue = document.getElementById('priority').value = priority;
 				var setvalue1 = document.getElementById('trfl').value = isPromoted;
-
-				//                                    
-
-
-
 				selectedplace_get = place;
 
 				starCountRef1 = firebase.database().ref("/coupons_new/" + index);

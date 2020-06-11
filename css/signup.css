@@ -1,0 +1,10 @@
+@media (max-width: 1024px){
+	.mainbodyluck{
+		width:100%;
+	}		
+	.modal-dialog{
+		width:40%;
+		margin:unset;
+		margin-top: 11%;
+	}
+}
