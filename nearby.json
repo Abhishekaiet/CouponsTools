@@ -1,0 +1,1024 @@
+[
+  {
+    "categoryName": "Food & Drinks",
+    "categoryColor": "#C3272E",
+    "categoryOptions": [
+      
+		{
+		
+        "optionName": "- Select Buisness Category -",
+        "optionValue": "Select Buisness Category"
+      },
+		{
+		
+        "optionName": "Restaurants",
+        "optionValue": "restaurant",
+        "optionKeyword": "",
+        "imgUrl": "NB_Restuarants",
+        "selectedMappinImgUrl": "Restaurants_SelectedMapPin",
+        "deselectedMappinImgUrl": "Restaurants_DeselectedMapPin"
+      },
+      {
+        "optionName": "Bars",
+        "optionValue": "bar",
+        "optionKeyword": "",
+        "imgUrl": "NB_Bars",
+        "selectedMappinImgUrl": "Bar_SelectedMapPin",
+        "deselectedMappinImgUrl": "Bar_DeselectedMapPin"
+      },
+      {
+        "optionName": "Coffee",
+        "optionValue": "cafe",
+        "optionKeyword": "",
+        "imgUrl": "NB_Coffee",
+        "selectedMappinImgUrl": "Coffee_SelectedMapPin",
+        "deselectedMappinImgUrl": "Coffee_DeselectedMapPin"
+      },
+      {
+        "optionName": "Coffee",
+        "optionValue": "coffee",
+        "optionKeyword": "",
+        "imgUrl": "NB_Coffee",
+        "selectedMappinImgUrl": "Coffee_SelectedMapPin",
+        "deselectedMappinImgUrl": "Coffee_DeselectedMapPin"
+      },
+      {
+        "optionName": "Brunch",
+        "optionValue": "food",
+        "optionKeyword": "brunch",
+        "imgUrl": "NB_Brunch",
+        "selectedMappinImgUrl": "Brunch_SelectedMapPin",
+        "deselectedMappinImgUrl": "Brunch_DeselectedMapPin"
+      },
+      {
+        "optionName": "Dessert",
+        "optionValue": "food",
+        "optionKeyword": "dessert",
+        "imgUrl": "NB_Dessert",
+        "selectedMappinImgUrl": "Desserts_SelectedMapPin",
+        "deselectedMappinImgUrl": "Desserts_DeselectedMapPin"
+      },
+      {
+        "optionName": "Delivery",
+        "optionValue": "meal_delivery",
+        "optionKeyword": "",
+        "imgUrl": "NB_Delivery",
+        "selectedMappinImgUrl": "Delivery_SelectedMapPin",
+        "deselectedMappinImgUrl": "Delivery_DeselectedMapPin"
+      },
+      {
+        "optionName": "Takeout",
+        "optionValue": "meal_takeaway",
+        "optionKeyword": "",
+        "imgUrl": "NB_Takeout",
+        "selectedMappinImgUrl": "Takeout_SelectedMapPin",
+        "deselectedMappinImgUrl": "Take_out_DeselectedMapPin"
+      },
+      {
+        "optionName": "Bakery",
+        "optionValue": "bakery",
+        "optionKeyword": "",
+        "imgUrl": "NB_Bakery",
+        "selectedMappinImgUrl": "Bakery_SelectedMapPin",
+        "deselectedMappinImgUrl": "Bakery_DeselectedMapPin"
+      }
+    ]
+  },
+  {
+      "categoryName": "Services",
+      "categoryColor": "#4D0381",
+      "categoryOptions": [
+         
+		  
+		  	{
+		
+        "optionName": "- Select Buisness Category -",
+        "optionValue": "Select Buisness Category"
+      },
+		  {
+              "optionName": "Hotels",
+              "optionValue": "establishment",
+              "optionKeyword": "hotel",
+              "imgUrl": "Hotels_NB",
+              "selectedMappinImgUrl": "Hotels_SelectedMapPin",
+              "deselectedMappinImgUrl": "Hotels_DeselectedMapPin"
+          },
+          {
+              "optionName": "ATMs",
+              "optionValue": "atm",
+              "optionKeyword": "",
+              "imgUrl": "Atm_NB",
+              "selectedMappinImgUrl": "ATM's_SelectedMapPin",
+              "deselectedMappinImgUrl": "ATM's_DeselectedMapPin"
+          },
+          {
+              "optionName": "Beauty salons",
+              "optionValue": "beauty_salon",
+              "optionKeyword": "",
+              "imgUrl": "Beauty_Saloon_NB",
+              "selectedMappinImgUrl": "Beauty_Saloon_SelectedMapPin",
+              "deselectedMappinImgUrl": "Beauty_Saloon_DeselectedMapPin"
+          },
+          {
+              "optionName": "Car rental",
+              "optionValue": "car_rental",
+              "optionKeyword": "",
+              "imgUrl": "Car_Rentals_NB",
+              "selectedMappinImgUrl": "Car_Rentals_SelectedMapPin",
+              "deselectedMappinImgUrl": "Car_Rentals_DeselectedMapPin"
+          },
+          {
+              "optionName": "Car repair",
+              "optionValue": "car_repair",
+              "optionKeyword": "",
+              "imgUrl": "Car_Repair_NB",
+              "selectedMappinImgUrl": "Car_Repair_SelectedMapPin",
+              "deselectedMappinImgUrl": "Car_Repair_DeselectedMapPin"
+          },
+          {
+              "optionName": "Car wash",
+              "optionValue": "car_wash",
+              "optionKeyword": "",
+              "imgUrl": "car_wash_NB",
+              "selectedMappinImgUrl": "Car_Wash_SelectedMapPin",
+              "deselectedMappinImgUrl": "Car_wash_DeselectedMapPin"
+          },
+          {
+              "optionName": "Dry cleaning",
+              "optionValue": "laundry",
+              "optionKeyword": "dry cleaner",
+              "imgUrl": "Dry_clean_NB",
+              "selectedMappinImgUrl": "Dry_Clean_SelectedMapPin",
+              "deselectedMappinImgUrl": "Dry_Clean_DeselectedMapPin"
+          },
+          {
+              "optionName": "Gas",
+              "optionValue": "gas_station",
+              "optionKeyword": "",
+              "imgUrl": "Gas_NB",
+              "selectedMappinImgUrl": "Gas_SelectedMapPin",
+              "deselectedMappinImgUrl": "Gas_DeselectedMapPin"
+          },
+          {
+              "optionName": "Hospitals",
+              "optionValue": "hospital",
+              "optionKeyword": "hospital",
+              "imgUrl": "Hospital_Cilinic_NB",
+              "selectedMappinImgUrl": "Hospital_Clinic_SelectedMapPin",
+              "deselectedMappinImgUrl": "Hospitals_Clinic_DeselectedMapPin"
+          },
+          {
+              "optionName": "Mail & shipping",
+              "optionValue": "establishment",
+              "optionKeyword": "courier,shipping",
+              "imgUrl": "Mail_Shipping_NB",
+              "selectedMappinImgUrl": "Mail_Shipping_SelectedMapPin",
+              "deselectedMappinImgUrl": "Mail_Shipping_DeselectedMapPin"
+          },
+          {
+              "optionName": "Parking",
+              "optionValue": "parking",
+              "optionKeyword": "",
+              "imgUrl": "Parking_NB",
+              "selectedMappinImgUrl": "Parking_SelectedMapPin",
+              "deselectedMappinImgUrl": "Parking_DeselectedMapPin"
+          },
+          {
+              "optionName": "Accounting",
+              "optionValue": "accounting",
+              "optionKeyword": "",
+              "imgUrl": "Accounting_NB",
+              "selectedMappinImgUrl": "Accounting_SelectedMapPin",
+              "deselectedMappinImgUrl": "Accounting_DeselectedMapPin"
+          },
+          {
+              "optionName": "Airports",
+              "optionValue": "airport",
+              "optionKeyword": "",
+              "imgUrl": "Airports_NB",
+              "selectedMappinImgUrl": "Airports_SelectedMapPin",
+              "deselectedMappinImgUrl": "Airports_DeselectedMapPin"
+          },
+          {
+              "optionName": "Banks",
+              "optionValue": "bank",
+              "optionKeyword": "",
+              "imgUrl": "Banks_NB",
+              "selectedMappinImgUrl": "Banks_SelectedMapPin",
+              "deselectedMappinImgUrl": "Banks_DeselectedMapPin"
+          },
+          {
+              "optionName": "Moving Company",
+              "optionValue": "moving_company",
+              "optionKeyword": "",
+              "imgUrl": "MovingCompany_NB",
+              "selectedMappinImgUrl": "Moving_Company_SelectedMapPin",
+              "deselectedMappinImgUrl": "Moving_Company_DeselectedMapPin"
+          },
+          {
+              "optionName": "Bus Station",
+              "optionValue": "bus_station",
+              "optionKeyword": "",
+              "imgUrl": "Bus Station_NB",
+              "selectedMappinImgUrl": "Bus_Station_SelectedMapPin",
+              "deselectedMappinImgUrl": "Bus_Station_DeselectedMapPin"
+          },
+          {
+              "optionName": "Subway Station",
+              "optionValue": "subway_station",
+              "optionKeyword": "",
+              "imgUrl": "SubwayStation_NB",
+              "selectedMappinImgUrl": "Subway_Station_SelectedMapPin",
+              "deselectedMappinImgUrl": "Subway_Station_DeselectedMapPin"
+          },
+          {
+              "optionName": "Taxi Stand",
+              "optionValue": "taxi_stand",
+              "optionKeyword": "",
+              "imgUrl": "TaxiStand_NB",
+              "selectedMappinImgUrl": "Taxi_Stand_SelectedMapPin",
+              "deselectedMappinImgUrl": "Taxi_Stand_DeselectedMapPin"
+          },
+          {
+              "optionName": "Train Station",
+              "optionValue": "train_station",
+              "optionKeyword": "",
+              "imgUrl": "TrainStation_NB",
+              "selectedMappinImgUrl": "Train_Station_SelectedMapPin",
+              "deselectedMappinImgUrl": "Train_Station_DeselectedMapPin"
+          },
+          {
+              "optionName": "RV Park",
+              "optionValue": "rv_park",
+              "optionKeyword": "",
+              "imgUrl": "RVPark_NB",
+              "selectedMappinImgUrl": "RV_Parks_SelectedMapPin",
+              "deselectedMappinImgUrl": "RV_Parks_DeselectedMapPin"
+          }
+      ]
+  },
+  {
+    "categoryName": "Shoppings",
+    "categoryColor": "#00467F",
+    "categoryOptions": [
+      
+			{
+		
+        "optionName": "- Select Buisness Category -",
+        "optionValue": "Select Buisness Category"
+      },
+		
+		{
+        "optionName": "Groceries",
+        "optionValue": "store",
+        "optionKeyword": "Grocery",
+        "imgUrl": "Grocerries_NB",
+        "selectedMappinImgUrl": "Groceries_SelectedMapPin",
+        "deselectedMappinImgUrl": "Groceries_DeselectedMapPin"
+      },
+      {
+        "optionName": "Beauty supplies",
+        "optionValue": "store",
+        "optionKeyword": "Beauty supply store",
+        "imgUrl": "BeautySupplies_NB",
+        "selectedMappinImgUrl": "Beauty_Supplies_SelectedMapPin",
+        "deselectedMappinImgUrl": "Bhudhhist_Temple_DeselectedMapPin"
+      },
+      {
+        "optionName": "Car dealers",
+        "optionValue": "car_dealer",
+        "optionKeyword": "",
+        "imgUrl": "Cardealers_NB",
+        "selectedMappinImgUrl": "Car_Dealers_SelectedMapPin",
+        "deselectedMappinImgUrl": "Car_dealers_DeselectedMapPin"
+      },
+      {
+        "optionName": "Home & garden",
+        "optionValue": "store",
+        "optionKeyword": "plant nursery",
+        "imgUrl": "HomeGarden_NB",
+        "selectedMappinImgUrl": "Home_Garden_SelectedMapPin",
+        "deselectedMappinImgUrl": "Home_Garden_DeselectedMapPin"
+      },
+      {
+        "optionName": "Apparel",
+        "optionValue": "clothing_store",
+        "optionKeyword": "",
+        "imgUrl": "Fashion_NB",
+        "selectedMappinImgUrl": "Fashion_SelectedMapPin",
+        "deselectedMappinImgUrl": "Fashion_DeselectedMapPin"
+      },
+      {
+        "optionName": "Shopping centers",
+        "optionValue": "shopping_mall",
+        "optionKeyword": "",
+        "imgUrl": "ShoppingCenter_NB",
+        "selectedMappinImgUrl": "Shopping_center_SelectedMapPin",
+        "deselectedMappinImgUrl": "Shopping_Center_DeselectedMapPin"
+      },
+      {
+        "optionName": "Electronics",
+        "optionValue": "electronics_store",
+        "optionKeyword": "",
+        "imgUrl": "Electronics_NB",
+        "selectedMappinImgUrl": "Technology_SelectedMapPin",
+        "deselectedMappinImgUrl": "Technology_DeselectedMapPin"
+      },
+      {
+        "optionName": "Sporting goods",
+        "optionValue": "store",
+        "optionKeyword": "sports",
+        "imgUrl": "SportingGoods_NB",
+        "selectedMappinImgUrl": "Sporting_Goods_SelectedMapPin",
+        "deselectedMappinImgUrl": "Sporting_Goods_DeselectedMapPin"
+      },
+      {
+        "optionName": "Convenience stores",
+        "optionValue": "convenience_store",
+        "optionKeyword": "",
+        "imgUrl": "ConvinienceStore_NB",
+        "selectedMappinImgUrl": "Convinience_Store_SelectedMapPin",
+        "deselectedMappinImgUrl": "Convinience_Store_DeselectedMapPin"
+      },
+      {
+        "optionName": "Bicycle Store",
+        "optionValue": "bicycle_store",
+        "optionKeyword": "",
+        "imgUrl": "CycleStore_NB",
+        "selectedMappinImgUrl": "Cycle_Store_SelectedMapPin",
+        "deselectedMappinImgUrl": "Cycle_Store_DeselectedMapPin"
+      },
+      {
+        "optionName": "Book Store",
+        "optionValue": "book_store",
+        "optionKeyword": "",
+        "imgUrl": "BookStore_NB",
+        "selectedMappinImgUrl": "Book_store_SelectedMapPin",
+        "deselectedMappinImgUrl": "Book_Store_DeselectedMapPin"
+      },
+      {
+        "optionName": "Furtinture Store",
+        "optionValue": "furniture_store",
+        "optionKeyword": "",
+        "imgUrl": "FurnitureStore_NB",
+        "selectedMappinImgUrl": "Furniture_Store_SelectedMapPin",
+        "deselectedMappinImgUrl": "Furniture_Store_DeselectedMapPin"
+      },
+      {
+        "optionName": "Pet Store",
+        "optionValue": "pet_store",
+        "optionKeyword": "",
+        "imgUrl": "PetStore_NB",
+        "selectedMappinImgUrl": "Pet_Store_SelectedMapPin",
+        "deselectedMappinImgUrl": "Pet_Store_DeselectedMapPin"
+      },
+      {
+        "optionName": "Hardware Store",
+        "optionValue": "hardware_store",
+        "optionKeyword": "",
+        "imgUrl": "HardwareStore_NB",
+        "selectedMappinImgUrl": "Hardware_Store_SelectedMapPin",
+        "deselectedMappinImgUrl": "Hardware_Store_DeselectedMapPin"
+      },
+      {
+        "optionName": "Home Goods Store",
+        "optionValue": "home_goods_store",
+        "optionKeyword": "",
+        "imgUrl": "HomeGoodsStore_NB",
+        "selectedMappinImgUrl": "Home_Goods_store_SelectedMapPin",
+        "deselectedMappinImgUrl": "Home_Goods_Store_DeselectedMapPin"
+      },
+      {
+        "optionName": "Jewelry Store",
+        "optionValue": "jewelry_store",
+        "optionKeyword": "",
+        "imgUrl": "JewelryStore_NB",
+        "selectedMappinImgUrl": "Jewelry_Store_SelectedMapPin",
+        "deselectedMappinImgUrl": "Jewelry_Store_DeselectedMapPin"
+      },
+      {
+        "optionName": "Liquor Store",
+        "optionValue": "liquor_store",
+        "optionKeyword": "",
+        "imgUrl": "LiquorStore_NB",
+        "selectedMappinImgUrl": "Liquire_Store_SelectedMapPin",
+        "deselectedMappinImgUrl": "Liquire_Store_DeselectedMapPin"
+      },
+      {
+        "optionName": "Shoe Store",
+        "optionValue": "shoe_store",
+        "optionKeyword": "",
+        "imgUrl": "ShoeStore_NB",
+        "selectedMappinImgUrl": "Shoe_Store_SelectedMapPin",
+        "deselectedMappinImgUrl": "Shoe_store_DeselectedMapPin"
+      }
+    ]
+  },
+  {
+      "categoryName": "Things to Do",
+      "categoryColor": "#008780",
+      "categoryOptions": [
+          
+		  	{
+		
+        "optionName": "- Select Buisness Category -",
+        "optionValue": "Select Buisness Category"
+      },
+		  {
+              "optionName": "Events",
+              "optionValue": "establishment",
+              "optionKeyword": "event",
+              "imgUrl": "Events_NB",
+              "selectedMappinImgUrl": "Events_SelectedMapPin",
+              "deselectedMappinImgUrl": "Events_DeselectedMapPin"
+          },
+          {
+              "optionName": "Parks",
+              "optionValue": "park",
+              "optionKeyword": "",
+              "imgUrl": "Parks_NB",
+              "selectedMappinImgUrl": "Parks_SelectedMapPin",
+              "deselectedMappinImgUrl": "Parks_DeselectedMapPin"
+          },
+          {
+              "optionName": "Art Gallery",
+              "optionValue": "art_gallery",
+              "optionKeyword": "",
+              "imgUrl": "Arts_NB",
+              "selectedMappinImgUrl": "Arts_SelectedMapPin",
+              "deselectedMappinImgUrl": "Arts_DeselectedMapPin"
+          },
+          {
+              "optionName": "Attractions",
+              "optionValue": "things_to_do",
+              "optionKeyword": "monument,museum,national park,historic",
+              "imgUrl": "Attractions_NB",
+              "selectedMappinImgUrl": "Attractions_SelectedMapPin",
+              "deselectedMappinImgUrl": "Attractions_DeselectedMapPin"
+          },
+          {
+              "optionName": "Nightlife",
+              "optionValue": "night_club",
+              "optionKeyword": "",
+              "imgUrl": "Nightlife_NB",
+              "selectedMappinImgUrl": "Nightlife_SelectedMapPin",
+              "deselectedMappinImgUrl": "Nightlife_DeselectedMapPin"
+          },
+          {
+              "optionName": "Live music",
+              "optionValue": "things_to_do",
+              "optionKeyword": "live music",
+              "imgUrl": "Music_NB",
+              "selectedMappinImgUrl": "Music_SelectedMapPin",
+              "deselectedMappinImgUrl": "Music_DeselectedMapPin"
+          },
+          {
+              "optionName": "Movies",
+              "optionValue": "movie_theater",
+              "optionKeyword": "",
+              "imgUrl": "Movies_NB",
+              "selectedMappinImgUrl": "Movies_SelectedMapPin",
+              "deselectedMappinImgUrl": "Movies_DeselectedMapPin"
+          },
+          {
+              "optionName": "Museums",
+              "optionValue": "museum",
+              "optionKeyword": "",
+              "imgUrl": "Museum_NB",
+              "selectedMappinImgUrl": "Museum_SelectedMapPin",
+              "deselectedMappinImgUrl": "Museum_DeselectedMapPin"
+          },
+          {
+              "optionName": "Libraries",
+              "optionValue": "library",
+              "optionKeyword": "",
+              "imgUrl": "Literature_NB",
+              "selectedMappinImgUrl": "Literature_SelectedMapPin",
+              "deselectedMappinImgUrl": "Literature_DeselectedMapPin"
+          },
+          {
+              "optionName": "Amusement Park",
+              "optionValue": "amusement_park",
+              "optionKeyword": "",
+              "imgUrl": "Amusement_Park_NB",
+              "selectedMappinImgUrl": "Amusement_park_SelectedMapPin",
+              "deselectedMappinImgUrl": "Amusement_Park_DeselectedMapPin"
+          },
+          {
+              "optionName": "Aquarium",
+              "optionValue": "aquarium",
+              "optionKeyword": "",
+              "imgUrl": "Aquarium_NB",
+              "selectedMappinImgUrl": "Aquarium_SelectedMapPin",
+              "deselectedMappinImgUrl": "Aquarium_DeselectedMapPin"
+          },
+          {
+              "optionName": "Casino",
+              "optionValue": "casino",
+              "optionKeyword": "",
+              "imgUrl": "Casino_NB",
+              "selectedMappinImgUrl": "Casino_SelectedMapPin",
+              "deselectedMappinImgUrl": "Casino_DeselectedMapPin"
+          },
+          {
+              "optionName": "Bowling Alley",
+              "optionValue": "bowling_alley",
+              "optionKeyword": "",
+              "imgUrl": "Bowling_alley_NB",
+              "selectedMappinImgUrl": "Bowling_Alley_SelectedMapPin",
+              "deselectedMappinImgUrl": "Bowling_Alley_DeselectedMapPin"
+          },
+          {
+              "optionName": "Campground",
+              "optionValue": "campground",
+              "optionKeyword": "",
+              "imgUrl": "Camping_ground_NB",
+              "selectedMappinImgUrl": "Camping_Grounds_SelectedMapPin",
+              "deselectedMappinImgUrl": "Camping_Grounds_DeselectedMapPin"
+          },
+          {
+              "optionName": "Cemetery",
+              "optionValue": "cemetery",
+              "optionKeyword": "",
+              "imgUrl": "Cementry_NB",
+              "selectedMappinImgUrl": "Cementry_SelectedMapPin",
+              "deselectedMappinImgUrl": "Cementry_DeselectedMapPin"
+          },
+          {
+              "optionName": "Zoo",
+              "optionValue": "zoo",
+              "optionKeyword": "",
+              "imgUrl": "Zoo_NB",
+              "selectedMappinImgUrl": "Zoo_SelectedMapPin",
+              "deselectedMappinImgUrl": "Zoo_DeselectedMapPin"
+          },
+          {
+              "optionName": "Stadium",
+              "optionValue": "stadium",
+              "optionKeyword": "",
+              "imgUrl": "Stadium_NB",
+              "selectedMappinImgUrl": "Stadium_SelectedMapPin",
+              "deselectedMappinImgUrl": "Stadium_DeselectedMapPin"
+          },
+          {
+              "optionName": "Spa",
+              "optionValue": "spa",
+              "optionKeyword": "",
+              "imgUrl": "Spa_NB",
+              "selectedMappinImgUrl": "Spa_SelectedMapPin",
+              "deselectedMappinImgUrl": "Spa_DeselectedMapPin"
+          }
+      ]
+  },
+  {
+    "categoryName": "Professional Services",
+    "categoryColor": "#F05A28",
+    "categoryOptions": [
+      	{
+		
+        "optionName": "- Select Buisness Category -",
+        "optionValue": "Select Buisness Category"
+      },
+		
+		{
+        "optionName": "Funeral Home",
+        "optionValue": "funeral_home",
+        "optionKeyword": "",
+        "imgUrl": "FuneralHome_NB",
+        "selectedMappinImgUrl": "Funeral_Home_SelectedMapPin",
+        "deselectedMappinImgUrl": "Funeral_home_DeselectedMapPin"
+      },
+      {
+        "optionName": "Electrician",
+        "optionValue": "electrician",
+        "optionKeyword": "",
+        "imgUrl": "Electrician_NB",
+        "selectedMappinImgUrl": "Electrician_SelectedMapPin",
+        "deselectedMappinImgUrl": "Electrician_DeselectedMapPin"
+      },
+      {
+        "optionName": "Hair Care",
+        "optionValue": "hair_care",
+        "optionKeyword": "",
+        "imgUrl": "HairCare_NB",
+        "selectedMappinImgUrl": "Hair_Care_SelectedMapPin",
+        "deselectedMappinImgUrl": "Hair_Care_DeselectedMapPin"
+      },
+      {
+        "optionName": "Insurance Agency",
+        "optionValue": "insurance_agency",
+        "optionKeyword": "",
+        "imgUrl": "InsuranceAgency_NB",
+        "selectedMappinImgUrl": "Insurance_Agency_SelectedMapPin",
+        "deselectedMappinImgUrl": "Insurance_Agency_DeselectedMapPin"
+      },
+      {
+        "optionName": "Laundry",
+        "optionValue": "laundry",
+        "optionKeyword": "",
+        "imgUrl": "Laundry_NB",
+        "selectedMappinImgUrl": "Laundry_SelectedMapPin",
+        "deselectedMappinImgUrl": "Laundry_DeselectedMapPin"
+      },
+      {
+        "optionName": "Lawyer",
+        "optionValue": "lawyer",
+        "optionKeyword": "",
+        "imgUrl": "Lawyer_NB",
+        "selectedMappinImgUrl": "Lawyer_SelectedMapPin",
+        "deselectedMappinImgUrl": "Lawyer_DeselectedMapPin"
+      },
+      {
+        "optionName": "Locksmith",
+        "optionValue": "locksmith",
+        "optionKeyword": "",
+        "imgUrl": "LockSmith_NB",
+        "selectedMappinImgUrl": "Lock_Smith_SelectedMapPin",
+        "deselectedMappinImgUrl": "Lock_Smith_DeselectedMapPin"
+      },
+      {
+        "optionName": "Painter",
+        "optionValue": "painter",
+        "optionKeyword": "",
+        "imgUrl": "Painter_NB",
+        "selectedMappinImgUrl": "Painter_SelectedMapPin",
+        "deselectedMappinImgUrl": "Painter_DeselectedMapPin"
+      },
+      {
+        "optionName": "Plumber",
+        "optionValue": "plumber",
+        "optionKeyword": "",
+        "imgUrl": "Plumber_NB",
+        "selectedMappinImgUrl": "Plumber_SelectedMapPin",
+        "deselectedMappinImgUrl": "Plumber_DeselectedMapPin"
+      },
+      {
+        "optionName": "Real Estate Agency",
+        "optionValue": "real_estate_agency",
+        "optionKeyword": "",
+        "imgUrl": "RealEstateAgency_NB",
+        "selectedMappinImgUrl": "",
+        "deselectedMappinImgUrl": ""
+      },
+      {
+        "optionName": "Roofing Contractor",
+        "optionValue": "roofing_contractor",
+        "optionKeyword": "",
+        "imgUrl": "RoofingContractor_NB",
+        "selectedMappinImgUrl": "Real_Estate_Agency_SelectedMapPin",
+        "deselectedMappinImgUrl": "Real_Estate_Agency_DeselectedMapPin"
+      },
+      {
+        "optionName": "Florist",
+        "optionValue": "florist",
+        "optionKeyword": "",
+        "imgUrl": "Florist_NB",
+        "selectedMappinImgUrl": "Florist_SelectedMapPin",
+        "deselectedMappinImgUrl": "Florist_DeselectedMapPin"
+      },
+      {
+        "optionName": "Storage",
+        "optionValue": "storage",
+        "optionKeyword": "",
+        "imgUrl": "Storage_NB",
+        "selectedMappinImgUrl": "Storage_SelectedMapPin",
+        "deselectedMappinImgUrl": "Storage_DeselectedMapPin"
+      },
+      {
+        "optionName": "Travel Agency",
+        "optionValue": "travel_agency",
+        "optionKeyword": "",
+        "imgUrl": "TravelAgency_NB",
+        "selectedMappinImgUrl": "Travel_Agency_SelectedMapPin",
+        "deselectedMappinImgUrl": "Travel_Agency_DeselectedMapPin"
+      }
+    ]
+  },
+  {
+    "categoryName": "Health",
+    "categoryColor": "#0442D2",
+    "categoryOptions": [
+      
+			{
+		
+        "optionName": "- Select Buisness Category -",
+        "optionValue": "Select Buisness Category"
+      },
+		{
+        "optionName": "Dentist",
+        "optionValue": "dentist",
+        "optionKeyword": "",
+        "imgUrl": "Dentist_NB",
+        "selectedMappinImgUrl": "Dentist_SelectedMapPin",
+        "deselectedMappinImgUrl": "Dentist_DeselectedMapPin"
+      },
+      {
+        "optionName": "Doctor",
+        "optionValue": "doctor",
+        "optionKeyword": "",
+        "imgUrl": "Doctor_NB",
+        "selectedMappinImgUrl": "Doctor_SelectedMapPin",
+        "deselectedMappinImgUrl": "Doctor_DeselectedMapPin"
+      },
+      {
+        "optionName": "Hospitals",
+        "optionValue": "hospital",
+        "optionKeyword": "",
+        "imgUrl": "Hospital_NB",
+        "selectedMappinImgUrl": "Hospitals_SelectedMapPin",
+        "deselectedMappinImgUrl": "Hospitals_DeselectedMapPin"
+      },
+      {
+        "optionName": "Pharmacy",
+        "optionValue": "pharmacy",
+        "optionKeyword": "",
+        "imgUrl": "Pharmecy_NB",
+        "selectedMappinImgUrl": "Pharmacy_SelectedMapPin",
+        "deselectedMappinImgUrl": "Pharmacy_DeselectedMapPin"
+      },
+      {
+        "optionName": "Physiotherapist",
+        "optionValue": "physiotherapist",
+        "optionKeyword": "",
+        "imgUrl": "Physiotherapist_NB",
+        "selectedMappinImgUrl": "Physiotherapist_SelectedMapPin",
+        "deselectedMappinImgUrl": "Physiotherapist_DeselectedMapPin"
+      },
+      {
+        "optionName": "Veterinary Care",
+        "optionValue": "veterinary_care",
+        "optionKeyword": "",
+        "imgUrl": "VeterinaryCare_NB",
+        "selectedMappinImgUrl": "Veternity_Care_SelectedMapPin",
+        "deselectedMappinImgUrl": "Veternity_Care_DeselectedMapPin"
+      }
+    ]
+  },
+  {
+    "categoryName": "Education",
+    "categoryColor": "#EF8F1E",
+    "categoryOptions": [
+      
+			{
+		
+        "optionName": "- Select Buisness Category -",
+        "optionValue": "Select Buisness Category"
+      },
+		{
+        "optionName": "PreSchool",
+        "optionValue": "PreSchool",
+        "optionKeyword": "pre school",
+        "imgUrl": "Kindergarten_NB",
+        "selectedMappinImgUrl": "Kinder_Garden_SelectedMapPin",
+        "deselectedMappinImgUrl": "Kinder_Garden_deSelectedMapPin"
+      },
+      {
+        "optionName": "Elementary Schools",
+        "optionValue": "Elementary Schools",
+        "optionKeyword": "elementary schools",
+        "imgUrl": "Primary_School_NB",
+        "selectedMappinImgUrl": "Primary_School_SelectedMapPin",
+        "deselectedMappinImgUrl": "Primary_School_deSelectedMapPin"
+      },
+      {
+        "optionName": "Middle Schools",
+        "optionValue": "Middle Schools",
+        "optionKeyword": "middle schools",
+        "imgUrl": "Middle_School_NB",
+        "selectedMappinImgUrl": "Middle_School_SelectedMapPin",
+        "deselectedMappinImgUrl": "Middle_School_deSelectedMapPin"
+      },
+      {
+        "optionName": "High Schools",
+        "optionValue": "High Schools",
+        "optionKeyword": "high schools",
+        "imgUrl": "High_School_NB",
+        "selectedMappinImgUrl": "High_School_SelectedMapPin",
+        "deselectedMappinImgUrl": "High_School_deSelectedMapPin"
+      },
+      {
+        "optionName": "Colleges",
+        "optionValue": "Colleges",
+        "optionKeyword": "colleges",
+        "imgUrl": "College_NB",
+        "selectedMappinImgUrl": "College_SelectedMapPin",
+        "deselectedMappinImgUrl": "College_deSelectedMapPin"
+      },
+      {
+        "optionName": "Universities",
+        "optionValue": "Universities",
+        "optionKeyword": "University",
+        "imgUrl": "Universities_NB",
+        "selectedMappinImgUrl": "Universities_SelectedMapPin",
+        "deselectedMappinImgUrl": "Universities_deSelectedMapPin"
+      },
+      {
+        "optionName": "Adult Education",
+        "optionValue": "Adult Education",
+        "optionKeyword": "adult education",
+        "imgUrl": "Adult_Education_NB",
+        "selectedMappinImgUrl": "Adult_Education_SelectedMapPin",
+        "deselectedMappinImgUrl": "Adult_education_deSelectedMapPin"
+      },
+      {
+        "optionName": "School District Offices",
+        "optionValue": "School District Offices",
+        "optionKeyword": "district office",
+        "imgUrl": "School_District_Offices_NB",
+        "selectedMappinImgUrl": "School_Distirct_office_SelectedMapPin",
+        "deselectedMappinImgUrl": "School_District_Office_deSelectedMapPin"
+      }
+    ]
+  },
+  {
+    "categoryName": "Place of WorShip",
+    "categoryColor": "#25A9E0",
+    "categoryOptions": [
+      	{
+		
+        "optionName": "- Select Buisness Category -",
+        "optionValue": "Select Buisness Category"
+      },
+		{
+        "optionName": "Churches",
+        "optionValue": "church",
+        "optionKeyword": "",
+        "imgUrl": "Church_NB",
+        "selectedMappinImgUrl": "Church_SelectedMapPin",
+        "deselectedMappinImgUrl": "Church_DeselectedMapPin"
+      },
+      {
+        "optionName": "Hindu Temples",
+        "optionValue": "hindu_temple",
+        "optionKeyword": "",
+        "imgUrl": "HinduTemples_NB",
+        "selectedMappinImgUrl": "Hindu_Temple_SelectedMapPin",
+        "deselectedMappinImgUrl": "Hindu_Temple_DeselectedMapPin"
+      },
+      {
+        "optionName": "Mosques",
+        "optionValue": "mosque",
+        "optionKeyword": "",
+        "imgUrl": "Mosques_NB",
+        "selectedMappinImgUrl": "Mosques_SelectedMapPin",
+        "deselectedMappinImgUrl": "Mosques_DeselectedMapPin"
+      },
+      {
+        "optionName": "Synagogues",
+        "optionValue": "synagogue",
+        "optionKeyword": "",
+        "imgUrl": "Synagogues_NB",
+        "selectedMappinImgUrl": "Sygnagogous_SelectedMapPin",
+        "deselectedMappinImgUrl": "Sygnagogous_DeselectedMapPin"
+      },
+      {
+        "optionName": "Bahai Temples",
+        "optionValue": "place_of_worship",
+        "optionKeyword": "bahai temples",
+        "imgUrl": "BahaiTemple_NB",
+        "selectedMappinImgUrl": "Bahai_Temple_SelectedMapPin",
+        "deselectedMappinImgUrl": "Bahai_Temple_DeselectedMapPin"
+      },
+      {
+        "optionName": "Buddhist Temples",
+        "optionValue": "place_of_worship",
+        "optionKeyword": "Buddha temples",
+        "imgUrl": "BuddhistTemple_NB",
+        "selectedMappinImgUrl": "Buddhist_Temple_SelectedMapPin",
+        "deselectedMappinImgUrl": "Bhudhhist_Temple_DeselectedMapPin"
+      },
+      {
+        "optionName": "Jain Temples",
+        "optionValue": "place_of_worship",
+        "optionKeyword": "jain temples",
+        "imgUrl": "JainTemples_NB",
+        "selectedMappinImgUrl": "Jain_Temple_SelectedMapPin",
+        "deselectedMappinImgUrl": "Jain_Temple_DeselectedMapPin"
+      },
+      {
+        "optionName": "Zoroastrians Fire Temples",
+        "optionValue": "place_of_worship",
+        "optionKeyword": "Zoroastrians Fire Temples",
+        "imgUrl": "ZoroastriansFireTemples_NB",
+        "selectedMappinImgUrl": "Zoroastrians_Temple_SelectedMapPin",
+        "deselectedMappinImgUrl": "Zoroastrians_Temple_DeselectedMapPin"
+      },
+      {
+        "optionName": "Meditation Centers",
+        "optionValue": "establishment",
+        "optionKeyword": "meditation centre",
+        "imgUrl": "MeditationCentre_NB",
+        "selectedMappinImgUrl": "Meditation_SelectedMapPin",
+        "deselectedMappinImgUrl": "Meditation_DeselectedMapPin"
+      }
+    ]
+  },
+  {
+    "categoryName": "Government Facilities",
+    "categoryColor": "#00581C",
+    "categoryOptions": [
+      	{
+		
+        "optionName": "- Select Buisness Category -",
+        "optionValue": "Select Buisness Category"
+      },
+		{
+        "optionName": "City Hall",
+        "optionValue": "city_hall",
+        "optionKeyword": "",
+        "imgUrl": "City_Hall_NB",
+        "selectedMappinImgUrl": "City_hall_SelectedMapPin",
+        "deselectedMappinImgUrl": "City_Hall_deselectedMapPin"
+      },
+      {
+        "optionName": "Courthouse",
+        "optionValue": "courthouse",
+        "optionKeyword": "",
+        "imgUrl": "Court_House_NB",
+        "selectedMappinImgUrl": "Court_House_SelectedMapPin",
+        "deselectedMappinImgUrl": "Court_House_deselectedMapPin"
+      },
+      {
+        "optionName": "Embassy",
+        "optionValue": "embassy",
+        "optionKeyword": "",
+        "imgUrl": "Embassy_NB",
+        "selectedMappinImgUrl": "Embassy_SelectedMapPin",
+        "deselectedMappinImgUrl": "Embassy_deselectedMapPin"
+      },
+      {
+        "optionName": "Fire Station",
+        "optionValue": "fire_station",
+        "optionKeyword": "",
+        "imgUrl": "FireStation_NB",
+        "selectedMappinImgUrl": "Fire_Station_SelectedMapPin",
+        "deselectedMappinImgUrl": "Fire_Station_deselectedMapPin"
+      },
+      {
+        "optionName": "Government Office",
+        "optionValue": "local_government_office",
+        "optionKeyword": "",
+        "imgUrl": "LocalGovernmentOffice_NB",
+        "selectedMappinImgUrl": "Local_Government_Offices_SelectedMapPin",
+        "deselectedMappinImgUrl": "Local_Government_Office_deselectedMapPin"
+      },
+      {
+        "optionName": "Police",
+        "optionValue": "police",
+        "optionKeyword": "",
+        "imgUrl": "Police_NB",
+        "selectedMappinImgUrl": "Police_SelectedMapPin",
+        "deselectedMappinImgUrl": "Police_deselectedMapPin"
+      },
+      {
+        "optionName": "Post Office",
+        "optionValue": "post_office",
+        "optionKeyword": "",
+        "imgUrl": "PostOffices_NB",
+        "selectedMappinImgUrl": "Post_Office_SelectedMapPin",
+        "deselectedMappinImgUrl": "Post_Office_deselectedMapPin"
+      },
+      {
+        "optionName": "Military Base",
+        "optionValue": "point_of_interest",
+        "optionKeyword": "Military Base",
+        "imgUrl": "MillarteryBase_NB",
+        "selectedMappinImgUrl": "Millatary_Base_SelectedMapPin",
+        "deselectedMappinImgUrl": "Millatary_Base_deselectedMapPin"
+      },
+      {
+        "optionName": "County Offices",
+        "optionValue": "establishment",
+        "optionKeyword": "country office",
+        "imgUrl": "County_Office_NB",
+        "selectedMappinImgUrl": "County_Office_SelectedMapPin",
+        "deselectedMappinImgUrl": "County_Office_deselectedMapPin"
+      },
+      {
+        "optionName": "Social Security",
+        "optionValue": "establishment",
+        "optionKeyword": "social security office",
+        "imgUrl": "SocialSecurityOffices_NB",
+        "selectedMappinImgUrl": "Social_Security_Office_SelectedMapPin",
+        "deselectedMappinImgUrl": "Social_Security_Office_deselectedMapPin"
+      },
+      {
+        "optionName": "Border Crossings",
+        "optionValue": "establishment",
+        "optionKeyword": "border crossing",
+        "imgUrl": "Border_Offices_NB",
+        "selectedMappinImgUrl": "Border_offices_SelectedMapPin",
+        "deselectedMappinImgUrl": "Border_Offices_deselectedMapPin"
+      },
+      {
+        "optionName": "Civic Centers",
+        "optionValue": "establishment",
+        "optionKeyword": "civic center",
+        "imgUrl": "Civic_Centre_NB",
+        "selectedMappinImgUrl": "Civic_Center_SelectedMapPin",
+        "deselectedMappinImgUrl": "Civic_Center_deselectedMapPin"
+      }
+    ]
+  }
+ 
+]
