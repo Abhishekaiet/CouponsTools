@@ -86,7 +86,7 @@
 							  title: 'Error',
 							  message: 'You are not a business user'
 						  });
-						  window.location.href = "signup.html?business=1&id="+username;
+						  window.location.href = "Signup.html?business=1&id="+username;
 					   }
 				  }
 				  userDataAction()

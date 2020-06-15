@@ -10,6 +10,10 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       </script>
       <script> 
+		function logoutuser(){
+			window.localStorage.removeItem("_token");
+			window.location.href = "login.html";
+		}
          function openMenu(x) {
          	x.classList.toggle("change");
          	var y = document.getElementById("menuItems");
@@ -38,6 +42,13 @@
          };
       </script> 
       <style>
+	  .logoutuser{
+		  margin-right: 18px;
+		color: #fff;
+		font-size: 16px;
+		font-weight: bold;
+		cursor:pointer
+	  }
          body{
          background-color: #F8F8F8;
          font-family:roboto;
@@ -124,7 +135,7 @@
             <div class="rightside">
                <img  src="img/ch-list/report.png" />
                <img  src="img/ch-list/issue.png" />
-               <img id="profilePic"/>
+                <img id="profilePic"/> <a onclick="logoutuser()" class="logoutuser">Logout</a>
             </div>
             <div id="menuItems" class="display">
                <div class="menuLinks">
