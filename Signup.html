@@ -265,6 +265,9 @@
 	  
 <!--logi_signup01-->
 	  <style>
+	  button{
+	  outline:none;
+	  }
 	  .headerlogo {
     height: 32px;
     float: left;
@@ -319,7 +322,7 @@ url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg");
 	  
 	  
 <!-- Modal Seconds -->
-  <div id="logi_signup01" role="dialog" style="display: block;">
+  <div id="logi_signup01" role="dialog">
 <!--
 	  <img src="img/footerlogin.png" style="position: absolute;
     width: 100%;
@@ -388,7 +391,6 @@ url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg");
 
 		
 <script>
-		
 	
 	function fname1() {
   document.getElementById("firstname").style.border="0px solid red";
@@ -1102,8 +1104,8 @@ xhr.send(data);
 	  <div class="col-sm-3" style="margin: 0px; padding: 0px;">
 		  <div class="leftmenu">
 		  
-			  <h4 style="font-weight: bold;
-    font-size: 22px;
+			  <h4 style="margin-top: 30px;
+    font-size: 21px;
     ", sans-serif;">LET'S BUILD YOUR MOBILE APP</h4>
 			  <div class="listtext">
 			 <p id="tellabutupou">TELL US ABOUT YOU  <span class="glyphicon glyphicon-ok" id="icond" style="display: none; color: #5c7fff; float: right;"></span></p>
@@ -1924,7 +1926,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
                                     <!-- Button -->
 
                                     <div class="col-sm-12">
-										<button id="back3" class="paybutton" style="float: left;width: 105px;font-size: 15px;">Back</button>
+										<button id="back3" class="paybutton" style="float: left;width: 105px;">Back</button>
 										<button id="cloclks3" class="paybutton" style="float: right;">Save & Continue</button>
 
                                     </div>
@@ -2041,7 +2043,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 			  
     <tr class="labels">
 		<th scope="row" style="width: 100%;">Number of items or products for sale</th>
-      <td class="labels"><span id="numofproducts"></span></td>
+      <td class=""><span id="numofproducts"></span></td>
       
     </tr>
 	   <tr class="labels">
@@ -2071,6 +2073,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 				color: black;
 				opacity: 1;
 				font-size: 25px;
+				font-weight:bold;
 			  }
 			  
 			  #confirm{
@@ -2141,7 +2144,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		</div>
 	  
 	   <div id="divpricingobj">
-		  <div class="panel panel-info" style="margin-top: 0px; width: 70%; height: auto;border-color: #ececec;" id="divprcingcustome">
+		  <div class="panel panel-info sizecuc" style="margin-top: 0px; height: auto;border-color: #ececec;" id="divprcingcustome">
                     <div class="panel-heading" align="left">
                         <div class="panel-title">Pricing MyCommunity.Today Services</div>
 <!--                        <div class="pricesrates"><a href="#">Price:$<span id="prcingpane5"></span></a></div>-->
@@ -2302,7 +2305,6 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		.maindivforprcin
 		{
 			width: 100%;
-			height: 469px;
 			padding: 25px;
 			opacity:0.6
 		
@@ -2311,7 +2313,6 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		{
 			       width: 100%;
     padding: 26px;
-    height: 360px;
     background: white;
 	border: 3px solid #ececec;
 			position: relative;
@@ -2431,7 +2432,10 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     padding: 13px;
     text-align: left;
 		}
-		
+	#adinalpackbuttons{
+		position: relative;
+		top: -83px;
+	}
 	</style>
 						
 						
@@ -2443,11 +2447,11 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 								
 								document.getElementById('couponscode').style.display="block";
 								document.getElementById('proceeddiscountcode').style.display="block";
-								document.getElementById('doyouhavedictextnode').style.cssText="font-size: 24px;margin-top: 2%;margin-bottom: 0%;font-weight: 600;color: #1d1a1a;";
+								document.getElementById('doyouhavedictextnode').style.cssText="font-size: 24px;margin-top: 2%;margin-bottom: 3%;font-weight: 600;color: #1d1a1a;";
 								document.getElementById('cpucodeyes').style.color="white";
 								document.getElementById('cpucodeyes').style.background="#337ab7";
 								
-    document.getElementById('cpucodeno').style.color="black";
+								document.getElementById('cpucodeno').style.color="black";
 								document.getElementById('cpucodeno').style.background="white";
 								
 								
@@ -2480,9 +2484,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
                                     <div class="col-sm-12" style="margin-top: 25px;">
 <!--                                      <a id="btn-login" href="#" class="btn btn-success">Login </a>-->
 <!--                                      <a id="btn-fblogin" href="#" class="btn btn-primary" style="float: right;">Save & Continue</a>-->
-										<button id="back5" class="paybutton" style="float: left;
-    width: 105px;
-    font-size: 15px;">Back</button>
+										<button id="back5" class="paybutton" style="float: left;width: 105px;">Back</button>
 										<button id="divpricingobj01" class="paybutton" style="float: right;">Save & continue</button>
 <!--                                     <button id="geturlresponse" class="btn btn-primary" style="float: right;">Response</button>-->
                                     </div>
@@ -2528,15 +2530,11 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 	  </style>
 	
 	 <div id="div6obj">
-			  <div class="panel panel-info sizecuc sizecuc221" style="
-    width: 97%;
-    margin-top: 29px;
-    margin-left: 2%;
-    border-color: #ececec;" id="div6kbject">
+			  <div class="panel panel-info sizecuc sizecuc221" style="margin-top: 29px;border-color: #ececec;" id="div6kbject">
 
 
                     <div class="" >
-<span id="packges121" style="font-size: 0px;"></span>
+						<span id="packges121" style="font-size: 0px;"></span>
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 						<h4 class="massheading"><span id="changecontent">MAAS Optional Packages</span></h4>
 						<div class="addinalpackage" id="addinalpackage121">
@@ -2544,9 +2542,10 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		 .massheading{
 		color: #ffffff!important;
 		background: #00B3FE 0% 0% no-repeat padding-box !important;
-		padding: 18px 15px !important;
+		padding: 18px 40px !important;
 		text-align:left;
 		margin:0;
+		font-size: 30px !important;
 		 }
 		 #addinalpackage121 {
   scroll-behavior: smooth;
@@ -2603,29 +2602,21 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 						<p>Your business requires custom quote.</p>
 						<p>We will send you a custom quote shortly.</p>
 						<p>Thank you.</p>
-</div>
+							</div>
           
 
-                                <div style="margin-top:17px" class="">
+                                <div class="">
                                     <!-- Button -->
 
-                                    <div class="col-sm-12" style="margin-top: 6%;" id="adinalpackbuttons">
+                                    <div class="col-sm-12" id="adinalpackbuttons">
                                  
-										<button id="back6" class="paybutton" style="float: left;display: none;">Back</button>
-										<button id="back6op" class="paybutton" style="float: left;">Back</button>
-										<button id="nexttotermscodi" class="paybutton" style="float: right;
-    display: block;
-    right: 14px;
-    position: absolute;">Save & Continue</button>
+										<button id="back6" class="paybutton" style="float: left;display: none;width:105px;">Back</button>
+										<button id="back6op" class="paybutton" style="float: left;width:105px;">Back</button>
+										<button id="nexttotermscodi" class="paybutton" style="float: right;display: block;right: 14px;position: absolute;">Save & Continue</button>
 										<button id="nexttotermscodi10" class="paybutton" style="float: right;">Save & Continue</button>
-                                  
-<!--										<button id="checlout" class="btn btn-primary" style="float: right;">Checkout</button>-->
 										<input type="text" id="valueforslction" style="visibility: hidden;">
                                     </div>
                                 </div>
-
-
-                                 
                             </form>     
 
                         </div>                     
@@ -2633,17 +2624,14 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		</div>
 
 <div id="invoicetable" style="display: none;">
-			  <div class="panel panel-info" style="margin-top: 1%; width: 92%; margin-left: -84px; margin-bottom: 9%; height:auto;">
+			  <div class="panel-info" style="margin-top: 1%; width: 85%; margin-left: -84px; margin-bottom: 9%; height:auto; border: 1px solid #ececec;background:#fff">
                     <div class="panel-heading" align="left">
                         <div class="panel-title">Invoice</div>
-<!--                        <div class="pricesrates"><a href="#">Price:$<span id="prcingpane4"></span></a></div>-->
                     </div>     
 
                     <div style="padding-top:38px" class="panel-body" >
 
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                            
-<!--                        <form id="loginform" class="form-horizontal" role="form">-->
                                     
                     <div id="chnageplan" style="text-align: left;">
 						
@@ -2653,86 +2641,71 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     top: 52%;
     float: left;" id="tablelist">
 
-  <tbody style="font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;">
+  <tbody style="opacity:0.6;font-size:22px;">
 	  <tr>
       <th scope="row">QUANTITY</th>
 		  <th scope="row">Description</th>
 		  <th scope="row">Unit Price</th>
 		  <th scope="row" style="width: 132px;" id="pricewidth">Price</th>
-<!--      <td style="border-top: none;"> $ <span id="pricestotal2"></span></td>-->
     </tr>
 	  
 	  <tr>
 		  <th scope="row">1</th>
-<!--      <th scope="row">Month Fee </th>-->
 		  <th scope="row"><span id="price1"></span> Non-Recurring Engineering Setup Charge </th>
 		  <th scope="row">$ <span id="print5"></span></th>
 		  <th scope="row">$ <span id="pricestotal121"></span>
 </th>
-<!--      <td>$ <span id="motnfee2"></span></td>-->
     </tr>
 	  
 	  <tr>
 		  <th scope="row">1</th>
-<!--      <th scope="row">Month Fee </th>-->
 		  <th scope="row"><span id="price1"></span> First 6 Months Free Offer </th>
 		  <th scope="row"> -$ <span id="Dmainpriceoninvoice"></span></th>
 		  <th scope="row"> -$ <span id="Dmainpriceoninvoice1"></span</th>
 </th>
-<!--      <td>$ <span id="motnfee2"></span></td>-->
     </tr>
 	  
 	   <tr style="position: absolute;
     visibility: hidden;">
 		  <th scope="row">2</th>
-<!--      <th scope="row">Month Fee </th>-->
 		  <th scope="row">	
 <span id="price2"></span> Non-Recurring Engineering Setup Charge – Additional Location</th>
 		  <th scope="row">$ <span id="print7"></span></th>
 		  <th scope="row">$ <span id="adinallocionprcing"></span></th>
-<!--      <td>$ <span id="motnfee2"></span></td>-->
     </tr>
 	  
 	  <tr>
 		  <th scope="row">1</th>
-<!--      <th scope="row">Month Fee </th>-->
 		  <th scope="row">	
 <span id="price3"></span> Monthly Service Charge</th>
 		  <th scope="row">$ <span id="print6"></span></th>
 		  <th scope="row">$ <span id="print654"></span></th>
-<!--      <td>$ <span id="motnfee2"></span></td>-->
     </tr>
 						
 						<tr>
 		  <th scope="row">1</th>
-<!--      <th scope="row">Month Fee </th>-->
 		  <th scope="row">	
 <span id="price3"></span> First 6 Months Free Offer </th>
 		  <th scope="row"> -$ <span id="Dmonthserchargedis"></span> </th>
 		  <th scope="row"> -$ <span id="Dmonthserchargedis1"></span> </th>
-<!--      <td>$ <span id="motnfee2"></span></td>-->
     </tr>
 	  
 	  <tr style="position: absolute;
     visibility: hidden;">
 		  <th scope="row">2</th>
-<!--      <th scope="row">Month Fee </th>-->
 		  <th scope="row">	
 <span id="price4"></span> Monthly Service Charge – Additional Location</th>
 
 		  <th scope="row">$ <span id="print8"></span></th>
 		  <th scope="row">$ <span id="motnfee2221"></span></th>
-<!--      <td>$ <span id="motnfee2"></span></td>-->
     </tr>
 	  
 	   <tr id="tridpercetagerow">
 		  <th scope="row">4</th>
-<!--      <th scope="row">Month Fee </th>-->
 		  <th scope="row">	<span id="price44"></span>Standard Monthly Service Charge – Additional Location <span id="percentresult"></span></th>
 
 		  <th scope="row">$ <span id="pricepercentsg1"></span></th>
 		  <th scope="row">$ <span id="totalpercentresults1"></span></th>
-<!--      <td>$ <span id="motnfee2"></span></td>-->
     </tr>
 						
 	 <tr>
@@ -2961,7 +2934,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		box-shadow: 0px 3px 6px #4EA4E429;
 		border-radius: 4px;
 		opacity: 1;
-		font-size: 32px;
+		font-size: 30px;
 		padding: 0px;
 		color: #fff;
 		border: none;
@@ -3012,8 +2985,20 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     margin-top: -22px;
     font-weight: 700;
 	}
-	    
-	
+	#checkdd{
+	margin-left: 19px;
+    text-align: left;
+    margin-top: 7px;
+    width: 31px;
+    height: 20px;
+    position: absolute;
+	}    
+	#descptermscheck{
+		margin-left: 50px;
+		color: #545454;
+		font-size:23px;
+		display:block
+	}
 	
 				  </style>
 				  
@@ -3028,12 +3013,8 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 										
 										
 										
-										<button id="backfrmae" class="btn btn-primary" style="float: right;
-    width: 105px;
-    margin-right: 18%;
-    font-size: 15px;
-    display: block;">Back</button>
-										<button id="nexttermscondionsframe" class="btn btn-primary" style="float: right; right: 14px; position: absolute;">Save &amp; Continue</button>
+										<button id="backfrmae" class="paybutton" style="float: left;width: 105px;margin-right: 18%;display: block;">Back</button>
+										<button id="nexttermscondionsframe" class="paybutton" style="float: right; right: 14px; position: absolute;">Save &amp; Continue</button>
 
                                     </div>
                                 </div>
@@ -3048,22 +3029,16 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
                     </div>  
 		           </div>
 	<div id="div5obj">
-			  <div class="panel panel-info sizecuc sizecuc01" style="margin-top: 8%; margin-bottom: 9%;">
+			  <div class="panel-info sizecuc01" style="background-color: #fff;">
                     <div class="panel-heading" align="left">
                         <div class="panel-title">Terms And Conditions</div>
-<!--                        <div class="pricesrates"><a href="#">Price:$<span id="prcingpane4"></span></a></div>-->
                     </div>     
 
                     <div style="padding-top:38px" class="panel-body" >
 
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                            
-<!--                        <form id="loginform" class="form-horizontal" role="form">-->
-                                    
                       <div class="left1100">    
-      <p style="margin-top: 15px;
-    text-align: left;
-    margin-left: 24px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size:16px;">This managed service agreement("Agreement") made between MyCommunity.today.inc.("Service provider") and ("<span id="newcustomers"></span>") is effective <span id="dateprint"></span> ("Effective Date")</p>
+					  <p style="margin-top: 15px;text-align: left;margin-left: 24px; font-size:25px;margin-bottom: 25px;">This managed service agreement("Agreement") made between <br> MyCommunity.today.inc.("Service provider") and ("<span id="newcustomers"></span>") is effective <br> <span id="dateprint"></span> ("Effective Date")</p>
 						
 <script>
 	
@@ -3085,52 +3060,28 @@ var dateandtime = day + "/" + month + "/" + year;
 </script>
 				
 						
-						<a href="#" data-toggle="modal" data-target="#myModal" id="termeds" style="font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    font-size: 16px;">Terms & Conditions</a>
+						<a href="#" data-toggle="modal" data-target="#myModal" id="termeds" style="font-size: 16px;">Terms & Conditions</a>
 						  <br>
 						  
 						  <style>
 							  .checkboxdiv
 							  {
-								         width: 100%;
-    height: 40px;
-    /* background: red; */
-    text-align: left;
-    margin-top: 15px;
-    position: relative;
+								width: 100%;
+								height: 40px;
+								text-align: left;
+								margin-top: 15px;
+								position: relative;
 							  }
 						  </style>
 						
 						  <div class="checkboxdiv">
-						<input type="checkbox" id="checkdd" style="
-
-    margin-left: 0px;
-    text-align: left;
-    position: absolute;
-    margin-left: 45px;
- 
-    margin-top: 3px;
-    width: 26px;
-    position: absolute;
-  
-    ">
-							  <span style="margin-left: 86px;
-    position: absolute; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;" id="descptermscheck">I hearby declare that I have read & agree with MyCommunity.Today Terms & Conditions</span>
-
-							 
+							<input type="checkbox" id="checkdd">
+							  <span id="descptermscheck">I hearby declare that I have read & agree with MyCommunity.Today Terms & Conditions</span>
 						</div>
 						
 						
-						<button type="button" class="btn btn-primary" style="width: 35%;
-    float: left;
-    height: 33px;
-    margin-left: 37%;
-    margin-top: 25px;" id="submitdatamain">Check Out</button><br>
-						  <button id="back7" class="btn btn-primary" style="width: 35%;
-    float: left;
-    height: 33px;
-    margin-left: 37%;
-    margin-top: 12px;">Back</button>
+						<button type="button" class="paybutton" style="width: 35%;float: left;margin-left: 47px;margin-top: 90px;" id="submitdatamain">Check Out</button><br>
+						  <button id="back7" class="paybutton" style="width: 35%;float: left;margin-left: 14px;margin-top: 70px;">Back</button>
 						
 						</div>
 						
@@ -3138,8 +3089,7 @@ var dateandtime = day + "/" + month + "/" + year;
 							
 
 
-							<img src="img/agreement.png" style="width: 100%;
-    height: 300px;" id="imgicons">
+							<img src="img/agreement.png" style="width: 100%;height: 300px;" id="imgicons">
 							
 						</div>
 						
@@ -3319,32 +3269,60 @@ var dateandtime = day + "/" + month + "/" + year;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 
 	}
-	
+	#tac{
+	 margin-top:7%;
+	 box-shadow:none;
+	 border-radius:unset;
+	}
+	#closebutton{
+	margin-top: 5px;
+    margin-right: 27px;
+    font-size: 30px;
+    color: #fff;
+    opacity: 1;
+	}
+	.tacheader{
+	color: #ffffff!important;
+    background: #00B3FE 0% 0% no-repeat padding-box !important;
+    padding: 18px 15px !important;
+    text-align: left;
+    font-size: 36px;
+	}
+	#agreementcall{
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 2px 3px 4px #00000029;
+    border-radius: 7px;
+    opacity: 1;
+    width: 585px;
+    height: 100px;
+    font-size: 26px;
+    outline: none;
+	}
 </style>
 
 <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog" style="width: 88%;">
+    <div class="modal-dialog" style="width: 88%;max-width: 1300px;">
     
       <!-- Modal content-->
-      <div class="modal-content" style="height: 727px;">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" style="font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;">Terms and condtions</h4>
+      <div class="modal-content" id="tac" style="height: 727px;">
+        <div class="tacheader">
+          <button type="button" id="closebutton" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="font-size:30px">Terms and condtions</h4>
         </div>
-        <div class="modal-body textpelemtn" style="text-align:left; padding: 30px; height: 665px;
+        <div class="modal-body textpelemtn" style="text-align:left; padding: 20px 83px; height: 665px;
     overflow: scroll;">
-			<h4>The parties agree as follows:</h4>
+			<h4 style="font-size:32px;">The parties agree as follows:</h4>
 			
 			
-            <p>1. Services</p>
+            <p class="tacnum">1. Services</p>
 			<p>Service Provider agrees to provide Customer the services described in “Appendix A”. Service Provider may
 from time to time change the Services provided to Customer under this Agreement. In the event such
 change materially alters or decreases the Services, Customer may terminate this Agreement by giving
 Service Provider ninety (90) days written notice of termination.
 </p>
 			
-			 <p>2. Term and Termination.</p>
+			 <p class="tacnum">2. Term and Termination.</p>
 			<p>(a) Term. The Initial Term of this Agreement is 36 months commencing on the Effective Date. Thereafter,
 unless terminated in accordance with the terms of this Agreement, this Agreement will automatically
 renew, on each anniversary date, for an additional twelve-month term.
@@ -3356,7 +3334,7 @@ notice from Customer of such failure, Customer may terminate the Services affect
 (iii) Upon Customer's failure to pay any outstanding charges within ten (10) days of receipt of written
 notice from Service Provider of delinquency, Service Provider may terminate this Agreement immediately.
 </p>
- <p>3. Prorietary Rights.</p>
+ <p class="tacnum">3. Prorietary Rights.</p>
  <p>
 (a) Ownership. Service Provider shall retain and own all right, title and interest and all Intellectual
 Property in and to the Services and nothing herein transfers or conveys to the Customer any ownership
@@ -3389,7 +3367,7 @@ Provider Technology or the Services; (ii) disassemble, reverse engineer, or deco
 Provider Technology; or (iii) sell, sublicense, transfer or make available the Service Provider Technology
 or the Services to any third parties.
 </p>
-	<p>4. Payment</p>
+	<p class="tacnum">4. Payment</p>
 <p>
 (a) Fees. Schedule Fees, described in “Appendix A”, will be invoiced to Customer on a Monthly basis, and will
 become due and payable on the first day of each month. Services will be suspended if payment is not
@@ -3401,13 +3379,13 @@ valid exemption certificate is furnished to Service Provider for the state of us
 outside of the terms of this Agreement will be considered Individual Services and will be quoted and billed
 separately.
 </p>
-			<p>5. Modifications of Services and Pricing.</p>
+			<p class="tacnum">5. Modifications of Services and Pricing.</p>
 			<p>In order to ensure that Service Provider's level of Service keeps pace with Customer's needs, the Service
 Provider and the Customer may agree from time to time to modify the Services and prices described in
 this Agreement. The Service Provider and the Customer shall negotiate any such modifications and any
 corresponding adjustments in prices in good faith and such modifications shall be agreed to in writing.
 </p>
-			<p>6. Warranty.</p>
+			<p class="tacnum">6. Warranty.</p>
 			<p>(a) Warranty. Service Provider shall perform the Service in a workmanlike manner and in accordance
 with generally accepted industry standards. Customer must notify the Service Provider of any failure to
 so perform within ten (10) days after the date on which such failure first occurs. If the Service Provider
@@ -3427,12 +3405,12 @@ NOTHING HEREIN IS INTENDED TO CONSTITUTE OR CREATE ANY REPRESENTATION OR WARRANT
 THE SERVICE PROVIDER TO ANY THIRD PARTY, (INCLUDING END USERS), DIRECTLY OR AS A THIRD PARTY
 BENEFICIARY, WITH RESPECT TO ANY OF THE SERVICES PROVIDED HEREUNDER.
 </p>
-			<p>7. Limitation of Liability.</p>
+			<p class="tacnum">7. Limitation of Liability.</p>
 			<p>In no event shall Service Provider be held liable for indirect, special, incidental or consequential damages
 arising out of service provided hereunder, including but not limited to loss of profits or revenue, loss of
 use of equipment, lost data, costs of substitute equipment, or other costs.
 </p>
-			<p>8. Indemnity.</p>
+			<p class="tacnum">8. Indemnity.</p>
 			<p>Service Provider shall (i) defend Customer against any third party claim that the Services and the related
 materials provided by the Service Provider to Customer infringe a patent, or a copyright enforceable in
 a country that is a signatory to the Berne Convention, and (ii) pay the resulting costs and damages finally
@@ -3461,7 +3439,7 @@ by the indemnitee from third parties. THIS SECTION STATES THE INDEMNITEE’S SOL
 REMEDY AND THE INDEMNITOR’S ENTIRE LIABILITY FOR THIRD PARTY INFRINGEMENT CLAIMS.
 </p>
 			
-	<p>9. Confidentiality.</p>
+	<p class="tacnum">9. Confidentiality.</p>
 			<p>(a) Confidential Information. “Confidential Information” means the terms of this Agreement and all
 confidential and proprietary information of Service Provider or Customer, including without limitation
 all business plans, product plans, financial information, software, designs, formulas, methods, know how,
@@ -3495,7 +3473,7 @@ exercising Service Provider’s rights hereunder so long as Service Provider and
 the confidentiality obligations above.
 </p>
 			
-			<p>10. Notices.</p>
+			<p class="tacnum">10. Notices.</p>
 			<p>Any notices permitted or required under this Agreement shall be in writing and shall be deemed given
 when delivered (i) in person; (ii) by overnight courier, upon written confirmation of receipt; (iii) by
 certified or registered mail, with proof of delivery; (iv) by facsimile transmission with confirmation of
@@ -3503,7 +3481,7 @@ receipt; or (v) by email, with confirmation of receipt. Notices shall be sent to
 number or email address set forth above, or at such other address, facsimile number or email address
 as provided to the other party in writing.
 </p>
-			<p>10. Notices.</p>
+			<p class="tacnum">10. Notices.</p>
 			<p>This Agreement shall be governed by the laws of the State of California. It constitutes the entire
 Agreement between the parties with regard to the subject matter hereof and may be modified only by
 a writing signed by authorized representatives of both parties.
@@ -3511,7 +3489,7 @@ Service Provider is not responsible for failure to render services due to circum
 including, but not limited to, acts of God.
 
 </p>
-			<p>12. Force Majeure.</p>
+			<p class="tacnum">12. Force Majeure.</p>
 			<p>Neither party shall be deemed in default of this Agreement to the extent that performance of its
 obligations or attempts to cure any breach are delayed or prevented by reason of any act of God, fire,
 natural disaster, accident, act of government, labor strike, or an act that is beyond the reasonable control 
@@ -3529,7 +3507,7 @@ IN WITNESS WHEREOF, the parties hereto have caused this Service Agreement to be 
 authorized representatives as of the date set forth below.</p>
 			<br><br>
 			<p style="text-align: center;"><button type="button" class="btn btn-default" id="agreementcall">I Agree with the above Terms & Conditions</button></p>
-			<p style="text-align: center;font-size: 10px;">I don't agree with the Terms & Conditions<br> 
+			<p style="text-align: center;font-size: 20px;">I don't agree with the Terms & Conditions<br> 
 <span style="color: red;">Contact us</span></p>
 			
         </div>
@@ -3552,7 +3530,11 @@ authorized representatives as of the date set forth below.</p>
 	 
 <style>
 
-
+.tacnum{
+font-size:30px !important;
+color: #212121 !important;
+opacity:0.7
+}
 .padendefl
 {
       width: 85%!important;
@@ -3696,10 +3678,20 @@ input[type=number] {
 		  
 window.addEventListener('load', (event) => {
 	
-   document.getElementById("loader").style.display="block";
+  
+	if(new URLSearchParams(window.location.search).get('business') == "1"){
+				var username = new URLSearchParams(window.location.search).get('id');
+				document.getElementById("emailaddress").value = username
+				document.getElementById("logi_signup01").style.display="none";
+				document.getElementById('logi_signupselector').style.display="none";
+				document.getElementById("mobileApp").style.display="block";
+				document.getElementById("maindivscrable").style.display="block";
+				$(window).scrollTop(0);
+				$("body").css("overflow","hidden");
+	} else {
+	 document.getElementById("loader").style.display="block";
 	document.getElementById("logi_signup01").style.display="none";
 
-	
 	
 	 if (!window.sessionStorage.length) {
 	
@@ -3774,7 +3766,7 @@ window.addEventListener('load', (event) => {
     request.send();
 			
 				  
-			  }
+	}		  }
 	
 	
 });
@@ -4184,70 +4176,7 @@ validationCustom02.add(defaultOption122);
   accessToken: '5d510805eb1a2007123bb11a4f779c2e',
   domain: 'mycommunitytoday.myshopify.com'
 });	 
-		 
-		  
-		  
-//		   document.getElementById('tellabutupou').addEventListener("click",function(){
-//
-//			   document.getElementById('div2obj').style.display = "none";
-//			   document.getElementById('divpricingobj').style.display = "none";
-//			   document.getElementById('div3obj').style.display = "none";
-//			   document.getElementById('div8obj').style.display = "none";
-//			   document.getElementById('div6obj').style.display = "none";
-//			   document.getElementById('div5obj').style.display = "none";
-//			document.getElementById('div1obj').style.display = "block";
-//							 var topPos = document.getElementById('div1obj').offsetTop;
-//
-//
-//		   });
-//		  
-//		   document.getElementById('telabtyurbsuness').addEventListener("click",function(){
-//
-//			   document.getElementById('div8obj').style.display = "none";
-////			    document.getElementById('div2obj').style.display = "none";
-//			   document.getElementById('divpricingobj').style.display = "none";
-//			   document.getElementById('div3obj').style.display = "none";
-//			   document.getElementById('div8obj').style.display = "none";
-//			   document.getElementById('div6obj').style.display = "none";
-//			   document.getElementById('div5obj').style.display = "none";
-//			document.getElementById('div2obj').style.display = "block";
-//							 var topPos = document.getElementById('div2obj').offsetTop;
-//
-//
-//		   });
-//		  
-//		  document.getElementById('pricingtitleletbe').addEventListener("click",function(){
-//			  
-//			     document.getElementById('div8obj').style.display = "none";
-////			    document.getElementById('div2obj').style.display = "none";
-//			   document.getElementById('divpricingobj').style.display = "none";
-//			   document.getElementById('div3obj').style.display = "none";
-//			   document.getElementById('div8obj').style.display = "none";
-////			   document.getElementById('div6obj').style.display = "none";
-//			   document.getElementById('div5obj').style.display = "none";
-//
-//			   document.getElementById('div6obj').style.display = "none";
-//			document.getElementById('divpricingobj').style.display = "block";
-//							 var topPos = document.getElementById('divpricingobj').offsetTop;
-//
-//
-//		   });
-		  		  
-//let country_listbox = document.getElementById('country-listbox');
-//country_listbox.length = 0;
-		  
-//
-//let defaultOption = document.createElement('option');
-//defaultOption.text = "India";
-//defaultOption.value = "India";
-//country_listbox.add(defaultOption);
-//country_listbox.selectedIndex = 0;
-//	  	  
-		  
-		  
-		
-		  
-		  
+		   
 		  newArr = getadnilapackarray;
 		
 		  
@@ -6294,9 +6223,6 @@ document.getElementById('prcingpageservices2').style.display="none";
 			  
 			  document.getElementById('back6op').style.display = "none";
 			  document.getElementById('back6').style.display = "block";
-			  
-			  
-			  document.getElementById('adinalpackbuttons').style.marginTop = "11%";
 		  
 		  });
 		  
@@ -6697,13 +6623,7 @@ document.getElementById('weburl121').value = "wrong";
 			  document.getElementById('nexttotermscodi10').style.display = "none";
 			  document.getElementById('nexttotermscodi').style.display = "block";
 			  document.getElementById('back6op').style.display = "block";
-			  document.getElementById('back6').style.display = "none";
-			  
-			   document.getElementById('adinalpackbuttons').style.marginTop = "6%";
-
-			  
-			  
-			   
+			  document.getElementById('back6').style.display = "none";			   
 		   });
 		  
 		  
@@ -7047,13 +6967,8 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 							   document.getElementById('div5obj').style.display = "none";
 							   document.getElementById('div5obj').style.display = "none";
 							   document.getElementById('div2obj').style.display = "none";
-							  
-							  
-							  
+  
 						  }
-					  
-					
-					  
 				  }   
 					   
 				   }	
@@ -8323,19 +8238,17 @@ data();
 		  
 		  .left1100
 		  {
-			 width: 396px;
+			 width: 60%;
 			  height: 300px;
-/*			  background: red;*/
 			  float: left;
-
-			  
+			  text-align:left;
 		  }
 		    
 		  .textpelemtn p
 		  {
-			  color: #777777;
+			  color: #707070;
 			  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    font-size: 18px;
+    font-size: 27px;
 
 		  }
 		  
@@ -8347,11 +8260,18 @@ data();
 		  
 		   .left1001
 		  {
-			 width: 300px;
-			  height: 300px;
-/*			  background: blue;*/
-			  float: left;
+			width: 36%;
+			height: 300px;
+			float: right;
+			margin-right: 20px;
+			margin-top: 50px;
 			  
+		  }
+		  #termeds{
+			color: #00B3FE;
+			margin-left: 25px;
+			margin-top: 20px;
+			font-size: 22px;
 		  }
 		  .totlalistrate h3
 		  {
@@ -8412,7 +8332,9 @@ data();
 			      box-shadow: 2px 2px 4px #a5a5a5;
 			  padding: 19px;
 		  }
-		  
+		  .leftmenu h4{
+			font-size:-apple-system, BlinkMacSystemFont, "Segoe UI", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif
+		  }
 		  .sizecuc
 		  {
 			  width: 85%;
@@ -8479,22 +8401,21 @@ data();
 		  
 		    #div5obj
 		  {
-			 width: 100%;
+			 width: 85%;
 			  height: 575px;
 /*			  background: orange;*/
 			  padding: 10px; 
 			  display: none;
-			   max-width:1250px;
+			  max-width:1250px;
+			  border: 1px solid #ececec;
+			  padding: 0;
 		  }
 		    #div6obj
 		  {
-			   width: 72%;
-    height: 631px;
-    /* background: orange; */
+			   width: 100%;
+    height: auto;
     padding: 10px;
     display: none;
-    margin-top: -42px;
-    margin-left: -76px;
 	 max-width:1250px;
 		  }
 		  
@@ -8548,7 +8469,6 @@ data();
 
 		  
 	  </style> 
-	   <link rel="stylesheet" type="text/css" href="css/signup.css">
 
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM641AP5CCKjh30Z1_p8tEj-PccFZdx50&libraries=places&callback=initMap"
         async defer></script>
