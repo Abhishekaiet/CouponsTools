@@ -3,7 +3,30 @@
     margin: 0;
     font-family: roboto;
 }
+.forgotScreen , .forgotConfirm{
+	display:none;
+}
+.forgotConfirm{
+	  padding: 47px 7px;
 
+}
+.textdiv{
+	width: 269px;
+    text-align: center;
+    margin: auto;
+    font-size: 17px;
+    color: rgb(189, 175, 175);
+}
+.confirmtext{
+	width: 390px;
+    font-size: 20px;
+    margin: auto;
+    text-align: center;
+    color: rgb(189, 175, 175);
+}
+.emailfield{
+	text-align:left;
+}
 .header {
     padding: 25px;
     text-align: center;
@@ -19,7 +42,7 @@
     margin-top: -17px;
 }
 
-.container {
+.container,.forgotScreen , .forgotConfirm {
     /* height: 88%; */
     width: 35%;
     background-color: rgb(255, 255, 255);
@@ -44,7 +67,7 @@
 
 .label {
     color: rgb(189, 175, 175);
-    font-size: 13px;
+    font-size: 20px;
     /* font-family: sans-serif; */
 }
 
@@ -104,14 +127,31 @@
     text-align: center;
 }
 
-.buttonsignup {
+.buttonsignup,.buttonOK {
     background-color: rgb(97, 193, 254);
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
+    margin: 32px 0;
     border: none;
     cursor: pointer;
     width: 56%;
+    margin-left: 4px;
+    border-radius: 7px;
+    height: 51px;
+    font-size: 19px;
+    text-align: center;
+}
+.buttonOK{
+	width:26%;
+}
+.buttonForgot {
+    background-color: rgb(97, 193, 254);
+    color: white;
+    padding: 14px 20px;
+    margin: 32px 0;
+    border: none;
+    cursor: pointer;
+    width: 36%;
     margin-left: 4px;
     border-radius: 7px;
     height: 51px;

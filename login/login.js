@@ -37,6 +37,44 @@
 		window.location.href = "landing_page.html";
 	   }
   }
+  
+   function openForgotScreen() {
+	 const token = localStorage.getItem('_token');
+	  if(token){
+		window.location.href = "landing_page.html";
+	   }
+	  $(".container").hide();
+	  $(".forgotScreen").show();
+  }
+   function sendEmail() {
+	   var value = $("#forgetpassword").val()
+	   if(!value){
+		   alert("sss");
+		   
+	   } 
+	   const data = {
+			"email": value,
+			"resetApp": "recoverpass://?Authorization=%s"
+		};
+	   const userAction = async () => {
+		  const response = await fetch('https://proxy.actv.05media.com:443/services/v1/profiles/action/reset', {
+			method: 'POST',
+			body:  JSON.stringify(data), // string or object
+			headers: {
+			  'Content-Type': 'application/json',
+			  'Accept': 'application/json',
+			  'cache-control': 'no-cache'
+			}
+		  });
+		  const responseCode = await response.ok;
+		  const responsejson = await response.json;
+		  if(responseCode){
+			  $(".forgotConfirm").show();
+			  $(".forgotScreen").hide();
+		  }
+		}
+		userAction();
+   }
   function login() {
       //debugger
       let username = document.getElementById("usernm").value

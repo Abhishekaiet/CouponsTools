@@ -48,6 +48,9 @@
 
 	  <link rel="stylesheet" href="css/responsive.css">
 	    <style>
+		.h2, h2{
+		font-size:18px !important;
+		}
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -108,8 +111,6 @@
       #pac-input {
            background-color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    font-size: 15px;
-    font-weight: 300;
     margin-left: 0px;
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
@@ -180,9 +181,15 @@
 		  </div>
 	  
 	  <style>
+	  .modal-open{
+	   overflow:unset !important;
+	  }
 	  .navbar-default{
-	  z-index:99999;
-	      height: 81px;
+		z-index:99999;
+		height: 81px;
+		position: fixed;
+		top: 0;
+		width: 100%;
 	  }
 	  ::-webkit-input-placeholder { /* Edge */
 			 color: #707070;
@@ -475,7 +482,6 @@ xhr.addEventListener("readystatechange", function () {
 			document.getElementById("logi_signupselector").style.display="none";
 			document.getElementById("mobileApp").style.display="block";
 			$(window).scrollTop(0);
-			$("body").css("overflow","hidden");
 		}
 	
 });
@@ -857,7 +863,6 @@ xhr.addEventListener("readystatechange", function () {
 			document.getElementById("mobileApp").style.display="block";
 			document.getElementById("maindivscrable").style.display="block";
 			$(window).scrollTop(0);
-			$("body").css("overflow","hidden");
 		}
 	
 });
@@ -890,28 +895,6 @@ xhr.send(data);
 		
 		</script>
 
-		
-		
-		
-		
-
-<style>
-	
-/*
-	#logi_signup01 
-	{
-          background:white!important;
-    z-index: 20;
-    top: 0;
-    height: 100vh;
-		width: 100%;
-    position: absolute;
-	display:none;
-		
-	}
-*/
-	
-	</style>
 
 <input type="text" id="validatedd" style="position:absolute; visibility: hidden;">
 			 </div>
@@ -983,48 +966,7 @@ xhr.send(data);
 	  
 	  </style>
 	  
-	  
-	  <!-- Modal Seconds -->
-  <div id="logi_signup01forget" role="dialog" style="position: absolute;
-    background: white;
-    z-index: 40;
-													 width: 100%;
-    top: 0;
-    height: 100vh; display: none;">
-    <div class="modal-dialog forgetgilogmodal" style="width: 33%;margin-top: 3%;">
-    
-      <!-- Modal content-->
-      <div class="modal-content" style="height: 493px;padding-top: 49px;margin-top: 26%;">
-        <div class="modal-header" style="border-bottom: none; text-align: center;">
-<!--          <button type="button" class="close" data-dismiss="modal">&times;</button>-->
-       <img src="img/sign_logo.png" style="width: 22%;
-    margin-top: 8%;
-    margin-bottom: -30px;">
-        </div>
-       <div class="modal-body" style="text-align:center; padding: 30px;">
-	
-		   <div class="">
-<!--    <label for="exampleInputEmail1" style="float: left;color: #a59c9c;">First Name</label>-->
-    <input type="text" class="form-control signintextfiled1" id="forgetpassword" aria-describedby="emailHelp" placeholder="Enter your Email">
-    
-  </div>
-		   
- 
-  <button type="button" class="btn btn-primary btnsiging" style="margin-top: 25px;" id="forgetpasswrdsubmit">Send link to emal</button>
-			   <p style="color: #02bffd;
-    margin-top: 11px;">Have Already an Account <a href="#" id="loginbackframe">Login</a></p>
-			
-			   
-		   
-		  
-        <div class="modal-footer">
-<!--          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-        </div>
-    
-      
-    </div>
-  </div>
-
+	 
 
 		
 <script>
@@ -1047,6 +989,7 @@ xhr.send(data);
 <style>
 	#mobileApp{
 	display:none;
+	margin-top:81px;
 	}
 	.signintextfiled1
 	{
@@ -1078,25 +1021,25 @@ xhr.send(data);
 		font-size: 14px!important;
 		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 	}
-	
-/*
-	#logi_signup01 
-	{
-          background:white!important;
-    z-index: 20;
-    top: 0;
-    height: 100vh;
-    position: absolute;
-		
-	}
-*/
-	
+	  .listdetails span, .dexcription span{
+		color:#333 !important;
+	  }
+	  .listdetails strong, .dexcription b{
+		font-weight: normal !important;
+		font-size:18 !important;
+	  }
+	  .listdetails ul, .dexcription ul{
+		    list-style-type: disc;
+	  }
+	  .listdetails h3, .listdetails h2{
+		    padding-top: 20px;
+			margin-top:0;
+	  }
+	  .LiveStream {
+	   margin-bottom: 30px !important;
+	  }
 	</style>
 
-<input type="text" id="validatedd" style="position:absolute; visibility: hidden;">
-			 </div>
-
-	  </div>
 	  
 	  
 	  
@@ -1105,14 +1048,14 @@ xhr.send(data);
 	  <div class="col-sm-3" style="margin: 0px; padding: 0px;">
 		  <div class="leftmenu">
 		  
-			  <h4 style="margin-top: 30px;font-size: 21px;">LET'S BUILD YOUR MOBILE APP</h4>
+			  <h4 style="margin-top: 30px;font-size: 21px;">Let's build your mobile app</h4>
 			  <div class="listtext">
-			 <p id="tellabutupou">TELL US ABOUT YOU  <span class="glyphicon glyphicon-ok" id="icond" style="display: none; color: #5c7fff; float: right;"></span></p>
+			 <p id="tellabutupou">Tell us about you  <span class="glyphicon glyphicon-ok" id="icond" style="display: none; color: #00B6FF; float: right;"></span></p>
 				  
-			  <p id="telabtyurbsuness">TELL US ABOUT YOUR BUISNESS <span class="glyphicon glyphicon-ok" id="icond2" style="display: none; color: #5c7fff; float: right;"></span></p>
+			  <p id="telabtyurbsuness">Tell us about your business <span class="glyphicon glyphicon-ok" id="icond2" style="display: none; color: #00B6FF; float: right;"></span></p>
 				  
-			  <p id="pricingtitleletbe"> PRICING <span class="glyphicon glyphicon-ok" id="icond6" style="display: none; color: #5c7fff; float: right;"></span></p>
-			  <p id="termscond"> TERMS & CONDTIONS <span class="glyphicon glyphicon-ok" id="icond4" style="display: none; color: #5c7fff; float: right;"></span></p>
+			  <p id="pricingtitleletbe"> Pricing <span class="glyphicon glyphicon-ok" id="icond6" style="display: none; color: #00B6FF; float: right;"></span></p>
+			  <p id="termscond"> Terms & condition <span class="glyphicon glyphicon-ok" id="icond4" style="display: none; color: #00B6FF; float: right;"></span></p>
 				
 				  
 				  <hr>
@@ -1130,11 +1073,11 @@ xhr.send(data);
     text-align: center; visibility: hidden;" id="packges">STARNDARD</h5>
 				  
 			  <p style="font-size: 20px;
-    color:rgb(92, 127, 255); visibility: hidden;"> NRE Setup Fee $ <span id="pricestotal">990</span></p>
+    color:#00B3FE; visibility: hidden;"> NRE Setup Fee $ <span id="pricestotal">990</span></p>
 			  <p style="font-size: 20px;
-    color: rgb(92, 127, 255); visibility: hidden;">  Month Fee $ <span id="motnfee">99</span></p>
+    color: #00B3FE; visibility: hidden;">  Month Fee $ <span id="motnfee">99</span></p>
 		<p style="font-size: 20px;
-    color: rgb(92, 127, 255); visibility: hidden;"> Total Fee $ <span id="totalfee">1089</span></p>
+    color: #00B3FE; visibility: hidden;"> Total Fee $ <span id="totalfee">1089</span></p>
 			  </div>
 			 
 			
@@ -1666,22 +1609,13 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		
 		ddll.forEach(function(item121,index121){
 			
-//			console.log(item121.text);
 			var llb=item121.text;
 			if (llb==getcountryname)
 				{
-//					console.log(index121);
 					$x('#countriesedd').msDropDown().data('dd').set('selectedIndex',index121);
 				}
 			
 		});
-		
-//	alert(getcountryname);
-		
-//	$x("#countriesedd option:contains(" + getcountryname + ")").attr('selected', 'selected');
-		
-//	$x('#countriesedd').msDropDown().data('dd').set('selectedIndex',1);
-
 }
 	getcountrycode()
 	
@@ -1750,18 +1684,20 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 	}
 	#phoneno
 	{
-		padding-left: 24%;
+		padding-left: 23%;
     height: 55px;
 	}
 	
 	.ddcommon
 	{
-		width: 170px!important;
+		width: 220px!important;
 		float: left!important;
 		 z-index: 4!important;
+		 text-align:center;
 	}
 	.form-control{
 		height: 55px;
+		font-size:22px;
 	}
 	.payselect{
 	    height: 79px;
@@ -2020,7 +1956,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 						
 						<table class="table" style="display:block; 
     margin-bottom: -66px;">
-		  <tbody>
+		  <tbody class="selectionTable">
 			  <tr>
       <th scope="row" style="border-top: none; padding-bottom: 23px;"></th>
     </tr>
@@ -2044,14 +1980,25 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 	  
 							</tbody>
 	  </table>
-						<p id="percentage2" class="labels">Do you offer the same products or service in all locations?<span id="restuls22"></span></p>
-				<p id="percentage1" class="labels"><span>Percentage of difference in products between locations</span><span id="Perceproducts"></span></p>
+						<p id="percentage2" class="labels percentage">Do you offer the same products or service in all locations?<span id="restuls22"></span></p>
+				<p id="percentage1" class="labels percentage"><span>Percentage of difference in products between locations</span><span id="Perceproducts"></span></p>
 	  
 	  		
 				
 
           <style>
-			 
+			 .selectionTable tr, .percentage{
+				    font-size: 18px;
+					font-weight: 500;
+					line-height: 18.2px;
+					color: #323232;
+					opacity: 1;
+			 }
+			 .selectionTable th, .selectionTable td{
+				padding: 18px 11px !important;
+				font-weight:500 !important;
+				border-bottom: 1px solid #ddd;
+			 }
 			  #btnmaintainsecondframe
 			  {
 				margin-top: 17px;  
@@ -2063,8 +2010,8 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 				letter-spacing: 0px;
 				color: black;
 				opacity: 1;
-				font-size: 25px;
-				font-weight:bold;
+				font-size: 18px;
+				font-weight:500;
 			  }
 			  
 			  #confirm{
@@ -2078,18 +2025,20 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     text-align: left;
     border-bottom: 1px solid #dddddd;
     border-top: 1px solid #dddddd;
-    padding-bottom: 13px;
+    padding: 18px 8px !important;
     margin-left: 0px;
     padding-top: 13px;
-    padding-left: 9px;
-	font-weight: bold;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+		font-size: 18px;
+    font-weight: 500;
+    line-height: 18.2px;
+    color: #323232;
+    opacity: 1;
     width: 100%;
 			  }
 			  #Perceproducts
 			  {
 				              float: right;
-    margin-right: 2.6%;
+    margin-right: 1.6%;
 			  }
 			  
 			   #percentage2
@@ -2097,10 +2046,13 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     float: left;
     text-align: left;
     margin-top: 75px;
-    padding-left: 9px;
-    font-weight: bold;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    padding: 18px 8px !important;
     width: 100%;
+	font-size: 18px;
+    font-weight: 500;
+    line-height: 18.2px;
+    color: #323232;
+    opacity: 1;
 			  }
 			  #restuls22
 			  {
@@ -2170,9 +2122,12 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 							 </div>
 						</div>
 							
-							<div id="prcingpageservices2" class="resdiv"><div class="titleprcing1 vimal"><p>Monthly Additional Charges for each location <span id="percentageshowsup"></span></p></div><div class="pricewillshow">$<span id="perCent01">29.90</span></div>
+							<div id="prcingpageservices2" class="resdiv">
+							<div class="titleprcing1 vimal"><p>Monthly Additional Charges for each location <span id="percentageshowsup"></span></p></div>
+							<div class="pricewillshow">$<span id="perCent01">29.90</span></div>
 								<div class="nooflocaiton">
-								<p id="noloc"> No. of locations <span id="nolocaitons1"></span></p>
+								<p id="noloc"> No. of additional locations <span id="nolocaitons1"></span></p>
+								<p id="charges"> Monthly Additional Charges for additional locations <span id="additionalcharges"></span></p>
 							    <div class="underline"></div>
 							    <p id="totaladdnalpcing121"><strike>$<span id="totalnumlPLpercentage"></span></strike></p>
 								<p id="tolalpcingzieoshows"><span style="margin-right: 51px; visibility: hidden;">Waived for 6 Months</span>Total:<span id="nonvaluezero">$0.00</span></p>
@@ -2181,17 +2136,21 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 						</div>
 							
 							<style>
-							
+							#additionalcharges{
+								float: right;
+								font-size: 28px;
+								font-weight: 600;
+							}
 							#pricewillshowduck
-		{
-			     width: 70px;
-    float: left;
-    font-size: 28px;
-    font-weight: 600;
-    padding: 1px;
-    height: 31px;
-/*    background: #001680;*/
-		}
+								{
+								width: 70px;
+								float: left;
+								font-size: 28px;
+								font-weight: 600;
+								padding: 1px;
+								height: 31px;
+								/*    background: #001680;*/
+							}
 							</style>
 							
 							
@@ -2241,44 +2200,47 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		
 		#totaladdnalpcing121
 		{
-			       float: right;
-    /* padding: 10px; */
-    margin-right: 16px;
-    font-size: 22px;
-    font-weight: 600;
-    /* background: blue; */
-    width: 100%;
-    text-align: right;
+			float: right;
+			font-size: 22px;
+			font-weight: 600;
+			width: 100%;
+			text-align: right;
 		}
 		#tolalpcingzieoshows
 		{
-			        float: right;
-    margin-right: 6px;
-    font-size: 26px;
-    font-weight: 600;
+			float: right;
+			font-size: 26px;
+			font-weight: 600;
 		}
-		#noloc
+		#noloc,#charges
 		{
-/*			background: blue;*/
-        text-align: left;
-    font-size: 21px;
-    font-weight: 600;
-    padding: 16px;
+		text-align: left;
+		font-size: 21px;
+		font-weight: 600;
+		padding: 16px;
+		padding-right:6px;
+		}
+		#charges{
+		padding-top: 0;
+		padding-bottom: 8px;
 		}
 		.underline
 		{
-			    width: 50%;
-    height: 1px;
-    float: right;
-    background: black;
+			width: 50%;
+			height: 1px;
+			float: right;
+			background: black;
+			margin-bottom: 7px;
 		}
 		#nolocaitons1
 		{
 			float: right;
+			font-size: 28px;
+    font-weight: 600;
 		}
 		.nooflocaiton
 		{
-			width: 100%;
+			width: 95%;
     height: 167px;
 /*    background: red;*/
     float: left;
@@ -2387,7 +2349,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		}
 		.vimal
 		{
-			height: 75px!important;
+			height: 40px!important;
 		}
 		
 		.pricewillshow
@@ -2404,14 +2366,13 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		
 		.dexcription
 		{
-			               width: 80%;
-        height: 155px;
-    float: left;
-    overflow: scroll;
-    margin-top: -61px;
-    overflow-x: hidden;
-    padding: 13px;
-    text-align: left;
+		width: 80%;
+		float: left;
+		margin-top: -61px;
+		overflow-x: hidden;
+		padding: 13px;
+		text-align: left;
+		padding-top:0;
 		}
 	#adinalpackbuttons{
 		position: relative;
@@ -2475,10 +2436,10 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		  #packagediv li
 		  {
 			    width: 100%!important;
-    margin-bottom: 49px!important;
-    border-radius: 30px!important;
-    height: 262px!important;
-    background: white!important;
+				margin-bottom: 49px!important;
+				border-radius: 30px!important;
+				background: white!important;
+				display:grid;
 		  }
 		  
 		   #packagediv
@@ -2518,10 +2479,10 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		font-size: 30px !important;
 		 }
 		 #addinalpackage121 {
-  scroll-behavior: smooth;
-  padding:35px;
-  opacity:0.6;
-}
+		  scroll-behavior: smooth;
+		  padding:35px;
+		  opacity:0.6;
+		}
 	
 		 #caro
 		 {
@@ -2529,16 +2490,16 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		 }
 		 .lead
 		 {
-			      text-align: left!important;
-    padding: 15px!important;
-    color: black;
-    font-weight: 500;
-    float: left;
-			 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    width: 59%;
-    font-size: 21px;
-    /* background: red; */
-        height: 72px;
+		text-align: left!important;
+		padding: 15px 15px 0px 15px !important;
+		color: black;
+		font-weight: 500;
+		float: left;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+		width: 59%;
+		font-size: 21px;
+		height: 54px;
+		margin-bottom: 0px;
 
 		 }
 		 #addpackoption
@@ -2597,7 +2558,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		</div>
 
 <div id="invoicetable" style="display: none;">
-			  <div class="panel-info" style="margin-top: 1%; width: 85%; margin-left: -84px; height:auto; border: 1px solid #ececec;background:#fff">
+			  <div class="panel-info" style="margin-top: 1%; width: 90%; margin-left: -84px; height:auto; border: 1px solid #ececec;background:#fff">
                     <div class="panel-heading" align="left">
                         <div class="panel-title">Invoice</div>
                     </div>     
@@ -2614,27 +2575,27 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     top: 52%;
     float: left;" id="tablelist">
 
-  <tbody style="opacity:0.6;font-size:22px;">
+  <tbody>
 	  <tr>
       <th scope="row" class="tableHeading">Quantity</th>
 		  <th scope="row" class="tableHeading">Description</th>
-		  <th scope="row" class="tableHeading">Unit Price</th>
+		  <th scope="row" class="tableHeading">Unit price</th>
 		  <th scope="row" class="tableHeading" style="width: 132px;" id="pricewidth">Price</th>
     </tr>
 	  
 	  <tr>
 		  <th scope="row">1</th>
-		  <th scope="row"><span id="price1"></span> Non-Recurring Engineering Setup Charge </th>
-		  <th scope="row">$ <span id="print5"></span></th>
-		  <th scope="row">$ <span id="pricestotal121"></span>
+		  <th scope="row"><span id="price1"></span> non-recurring engineering setup charge </th>
+		  <th scope="row"> $ <span id="print5"></span></th>
+		  <th scope="row"> $ <span id="pricestotal121"></span>
 </th>
     </tr>
 	  
 	  <tr>
 		  <th scope="row">1</th>
-		  <th scope="row"><span id="price1"></span> First 6 Months Free Offer </th>
-		  <th scope="row"> -$ <span id="Dmainpriceoninvoice"></span></th>
-		  <th scope="row"> -$ <span id="Dmainpriceoninvoice1"></span</th>
+		  <th scope="row"><span id="price1"></span> Premium non-recurring engineering setup charge credit </th>
+		  <th scope="row" style="padding-left: 2px;"> -$ <span id="Dmainpriceoninvoice"></span></th>
+		  <th scope="row" style="padding-left: 2px;"> -$ <span id="Dmainpriceoninvoice1"></span</th>
 </th>
     </tr>
 	  
@@ -2642,75 +2603,69 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     visibility: hidden;">
 		  <th scope="row">2</th>
 		  <th scope="row">	
-<span id="price2"></span> Non-Recurring Engineering Setup Charge – Additional Location</th>
-		  <th scope="row">$ <span id="print7"></span></th>
-		  <th scope="row">$ <span id="adinallocionprcing"></span></th>
+<span id="price2"></span> Non-recurring engineering setup charge – additional location</th>
+		  <th scope="row"> $ <span id="print7"></span></th>
+		  <th scope="row"> $ <span id="adinallocionprcing"></span></th>
     </tr>
 	  
 	  <tr>
 		  <th scope="row">1</th>
 		  <th scope="row">	
-<span id="price3"></span> Monthly Service Charge</th>
-		  <th scope="row">$ <span id="print6"></span></th>
-		  <th scope="row">$ <span id="print654"></span></th>
+<span id="price3"></span> monthly service charge</th>
+		  <th scope="row"> $ <span id="print6"></span></th>
+		  <th scope="row"> $ <span id="print654"></span></th>
     </tr>
 						
 						<tr>
 		  <th scope="row">1</th>
 		  <th scope="row">	
-<span id="price3"></span> First 6 Months Free Offer </th>
-		  <th scope="row"> -$ <span id="Dmonthserchargedis"></span> </th>
-		  <th scope="row"> -$ <span id="Dmonthserchargedis1"></span> </th>
+<span id="price3"></span> Premium monthly service charge credit </th>
+		  <th scope="row" style="padding-left: 2px;"> -$ <span id="Dmonthserchargedis"></span> </th>
+		  <th scope="row" style="padding-left: 2px;"> -$ <span id="Dmonthserchargedis1"></span> </th>
     </tr>
 	  
 	  <tr style="position: absolute;
     visibility: hidden;">
 		  <th scope="row">2</th>
 		  <th scope="row">	
-<span id="price4"></span> Monthly Service Charge – Additional Location</th>
+<span id="price4"></span> Monthly service charge – additional location</th>
 
-		  <th scope="row">$ <span id="print8"></span></th>
-		  <th scope="row">$ <span id="motnfee2221"></span></th>
+		  <th scope="row"> $ <span id="print8"></span></th>
+		  <th scope="row"> $ <span id="motnfee2221"></span></th>
     </tr>
 	  
 	   <tr id="tridpercetagerow">
 		  <th scope="row">4</th>
-		  <th scope="row">	<span id="price44"></span>Standard Monthly Service Charge – Additional Location <span id="percentresult"></span></th>
+		  <th scope="row">	<span id="price44"></span>Premium monthly service charge – additional location <span id="percentresult"></span></th>
 
-		  <th scope="row">$ <span id="pricepercentsg1"></span></th>
-		  <th scope="row">$ <span id="totalpercentresults1"></span></th>
+		  <th scope="row"> $ <span id="pricepercentsg1"></span></th>
+		  <th scope="row"> $ <span id="totalpercentresults1"></span></th>
     </tr>
 						
 	 <tr>
 		  <th scope="row">4</th>
-<!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">First 6 Months Free Offer</th>
+		  <th scope="row">Premium monthly service charge – additional location credit</th>
 
-		  <th scope="row">-$ <span id="DesmonthsercharAddnlaloc"></span></th>
-		  <th scope="row">-$ <span id="DesmonthsercharAddnlaloc1"></span></th>
-<!--      <td>$ <span id="motnfee2"></span></td>-->
+		  <th scope="row" style="padding-left: 2px;"> -$ <span id="DesmonthsercharAddnlaloc"></span></th>
+		  <th scope="row" style="padding-left: 2px;"> -$ <span id="DesmonthsercharAddnlaloc1"></span></th>
     </tr>
 				  
 
 <!--				  Entertainment Package-->
 				   <tr id="Entertainmentpack1" style="position: absolute; visibility: hidden;">
 		  <th scope="row" style="border-top: none;">1</th>
-<!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">Entertainment Bundle</th>
+		  <th scope="row">Entertainment bundle</th>
 
 		  <th scope="row"> $ 249.00</span></th>
 		  <th scope="row"> $ 249.00</th>
-<!--      <td>$ <span id="motnfee2"></span></td>-->
                   </tr>
 
 <tr id="Entertainmentpack11" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
-<!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">First 6 Months Free Offer</th>
+		  <th scope="row">Entertainment bundle credit</th>
 
-		  <th scope="row"> -$ 249.00</span></th>
-		  <th scope="row"> -$ 249.00</th>
-<!--      <td>$ <span id="motnfee2"></span></td>-->
+		  <th scope="row" style="padding-left: 2px;"> -$ 249.00</span></th>
+		  <th scope="row" style="padding-left: 2px;"> -$ 249.00</th>
     </tr>
 
 <!-- End here Entertainment Package-->
@@ -2720,7 +2675,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 				   <tr id="Interactivity2" style="position: absolute; visibility: hidden;">
 		  <th scope="row" style="border-top: none;">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">Interactivity Creation & Management Package</th>
+		  <th scope="row">Interactivity creation & management package</th>
 
 		  <th scope="row"> $ 99.00</span></th>
 		  <th scope="row"> $ 99.00</th>
@@ -2729,10 +2684,10 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 <tr id="Interactivity22" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">First 6 Months Free Offer</th>
+		  <th scope="row">Interactivity creation & management package credit</th>
 
-		  <th scope="row"> -$ 99.00</span></th>
-		  <th scope="row"> -$ 99.00</th>
+		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</span></th>
+		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</th>
 <!--      <td>$ <span id="motnfee2"></span></td>-->
     </tr>
 
@@ -2742,7 +2697,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 				   <tr id="LiveChat3" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">Live-Chat & Phone Support Package</th>
+		  <th scope="row">Live-chat & phone support package</th>
 
 		  <th scope="row"> $ 99.00</span></th>
 		  <th scope="row"> $ 99.00</th>
@@ -2751,10 +2706,10 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 <tr id="LiveChat33" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">First 6 Months Free Offer</th>
+		  <th scope="row">Live-chat & phone support package credit</th>
 
-		  <th scope="row"> -$ 99.00</span></th>
-		  <th scope="row"> -$ 99.00</th>
+		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</span></th>
+		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</th>
 <!--      <td>$ <span id="motnfee2"></span></td>-->
     </tr>
 
@@ -2765,7 +2720,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 				   <tr id="Live_Stream4" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">Live Stream Channel Creation & Management Package</th>
+		  <th scope="row">Live stream channel creation & management package</th>
 
 		  <th scope="row"> $ 99.00</span></th>
 		  <th scope="row"> $ 99.00</th>
@@ -2774,10 +2729,10 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 <tr id="Live_Stream44" style="position: absolute; visibility: hidden;">
 	<th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">First 6 Months Free Offer</th>
+		  <th scope="row">Live stream channel creation & management package credit</th>
 
-		  <th scope="row"> -$ 99.00</span></th>
-		  <th scope="row"> -$ 99.00</th>
+		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</span></th>
+		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</th>
 <!--      <td>$ <span id="motnfee2"></span></td>-->
     </tr>
 
@@ -2787,7 +2742,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 				   <tr id="TV_Channel5" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">TV Channel Creation & Management Package</th>
+		  <th scope="row">TV channel creation & management package</th>
 
 		  <th scope="row"> $ 99.00</span></th>
 		  <th scope="row"> $ 99.00</th>
@@ -2796,10 +2751,10 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 <tr id="TV_Channel55" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">First 6 Months Free Offer</th>
+		  <th scope="row">Tv channel creation & management package credit</th>
 
-		  <th scope="row"> -$ 99.00</span></th>
-		  <th scope="row"> -$ 99.00</th>
+		  <th scope="row" style="padding-left: 2px;" > -$ 99.00</span></th>
+		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</th>
 <!--      <td>$ <span id="motnfee2"></span></td>-->
     </tr>
 
@@ -2807,7 +2762,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 				   <tr id="digitalmarkpack" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">Digital Marketing Package</th>
+		  <th scope="row">Digital marketing package</th>
 
 		  <th scope="row" > $ <span>499.00</span></th>
 		  <th scope="row" > $ <span id="digimarkepckprice">499.00</span></th>
@@ -2817,7 +2772,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
  <tr id="webdevmanagpack" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">Website Development and Management Package</th>
+		  <th scope="row">Website development and management package</th>
 
 		  <th scope="row"> $ <span>299.00</span></th>
 		  <th scope="row"> $ <span id="webdevmanagpackprice">299.00</span></th>
@@ -2833,7 +2788,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
       <th scope="row"></th>
 		  <th scope="row"></th>
 		  
-		  <th scope="row">SUBTOTAL</th>
+		  <th scope="row">Subtotal</th>
 		 
 		  <th scope="row" >$ <span id="subtotal"></span></th>
 <!--      <td>$ <span id="totalfee2"></span></td>-->
@@ -2843,7 +2798,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
       <th scope="row" ></th>
 		  <th scope="row" ></th>
 		  
-		  <th scope="row" >SALES TAX</th>
+		  <th scope="row" >Sales tax</th>
 		 
 		  <th scope="row"> <span id="discoupricehre" style="visibility: hidden;"></span></th>
 <!--      <td>$ <span id="totalfee2"></span></td>-->
@@ -2853,7 +2808,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
       <th scope="row"></th>
 		  <th scope="row"></th>
 		  
-		  <th scope="row">TRANSACTION FEE</th>
+		  <th scope="row">Transaction fee</th>
 		 
 		  <th scope="row">$<span id="sericefee"> 2.90</span></th>
 <!--      <td>$ <span id="totalfee2"></span></td>-->
@@ -2872,7 +2827,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
       <th scope="row"></th>
 		  <th scope="row" ></th>
 		  
-		  <th scope="row">TOTAL</th>
+		  <th scope="row">Total</th>
 		 
 		  <th scope="row">$ <span id="overtotalhere"></span></th>
 <!--      <td>$ <span id="totalfee2"></span></td>-->
@@ -2894,7 +2849,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 	<div class="packagepric">
 		<p class="ptitle">Package Availed:<span id="packges121lb" style="color: black;
     font-weight: 600;"></span></p>
-		<p class="ctile">TOTAL FEE :</p>
+		<p class="ctile">Total fee :</p>
 		<p class="doler">$</span><strike><span id="totalmonthfeewiaddnal"></span></strike></p>
 	    <p id="pricingtotaladding">$<span id="totalprice01added">0</span></p>
 	</div>
@@ -3081,8 +3036,13 @@ var dateandtime = day + "/" + month + "/" + year;
 
 
 <style>
+    
 	#tablelist th{
-	font-weight:normal;
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 18.2px;
+		color: #323232;
+		padding: 18px 8px;
 	}
 	#descp ul 
 	{
@@ -3097,7 +3057,6 @@ var dateandtime = day + "/" + month + "/" + year;
 	#descff09 p
 	{
 		font-size: 18px;
-    margin-left: 29px;
     font-weight: 500;
 	}
 	#descff09 ul
@@ -3545,48 +3504,40 @@ input[type=number] {
 
 	.listdetails
 	{
-		        width: 76%;
-    overflow: scroll;
-    padding: 15px;
-    text-align: left;
-    float: left;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    height: 107px;
-    height: 133px;
-    overflow-x: hidden;
-    padding-top: 0px;
-    font-size: 18px;
-/*    background: red;*/
+		width: 76%;
+		padding: 15px;
+		text-align: left;
+		float: left;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+		overflow-x: hidden;
+		padding-top: 0px;
+		font-size: 18px;
 	}
 	.pricingtitle
 	{
-		      width: 22%;
-    /* background: #004eff; */
-    text-align: left;
-    float: right;
-    /* padding-left: 6px; */
-    font-weight: 700;
-    color: black;
-    margin-top: -10px;
-    margin-left: 6px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    font-size: 27px;
-    padding: 1px;
+		width: 22%;
+		text-align: right;
+		float: right;
+		font-weight: 700;
+		color: black;
+		margin-top: -10px;
+		margin-left: 6px;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+		font-size: 27px;
+		padding: 1px;
 	}
 	
 	.pricingtitle121
 	{
-	   /* margin-bottom: -29px; */
-    /* background: red; */
     font-size: 19px;
     text-align: center;
     padding: 1px;
     width: 21%;
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     color: #b59e9e;
     margin-top: 15px;
     float: right;
-    text-align: left;
+    text-align: right;
     font-weight: 700;
 	}
 	
@@ -3653,7 +3604,6 @@ window.addEventListener('load', (event) => {
 				document.getElementById("mobileApp").style.display="block";
 				document.getElementById("maindivscrable").style.display="block";
 				$(window).scrollTop(0);
-				$("body").css("overflow","hidden");
 	} else {
 	 document.getElementById("loader").style.display="block";
 	document.getElementById("logi_signup01").style.display="none";
@@ -4226,20 +4176,11 @@ validationCustom02.add(defaultOption122);
 							 
 							 var ul = document.getElementById("packagediv");
 		                     var li = document.createElement('li');
-							     li.className="item";								
-						
-//li.innerHTML='<p id="titlemain">'+item12.title+'</p><span id="pricingratespack">'+item12.variants[0].price+'</span><p>'+item12.descriptionHtml+'<span id="btnaddpack">+Add</span></p>';	ul.appendChild(li);
-//mom							 
-//						
+							     li.className="item";										
 							 console.log(item12);
 							 
-			 li.innerHTML='<div class="pad15"><p class="lead">'+item12.title+'</p><p class="pricingtitle121">$<strike>'+item12.variants[0].compareAtPrice+'/mo*</strike></p><p class="pricingtitle">$'+item12.variants[0].price+'/mo*</p><div class="listdetails">'+item12.descriptionHtml+'</div><span id="btnaddpack">+ADD</span></p></div>';
+			 li.innerHTML='<div class="pad15"><p class="lead '+item12.title.replace(" ","").substring(0, 10)+'">'+item12.title+'"</p><p class="pricingtitle121">$<strike>'+item12.variants[0].compareAtPrice+'/mo*</strike></p><p class="pricingtitle">$'+item12.variants[0].price+'/mo*</p><div class="listdetails">'+item12.descriptionHtml.replace('<br>','')+'</div><span id="btnaddpack">+ADD</span></p></div>';
 			 ul.appendChild(li);
-							 
-							 //mahesh
-//							 console.log(item12.descriptionHtml);
-							 
-//						 console.log(item12.variants[0].id);
 
 							 var lkkl = "Digital Marketing Package";
 							 var llb = "Website Development and Management Package";
@@ -4261,7 +4202,7 @@ validationCustom02.add(defaultOption122);
 //									 console.log(x[index12]);
 									   var desc = x[index12].innerText.substring(x[index12].innerText.indexOf('{')+1, x[index12].innerText.indexOf('}'));  
 									
-									     x[index12].innerText = desc;
+									     x[index12].innerText = desc.trim();
 									 
 									  var bx = document.getElementById("packagediv").querySelectorAll(".pricingtitle121");
 									  bx[index12].style.cssText="display:none;";
@@ -4284,7 +4225,7 @@ validationCustom02.add(defaultOption122);
 																      
 									   var desc = x[index12].innerText.substring(x[index12].innerText.indexOf('{')+1, x[index12].innerText.indexOf('}'));  
 									 
-									     x[index12].innerText = desc;
+									     x[index12].innerText = desc.trim();;
 									 
 									 var bx = document.getElementById("packagediv").querySelectorAll(".pricingtitle121");
 									  bx[index12].style.cssText="display:none;";
@@ -4365,17 +4306,12 @@ validationCustom02.add(defaultOption122);
 							
 							if (addinal_variable=="Additional Enterprise")
 								{
-									console.log("vikas");
-									
+							
 								var lis3 = document.getElementById("packagediv").getElementsByClassName("item");
 									lis3[3].style.pointerEvents="none";
 						    lis3[4].style.pointerEvents="none";
 						    lis3[5].style.pointerEvents="none";
-														
-//						       var b = document.getElementById("packagediv").querySelectorAll(".pad15");
-//									 b[3].style.background = "#c1b7b7";
-//							         b[4].style.background = "#c1b7b7";
-//							         b[5].style.background = "#c1b7b7";
+													
 							
 								var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
 									 c[3].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
@@ -4386,10 +4322,7 @@ validationCustom02.add(defaultOption122);
 									 d[3].innerHTML = "+ADD";
 							         d[4].innerHTML = "+ADD";
 							         d[5].innerHTML = "+ADD";
-									
-									
-									
-									
+
 							testpopse = "1";
 									
 									
@@ -4397,36 +4330,28 @@ validationCustom02.add(defaultOption122);
 									else
 									{
 										
-										console.log("salman");
 								var lis3 = document.getElementById("packagediv").getElementsByClassName("item");
 									lis3[3].style.pointerEvents="none";
-						    lis3[6].style.pointerEvents="none";
-						    lis3[5].style.pointerEvents="none";
-														
-//						       var b = document.getElementById("packagediv").querySelectorAll(".pad15");
-//									 b[3].style.background = "#c1b7b7";
-//							         b[6].style.background = "#c1b7b7";
-//							         b[5].style.background = "#c1b7b7";
+									lis3[4].style.pointerEvents="none";
+									lis3[6].style.pointerEvents="none";
+									lis3[5].style.pointerEvents="none";
+													
 							
 								var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
 									 c[3].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
 							         c[6].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
 							         c[5].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
+									 c[4].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
 									
 									var d = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
 									 d[3].innerHTML = "+ADD";
 							         d[6].innerHTML = "+ADD";
 							         d[5].innerHTML = "+ADD";
-									
-									
-									
-									
+									 d[4].innerHTML = "+ADD";
+
 							testpopse = "1";
 										
 									}
-							
-							
-									
 								}
 								else
 								{
@@ -4435,22 +4360,15 @@ validationCustom02.add(defaultOption122);
 										{
 											
 										document.getElementById("valueforslction").value ="";
-								console.log("sonu");
-//									console.log("ok1");
 							var lis3 = document.getElementById("packagediv").getElementsByClassName("item");
 							
 							lis3[3].style.pointerEvents="none";
 						    lis3[4].style.pointerEvents="none";
 						    lis3[5].style.pointerEvents="none";
 							
-							
-//						       var b = document.getElementById("packagediv").querySelectorAll(".pad15");
-//									 b[3].style.background = "#c1b7b7";
-//							         b[4].style.background = "#c1b7b7";
-//							         b[5].style.background = "#c1b7b7";
-							
 								var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
 									 c[3].style.background = "#afa0a0";
+									 c[4].style.background = "#afa0a0";
 							         c[6].style.background = "#afa0a0";
 							         c[5].style.background = "#afa0a0";
 											
@@ -4472,15 +4390,17 @@ validationCustom02.add(defaultOption122);
 									 d[3].innerHTML = "+ADD";
 							         d[4].innerHTML = "+ADD";
 							         d[5].innerHTML = "+ADD";
-									
-									 getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjY2MDk2MDM4OQ==");
-//									 getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUzODIxMTQ2MQ==");
-//									 getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUyMzI2OTI1Mw==");
-//  Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjY2MDk2MDM4OQ== // intractivty package
-//  Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUzODIxMTQ2MQ==  // live stream management.
-//  Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUyMzI2OTI1Mw==  // tv channgel creating
-									
-									
+									 if(item12.title == "Entertainment Package"){
+										 var newArray = []
+										 getadnilapackarray.forEach(function(addcpkid,addcpkitem){
+										 if(addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2Mjg1MTg5OTUyNQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjQ0NDc1NzEyNQ=="){
+											newArray.push(addcpkid);
+										 }
+										 });
+										 getadnilapackarray = newArray;
+									}
+									getadnilapackarray.push(item12.variants[0].id);
+									newArr =  getadnilapackarray;
 									console.log(getadnilapackarray); 	 
 for(var h = 0; h < getadnilapackarray.length; h++) {
     var curItem = getadnilapackarray[h];
@@ -4496,15 +4416,12 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 	
     if(foundCount > 1) {
         // remove repeated item from new array
+		console.log(getadnilapackarray);
         for(var j = 0; j < newArr.length; j++) {
             if(newArr[j] == curItem) {                
                 newArr.splice(j, 1);
-                j = j - 1;
-			
-			
-					
-            }
-			  
+                j = j - 1;		
+            } 
         }  
 		
     }
@@ -4512,7 +4429,7 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 }
 								 var str = newArr.toString();
  listthecheckmarmap = str.split();
-  listthecheckmarmap = JSON.parse("[" + listthecheckmarmap + "]");
+  listthecheckmarmap = JSON.parse("[" + JSON.stringify(listthecheckmarmap) + "]");
 console.log(listthecheckmarmap);
 	console.log(getadnilapackarray);
 	
@@ -4530,23 +4447,20 @@ console.log(listthecheckmarmap);
 							lis3[3].style.pointerEvents="none";
 						    lis3[6].style.pointerEvents="none";
 						    lis3[5].style.pointerEvents="none";
-							
-							
-//						       var b = document.getElementById("packagediv").querySelectorAll(".pad15");
-//									 b[3].style.background = "#c1b7b7";
-//							         b[6].style.background = "#c1b7b7";
-//							         b[5].style.background = "#c1b7b7";
-							
+							lis3[4].style.pointerEvents="none";
+	
 								var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
 									 c[3].style.background = "#afa0a0";
 							         c[6].style.background = "#afa0a0";
 							         c[5].style.background = "#afa0a0";
+									 c[4].style.background = "#afa0a0";
 							testpopse = "1";
 									
 									var lis4 = document.getElementById("packagediv").getElementsByClassName("item");
 									    lis4[3].style.border="1px solid #ececec";
 									    lis4[6].style.border="1px solid #ececec";
 									    lis4[5].style.border="1px solid #ececec";
+										lis4[4].style.border="1px solid #ececec";
 									
 
 									
@@ -4555,32 +4469,36 @@ console.log(listthecheckmarmap);
 									 c[3].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
 							         c[6].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
 							         c[5].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
+									 c[4].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
 									
 									var d = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
 									 d[3].innerHTML = "+ADD";
 							         d[6].innerHTML = "+ADD";
 							         d[5].innerHTML = "+ADD";
-									
-									 getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjY2MDk2MDM4OQ==");
-//									 getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUzODIxMTQ2MQ==");
-//									 getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUyMzI2OTI1Mw==");
-//  Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjY2MDk2MDM4OQ== // intractivty package
-//  Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUzODIxMTQ2MQ==  // live stream management.
-//  Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUyMzI2OTI1Mw==  // tv channgel creating
-									
-									
+									 d[4].innerHTML = "+ADD";
+									 if(item12.title == "Entertainment Package"){
+										 var newArray = []
+										 getadnilapackarray.forEach(function(addcpkid,addcpkitem){
+										 if(addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2Mjg1MTg5OTUyNQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjQ0NDc1NzEyNQ=="){
+											newArray.push(addcpkid);
+										 }
+										 });
+										 getadnilapackarray = newArray;
+									}
+									 getadnilapackarray.push(item12.variants[0].id);
+									 newArr = getadnilapackarray;
 									console.log(getadnilapackarray); 	 
-for(var h = 0; h < getadnilapackarray.length; h++) {
-    var curItem = getadnilapackarray[h];
-    var foundCount = 0;
-									   
-	
-    for(var i = 0; i < getadnilapackarray.length; i++) {
-        if (getadnilapackarray[i] == getadnilapackarray[h])
-            foundCount++;
-		
-		
-    }
+									for(var h = 0; h < getadnilapackarray.length; h++) {
+										var curItem = getadnilapackarray[h];
+										var foundCount = 0;
+																		   
+										
+										for(var i = 0; i < getadnilapackarray.length; i++) {
+											if (getadnilapackarray[i] == getadnilapackarray[h])
+												foundCount++;
+											
+											
+										}
 	
     if(foundCount > 1) {
         // remove repeated item from new array
@@ -4603,21 +4521,10 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
   listthecheckmarmap = JSON.parse("[" + listthecheckmarmap + "]");
 console.log(listthecheckmarmap);
 	console.log(getadnilapackarray);
-	
-									
-											
-										}
-									
-									
-									
-									
-									
-									
-									
+			
+										}	
 								}  //ok
 
-	
-					
 						}
 							
 									 else
@@ -4664,19 +4571,12 @@ console.log(listthecheckmarmap);
 															 console.log("Usman khan");
 													
 													document.getElementById("valueforslction").value ="www";
-													
-															
-//														 if (justcheckfor==item12.title);
-//															{
-//																var d = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-//									 d[3].innerHTML = "Added";
-//																console.log(item12.title);
-//																
-//															}												
+											
 															
 											 var lis3 = document.getElementById("packagediv").getElementsByClassName("item");
 							
 							lis3[3].style.pointerEvents="auto";
+							lis3[4].style.pointerEvents="auto";
 						    lis3[6].style.pointerEvents="auto";
 						    lis3[5].style.pointerEvents="auto";
 							
@@ -4685,50 +4585,56 @@ console.log(listthecheckmarmap);
 									 b[3].style.background = "#ffffff";
 							         b[6].style.background = "#ffffff";
 							         b[5].style.background = "#ffffff";
+									 b[4].style.background = "#ffffff";
 							
-															
-													
-													var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 c[3].style.cssText = "background:#ffffff; width: 136px;";
-							         c[6].style.cssText = "background:#ffffff; width: 136px;";
-							         c[5].style.cssText = "background:#ffffff; width: 136px;";
-															
 										console.log(item12.title);
 															
 															if (item12.title=="Interactivity Creation & Management Package")
 																{
 																	var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									    x[index12].innerHTML = "Remove";
-									 x[index12].style.cssText = "background: #00B6FF;color: white;font-size: 18px;line-height: 35px;border: none;";
+																	x[index12].innerHTML = "Remove";
+																	 x[index12].style.cssText = "background: #00B6FF;color: white;font-size: 18px;line-height: 35px;border: none;";
+																}
+															if (item12.title=="Live-Chat & Phone Support Package")
+																{
+																	var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
+																	x[index12].innerHTML = "Remove";
+																	 x[index12].style.cssText = "background: #00B6FF;color: white;font-size: 18px;line-height: 35px;border: none;";
+																}
+															if (item12.title=="Live Stream Channel Creation & Management Package")
+																{
+																	var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
+																	x[index12].innerHTML = "Remove";
+																	 x[index12].style.cssText = "background: #00B6FF;color: white;font-size: 18px;line-height: 35px;border: none;";
+																}
+															if (item12.title=="TV Channel Creation & Management Package")
+																{
+																	var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
+																	x[index12].innerHTML = "Remove";
+																	 x[index12].style.cssText = "background: #00B6FF;color: white;font-size: 18px;line-height: 35px;border: none;";
 																}
 															if (item12.title=="Entertainment Package")
 																{
 																	var d = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
 															
-									 d[3].innerHTML = "+ADD";
-							         d[6].innerHTML = "+ADD";
-							         d[5].innerHTML = "+ADD";
-																}
-									
-									
-															
-															
-															
+																	 d[3].innerHTML = "+ADD";
+																	 d[6].innerHTML = "+ADD";
+																	 d[5].innerHTML = "+ADD";
+																	 d[4].innerHTML = "+ADD";
+																	d[3].style.cssText = "background:white; color:black;border:1px solid black;";;
+																	d[6].style.cssText = "background:white; color:black;border:1px solid black;";;
+																	d[5].style.cssText = "background:white; color:black;border:1px solid black;";;
+																	d[4].style.cssText = "background:white; color:black;border:1px solid black;";;
+																}	
 														}
-													
-											
-									
-									
-//												 
 												}
-//											
+
 											else
 												{
 													console.log("d");
 													document.getElementById("valueforslction").value = "dd";
 													
 												}
-											 
 										 } 
 										 
 									 }
@@ -4742,13 +4648,18 @@ console.log(listthecheckmarmap);
 									     addnalgetprciehere.push(addnalgetprciehere1);
 									 
 									 printok();
-									
-									 
+									 if(item12.title == "Entertainment Package"){
+										 var newArray = getadnilapackarray
+										 getadnilapackarray.forEach(function(addcpkid,addcpkitem){
+										 if(addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjQ1MzQ0MDY0NQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjY2MDk2MDM4OQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUzODIxMTQ2MQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUyMzI2OTI1Mw=="){
+											newArray.splice(addcpkitem,1);
+										 }
+										 });
+										 getadnilapackarray = newArray;
+									}
 									 getadnilapackarray.push(item12.variants[0].id);
+									 newArr = getadnilapackarray;
 									 
-//						     document.getElementById("btnaddpack").innerHTML = "Added";
-								 
-//									 console.log(addnalgetprciehere);
 							 }
 								 
 								 
@@ -4773,8 +4684,7 @@ for(var a = 0; a < addnalgetprciehere.length; a++) {
                 c = c - 1;
 				
 				printok();
-//				 document.getElementById("btnaddpack").innerHTML = "+Add";
-					
+
             }
 			  
         }  
@@ -4785,13 +4695,6 @@ for(var a = 0; a < addnalgetprciehere.length; a++) {
 								 var str1 = newArr12.toString();
  listthecheckmarmap1 = str1.split();
   listthecheckmarmap1 = JSON.parse("[" + listthecheckmarmap1 + "]");
-//console.log(listthecheckmarmap1);	
-//								 console.log(addnalgetprciehere);
-								 
-								 //end here 
-								 
-							
-								 
 								 
 								 
 								console.log(getadnilapackarray); 	 
@@ -4826,10 +4729,7 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 			else
 			{
 				datacalltwotime();
-			}
-			
-					
-				
+			}	
 				var lis = document.getElementById("packagediv").getElementsByClassName("item");
 						var itemview = lis[index12];	
 						itemview.style.border="2px solid #ececec";
@@ -4837,9 +4737,6 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 				var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
 					x[index12].innerHTML = "+ADD";
 				x[index12].style.cssText = "background:white; color:black;border:1px solid black;";
-				
-//				 document.getElementById("btnaddpack").innerHTML = "+Add";
-					
             }
 			  
         }  
@@ -4885,7 +4782,7 @@ console.log(listthecheckmarmap);
 										console.log(numofloation21);
 										  
 										totalpricepercentage = numberlocationpricemultipling * numofloation21;
-
+										totalpricepercentage = totalpricepercentage.toFixed(2);
 										getidforpercent = item121.products[indexper].variants[0].id;
 									
 										console.log(getidforpercent);
@@ -5737,7 +5634,7 @@ fetch(url1)
 				 
 document.getElementById('prcingpageservices2').style.display="block";
 
-				 
+				 document.getElementById('validationCustom03').value = null;
 				  document.getElementById('validationCustom03').disabled = false;
 			    document.getElementById('numofloation').disabled = false;
 				 
@@ -5765,8 +5662,6 @@ document.getElementById('prcingpageservices2').style.display="block";
 				 
 			});
 		  
-//	bislocal-allproductsyes
-		    
 		  
 		   document.getElementById('bislocal-allproductsno').addEventListener("click",function(){
 			   
@@ -5782,8 +5677,6 @@ document.getElementById('prcingpageservices2').style.display="none";
 
 			   
 				document.getElementById('validationCustom03').value ="0";
-			 	document.getElementById('tridpercetagerow').style.visibility = "hidden";
-			 	document.getElementById('tridpercetagerow').style.position = "absolute";
 			   
              document.getElementById('restuls11').innerHTML = "No";
 				
@@ -5805,10 +5698,6 @@ document.getElementById('prcingpageservices2').style.display="none";
 			   
 			    document.getElementById('percentage2').style.display="none";
 			    
-//			    document.getElementById('numofloation').disabled = true;
-			   
-			   
-			//ashu
 			});
 		   document.getElementById('noforbusness').addEventListener("click",function(){
 				
@@ -5837,9 +5726,6 @@ document.getElementById('prcingpageservices2').style.display="none";
 
 			  
 			});
-		  
-		  
-		  
 		   document.getElementById('submitdatamain').addEventListener("click",function(){
 			 
 			var datacall =  document.getElementById('validatedd').value;
@@ -5852,15 +5738,10 @@ document.getElementById('prcingpageservices2').style.display="none";
 				  }
 			  else
 			  {
-				 //vikasluck
-				  
 				  senddatatoshopi();
 				  
 				   document.getElementById('termscond').style.color="#00B3FE";
 				   document.getElementById('icond4').style.display="block";
-				
-				
-				   //gautam
 				   document.getElementById('progressreport').style.width = "100%";
 				   document.getElementById('percentagecount').innerHTML = "100%";
 				  
@@ -5889,17 +5770,7 @@ document.getElementById('prcingpageservices2').style.display="none";
 						   var getprcingdubm = prcingdubm.textContent;
 						
 						document.getElementById('showsdicountprince').innerHTML = getprcingdubm;
-//						 document.getElementById('pricewillshow1').style.display="block";
-//						document.getElementById('pricewillshowduck').style.marginTop="40px";
-						validiscoutcodehere = "DISMYFIRST01";
-					
-						
-						
-						//End here package price standard, premium and enterprise
-						
-						
-						
-						
+						validiscoutcodehere = "DISMYFIRST01";	
 					}
 			  else{
 				  
@@ -5969,8 +5840,7 @@ document.getElementById('prcingpageservices2').style.display="none";
 					 document.getElementById('Entertainmentpack1').style.visibility="visible";
 					 document.getElementById('Entertainmentpack11').style.position="inherit";
 					 document.getElementById('Entertainmentpack11').style.visibility="visible";
-		  
-
+					
 				  }
 				  
 				  
@@ -6078,24 +5948,7 @@ document.getElementById('prcingpageservices2').style.display="none";
 			      var DesmonthsercharAddnlaloc1  = parseFloat(DesmonthsercharAddnlaloc1.textContent);
 			  // Monthly Additional Charges for each Location 10%
 			  
-			  
-//console.log(digimarkepckprice1);
-//			if(isNaN(totalpercentresults11))
-//				{
-//					console.log("Good");
-//					  var subtotaltotal = nrecharse11+adinallocionprcing11+print65411+motnfee222111+sericefee1;
-//			  console.log(subtotaltotal);
-//				}
-//			  else
-//				  {
-//					  console.log("Bad");
-//					    var subtotaltotal = nrecharse11+adinallocionprcing11+print65411+motnfee222111+totalpercentresults11+sericefee1;
-//			  console.log(subtotaltotal);
-//				  }
-		
-			  
-			  	  
-			  
+
 			  var subtotaltotal =  nrecharse11+print6544+totalpercentresults11+digimarkepckprice1+webdevmanagpackprice1;
 			  var Subdiscountotal =  Dmainpriceoninvoice11+Dmonthserchargedis11+DesmonthsercharAddnlaloc1;
 			  
@@ -6197,9 +6050,10 @@ document.getElementById('prcingpageservices2').style.display="none";
 							document.getElementById('divpricingobj').style.display = "block";
 							
 							 var topPos = document.getElementById('divpricingobj').offsetTop;
-                            
-			   
-						document.getElementById('div8obj').style.display = "none";
+                              var monthlychargesforall = "$"+numberlocationpricemultipling +" * "+ document.getElementById('nolocaitons1').innerHTML
+							  document.getElementById("additionalcharges").innerHTML = monthlychargesforall
+							  document.getElementById("perCent01").innerHTML = numberlocationpricemultipling;
+							  document.getElementById('div8obj').style.display = "none";
 					
 				});
 		  
@@ -6210,7 +6064,7 @@ document.getElementById('prcingpageservices2').style.display="none";
 							 var topPos = document.getElementById('div6obj').offsetTop;
                             
 						document.getElementById('divpricingobj').style.display = "none";
-			  document.getElementById('pricingtitleletbe').style.color = "#5c7fff"; 
+			  document.getElementById('pricingtitleletbe').style.color = "#00B6FF"; 
 			  document.getElementById('icond6').style.display = "block";
 			  
 			  
@@ -6493,7 +6347,7 @@ document.getElementById('weburl121').value = "wrong";
 				 document.getElementById('icond').style.display = "block";
 				  var topPos = document.getElementById('div2obj').offsetTop;
      
-				   document.getElementById('tellabutupou').style.color = "#5c7fff"; 
+				   document.getElementById('tellabutupou').style.color = "#00B6FF"; 
 				  
 				  	  document.getElementById('progressreport').style.width = "20%";
 				       document.getElementById('percentagecount').innerHTML = "20%";
@@ -6606,45 +6460,13 @@ document.getElementById('weburl121').value = "wrong";
 			   var buistype = document.getElementById('validationCustom01').value;
 			   
 			    var allocationesandno = document.getElementById('allocationesandno').value;
-			  
-			   
-			   
-//			    var numloc  =  document.getElementById('numofloation').value;
-//			   
-//			   if (numloc<=1)
-//				   {
-////					   alert("Hide percetanges");
-//				document.getElementById('percentage2').style.display="none";
-//			    document.getElementById('prcingpageservices2').style.display="none";
-//					   
-//					   document.getElementById('tridpercetagerow').style.position = "absolute";
-//					   document.getElementById('tridpercetagerow').style.visibility = "hidden";
-//					   
-//					   
-//				   }
-//			   else
-//			   {
-//				   
-//				  document.getElementById('tridpercetagerow').style.position = "inherit";
-//					   document.getElementById('tridpercetagerow').style.visibility = "visible";
-//				   
-//				   
-//			   }
-			   
+			  			   
 			   storeingdata();
 			   
-//			    var buistgroes121 =  document.getElementById('validationCustom02').value;         //  categores dropdown.
-			   
-//			    var validationCustom0221 = document.getElementById('validationCustom0221').value;   // categores manual.	
-			   //ON NO CLICK
-			   
-			   
-			   
-			  
 			   if (yesrpog=="")
 				   {	   
 //					   alert('okok');
-					    numofloation  =  document.getElementById('numofloation').value;
+					    numofloation  =  parseInt(document.getElementById('numofloation').value);
 					
 					    validationCustom = 0;
 					   
@@ -6746,8 +6568,6 @@ document.getElementById('weburl121').value = "wrong";
 							  document.getElementById('divcustomeqotes').style.display = "none";
   document.getElementById('div2obj').style.display = "none";
 									 
-					   document.getElementById('tridpercetagerow').style.position = "absolute";
-					   document.getElementById('tridpercetagerow').style.visibility = "hidden"; 
 					  
 					  calcu();
 					  calcunumberofitems();
@@ -6808,9 +6628,9 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 				   {
 //					 alert('okok2');  
 					
-			   numofloation  =  document.getElementById('numofloation').value;
+			   numofloation  =  parseInt(document.getElementById('numofloation').value);
 			      
-			   validationCustom = document.getElementById('validationCustom03').value;
+			   validationCustom = parseInt(document.getElementById('validationCustom03').value);
 					
 //			   console.log(datacallmain);
 					   
@@ -7171,22 +6991,14 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 			   
 			    if (yesornotforbusnessyour=="")
 						{
-//							alert('Please press products');
-							
 						    document.getElementById('yesforbusness').style.border="1px solid red";
 					        document.getElementById('noforbusness').style.border="1px solid red";  
 					   
 						}
 			   else  if (percentsvalues=="")
 						{
-							
-//							alert('Please Enter percentage values');
-							
-						   
+						
 						    document.getElementById('percentsvalues').style.border="1px solid red";
-					       
-//							conttake
-					   
 						}
 			  
 			   
@@ -7197,7 +7009,7 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 					   
 				   var topPos = document.getElementById('div8obj').offsetTop;
                        
-					    document.getElementById('telabtyurbsuness').style.color = "#5c7fff"; 
+					    document.getElementById('telabtyurbsuness').style.color = "#00B6FF"; 
 				  document.getElementById('icond2').style.display = "block"; 
 					   
 					    document.getElementById('Perceproducts').innerHTML = percentsvalues;
@@ -7220,7 +7032,7 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 		   function calcunumberofitems()
 		  {
 					  
-			  document.getElementById('nolocaitons1').innerHTML = numofloation;
+			  document.getElementById('nolocaitons1').innerHTML = (numofloation-1);
 			  
 			   getfrominput = document.getElementById('validationCustom03').value;
 			   valnumoftex = document.getElementById('validationCustom03').value;
@@ -7382,13 +7194,13 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 					  
 					  addinal_variable = "Additional Premium";
 					   percentage_variable = "PerPercentage Premium";
-				      document.getElementById("packges").innerHTML = "PREMIUM"
-				      document.getElementById("packges121").innerHTML = "PREMIUM";
-				      document.getElementById("packges121lb").innerHTML = "PREMIUM";
-					  document.getElementById("price1").innerHTML = "PREMIUM";
-					  document.getElementById("price2").innerHTML = "PREMIUM";
-					  document.getElementById("price3").innerHTML = "PREMIUM";
-					  document.getElementById("price4").innerHTML = "PREMIUM";
+				      document.getElementById("packges").innerHTML = "Premium"
+				      document.getElementById("packges121").innerHTML = "Premium";
+				      document.getElementById("packges121lb").innerHTML = "Premium";
+					  document.getElementById("price1").innerHTML = "Premium";
+					  document.getElementById("price2").innerHTML = "Premium";
+					  document.getElementById("price3").innerHTML = "Premium";
+					  document.getElementById("price4").innerHTML = "Premium";
 					  
 					  document.getElementById("print5").innerHTML = "2999";
 					  document.getElementById("printpccing2aff").innerHTML = "2999";
@@ -8210,7 +8022,7 @@ data();
 		  {
 			  color: #707070;
 			  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    font-size: 27px;
+    font-size: 22px;
 
 		  }
 		  
@@ -8278,21 +8090,18 @@ data();
 		  #maindivscrable
 		  {
 			  width: 100%;		  
-              height: 765px;
-			  overflow: scroll;
 			   scroll-behavior: smooth;
-			  overflow-x: scroll;
-			  
 		  }
 		  
 		  .leftmenu
 		  {
-			  width: 90%;
+			  width: 350px;
 			  height: 93vh;
 			  background: white;
 			  margin-top: -20px;
-			      box-shadow: 2px 2px 4px #a5a5a5;
+			  box-shadow: 2px 2px 4px #a5a5a5;
 			  padding: 19px;
+			position: fixed;
 		  }
 		  .leftmenu h4{
 			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
@@ -8321,9 +8130,7 @@ data();
 		  {
 			  width: 100%;
 			  height: auto;
-/*			  background: blue;*/
 			  padding: 10px;
-			  margin-right:auto;
 			  max-width:1300px;
 		  }
 		  
@@ -8331,7 +8138,6 @@ data();
 		  {
 			  width: 100%;
 			  height: 543px;
-/*			  background: orange;*/
 			  padding: 10px;
 			  display: none;
 			   max-width:1250px;
