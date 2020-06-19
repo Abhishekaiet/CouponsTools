@@ -67,13 +67,17 @@
 			}
 		  });
 		  const responseCode = await response.ok;
-		  const responsejson = await response.json;
+		  const responsejson = await response.json();
 		  if(responseCode){
 			  $(".forgotConfirm").show();
 			  $(".forgotScreen").hide();
 		  }
 		}
 		userAction();
+   }
+   function closeconfirm(){
+	   $(".forgotConfirm").hide();
+       $(".container").show();
    }
   function login() {
       //debugger

@@ -966,26 +966,6 @@ xhr.send(data);
 	  
 	  </style>
 	  
-	 
-
-		
-<script>
-		
-	document.getElementById('loginbackframe').addEventListener("click",function(){
-	
-		document.getElementById('logi_signup01forget').style.display="none";
-		
-		
-	});
-	
-			
-		</script>
-
-		
-		
-		
-		
-
 <style>
 	#mobileApp{
 	display:none;
@@ -1035,7 +1015,7 @@ xhr.send(data);
 		    padding-top: 20px;
 			margin-top:0;
 	  }
-	  .LiveStream {
+	  .LiveStreeam {
 	   margin-bottom: 30px !important;
 	  }
 	</style>
@@ -1050,12 +1030,12 @@ xhr.send(data);
 		  
 			  <h4 style="margin-top: 30px;font-size: 21px;">Let's build your mobile app</h4>
 			  <div class="listtext">
-			 <p id="tellabutupou">Tell us about you  <span class="glyphicon glyphicon-ok" id="icond" style="display: none; color: #00B6FF; float: right;"></span></p>
+			 <p id="tellabutupou">Tell us about you  <span class="glyphicon glyphicon-ok" id="icond" style="display: none; color: #00B3FE; float: right;"></span></p>
 				  
-			  <p id="telabtyurbsuness">Tell us about your business <span class="glyphicon glyphicon-ok" id="icond2" style="display: none; color: #00B6FF; float: right;"></span></p>
+			  <p id="telabtyurbsuness">Tell us about your business <span class="glyphicon glyphicon-ok" id="icond2" style="display: none; color: #00B3FE; float: right;"></span></p>
 				  
-			  <p id="pricingtitleletbe"> Pricing <span class="glyphicon glyphicon-ok" id="icond6" style="display: none; color: #00B6FF; float: right;"></span></p>
-			  <p id="termscond"> Terms & condition <span class="glyphicon glyphicon-ok" id="icond4" style="display: none; color: #00B6FF; float: right;"></span></p>
+			  <p id="pricingtitleletbe"> Pricing <span class="glyphicon glyphicon-ok" id="icond6" style="display: none; color: #00B3FE; float: right;"></span></p>
+			  <p id="termscond"> Terms & condition <span class="glyphicon glyphicon-ok" id="icond4" style="display: none; color: #00B3FE; float: right;"></span></p>
 				
 				  
 				  <hr>
@@ -1479,56 +1459,6 @@ xhr.send(data);
 </select>
 
 <script>
-	
-	
-	
-	document.getElementById('forgetpasswrdsubmit').addEventListener("click",function(){
-
-			
-    let forgetpassword = document.getElementById("forgetpassword").value		
-		
-
-
-var xhr = new XMLHttpRequest();
-		
-xhr.open("POST", "https://proxy.actv.05media.com/services/v1/profiles/action/reset", true);
-xhr.setRequestHeader("x-api-version", "0.0.1-M3");
-xhr.setRequestHeader("content-type", "application/json");
-xhr.setRequestHeader("accept", "application/json");
-		
-
-xhr.addEventListener("readystatechange", function () {
-	
-	console.log(this.status);
-
-	
-  if (this.readyState === 4 && this.status == 200) {
-	  
-	  
-	  var json = JSON.parse(this.responseText);
-	  
-//	  console.log(json.description);
-	  alert("Email sent successfully");
-	  document.getElementById("logi_signup01forget").style.display="";
-  }
-	
-	
-});
-					
-		
-	var data = JSON.stringify({
-  "email": forgetpassword,
-  "resetUrl": "daboyatechnologies.com/mycommunity.today/demo1.html.html?&token=%s"
-		
-});
-			
-xhr.send(data);
-		
-		
-	});
-	
-		  
-	
 	var tokeniid;
 	function usergetdetails()
 		{
@@ -1784,7 +1714,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
                          </div>
 <!--					other categories text field-->
 						<div style="margin-bottom: 35px;margin-top: 16px;height: 11px;width: 60%; display: none;" class="input-group" id="categiesidhidden">  
-                                        <input id="validatingcategorsi121" type="text" class="form-control getvalues" name="password" placeholder="Enter Categories" style="height: 45px;" onChange="categoesmanual()">	
+                                        <input id="validatingcategorsi121" type="text" class="form-control getvalues" name="password" placeholder="Enter Categories" style="height: 45px;">	
                          </div>
 						<p style="margin-top: 38px;text-align: left;" class="labels" id="doffer">Do you wish to sell the products or services on-line ?</p>
 
@@ -1814,7 +1744,6 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
                         </div> 
                                
                            </div>    
-                    
                     </div>  
 					 <div style="margin-top:-19px" class=" btn2movupside">
                                     <!-- Button -->
@@ -1828,7 +1757,25 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
                                     </div>
                                 </div> 
 			 </div>
-			 
+			 <div id="divcustomeqotes">
+			 <div class="panel panel-info sizecuc"  style="margin-bottom: 31px;height: 254px;">
+							<div style="padding-top:3%" class="panel-body">
+								<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+								<h2 style="font-size: 22px;opacity: 0.7;">It requires a custom quote!</h2>
+								<p style="font-size: 22px;opacity: 0.7;margin-top: 16px;">      
+									We are proud to serve your business and to offer you special benefits and dedicated support,
+									training, and advanced security.
+									We will contact you to provide a tailored pricing plan for you.</p>
+								</div>
+								<div style="margin-top:10px" class=" fromclcok121">
+								<!-- Button -->
+
+								<div class="col-sm-12">
+									<a id="btncontactus" class="paybutton" style="font-size: 20px;padding: 10px;" href="mailto:info@mycommunity.today">CONTACT US</a>
+								</div>
+							</div>						
+						</div>  
+			 </div>
 			  <div id="div3obj">
 			  <div class="panel panel-info sizecuc" style="margin-top: 45px;">
                     <div class="panel-heading" align="left">
@@ -1861,10 +1808,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 						<input type="text" id="mobileappownyesandno" style="visibility: hidden;">
 						</div>  
                             </form>     
-
-
-
-                        </div>                     
+                        </div>
                     </div>  
 					  <div style="margin-top:10px" class=" fromclcok121">
                                     <!-- Button -->
@@ -1875,43 +1819,12 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
                                     </div>
                                 </div>
 			 </div>
-		  
-		  
-	  <div id="divcustomeqotes">
-			  <div class="panel panel-info sizecuc" style="margin-top: 45px;">
-                        
-
-                    <div style="padding-top:20%" class="panel-body">
-						
-						
-
-                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                          
-						
-						<h2>Requires Custom Quotes!</h2>
-						  <p>Your business requres custome quote. We will send you a custome quite shourtly.<br>Thank you</p>
-      
-                            </form>     
-
-
-
-                        </div>                     
-                    </div>  
-					 <div style="margin-top:10px" class=" fromclcok121">
-							<!-- Button -->
-
-							<div class="col-sm-12">
-<!--                                      <a id="btn-login" href="#" class="btn btn-success">Login </a>-->
-<!--                                      <a id="btn-fblogin" href="#" class="btn btn-primary" style="float: right;">Save & Continue</a>-->
-								<button id="btncontactus" class="btn btn-primary" style="float: right;    margin-right: 42%;">CONTACT US</button>
-
-							</div>
-						</div>
-			 </div>
-		  
-		  
 		
 <style>
+#btncontactus:hover{
+	text-decoration:none;
+	color:#fff;
+}
 .ConfirmButton{
     border-radius: 14px;
     opacity: 0.64;
@@ -1923,6 +1836,11 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
     border: 1px solid #ccc;
+	
+	}
+	
+	#discountDiv .ConfirmButton{
+	margin-bottom:30px;
 	}
 	.productDiv{
 	    text-align: right;
@@ -1957,13 +1875,8 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 						<table class="table" style="display:block; 
     margin-bottom: -66px;">
 		  <tbody class="selectionTable">
-			  <tr>
-      <th scope="row" style="border-top: none; padding-bottom: 23px;"></th>
-    </tr>
-			  
-			  
 	    <tr class="labels">
-     <th scope="row">Do you wish to sell the products or services on-line ?</th>
+     <th style="border-top:none" scope="row">Do you wish to sell the products or services on-line ?</th>
       <th><span id="restuls11"></span></th>
     </tr>
 			  
@@ -1981,7 +1894,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 							</tbody>
 	  </table>
 						<p id="percentage2" class="labels percentage">Do you offer the same products or service in all locations?<span id="restuls22"></span></p>
-				<p id="percentage1" class="labels percentage"><span>Percentage of difference in products between locations</span><span id="Perceproducts"></span></p>
+				<p id="percentage1" style="border-bottom:none" class="labels percentage"><span>Percentage of difference in products between locations</span><span id="Perceproducts"></span></p>
 	  
 	  		
 				
@@ -2076,7 +1989,34 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 									</div>
                                 </div>
 		</div>
-	  
+	   <div id="discountDiv">
+			 <div class="panel-heading" id="discountheading" align="left">
+                        <div class="panel-title">Discount Code</div>
+             </div>   
+			<div id="prcingpageservices" class="resdiv">
+				 
+				 <p style="font-size: 24px;
+				margin-top: 8%;
+				margin-bottom: 5%;
+				font-weight: 600;
+				color: #1d1a1a;" id="doyouhavedictextnode">Do you have a discount code? (example MYCT6M)</p>
+				 
+				 <button type="button" class="ConfirmButton" style="float: left;margin-left: 33%;" id="cpucodeyes">Yes</button>
+				 <button type="button" class="ConfirmButton" style="float: left;margin-left: 9%;" id="cpucodeno">No</button>
+				 <p id="noworry">No worries! We will automatically apply your discount code.</p>
+				 <input id="couponscode" type="text" class="form-control getvalues pac-target-input" name="buisneslegal" placeholder="Discount Code">
+				 <button id="proceeddiscountcode" class="paybutton">Discount Apply</button>
+				 
+			</div>
+			<div  class="">
+				<!-- Button -->
+				<div class="col-sm-11" style="padding:0">
+				<button id="backdiscount" class="paybutton" style="float: left;
+				width: 105px;">Back</button>
+				<button id="cloclksDISCOUNT" class="paybutton" style="float: right;margin-right: 81px;">Save & continue</button>
+				</div>
+			</div>				
+	   </div>
 	   <div id="divpricingobj">
 		  <div class="panel panel-info sizecuc" style="margin-top: 0px; height: auto;border-color: #ececec;" id="divprcingcustome">
                     <div class="panel-heading" align="left">
@@ -2088,34 +2028,24 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 						
 						<div class="maindivforprcin">
-							
-				         <div id="prcingpageservices" class="resdiv">
-							 
-							 <p style="font-size: 24px;
-							margin-top: 8%;
-							margin-bottom: 5%;
-							font-weight: 600;
-							color: #1d1a1a;" id="doyouhavedictextnode">Do you have a discount code? (example MYCT6M)</p>
-							 
-							 <button type="button" class="ConfirmButton" style="float: left;margin-left: 33%;" id="cpucodeyes">Yes</button>
-							 <button type="button" class="ConfirmButton" style="float: left;margin-left: 9%;" id="cpucodeno">No</button>
-							 
-							 <input id="couponscode" type="text" class="form-control getvalues pac-target-input" name="buisneslegal" placeholder="Discount Code">
-							 <button id="proceeddiscountcode" class="paybutton">Discount Apply</button>
-							 
-						</div>
-							
-							
-						
-							<div id="prcingpageservices" class="resdiv"><div class="titleprcing1"><p id="titlepcing1aff"></p></div><div class="pricecut"><strike>$<span id="printpccing2aff"></span></strike></div><div id="pricewillshow1"><spam id="dic" style="    font-size: 20px;
-    color: black;">Coupon Discount</spam> -$<span id="showsdicountprince">2999</span></div><div id="luckby"><div id="pricewillshowduck">$0.00</div></div><div class="dexcription">
-							 <span id="descp"></span>
-							 
-							 
-							 </div>
-						</div>
-							
-							<div id="prcingpageservices" class="resdiv" style="margin-bottom: 16px;"><div class="titleprcing1"><p id="packpciingtitle"></p></div><div class="pricecut"><strike>$<span id="prcingpack"></span></strike></div><div class="pricewillshow">$0.00</div><div class="dexcription">
+	
+							<div id="prcingpageservices" class="resdiv">
+								<div class="titleprcing1"><p id="titlepcing1aff"></p></div>
+								<div class="pricecut" style="color: #333;opacity:0.8">$<span id="printpccing2aff"></span></div>
+								<div id="pricewillshow1"><span id="dic" style="font-size: 20px;color: black;">Coupon Discount</spam> -$<span id="showsdicountprince">2999</span></div>
+								<div class="titleprcing1"><p id="titlepcing1aff1"></p></div>
+								<div class="pricecut"><strike>$<span id="printpccing2aff1"></span></strike></div>
+								<div id="pricewillshow1"><span id="dic" style="font-size: 20px;color: black;">Coupon Discount</spam> -$<span id="showsdicountprince">2999</span></div><div id="luckby"><div id="pricewillshowduck">$0.00</div></div><div class="dexcription">
+								 <span id="descp"></span> 
+								</div>
+								</div>
+							<div id="prcingpageservices" class="resdiv" style="margin-bottom: 16px;">
+							<div class="titleprcing1"><p id="packpciingtitle"></p></div>
+							<div class="pricecut" style="color: #333;opacity:0.8">$<span id="prcingpack"></span></div>
+							<div class="titleprcing1"><p id="packpciingtitle1"></p></div>
+							<div class="pricecut"><strike>$<span id="prcingpack1"></span></strike></div>
+							<div class="pricewillshow">$0.00</div>
+							<div class="dexcription">
 							
 								<p id="descff09"></p>
 							 
@@ -2136,6 +2066,21 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 						</div>
 							
 							<style>
+							#noworry{
+							font-size: 20px;
+							margin-top: 3%;
+							margin-bottom: 5%;
+							font-weight: 600;
+							color: #1d1a1a;
+							display: none;
+							}
+							#discountheading{
+								color: #ffffff!important;
+								background: #00B3FE 0% 0% no-repeat padding-box !important;
+								padding: 18px 15px !important;
+								width: 85%;
+								margin-right: auto;
+							}
 							#additionalcharges{
 								float: right;
 								font-size: 28px;
@@ -2150,6 +2095,9 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 								padding: 1px;
 								height: 31px;
 								/*    background: #001680;*/
+							}
+							#tablelist tr th:first-child{
+								text-align:center;
 							}
 							</style>
 							
@@ -2254,14 +2202,22 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		}
 		#prcingpageservices
 		{
-			       width: 100%;
-    padding: 26px;
-    background: white;
-	border: 3px solid #ececec;
+			width: 100%;
+			margin-top: 45px;
+			border-radius: 30px;
+			padding: 26px;
+			background: white;
+			border: 3px solid #ececec;
 			position: relative;
-    float: left;
-    margin-top: 45px;
-    border-radius: 30px;
+			float: left;
+		}
+		#discountDiv #prcingpageservices p{
+			opacity:0.7;
+		}
+		#discountDiv #prcingpageservices{
+		WIDTH:85%;
+		margin-top: 0;
+			border-radius: 0;
 		}
 		.dexcription::-webkit-scrollbar {
     width: 2px;
@@ -2300,10 +2256,10 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		}
 		.titleprcing1
 		{
-    width: 84%;
-    height: 132px;
+    width: 81%;
+    height: auto;
     font-weight: 600;
-    padding: 10px;
+    padding: 3px 0px;
     font-size: 20px;
     text-align: left;
     float: left;
@@ -2329,17 +2285,20 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     float: left;
 /*    background: white;*/
 }
-		
+		#descff09 h2{
+			margin-top:0;
+		}
 		.pricecut
 		{
 			
+    margin-right: 23px;
 	width: 70px;
     float: left;
     font-size: 21px;
     color: #b59e9e;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     font-weight: 700;
-    padding: 6px;
+    padding: 10px;
     height: 31px;
 			
 		}
@@ -2368,11 +2327,10 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		{
 		width: 80%;
 		float: left;
-		margin-top: -61px;
 		overflow-x: hidden;
 		padding: 13px;
 		text-align: left;
-		padding-top:0;
+		padding-top:5px;;
 		}
 	#adinalpackbuttons{
 		position: relative;
@@ -2394,13 +2352,13 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 								
 								document.getElementById('cpucodeno').style.color="black";
 								document.getElementById('cpucodeno').style.background="white";
-								
+								$("#noworry").hide();
 								
 							});
 							
 							document.getElementById('cpucodeno').addEventListener("click",function(){
 								
-								
+								$("#noworry").css("display","inline-block");
 								document.getElementById('couponscode').style.display="none";
 								document.getElementById('proceeddiscountcode').style.display="none";
 								document.getElementById('doyouhavedictextnode').style.cssText="font-size: 24px;margin-top: 8%;margin-bottom: 5%;font-weight: 600;color: #1d1a1a;";
@@ -2593,7 +2551,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 	  
 	  <tr>
 		  <th scope="row">1</th>
-		  <th scope="row"><span id="price1"></span> Premium non-recurring engineering setup charge credit </th>
+		  <th scope="row"><span id="price11"></span> non-recurring engineering setup charge discount code applied </th>
 		  <th scope="row" style="padding-left: 2px;"> -$ <span id="Dmainpriceoninvoice"></span></th>
 		  <th scope="row" style="padding-left: 2px;"> -$ <span id="Dmainpriceoninvoice1"></span</th>
 </th>
@@ -2619,7 +2577,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 						<tr>
 		  <th scope="row">1</th>
 		  <th scope="row">	
-<span id="price3"></span> Premium monthly service charge credit </th>
+<span id="price33"></span> monthly service charge discount code applied </th>
 		  <th scope="row" style="padding-left: 2px;"> -$ <span id="Dmonthserchargedis"></span> </th>
 		  <th scope="row" style="padding-left: 2px;"> -$ <span id="Dmonthserchargedis1"></span> </th>
     </tr>
@@ -2635,16 +2593,16 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     </tr>
 	  
 	   <tr id="tridpercetagerow">
-		  <th scope="row">4</th>
-		  <th scope="row">	<span id="price44"></span>Premium monthly service charge – additional location <span id="percentresult"></span></th>
+		  <th scope="row" class="locationcount"></th>
+		  <th scope="row">	<span id="price44"></span> monthly service charge – additional location <span id="percentresult"></span></th>
 
 		  <th scope="row"> $ <span id="pricepercentsg1"></span></th>
 		  <th scope="row"> $ <span id="totalpercentresults1"></span></th>
     </tr>
 						
 	 <tr>
-		  <th scope="row">4</th>
-		  <th scope="row">Premium monthly service charge – additional location credit</th>
+		  <th scope="row" class="locationcount"></th>
+		  <th scope="row"><span id="price441"></span> monthly service charge – additional location discount code applied</th>
 
 		  <th scope="row" style="padding-left: 2px;"> -$ <span id="DesmonthsercharAddnlaloc"></span></th>
 		  <th scope="row" style="padding-left: 2px;"> -$ <span id="DesmonthsercharAddnlaloc1"></span></th>
@@ -2662,7 +2620,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 
 <tr id="Entertainmentpack11" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
-		  <th scope="row">Entertainment bundle credit</th>
+		  <th scope="row">Entertainment bundle discount code applied</th>
 
 		  <th scope="row" style="padding-left: 2px;"> -$ 249.00</span></th>
 		  <th scope="row" style="padding-left: 2px;"> -$ 249.00</th>
@@ -2684,7 +2642,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 <tr id="Interactivity22" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">Interactivity creation & management package credit</th>
+		  <th scope="row">Interactivity creation & management package discount code applied</th>
 
 		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</span></th>
 		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</th>
@@ -2706,7 +2664,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 <tr id="LiveChat33" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">Live-chat & phone support package credit</th>
+		  <th scope="row">Live-chat & phone support package discount code applied</th>
 
 		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</span></th>
 		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</th>
@@ -2729,7 +2687,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 <tr id="Live_Stream44" style="position: absolute; visibility: hidden;">
 	<th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">Live stream channel creation & management package credit</th>
+		  <th scope="row">Live stream channel creation & management package discount code applied</th>
 
 		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</span></th>
 		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</th>
@@ -2751,7 +2709,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 <tr id="TV_Channel55" style="position: absolute; visibility: hidden;">
 		  <th scope="row">1</th>
 <!--      <th scope="row">Month Fee </th>-->
-		  <th scope="row">Tv channel creation & management package credit</th>
+		  <th scope="row">TV channel creation & management package discount code applied</th>
 
 		  <th scope="row" style="padding-left: 2px;" > -$ 99.00</span></th>
 		  <th scope="row" style="padding-left: 2px;"> -$ 99.00</th>
@@ -3455,7 +3413,7 @@ authorized representatives as of the date set forth below.</p>
 <style>
 
 .tacnum{
-font-size:30px !important;
+font-size:25px !important;
 color: #212121 !important;
 opacity:0.7
 }
@@ -3868,7 +3826,6 @@ var test = JSON.parse(localStorage.getItem("packages"));
 		  document.getElementById('restuls11').innerHTML = "No";
 		   document.getElementById('percentage1').style.display="none";
 			   
-			    document.getElementById('percentage2').style.display="none";
 			    document.getElementById('prcingpageservices2').style.display="none";
 		   yesrpog ="";
 		  
@@ -4180,6 +4137,7 @@ validationCustom02.add(defaultOption122);
 							 console.log(item12);
 							 
 			 li.innerHTML='<div class="pad15"><p class="lead '+item12.title.replace(" ","").substring(0, 10)+'">'+item12.title+'"</p><p class="pricingtitle121">$<strike>'+item12.variants[0].compareAtPrice+'/mo*</strike></p><p class="pricingtitle">$'+item12.variants[0].price+'/mo*</p><div class="listdetails">'+item12.descriptionHtml.replace('<br>','')+'</div><span id="btnaddpack">+ADD</span></p></div>';
+			 li.setAttribute("id", item12.title.replace("-","").replace(" ","").substring(0, 8));
 			 ul.appendChild(li);
 
 							 var lkkl = "Digital Marketing Package";
@@ -4188,18 +4146,15 @@ validationCustom02.add(defaultOption122);
 							 var llb4 = "Interactivity Creation & Management Package";
 							 
 							
-										//sachin
 							 if (lkkl==item12.title)
 								 {
 									var lis = document.getElementById("packagediv").getElementsByClassName("item");						 
-						var itemview = lis[index12];	 
-						itemview.style.cssText = " display:none;";
-									 itemview.setAttribute("id", "my-id");
-//									itemview.setAttribute("class", "democlass");
-									
+									var itemview = lis[index12];	 
+									itemview.style.cssText = " display:none;";
+									 itemview.setAttribute("id", "DigitalM");
+
 									  var x = document.getElementById("packagediv").querySelectorAll(".listdetails");
-													
-//									 console.log(x[index12]);
+
 									   var desc = x[index12].innerText.substring(x[index12].innerText.indexOf('{')+1, x[index12].innerText.indexOf('}'));  
 									
 									     x[index12].innerText = desc.trim();
@@ -4219,7 +4174,7 @@ validationCustom02.add(defaultOption122);
 						var lisb = document.getElementById("packagediv").getElementsByClassName("item");						 
 						var itemviewn = lisb[index12];	 
 						itemviewn.style.cssText = "display:none;";
-									 itemviewn.setAttribute("id", "myid");
+									 itemviewn.setAttribute("id", "WebsiteD");
 									  
 									 var x = document.getElementById("packagediv").querySelectorAll(".listdetails");
 																      
@@ -4282,17 +4237,66 @@ validationCustom02.add(defaultOption122);
 					titlemain = item12.title;
 									 gettochwithvales = "Entertainment Package";
 									getifslcteddesobject = "Interactivity Creation & Management Package";
-									 
-						var lis = document.getElementById("packagediv").getElementsByClassName("item");						 
-						var itemview = lis[index12];	 
+						
+						var id = item12.title.replace("-","").replace(" ","").substring(0, 8);
+						var lis = document.getElementById(id);						 
+						var itemview = lis;	 
 						itemview.style.border="2px solid #11C1FF";
 									  
-									var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									    x[index12].innerHTML = "Remove";
-									 x[index12].style.cssText = "background: #00B6FF;color: white;font-size: 18px;line-height: 35px;border: none;";
 									
-						
-									 
+						var currentID = item12.variants[0].id;
+						var Added = false;
+						getadnilapackarray.forEach(function(addcpkid,addcpkitem){
+						 if(addcpkid == currentID){
+							Added = true;
+							getadnilapackarray.splice(addcpkitem,1);
+						 }
+						});
+						if(!Added){
+							var x = $("#"+id).find("#btnaddpack");
+							x.html("Remove");
+							x.css ({"background": "#00B3FE","color": "white","font-size": "18px","line-height": "35px","border": "none"});
+							if(item12.title == "Entertainment Package"){
+								var newArray = []
+								getadnilapackarray.forEach(function(addcpkid,addcpkitem){
+								if(addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2Mjg1MTg5OTUyNQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjQ0NDc1NzEyNQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjQ1MzQ0MDY0NQ=="){
+									newArray.push(addcpkid);
+								}
+								});
+								getadnilapackarray = newArray;
+								$("#Interact").css({pointerEvents: "none",'border': 'none'})
+								$("#LiveStre").css({pointerEvents: "none",'border': 'none'})
+								$("#TVChanne").css({pointerEvents: "none",'border': 'none'})
+								$("#Interact").find("#btnaddpack").css({"background":"rgb(255, 255, 255)","width": "20%","border": "1px solid #e8e1e1","font-weight": "700","color": "#e8e1e1","font-size": "18px"});
+								$("#TVChanne").find("#btnaddpack").css({"background":"rgb(255, 255, 255)","width": "20%","border": "1px solid #e8e1e1","font-weight": "700","color": "#e8e1e1","font-size": "18px"});
+								$("#LiveStre").find("#btnaddpack").css({"background":"rgb(255, 255, 255)","width": "20%","border": "1px solid #e8e1e1","font-weight": "700","color": "#e8e1e1","font-size": "18px"});
+								$("#Interact").find("#btnaddpack").html("+ADD");
+								$("#LiveStre").find("#btnaddpack").html("+ADD");
+								$("#TVChanne").find("#btnaddpack").html("+ADD");
+							}
+							getadnilapackarray.push(item12.variants[0].id);
+						} else {
+							var id = item12.title.replace("-","").replace(" ","").substring(0, 8);
+							$("#"+id).css({"border":"2px solid #ececec"});
+							var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
+							$("#"+id).find("#btnaddpack").html("+ADD");
+							$("#"+id).find("#btnaddpack").css({"background":"white","color":"black","border":"1px solid black","width": "20%"});
+							if(item12.title == "Entertainment Package"){
+								$("#Interact").css({"pointerEvents": "auto","background":"#ffffff",'border': 'none'})
+								$("#LiveStre").css({"pointerEvents": "auto","background":"#ffffff",'border': 'none'})
+								$("#TVChanne").css({"pointerEvents": "auto","background":"#ffffff",'border': 'none'})
+								$("#Interact").find(".pad15").css({"background":"#ffffff"})
+								$("#LiveStre").find(".pad15").css({"background":"#ffffff"})
+								$("#TVChanne").find(".pad15").css({"background":"#ffffff"})
+								$("#Interact").find("#btnaddpack").css({"background":"#ffffff", "width": "20%","border": "1px solid #000","color":"#000","font-weight": "700"})
+								$("#LiveStre").find("#btnaddpack").css({"background":"#ffffff", "width": "20%","border": "1px solid #000","color":"#000","font-weight": "700"})
+								$("#TVChanne").find("#btnaddpack").css({"background":"#ffffff", "width": "20%","border": "1px solid #000","color":"#000","font-weight": "700"})
+								$("#Interact").find("#btnaddpack").html( "+ADD")
+								$("#LiveStre").find("#btnaddpack").html( "+ADD")
+								$("#TVChanne").find("#btnaddpack").html( "+ADD")
+							}
+							Added = false;
+						}
 						function datacalltwotime()
 									 {
 									
@@ -4300,192 +4304,49 @@ validationCustom02.add(defaultOption122);
 						{
 							var checkselcton = document.getElementById("valueforslction").value;
 							console.log(checkselcton);
-							if (checkselcton=="")
-								{
-		
-							
-							if (addinal_variable=="Additional Enterprise")
-								{
-							
-								var lis3 = document.getElementById("packagediv").getElementsByClassName("item");
-									lis3[3].style.pointerEvents="none";
-						    lis3[4].style.pointerEvents="none";
-						    lis3[5].style.pointerEvents="none";
-													
-							
-								var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 c[3].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-							         c[4].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-							         c[5].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-									
-									var d = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 d[3].innerHTML = "+ADD";
-							         d[4].innerHTML = "+ADD";
-							         d[5].innerHTML = "+ADD";
-
-							testpopse = "1";
-									
-									
-								}
-									else
-									{
-										
-								var lis3 = document.getElementById("packagediv").getElementsByClassName("item");
-									lis3[3].style.pointerEvents="none";
-									lis3[4].style.pointerEvents="none";
-									lis3[6].style.pointerEvents="none";
-									lis3[5].style.pointerEvents="none";
-													
-							
-								var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 c[3].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-							         c[6].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-							         c[5].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-									 c[4].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-									
-									var d = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 d[3].innerHTML = "+ADD";
-							         d[6].innerHTML = "+ADD";
-							         d[5].innerHTML = "+ADD";
-									 d[4].innerHTML = "+ADD";
-
-							testpopse = "1";
-										
-									}
-								}
-								else
+							if (checkselcton!="")
 								{
 									
 									if (addinal_variable=="Additional Enterprise")
 										{
 											
 										document.getElementById("valueforslction").value ="";
-							var lis3 = document.getElementById("packagediv").getElementsByClassName("item");
-							
-							lis3[3].style.pointerEvents="none";
-						    lis3[4].style.pointerEvents="none";
-						    lis3[5].style.pointerEvents="none";
-							
-								var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 c[3].style.background = "#afa0a0";
-									 c[4].style.background = "#afa0a0";
-							         c[6].style.background = "#afa0a0";
-							         c[5].style.background = "#afa0a0";
 											
-							testpopse = "1";
-									
-									var lis4 = document.getElementById("packagediv").getElementsByClassName("item");
-									    lis4[3].style.border="1px solid #ececec";
-									    lis4[4].style.border="1px solid #ececec";
-									    lis4[5].style.border="1px solid #ececec";
-									
-
-									
-										var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 c[3].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-							         c[4].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-							         c[5].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-									
-									var d = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 d[3].innerHTML = "+ADD";
-							         d[4].innerHTML = "+ADD";
-							         d[5].innerHTML = "+ADD";
-									 if(item12.title == "Entertainment Package"){
-										 var newArray = []
-										 getadnilapackarray.forEach(function(addcpkid,addcpkitem){
-										 if(addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2Mjg1MTg5OTUyNQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjQ0NDc1NzEyNQ=="){
-											newArray.push(addcpkid);
-										 }
-										 });
-										 getadnilapackarray = newArray;
-									}
-									getadnilapackarray.push(item12.variants[0].id);
-									newArr =  getadnilapackarray;
+							        testpopse = "1";
 									console.log(getadnilapackarray); 	 
-for(var h = 0; h < getadnilapackarray.length; h++) {
-    var curItem = getadnilapackarray[h];
-    var foundCount = 0;
-									   
-	
-    for(var i = 0; i < getadnilapackarray.length; i++) {
-        if (getadnilapackarray[i] == getadnilapackarray[h])
-            foundCount++;
-		
-		
-    }
-	
-    if(foundCount > 1) {
-        // remove repeated item from new array
-		console.log(getadnilapackarray);
-        for(var j = 0; j < newArr.length; j++) {
-            if(newArr[j] == curItem) {                
-                newArr.splice(j, 1);
-                j = j - 1;		
-            } 
-        }  
-		
-    }
-		
-}
-								 var str = newArr.toString();
- listthecheckmarmap = str.split();
-  listthecheckmarmap = JSON.parse("[" + JSON.stringify(listthecheckmarmap) + "]");
-console.log(listthecheckmarmap);
-	console.log(getadnilapackarray);
-	
-										
+										for(var h = 0; h < getadnilapackarray.length; h++) {
+											var curItem = getadnilapackarray[h];
+											var foundCount = 0;
+																			   
 											
+											for(var i = 0; i < getadnilapackarray.length; i++) {
+												if (getadnilapackarray[i] == getadnilapackarray[h])
+													foundCount++;	
+											}
+											
+											if(foundCount > 1) {
+												// remove repeated item from new array
+												console.log(getadnilapackarray);
+												for(var j = 0; j < newArr.length; j++) {
+													if(newArr[j] == curItem) {                
+														newArr.splice(j, 1);
+														j = j - 1;		
+													} 
+												}  
+												
+											}
+												
+										}
+									var str = newArr.toString();
+									listthecheckmarmap = str.split();
+									listthecheckmarmap = JSON.parse("[" + JSON.stringify(listthecheckmarmap) + "]");
+									console.log(listthecheckmarmap);
+									console.log(getadnilapackarray);	
 										}
 									else
 										{
 											
-											document.getElementById("valueforslction").value ="";
-								console.log("sonu");
-//									console.log("ok1");
-							var lis3 = document.getElementById("packagediv").getElementsByClassName("item");
-							
-							lis3[3].style.pointerEvents="none";
-						    lis3[6].style.pointerEvents="none";
-						    lis3[5].style.pointerEvents="none";
-							lis3[4].style.pointerEvents="none";
-	
-								var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 c[3].style.background = "#afa0a0";
-							         c[6].style.background = "#afa0a0";
-							         c[5].style.background = "#afa0a0";
-									 c[4].style.background = "#afa0a0";
-							testpopse = "1";
-									
-									var lis4 = document.getElementById("packagediv").getElementsByClassName("item");
-									    lis4[3].style.border="1px solid #ececec";
-									    lis4[6].style.border="1px solid #ececec";
-									    lis4[5].style.border="1px solid #ececec";
-										lis4[4].style.border="1px solid #ececec";
-									
-
-									
-										var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-											
-									 c[3].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-							         c[6].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-							         c[5].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-									 c[4].style.cssText = "background: rgb(255, 255, 255);width: 20%;border: 1px solid #e8e1e1;font-weight: 500;color: #e8e1e1;font-size: 18px;";
-									
-									var d = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 d[3].innerHTML = "+ADD";
-							         d[6].innerHTML = "+ADD";
-							         d[5].innerHTML = "+ADD";
-									 d[4].innerHTML = "+ADD";
-									 if(item12.title == "Entertainment Package"){
-										 var newArray = []
-										 getadnilapackarray.forEach(function(addcpkid,addcpkitem){
-										 if(addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2Mjg1MTg5OTUyNQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjQ0NDc1NzEyNQ=="){
-											newArray.push(addcpkid);
-										 }
-										 });
-										 getadnilapackarray = newArray;
-									}
-									 getadnilapackarray.push(item12.variants[0].id);
+									document.getElementById("valueforslction").value ="";		
 									 newArr = getadnilapackarray;
 									console.log(getadnilapackarray); 	 
 									for(var h = 0; h < getadnilapackarray.length; h++) {
@@ -4534,98 +4395,15 @@ console.log(listthecheckmarmap);
 //													
 													if (addinal_variable == "Additional Enterprise")
 														{
-															
-															 console.log("billu paji");
-													
 													document.getElementById("valueforslction").value ="www";
 													
 											 var lis3 = document.getElementById("packagediv").getElementsByClassName("item");
-							
-							lis3[3].style.pointerEvents="auto";
-						    lis3[4].style.pointerEvents="auto";
-						    lis3[5].style.pointerEvents="auto";
-							
-							
-						       var b = document.getElementById("packagediv").querySelectorAll(".pad15");
-									 b[3].style.background = "#ffffff";
-							         b[4].style.background = "#ffffff";
-							         b[5].style.background = "#ffffff";
-							
-													
-													var c = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 c[3].style.cssText = "background:#ffffff; width: 136px;";
-							         c[4].style.cssText = "background:#ffffff; width: 136px;";
-							         c[5].style.cssText = "background:#ffffff; width: 136px;";
-									
-									var d = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-									 d[3].innerHTML = "+ADD";
-							         d[4].innerHTML = "+ADD";
-							         d[5].innerHTML = "+ADD";
-															
-															console.log("saleem");
-															
+						
 														}
 													else
 														{
-															
-															 console.log("Usman khan");
-													
+												
 													document.getElementById("valueforslction").value ="www";
-											
-															
-											 var lis3 = document.getElementById("packagediv").getElementsByClassName("item");
-							
-							lis3[3].style.pointerEvents="auto";
-							lis3[4].style.pointerEvents="auto";
-						    lis3[6].style.pointerEvents="auto";
-						    lis3[5].style.pointerEvents="auto";
-							
-							
-						       var b = document.getElementById("packagediv").querySelectorAll(".pad15");
-									 b[3].style.background = "#ffffff";
-							         b[6].style.background = "#ffffff";
-							         b[5].style.background = "#ffffff";
-									 b[4].style.background = "#ffffff";
-							
-										console.log(item12.title);
-															
-															if (item12.title=="Interactivity Creation & Management Package")
-																{
-																	var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-																	x[index12].innerHTML = "Remove";
-																	 x[index12].style.cssText = "background: #00B6FF;color: white;font-size: 18px;line-height: 35px;border: none;";
-																}
-															if (item12.title=="Live-Chat & Phone Support Package")
-																{
-																	var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-																	x[index12].innerHTML = "Remove";
-																	 x[index12].style.cssText = "background: #00B6FF;color: white;font-size: 18px;line-height: 35px;border: none;";
-																}
-															if (item12.title=="Live Stream Channel Creation & Management Package")
-																{
-																	var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-																	x[index12].innerHTML = "Remove";
-																	 x[index12].style.cssText = "background: #00B6FF;color: white;font-size: 18px;line-height: 35px;border: none;";
-																}
-															if (item12.title=="TV Channel Creation & Management Package")
-																{
-																	var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-																	x[index12].innerHTML = "Remove";
-																	 x[index12].style.cssText = "background: #00B6FF;color: white;font-size: 18px;line-height: 35px;border: none;";
-																}
-															if (item12.title=="Entertainment Package")
-																{
-																	var d = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-															
-																	 d[3].innerHTML = "+ADD";
-																	 d[6].innerHTML = "+ADD";
-																	 d[5].innerHTML = "+ADD";
-																	 d[4].innerHTML = "+ADD";
-																	d[3].style.cssText = "background:white; color:black;border:1px solid black;";;
-																	d[6].style.cssText = "background:white; color:black;border:1px solid black;";;
-																	d[5].style.cssText = "background:white; color:black;border:1px solid black;";;
-																	d[4].style.cssText = "background:white; color:black;border:1px solid black;";;
-																}	
 														}
 												}
 
@@ -4648,17 +4426,6 @@ console.log(listthecheckmarmap);
 									     addnalgetprciehere.push(addnalgetprciehere1);
 									 
 									 printok();
-									 if(item12.title == "Entertainment Package"){
-										 var newArray = getadnilapackarray
-										 getadnilapackarray.forEach(function(addcpkid,addcpkitem){
-										 if(addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjQ1MzQ0MDY0NQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjY2MDk2MDM4OQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUzODIxMTQ2MQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjUyMzI2OTI1Mw=="){
-											newArray.splice(addcpkitem,1);
-										 }
-										 });
-										 getadnilapackarray = newArray;
-									}
-									 getadnilapackarray.push(item12.variants[0].id);
-									 newArr = getadnilapackarray;
 									 
 							 }
 								 
@@ -4702,7 +4469,7 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
     var curItem = getadnilapackarray[h];
     var foundCount = 0;
 									   
-	
+	console.log(getadnilapackarray); 	 
     for(var i = 0; i < getadnilapackarray.length; i++) {
         if (getadnilapackarray[i] == getadnilapackarray[h])
             foundCount++;
@@ -4730,13 +4497,6 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 			{
 				datacalltwotime();
 			}	
-				var lis = document.getElementById("packagediv").getElementsByClassName("item");
-						var itemview = lis[index12];	
-						itemview.style.border="2px solid #ececec";
-				
-				var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-					x[index12].innerHTML = "+ADD";
-				x[index12].style.cssText = "background:white; color:black;border:1px solid black;";
             }
 			  
         }  
@@ -4744,20 +4504,13 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
     }
 		
 }
-								 var str = newArr.toString();
- listthecheckmarmap = str.split();
-  listthecheckmarmap = JSON.parse("[" + listthecheckmarmap + "]");
-console.log(listthecheckmarmap);	
-	 
-								 
-								 
-							 }
-							 
-							 
-							 
+					var str = newArr.toString();
+					listthecheckmarmap = str.split();
+					listthecheckmarmap = JSON.parse("[" + listthecheckmarmap + "]");
+					console.log(listthecheckmarmap);		 
+							 }	 
 						 });
-						
-						
+						$("#LiveChat").prependTo("#packagediv");
 					}
 				  
 				  
@@ -4767,15 +4520,10 @@ console.log(listthecheckmarmap);
 						  
 						    item121.products.forEach(function(itemper,indexper){
 								
-//								console.log(itemper.title);
-								
-								
-//								console.log(itemper);
 								console.log(conttake);
 								
 								if (itemper.title==conttake)
 									{
-//									   console.log(item121.products[indexper].variants[0].compareAtPrice);
 										
 										numberlocationpricemultipling = item121.products[indexper].variants[0].compareAtPrice;
 									
@@ -4791,8 +4539,6 @@ console.log(listthecheckmarmap);
 									{
 										
 										console.log("kingkhan");
-										 
-//										document.getElementById("prcingpageservices2").style.display="none";
 										getidforpercent =="";
 									}
 							
@@ -4816,38 +4562,24 @@ console.log(listthecheckmarmap);
 								
 							
 						  var a = parseFloat(getmonthfeehereforplusadnalpackgprice)
-//						  var printdynamicdata = a+totalpricepercentage;
-//						  
-//						  console.log(a);
 						  console.log(totalpricepercentage);
 						  document.getElementById("pricepercentsg1").innerHTML = numberlocationpricemultipling;
 						  document.getElementById("perCent01").innerHTML = numberlocationpricemultipling;
 						  document.getElementById("totalpercentresults1").innerHTML = totalpricepercentage;
 						  document.getElementById("totalnumlPLpercentage").innerHTML = totalpricepercentage;
-						  
-//						
-//						  document.getElementById("totalmonthfeewiaddnal").innerHTML = printdynamicdata;
-//						   document.getElementById("adinallocionprcing").innerHTML = printdynamicdata;
-								
+
 								}
 						  
 						  
 						  else if (addinal_variable=="Additional Enterprise")
 							{
 								
-							 
-//						  var a = parseFloat(addloationprintpremium0011);
-//						  var printdynamicdata = a+totalpricepercentage;
-
 						  console.log(totalpricepercentage);
 						  document.getElementById("pricepercentsg1").innerHTML = numberlocationpricemultipling;
 						  document.getElementById("perCent01").innerHTML = numberlocationpricemultipling;
 						  document.getElementById("totalpercentresults1").innerHTML = totalpricepercentage;
 						  document.getElementById("totalnumlPLpercentage").innerHTML = totalpricepercentage;
 						  
-					
-//						  document.getElementById("totalmonthfeewiaddnal").innerHTML = printdynamicdata;
-//						   document.getElementById("adinallocionprcing").innerHTML = printdynamicdata;
 								console.log("king");
 								
 								}
@@ -4884,6 +4616,7 @@ console.log(listthecheckmarmap);
 				
 					console.log(item2.title);
 					if (typecontent2==item2.title)
+					if (typecontent2==item2.title)
 					{	
 			
 //					     console.log(item2.descriptionHtml);
@@ -4900,12 +4633,25 @@ console.log(listthecheckmarmap);
 					console.log(item21.title);
 					if (typecontent==item21.title)
 					{	
-			
-//					     console.log(item21.descriptionHtml);
 						var desckk = item21.descriptionHtml;
 						var desckk2 = desckk.substring(desckk.indexOf('{')+1, desckk.indexOf('}')); 
-						document.getElementById("descff09").innerHTML = desckk2;
-
+						var ss =desckk2.replace("<p> </p>","").trim()
+						document.getElementById("descff09").innerHTML = desckk2.replace("<p></p>","").replace("<p> </p>","").trim();
+						
+						/*Remove extra spaces*/
+						$( 'p:empty' ).remove();
+						$("span").each(function() { 
+						   var $el = $(this);
+						   if($.trim($el.html()) == "&nbsp;") {
+							 $el.remove();
+						   }
+						 });
+						$("p").each(function() { 
+						   var $el = $(this);
+						   if($.trim($el.html()) == "&nbsp;" || $.trim($el.html()) == "<br>") {
+							 $el.remove();
+						   }
+						 });
 					}
 						
 			});
@@ -4929,10 +4675,6 @@ console.log(listthecheckmarmap);
 			  console.log(getidforpercent);
 		  
 		  client.collection.fetchAllWithProducts().then((collections) => {
-
-//  console.log(collections[0].products);
-//  console.log(collections[1].products);
-//			 console.log(collections); 
 			  
 			collections[0].products.forEach(function(item,index){
 				
@@ -5612,11 +5354,9 @@ fetch(url1)
 				document.getElementById('yesforbusness').style.background="#337ab7";
 				document.getElementById('yesforbusness').style.color="white";
 			    document.getElementById('noforbusness').style.border="1px solid #ccc"; 
-				
+				document.getElementById('percentage1').style.display="none"
 			    document.getElementById('noforbusness').style.background="white";
 				document.getElementById('noforbusness').style.color="black";
-				
-				
 			});
 		  
 		 
@@ -5693,10 +5433,7 @@ document.getElementById('prcingpageservices2').style.display="none";
 		
 			    document.getElementById('validationCustom03').disabled = true;
 			   document.getElementById('div3obj').style.display="none";
-			   
-			    document.getElementById('percentage1').style.display="none";
-			   
-			    document.getElementById('percentage2').style.display="none";
+			  
 			    
 			});
 		   document.getElementById('noforbusness').addEventListener("click",function(){
@@ -5723,7 +5460,7 @@ document.getElementById('prcingpageservices2').style.display="none";
 			  
 			  document.getElementById('yesforbusness').style.background="white";
 				document.getElementById('yesforbusness').style.color="black";
-
+				document.getElementById('percentage1').style.display="block"
 			  
 			});
 		   document.getElementById('submitdatamain').addEventListener("click",function(){
@@ -6029,8 +5766,8 @@ document.getElementById('prcingpageservices2').style.display="none";
 		 
 			  $('.item').hide();
 			  
-			  $('#my-id').show();
-			  $('#myid').show();
+			  $('#DigitalM').show();
+			  $('#WebsiteD').show();
 			  
 			   document.getElementById('nexttotermscodi').style.display = "none";
 			   document.getElementById('nexttotermscodi10').style.display = "block";
@@ -6044,19 +5781,28 @@ document.getElementById('prcingpageservices2').style.display="none";
 		  
 		  
 		  
-		   document.getElementById('cloclks8').addEventListener("click",function(){
+		   document.getElementById('cloclks8').addEventListener("click",function(){					
+				document.getElementById('div8obj').style.display = "none";	
+				document.getElementById('discountDiv').style.display = "block";					
+			});
+		 
+		 document.getElementById('backdiscount').addEventListener("click",function(){					
+				document.getElementById('div8obj').style.display = "block";	
+				document.getElementById('discountDiv').style.display = "none";					
+			});
+		  document.getElementById('cloclksDISCOUNT').addEventListener("click",function(){
 			  
-							
-							document.getElementById('divpricingobj').style.display = "block";
-							
-							 var topPos = document.getElementById('divpricingobj').offsetTop;
-                              var monthlychargesforall = "$"+numberlocationpricemultipling +" * "+ document.getElementById('nolocaitons1').innerHTML
-							  document.getElementById("additionalcharges").innerHTML = monthlychargesforall
-							  document.getElementById("perCent01").innerHTML = numberlocationpricemultipling;
-							  document.getElementById('div8obj').style.display = "none";
+				document.getElementById('discountDiv').style.display = "none";
+				document.getElementById('divpricingobj').style.display = "block";
+				
+				 var topPos = document.getElementById('divpricingobj').offsetTop;
+				  var monthlychargesforall = "$"+numberlocationpricemultipling +" * "+ document.getElementById('nolocaitons1').innerHTML
+				  document.getElementById("additionalcharges").innerHTML = monthlychargesforall
+				  document.getElementById("perCent01").innerHTML = numberlocationpricemultipling;
+				  document.getElementById('div8obj').style.display = "none";
+				  $(".locationcount").html($('#nolocaitons1').html());
 					
 				});
-		  
 		  document.getElementById('divpricingobj01').addEventListener("click",function(){
 			  
 							
@@ -6064,7 +5810,7 @@ document.getElementById('prcingpageservices2').style.display="none";
 							 var topPos = document.getElementById('div6obj').offsetTop;
                             
 						document.getElementById('divpricingobj').style.display = "none";
-			  document.getElementById('pricingtitleletbe').style.color = "#00B6FF"; 
+			  document.getElementById('pricingtitleletbe').style.color = "#00B3FE"; 
 			  document.getElementById('icond6').style.display = "block";
 			  
 			  
@@ -6347,7 +6093,7 @@ document.getElementById('weburl121').value = "wrong";
 				 document.getElementById('icond').style.display = "block";
 				  var topPos = document.getElementById('div2obj').offsetTop;
      
-				   document.getElementById('tellabutupou').style.color = "#00B6FF"; 
+				   document.getElementById('tellabutupou').style.color = "#00B3FE"; 
 				  
 				  	  document.getElementById('progressreport').style.width = "20%";
 				       document.getElementById('percentagecount').innerHTML = "20%";
@@ -6403,7 +6149,7 @@ document.getElementById('weburl121').value = "wrong";
 		  document.getElementById('back5').addEventListener("click",function(){
 			   
 			   document.getElementById('divpricingobj').style.display = "none";
-			   document.getElementById('div8obj').style.display = "block";
+			   document.getElementById('discountDiv').style.display = "block";
 			   
 					 
 					   var topPos = document.getElementById('div1obj').offsetTop;
@@ -6432,8 +6178,8 @@ document.getElementById('weburl121').value = "wrong";
 	
 			   
               $('.item').show();  
-			  $('#my-id').hide();
-			  $('#myid').hide();
+			  $('#DigitalM').hide();
+			  $('#WebsiteD').hide();
 			  
 			  document.getElementById('changecontent').innerHTML = "MAAS Optional Packages";
 			  document.getElementById('nexttotermscodi10').style.display = "none";
@@ -6458,14 +6204,13 @@ document.getElementById('weburl121').value = "wrong";
 		   document.getElementById('cloclks2').addEventListener("click",function(){
 	
 			   var buistype = document.getElementById('validationCustom01').value;
-			   
+			   var noofproducts = parseInt(document.getElementById('validationCustom03').value); 
 			    var allocationesandno = document.getElementById('allocationesandno').value;
-			  			   
+			  	   
 			   storeingdata();
 			   
 			   if (yesrpog=="")
 				   {	   
-//					   alert('okok');
 					    numofloation  =  parseInt(document.getElementById('numofloation').value);
 					
 					    validationCustom = 0;
@@ -6549,12 +6294,11 @@ document.getElementById('weburl121').value = "wrong";
 			   else
 				  {
 					  
-					 if (numofloation<=10)
+					 if (numofloation<1000 && noofproducts<1000)
 						 {
 							 
 							 if (	numofloation<=1)
 								 {
-//								    alert("letbe");
 									 
 									 document.getElementById('div8obj').style.display = "block";
 					 
@@ -6565,8 +6309,8 @@ document.getElementById('weburl121').value = "wrong";
 					   
 					    document.getElementById('numofproducts').innerHTML = validationCustom;
 							 
-							  document.getElementById('divcustomeqotes').style.display = "none";
-  document.getElementById('div2obj').style.display = "none";
+					    document.getElementById('divcustomeqotes').style.display = "none";
+						document.getElementById('div2obj').style.display = "none";
 									 
 					  
 					  calcu();
@@ -6583,7 +6327,7 @@ document.getElementById('weburl121').value = "wrong";
 					  var topPos = document.getElementById('div3obj').offsetTop;
     
 									 
-document.getElementById('tolnumlocaion').innerHTML = numofloation;
+						document.getElementById('tolnumlocaion').innerHTML = numofloation;
 					   
 					    document.getElementById('numofproducts').innerHTML = validationCustom;		
 									 
@@ -6608,7 +6352,7 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 							   
 							  document.getElementById('divcustomeqotes').style.display = "block";
 					 
-					   var topPos = document.getElementById('divcustomeqotes').offsetTop;
+							var topPos = document.getElementById('divcustomeqotes').offsetTop;
     
 							  
 							   document.getElementById('div3obj').style.display = "none";
@@ -6616,7 +6360,7 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 							   document.getElementById('divpricingobj').style.display = "none";
 							   document.getElementById('div6obj').style.display = "none";
 							   document.getElementById('div5obj').style.display = "none";
-							    document.getElementById('div2obj').style.display = "none";
+							   document.getElementById('div2obj').style.display = "none";
 						  }
 					  
 					
@@ -6713,7 +6457,7 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 				  {
 					  
 					  
-					  	 if (numofloation<=10)
+					  	 if (numofloation<1000 && noofproducts<1000)
 						 {
 							  
 					 document.getElementById('div3obj').style.display = "block";
@@ -7009,7 +6753,7 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 					   
 				   var topPos = document.getElementById('div8obj').offsetTop;
                        
-					    document.getElementById('telabtyurbsuness').style.color = "#00B6FF"; 
+					    document.getElementById('telabtyurbsuness').style.color = "#00B3FE"; 
 				  document.getElementById('icond2').style.display = "block"; 
 					   
 					    document.getElementById('Perceproducts').innerHTML = percentsvalues;
@@ -7157,18 +6901,23 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 					  addinal_variable = "Additional Standard";
 					  percentage_variable = "PerPercentage Standard";
 					  
-					  document.getElementById("packges").innerHTML = "STANDRAD";
-					  document.getElementById("packges121").innerHTML = "STANDRAD";
-					  document.getElementById("packges121lb").innerHTML = "STANDRAD";
-					  document.getElementById("price1").innerHTML = "STANDRAD";
-					  document.getElementById("price2").innerHTML = "STANDRAD";
-					  document.getElementById("price3").innerHTML = "STANDRAD";
-					  document.getElementById("price4").innerHTML = "STANDRAD";
-					  
+					  document.getElementById("packges").innerHTML = "Standard";
+					  document.getElementById("packges121").innerHTML = "Standard";
+					  document.getElementById("packges121lb").innerHTML = "Standard";
+					  document.getElementById("price1").innerHTML = "Standard";
+					  document.getElementById("price11").innerHTML = "Standard";
+					  document.getElementById("price2").innerHTML = "Standard";
+					  document.getElementById("price3").innerHTML = "Standard";
+					  document.getElementById("price33").innerHTML = "Standard";
+					  document.getElementById("price4").innerHTML = "Standard";
+					  document.getElementById("price44").innerHTML = "Standard";
+					   document.getElementById("price441").innerHTML = "Standard";
 					  document.getElementById("print5").innerHTML = "999.00";
 					  document.getElementById("printpccing2aff").innerHTML = "999.00";
+					  document.getElementById("printpccing2aff1").innerHTML = "999.00";
 					  document.getElementById("print6").innerHTML =  "99.00";
 					  document.getElementById("prcingpack").innerHTML =  "99.00";
+					  document.getElementById("prcingpack1").innerHTML =  "99.00";
 					  document.getElementById("print7").innerHTML = "99.90";
 					  document.getElementById("print8").innerHTML =  "9.90";
 					  document.getElementById("pricestotal121").innerHTML =  "999.00";
@@ -7178,8 +6927,9 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 //					  typecontent2 = "Standard NRE";
 					  typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE) Standard";
 					   document.getElementById("titlepcing1aff").innerHTML = typecontent2;
+					   document.getElementById("titlepcing1aff1").innerHTML = typecontent2+" discount code applied";
 					    document.getElementById("packpciingtitle").innerHTML = typecontent;
-					  
+					   document.getElementById("packpciingtitle1").innerHTML = typecontent+" discount code applied";;
 					     document.getElementById("chnageplan").style.display="block";
 					  document.getElementById("pelementstitleend").style.display="none";
 //					  document.getElementById("div6kbject").style.height="692px";
@@ -7198,17 +6948,20 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 				      document.getElementById("packges121").innerHTML = "Premium";
 				      document.getElementById("packges121lb").innerHTML = "Premium";
 					  document.getElementById("price1").innerHTML = "Premium";
+					  document.getElementById("price11").innerHTML = "Premium";
 					  document.getElementById("price2").innerHTML = "Premium";
 					  document.getElementById("price3").innerHTML = "Premium";
+					  document.getElementById("price33").innerHTML = "Premium";
 					  document.getElementById("price4").innerHTML = "Premium";
-					  
+					  document.getElementById("price44").innerHTML = "Premium";
+					  document.getElementById("price441").innerHTML = "Premium";
 					  document.getElementById("print5").innerHTML = "2999";
 					  document.getElementById("printpccing2aff").innerHTML = "2999";
-					  
+					  document.getElementById("printpccing2aff1").innerHTML = "2999";
 					  document.getElementById("pricestotal121").innerHTML =  "2999";
 					  document.getElementById("print7").innerHTML = "299";
 					  document.getElementById("prcingpack").innerHTML = "299";
-					            
+					  document.getElementById("prcingpack1").innerHTML = "299";
 					  var addloationprintpremium = totalmonthwithmultiplecalcu;
 					  
 					       var addloationprintpremium001 = addloationprintpremium.toFixed(2);
@@ -7238,8 +6991,9 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 					  typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE) Premium";
 					  
 					  document.getElementById("titlepcing1aff").innerHTML = typecontent2;
+					   document.getElementById("titlepcing1aff1").innerHTML = typecontent2+" discount code applied";;
 					  document.getElementById("packpciingtitle").innerHTML = typecontent;
-					  
+					   document.getElementById("packpciingtitle1").innerHTML = typecontent+" discount code applied";;
 					     document.getElementById("chnageplan").style.display="block";
 					  document.getElementById("pelementstitleend").style.display="none";
 //					   document.getElementById("checlout").style.display="block";
@@ -7259,15 +7013,19 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 					  document.getElementById("packges121lb").innerHTML = "ENTERPRISE"; 
 					  document.getElementById("price1").innerHTML = "ENTERPRISE";
 					  document.getElementById("price2").innerHTML = "ENTERPRISE";
+					  document.getElementById("price11").innerHTML = "ENTERPRISE";
 					  document.getElementById("price3").innerHTML = "ENTERPRISE";
+					  document.getElementById("price33").innerHTML = "ENTERPRISE";
 					  document.getElementById("price4").innerHTML = "ENTERPRISE";
-					  
-					  
+					  document.getElementById("price44").innerHTML = "ENTERPRISE";
+					   document.getElementById("price441").innerHTML = "ENTERPRISE";
 					  document.getElementById("print5").innerHTML = "4999";
 					  document.getElementById("printpccing2aff").innerHTML = "4999";
+					  document.getElementById("printpccing2aff1").innerHTML = "4999";
 					  document.getElementById("pricestotal121").innerHTML =  "4999";
 					  document.getElementById("print7").innerHTML = "499";
 					  document.getElementById("prcingpack").innerHTML = "499";
+					  document.getElementById("prcingpack1").innerHTML = "499";
 					    var addloationprintpremium1 = totalenterpse121;
 					        addloationprintpremium0011 = addloationprintpremium1.toFixed(2);
 					  
@@ -7292,8 +7050,9 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 //					  typecontent2 = "Enterprise NRE";
 					   typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE) Enterprise";
 					   document.getElementById("titlepcing1aff").innerHTML = typecontent2;
+					   document.getElementById("titlepcing1aff1").innerHTML = typecontent2+" discount code applied";;
 					    document.getElementById("packpciingtitle").innerHTML = typecontent;
-					  
+					   document.getElementById("packpciingtitle1").innerHTML = typecontent+" discount code applied";;
 					   document.getElementById("chnageplan").style.display="block";
 					   document.getElementById("nexttotermscodi").style.display="block";
 //					  document.getElementById("div6kbject").style.height="892px";
@@ -7306,23 +7065,11 @@ document.getElementById('tolnumlocaion').innerHTML = numofloation;
 				  {
 					 
 					  document.getElementById("chnageplan").style.display="none";
-//					  	  document.getElementById("div6kbject").style.height="590px";
-					  //kingkhan
 					    document.getElementById("nexttotermscodi").style.display="none";
 					   document.getElementById("addinalpackage121").style.display="none";
 					  document.getElementById("pelementstitleend").style.display="block";
-					  document.getElementById("packges121").innerHTML = "Call for quote"; 
-					  document.getElementById("checlout").style.display="none";
-					  
-					  
-				
-					  
-					  
+					  document.getElementById("packges121").innerHTML = "Call for quote";  
 				  }
-			  
-	
-			  
-			  
 			  
 		  }
 		 
@@ -7800,13 +7547,6 @@ for(var i, j = 0; i = mySelect1.options[j]; j++) {
 data();	
 			
 			
-
-//          infowindowContent.children['place-icon'].src = place.icon;
-//          infowindowContent.children['place-name'].textContent = place.name;
-//          infowindowContent.children['place-address'].textContent = address;
-			
-//			console.log(address);
-			
           infowindow.open(map, marker);
         });
 		  
@@ -7817,8 +7557,6 @@ data();
           var place = autocomplete1.getPlace();
 	      
           if (!place.geometry) {
-            // User entered the name of a Place that was not suggested and
-            // pressed the Enter key, or the Place Details request failed.
             window.alert("No details available for input: '" + place.name + "'");
 //			  console.log(place.name);
             return;
@@ -7862,9 +7600,7 @@ data();
 						
 						console.log(countries_frm_map);
 getcountryname = countries_frm_map;
-						//mami
-						
-//    $x("#countries").val(countries_frm_map);
+
 						getcountrycode();
 }
 				
@@ -7933,18 +7669,8 @@ for(var i, j = 0; i = mySelect1.options[j]; j++) {
 data();	
 			
 			
-
-//          infowindowContent.children['place-icon'].src = place.icon;
-//          infowindowContent.children['place-name'].textContent = place.name;
-//          infowindowContent.children['place-address'].textContent = address;
-			
-//			console.log(address);
-			
           infowindow.open(map, marker);
         });
-
-        // Sets a listener on a radio button to change the filter type on Places
-        // Autocomplete.
         function setupClickListener(id, types) {
         
         }
@@ -7980,6 +7706,7 @@ data();
 			color: #ffffff!important;
 			background: #00B3FE 0% 0% no-repeat padding-box !important;
 			padding: 18px 15px !important;
+			opacity:0.7
 		  }
 		  
 		  .pricesrates
@@ -8022,7 +7749,7 @@ data();
 		  {
 			  color: #707070;
 			  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    font-size: 22px;
+    font-size: 18px;
 
 		  }
 		  
@@ -8159,10 +7886,10 @@ data();
 		width: 100%;
 		height: 608px;
 		margin-top: 32px;
-		background: #ececec;
 		padding: 10px;
 		display: none;
 		max-width:1250px;
+		border:none;
 		  }
 		  
 		
@@ -8206,7 +7933,14 @@ data();
 			  display: none;
 			   max-width:1250px;
 		  }
-		  
+		  #discountDiv{
+			width: 100%;
+			height: 605px;
+			padding: 10px;
+			display: none;
+			max-width:1250px;
+			margin-top: 46px;
+		  }
 		   #div7obj
 		  {
 			 width: 100%;
