@@ -106,6 +106,72 @@ function openMenu(x) {
 			  document.getElementById("cuposnimage").src="img/Icons/cuponsoff.png";
 		  }
 		  
+		  
+		  function collectionCheck(){
+			  $("#CollectionDiv").css("display","block")
+			    $("#ProductDiv").css("display","none")
+		  }
+		  function EntireCheck() {
+			  $("#CollectionDiv").css("display","none")
+			  $("#ProductDiv").css("display","none")
+		  }
+		   function productCheck(){
+			  $("#ProductDiv").css("display","block")
+			  $("#CollectionDiv").css("display","none")
+		  }
+		  
+		  function ShowPercentageDiv(){
+			  $("#FixedAmountDiv").css("display","none")
+			    $("#percentageDiv").css("display","block")
+				$("#buyXgetYDiv").css("display","none")
+				$("#freeShippingDiv").css("display","none")
+		  }
+		  function ShowFixedAmountDiv() {
+			    $("#FixedAmountDiv").css("display","block")
+			    $("#percentageDiv").css("display","none")
+				$("#buyXgetYDiv").css("display","none")
+				$("#freeShippingDiv").css("display","none")
+		  }
+		   function ShowfreeshippingDiv(){
+			   $("#FixedAmountDiv").css("display","none")
+			    $("#percentageDiv").css("display","none")
+				$("#buyXgetYDiv").css("display","none")
+				$("#freeShippingDiv").css("display","block")
+		  }
+		   function ShowBuyXDiv(){
+			   $("#FixedAmountDiv").css("display","none")
+			    $("#percentageDiv").css("display","none")
+				$("#buyXgetYDiv").css("display","block")
+				$("#freeShippingDiv").css("display","none")
+		  }
+		  
+		  function enterLimit() {
+			  $("#totalUsageLimitli").toggle();
+		  }
+		  function customerChange(){
+			  $("#CustomersSearch").css("display","block")
+			  $("#groupCustomerSearch").css("display","none")
+		  }
+		  function purchaseAmount(){
+			  $("#purchaseAmount").css("display","block")
+			  $("#QuantityItem").css("display","none")
+		  }
+		  function NoneReq() {
+			  $("#purchaseAmount").css("display","none")
+			  $("#QuantityItem").css("display","none")
+		  }
+		   function quantityCheck(){
+			  $("#QuantityItem").css("display","block")
+			  $("#purchaseAmount").css("display","none")
+		  }
+		  function GroupCustomersChange(){
+			  $("#groupCustomerSearch").css("display","block")
+			  $("#CustomersSearch").css("display","none")
+		  }
+		  function EveryoneSelect() {
+			  $("#groupCustomerSearch").css("display","none")
+			  $("#CustomersSearch").css("display","none")
+		  }
 		  function dealhide()
 		  {
 			 x = document.getElementById("maincondeal");
@@ -172,13 +238,13 @@ function openMenu(x) {
 			 
 			  
 			document.getElementById("dealsimage").src="img/Icons/dealslight.png";
-			  
-//			  x = document.getElementById("cuponscodeQR");
-//			  x.style.display = "none";  
+			   
 		  }
 
 
-
+		function showEndDate() {
+			$("#endDate").toggle();
+		}
      
 		  function selectAllChangeDeals() {
 			   var inputs = document.getElementsByClassName("dealsCheckboxes");

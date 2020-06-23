@@ -1057,11 +1057,21 @@ color: black!important;
     margin-top: 11px;
     background: rgb(219,219,219,0.3);
 	border-radius: 26px;
-	display: grid;
-    grid-template-columns: auto auto;
 	padding: 44px 50px;
 }
-.formdeal input,.formdeal select, .formdeal textarea{
+#endDate{
+	display:none;
+}
+#groupCustomerSearch,#CustomersSearch,#purchaseAmount,#QuantityItem,#ProductDiv,#CollectionDiv,#buyXgetYDiv,#FixedAmountDiv,#freeShippingDiv{
+	display:none;
+}
+#totalUsageLimitli{
+	border: .1rem solid #C4CDD5;
+    width: 200px;
+    margin-left: 25px;
+	display:none;
+}
+.formdeal select, .formdeal textarea{
 	width: 498px;
     height: 53px;
 }
@@ -1078,9 +1088,6 @@ color: black!important;
     vertical-align: middle;
     font-size: 17px;
 	opacity: 0.5;
-}
-.formdeal span{
-	margin-bottom:50px;
 }
 .adding_image {
     width: 44%;
@@ -1442,7 +1449,6 @@ select::-ms-expand {
     -moz-appearance: none;
     appearance: none;
     display: block;
-    border: none;
     margin-left: 2px;
     margin-top: 8px;
     border-radius: 22px;
@@ -1454,6 +1460,9 @@ select::-ms-expand {
     background-image: none;
     -ms-word-break: normal;
     word-break: normal;
+	border: .1rem solid #C4CDD5;
+	outline:none;
+
 }
 
 

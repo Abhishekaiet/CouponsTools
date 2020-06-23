@@ -2080,6 +2080,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 								padding: 18px 15px !important;
 								width: 85%;
 								margin-right: auto;
+								opacity:0.7
 							}
 							#additionalcharges{
 								float: right;
@@ -2435,6 +2436,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		text-align:left;
 		margin:0;
 		font-size: 30px !important;
+		opacity:0.7
 		 }
 		 #addinalpackage121 {
 		  scroll-behavior: smooth;
@@ -4139,6 +4141,8 @@ validationCustom02.add(defaultOption122);
 			 li.innerHTML='<div class="pad15"><p class="lead '+item12.title.replace(" ","").substring(0, 10)+'">'+item12.title+'"</p><p class="pricingtitle121">$<strike>'+item12.variants[0].compareAtPrice+'/mo*</strike></p><p class="pricingtitle">$'+item12.variants[0].price+'/mo*</p><div class="listdetails">'+item12.descriptionHtml.replace('<br>','')+'</div><span id="btnaddpack">+ADD</span></p></div>';
 			 li.setAttribute("id", item12.title.replace("-","").replace(" ","").substring(0, 8));
 			 ul.appendChild(li);
+			 getadnilapackarray = [];
+			 
 
 							 var lkkl = "Digital Marketing Package";
 							 var llb = "Website Development and Management Package";
