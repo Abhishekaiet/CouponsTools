@@ -1,3 +1,67 @@
+#deleteCoupons{
+	cursor: pointer;
+}
+#slider {
+	position: absolute;
+    overflow: hidden;
+    margin: 20px auto 0 auto;
+    border-radius: 4px;
+    left: 55.6%;
+    width: 490.992px;
+	display:none;
+}
+
+#slider ul {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 340px;
+  list-style: none;
+}
+#slider ul li img{
+	width:490px !important;
+}
+#slider ul li {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 500px;
+  height: auto;
+  background: #ccc;
+  text-align: center;
+  line-height: 300px;
+}
+a.control_prev, a.control_next {
+  position: absolute;
+  top: 40%;
+  z-index: 999;
+  display: block;
+  padding: 4% 3%;
+  width: auto;
+  height: auto;
+  background: #2a2a2a;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+a.control_prev:hover, a.control_next:hover {
+  opacity: 1;
+  -webkit-transition: all 0.2s ease;
+}
+
+a.control_prev {
+  border-radius: 0 2px 2px 0;
+}
+
+a.control_next {
+  right: 0;
+  border-radius: 2px 0 0 2px;
+}
 .exportDiv{
     float: right;
     text-align: left;
@@ -7,8 +71,198 @@
     opacity: 0.5;
 	margin-top: 10px;
 }
+.disableButton{
+    opacity: 0.4 !important;
+}
+#Add_Customer{
+	background: #5cc8fd !important;
+    border-color: #5cc8fd !important;
+}
+.customer_list,.product_list,.collection_list,#collection_buy,#product_buy,#collection_get,#product_get{
+	font-size:20px;
+}
+.customer_list li span,.product_list li span,.collection_list li span, #collection_buy li span,#product_buy li span,#collection_get li span,#product_get li span{
+	margin-right: 45px;
+}
+.customer_list li,.product_list li,.collection_list li,#collection_buy li,#product_buy li,#collection_get li,#product_get li{
+	border-bottom:.1rem solid var(--p-border-subdued,#dfe3e8);
+	list-style: none;
+	padding: 1.6rem 0;
+}
+#ImageUploadDiv4 li{
+	margin: 0 24px;
+}
+#BrowseCountry{
+	display:none;
+}
+.crossIcon{
+	float: right;
+    top: 7px;
+    position: relative;
+    font-size: 28px !important;
+    right: 20px;
+    opacity: 0.5;
+	margin-right:0 !important;
+}
+.resultdiv,.Productresultdiv,.Collectionresultdiv,.autoresultdiv,.autoProductresultdiv,.autoCollectionresultdiv{
+	width: 95%;
+    margin-left: 34px;
+	margin-top: 73px;
+}
+#customerList,#ProductList,#collectionList{
+	display:none;
+}
+#product_list{
+	max-width: 90rem;
+}
+.resultdiv div,.Productresultdiv div, .Collectionresultdiv div,.autoresultdiv div,.autoProductresultdiv div, .autoCollectionresultdiv div{
+	padding: 14px 0;
+	font-size:20px;
+}
+.resultdiv div span,.Productresultdiv div span,.Collectionresultdiv div span,.autoresultdiv div span,.autoProductresultdiv div span,.autoCollectionresultdiv div span{
+	vertical-align: text-bottom;
+}
+.resultdiv div input,.Productresultdiv div input,.Collectionresultdiv div input,.autoresultdiv div input,.autoProductresultdiv div input,.autoCollectionresultdiv div input{
+	margin-right: 20px;
+	width: 20px;
+    height: 24px;
+}
+.leftArrow{
+	position: relative;
+    float: left;
+    bottom: 392px;
+    font-size: 40px;
+}
+.productDiv button{
+	width:auto;
+	padding: 7px 26px;
+}
+.productdetail{
+	font-size: 30px;
+    font-weight: bold;
+    width: 20%;
+	margin-bottom: 35px;
+}
+.productDiv .product_btn{
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 5px;
+    opacity: 1;
+    text-align: left;
+    font-size: 15px;
+    letter-spacing: 0px;
+    color: #3E3E3E;
+    opacity: 1;
+	outline:none;
+}
+.productDiv{
+	display: inline-block;
+    float: left;
+}
+.rightArrow{
+	position: relative;
+    float: right;
+    top: 50%;
+    font-size: 40px;
+}
+.dealimageupload .product{
+	position:relative;
+}
+.dealimageupload .product .imgdiv{
+    background-size: 43px;
+    background-position: center;
+	opacity:0.6;
+}
+.dealimageupload .product div{
+	background: #C1C1C1 0% 0% no-repeat padding-box;
+	height: 92px;
+}
+.innertem{
+	white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+	height: 800px;
+	scroll-behavior: smooth;
+}
+#templateDiv{
+	width: 1365px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.dealimageupload .product input {
+	    font-size:16px;
+    background: none;
+    border: none;
+    color: white;
+    padding-left: 12px;
+	width: 94%;
+}
+.dealimageupload .product .imgdiv span{
+	position: absolute;
+    top: 69px;
+    z-index: 9999;
+    font-size: 11px;
+    opacity: 0.5;
+    left: 82px;
+}
+.templateDiv{
+	width: 1400px;
+    overflow: hidden;
+	height: 800px;
+	margin-top:70px;
+}
+.dealimageupload .product textarea{
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px dashed #707070;
+    opacity: 0.8;
+    height: 42px;
+    width: 94%;
+    resize: none;
+    display: block;
+    margin-left: 9px;
+    padding-left: 11px;
+    padding-top: 4px;
+    margin-bottom: 21px;
+}
+#FourProductTemplate .dealimageupload,#FourProduct .dealimageupload{
+	background:none;
+	column-count:2;
+	column-gap: 0px;
+	height: 360px;
+}
+#threeProductTemplate .dealimageupload,#twoProductTemplate .dealimageupload,#threeProduct,#twoProduct{
+	background:none;
+}
+#SimpleDeal,#threeProduct,#twoProduct,#FourProduct,.rightpos {
+	display:none;
+}
+.templateDiv .dellogo{
+	background:none;
+}
+.templateDiv .dealimage{
+  margin-left: 72px;
+    margin-right: 63px;
+    width: 526px;
+    display: inline-block;
+}
+.container-fluid{
+	margin-top:64px;
+}
+#header{
+	position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
 #cplframe{
-	width: 298px; height: 118px; margin-top: 10px; padding:0px; position: relative;
+	    width: 423px;
+    height: 156px;
+    margin-top: 10px;
+    padding: 0px;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .textdealimage{
 	display:block;
@@ -423,20 +677,20 @@ text-align: center;
 }
 .rigtimage
 {
-    width: 109px;
-    right: 13px;
-    top: 12px;
+  width: 181px;
+    right: 20px;
+    top: 26px;
     position: absolute;
-    height: 96px;
+    height: 111px;
 }
 .offerdd
 {
 width: 148px;
-left: 10px;
-top: 75px;
-position: absolute;
-height: 40px;
-overflow: auto;
+    left: 22px;
+    top: 105px;
+    position: absolute;
+    height: 40px;
+    overflow: auto;
 }
 #myImg{
 	z-index: 9;
@@ -457,12 +711,12 @@ z-index: 10;
 }
 .desc
 {
-width: 140px;
-left: 67px;
-top: 40px;
-position: absolute;
-height: 32px;
-overflow: auto;
+    width: 140px;
+    left: 67px;
+    top: 40px;
+    position: absolute;
+    height: 43px;
+    overflow: auto;
 }
 #cropgetimagecode1{
 	position: absolute;
@@ -528,13 +782,19 @@ overflow: auto;
     position: absolute;
     display: block;}
 #tersconditons{
-    margin-top: 33px;
+    margin-top: 10px;
     height: 202px;
-	border:none;
+    border: none;
     padding: 10px;
-   background: #FFFFFF 0% 0% no-repeat padding-box;
-	box-shadow: 0px 3px 6px #0000000F;
-	border-radius: 10px
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #0000000F;
+    border-radius: 10px;
+    z-index: 99;
+    border: none;
+    width: 99%;
+    margin-left: 5px;
+    margin-bottom: 4px;
+    outline: none;
 }
 #expiraydate2:focus
 {
@@ -560,14 +820,14 @@ padding: 3px;
 
 #desccc
 {    margin: 0px;
-font-size: 9px;
+font-size: 12px;
 text-align: left;
 width: 100%;
 padding: 3px;
 }
 #offerdc
 {        margin: 0px;
-font-size: 8px;
+font-size: 12px;
 text-align: left;
 width: 100%;
 padding: 3px;
@@ -1062,7 +1322,7 @@ color: black!important;
 #endDate{
 	display:none;
 }
-#groupCustomerSearch,#CustomersSearch,#purchaseAmount,#QuantityItem,#ProductDiv,#CollectionDiv,#buyXgetYDiv,#FixedAmountDiv,#freeShippingDiv{
+#groupCustomerSearch,#CustomersSearch,#purchaseAmount,#QuantityItem,#ProductDiv,#CollectionDiv,#buyXgetYDiv,#FixedAmountDiv,#freeShippingDiv,#collectionsInput,#collectionsInputGet{
 	display:none;
 }
 #totalUsageLimitli{
@@ -1071,10 +1331,7 @@ color: black!important;
     margin-left: 25px;
 	display:none;
 }
-.formdeal select, .formdeal textarea{
-	width: 498px;
-    height: 53px;
-}
+
 .selectall{
 	opacity: 0.5;
     padding: 12px;

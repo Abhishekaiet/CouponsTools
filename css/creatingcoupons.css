@@ -26,7 +26,7 @@ border-radius: 50%;
 	font-size: 30px; font-weight: bold;width:20%;display:inline-block;
 }
 .actionbutton{display: inline-block;
-    width: 75%;
+    width: 100%;
 	text-align: right;}
 .categoriestextnode
 {
@@ -88,12 +88,6 @@ height: 88px!important;
 position: absolute;
 width: 72%!important;
 }
-.dbt
-{
-  margin-top: 57px!important;
-margin-left: 21px!important;
-margin-bottom: 33px;
-}
 
 .dbt1
 {
@@ -101,7 +95,6 @@ margin-bottom: 33px;
 height: 41px;
 background: #5cc8fd;
 border: none;
-margin-top: 33px;
 color: white;
 margin-left: 23px;
 font-size: 18px;
@@ -299,7 +292,7 @@ border-bottom: 1px solid #b9b3b3;
 }
 .couns_search
 {
-	height: 1034px!important;
+	height: 690px!important;
 	padding-right:0px; 
 }
 
@@ -374,7 +367,7 @@ float: left;
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 10px;
     opacity: 1;
-    height: 1950px;
+    height: auto;
  }
  
  .cupons_intact1 {
@@ -450,7 +443,6 @@ float: left;
      height: 41px;
      background: #5cc8fd;
      border: none;
-     margin-top: 33px;
      color: white;
      margin-left: 23px;
      font-size: 18px;
@@ -477,18 +469,16 @@ float: left;
  }
  
  .drightform {
-     width: 87%;
      margin: auto;
      margin-top: 25px;
      border-radius: 30px;
-	 display: grid;
 	 grid-template-columns: auto auto;
 	 padding: 44px 50px;
 	 background: rgb(219,219,219,0.3);
 }
-
-.drightform span{
-	margin-bottom: 50px;
+.determs input{
+	position: absolute;
+    right: 0;
 }
  .drightform select {
 	 margin-top:12px;
@@ -819,7 +809,7 @@ float: left;
 	top: 9px;
  }
  .deallogo p{
-	font-size: 7px;
+	font-size: 5px;
 	text-align: center;
 	margin-top: 13px;
  }
@@ -928,18 +918,32 @@ float: left;
      border-radius: 1px;
      position: absolute;
 	 background: #C1C1C1 0% 0% no-repeat padding-box;
+	 opacity:0.6;
  }
- 
+ #delbackgroundurl .dealimage{
+	 height: 827px;
+ }
+ #delbackgroundurl .dealimageupload .product div{
+	 height: 169px;
+ }
+ #delbackgroundurl .dealimageupload{
+	 height: 586px;
+	 background:none;
+ }
+ #delbackgroundurl .dealimageupload .product .imgdiv span{
+	     top: 115px;
+    left: 183px;
+ }
  .dealimage {
    width: 942px;
     height: 653px;
-    margin-top: 23px;
     margin-left: 17px;
     border-radius: 20px;
     position: relative;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 10px #00000029;
 	margin:auto;
+	margin-top: 70px;
  }
  
  .leftpos {
@@ -953,15 +957,12 @@ float: left;
 	 position: relative;
     top: 19px;
  }
- .dealimage{
-	 top:70px;
- }
  .details{
     padding: 0 50px;
  }
  .rightpos {
     width: 1253px;
-    margin: 81px auto;
+    margin: 185px auto;
  }
  .searchbtn
 {
@@ -1198,7 +1199,7 @@ padding-top: 10px;
         			          width: 58%;
             height: 42%;
             border-radius: 17px;
-            top: 3%;
+            top: 150px;
             text-align: center;
             background: #e2e2e2;
             left: 19%;
@@ -1273,7 +1274,7 @@ padding-top: 10px;
             display: none;
             background: rgba(0,0,0,0.7);
             position: absolute;
-            z-index: 10;
+            z-index: 99;
         		}
         		
         		.cropmodal

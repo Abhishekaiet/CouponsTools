@@ -21,10 +21,10 @@
          }
          function onHoverImage(x){
          	var src = $(x).attr("src").replace('.png','').replace('hover','');
-         	$(x).attr("src",src+'_hover.png')
+         	$(x).attr("src",src+'_hover.gif')
          };
          function onMouseOut(x){
-         	var src = $(x).attr("src").replace('_hover','');
+         	var src = $(x).attr("src").replace('_hover.gif','.png');
          	$(x).attr("src",src)
          };
 		 function getProfilePicture(){
