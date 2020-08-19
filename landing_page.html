@@ -20,12 +20,12 @@
          	y.classList.toggle("display");
          }
          function onHoverImage(x){
-         	var src = $(x).attr("src").replace('.png','').replace('hover','');
-         	$(x).attr("src",src+'_hover.gif')
+         	$("#"+x).css("display","inline-block");
+			$("."+x).css("display","none");
          };
          function onMouseOut(x){
-         	var src = $(x).attr("src").replace('_hover.gif','.png');
-         	$(x).attr("src",src)
+         	$("#"+x).css("display","none");
+			$("."+x).css("display","block");
          };
 		 function getProfilePicture(){
 			const token = localStorage.getItem('_token');
@@ -42,6 +42,9 @@
          };
       </script> 
       <style>
+	  .video{
+			display:none;
+		}
 	  .logoutuser{
 		 margin-right: 18px;
 		color: #fff;
@@ -157,57 +160,70 @@
       <div id="Homeheader"><a><i class="fa fa-home"></i> HOME</a></div>
       <div class="content">
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/operator_tool.png" />
+            <img onmouseover="onHoverImage('Operator_Tool')" class="Operator_Tool" src="img/customer_portal/operator_tool.png" />
+			<video class="video" id="Operator_Tool" onmouseout="onMouseOut('Operator_Tool')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/Operator_Tool.m4v" type="video/mp4"></video>
             <p>Operator</p>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/usernamangment.png" />
+            <img onmouseover="onHoverImage('User_Management_Icon')" class="User_Management_Icon" src="img/customer_portal/usernamangment.png" />
+			<video class="video" id="User_Management_Icon" onmouseout="onMouseOut('User_Management_Icon')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/User_Management_Icon.m4v" type="video/mp4"></video>
             <p>User Management</p>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/contentmanage.png" />
+            <img onmouseover="onHoverImage('Content_Management_Tool')" class="Content_Management_Tool" src="img/customer_portal/contentmanage.png" />
+			<video class="video" id="Content_Management_Tool" onmouseout="onMouseOut('Content_Management_Tool')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/Content_Management_Tool.m4v" type="video/mp4"></video>
             <p>Content Management</p>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/community_hub.png" />
+            <img onmouseover="onHoverImage('Community_Hub')" class="Community_Hub" src="img/customer_portal/community_hub.png" />
+			<video class="video" id="Community_Hub" onmouseout="onMouseOut('Community_Hub')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/Community_Hub.m4v" type="video/mp4"></video>
             <p>Community Hub</p>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/Maas_tool.png" />
+            <img onmouseover="onHoverImage('Maas_Tool')" class="Maas_Tool"  src="img/customer_portal/Maas_tool.png" />
+			<video class="video" id="Maas_Tool" onmouseout="onMouseOut('Maas_Tool')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/Maas_Tool.m4v" type="video/mp4"></video>
             <p>Mobile app as a service</p>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/create.png" />
-            <p>Category</p>
+            <img onmouseover="onHoverImage('create')" class="create" src="img/customer_portal/create.png" />
+            <video class="video" id="create" onmouseout="onMouseOut('create')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/create.m4v" type="video/mp4"></video>
+			<p>Category</p>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/groupicon.png" />
+            <img onmouseover="onHoverImage('Groups_Tool')" class="Groups_Tool" onmouseout="onMouseOut(this)" src="img/customer_portal/groupicon.png" />
+			<video class="video" id="Groups_Tool" onmouseout="onMouseOut('Groups_Tool')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/Groups_Tool.m4v" type="video/mp4"></video>
             <p>Groups</p>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/promotion.png" />
+            <img onmouseover="onHoverImage('Promotion_Tool')" class="Promotion_Tool" src="img/customer_portal/promotion.png" />
+			<video class="video" id="Promotion_Tool" onmouseout="onMouseOut('Promotion_Tool')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/Promotion_Tool.m4v" type="video/mp4"></video>
             <p>Promotion</p>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/itv.png" />
+            <img onmouseover="onHoverImage('Itv_Tool')" class="Itv_Tool" src="img/customer_portal/itv.png" />
+			<video class="video" id="Itv_Tool" onmouseout="onMouseOut('Itv_Tool')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/Itv_Tool.m4v" type="video/mp4"></video>
             <p>ITV Tool</p>
          </span>
          <span>
             <a href="creatingcoupons.html">
-               <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/deal_coupon_tool.png" />
+               <img onmouseover="onHoverImage('Deals_Coupon_Tool')" class="Deals_Coupon_Tool" src="img/customer_portal/deal_coupon_tool.png" />
+			   <video class="video" id="Deals_Coupon_Tool" onmouseout="onMouseOut('Deals_Coupon_Tool')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/Deals_Coupon_Tool.m4v" type="video/mp4"></video>
                <p>Deals & Coupon Tool</p>
             </a>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/Online_advertisement_tool.png" />
+            <img onmouseover="onHoverImage('Online_Advetisement_Tool')" class="Online_Advetisement_Tool" src="img/customer_portal/Online_advertisement_tool.png" />
+			<video class="video" id="Online_Advetisement_Tool" onmouseout="onMouseOut('Online_Advetisement_Tool')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/Online_Advetisement_Tool.m4v" type="video/mp4"></video>
             <p>Online Advertising Platform</p>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/Store_management_tool.png" />
+            <img onmouseover="onHoverImage('Store_Management_Tool')" class="Store_Management_Tool" src="img/customer_portal/Store_management_tool.png" />
+			<video class="video" id="Store_Management_Tool" onmouseout="onMouseOut('Store_Management_Tool')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/Store_Management_Tool.m4v" type="video/mp4"></video>
             <p>Store Management</p>
          </span>
          <span>
-            <img onmouseover="onHoverImage(this)" onmouseout="onMouseOut(this)" src="img/customer_portal/Marketing_tool.png" />
+            <img onmouseover="onHoverImage('Marketing_Tool')" class="Marketing_Tool" src="img/customer_portal/Marketing_tool.png" />
+			<video class="video" id="Marketing_Tool" onmouseout="onMouseOut('Marketing_Tool')" width="99" height="99" playsinline autoplay muted loop><source src="img/customer_portal/Marketing_Tool.m4v" type="video/mp4"></video>
             <p>Marketing</p>
          </span>
       </div>

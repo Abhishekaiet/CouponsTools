@@ -8,17 +8,29 @@ top: 0;
 left: 0;
 z-index: 3;
 border-radius: 50%;
-    background-color: #fff;
-    border: 1px solid lightgray
+background-color: #fff;
 }
-#deloutput{
+.productNum{
+	position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50%;
+    background-color: black !important;
+    height: 30px !important;
+    width: 30px;
+    color: #fff;
+    left: 4px;
+    top: 6px;
+	 z-index: 9;
+}
+.deloutput{
 	    visibility: visible;
     background: white;
     object-fit: contain;
     z-index: 9;
     width: 85px;
     left: 5px;
-    top: 28px;
+    top: 0;
     position: absolute;
 
 }
@@ -91,7 +103,7 @@ width: 72%!important;
 
 .dbt1
 {
-	width: 40%;
+	width: 11%;
 height: 41px;
 background: #5cc8fd;
 border: none;
@@ -99,6 +111,7 @@ color: white;
 margin-left: 23px;
 font-size: 18px;
 border-radius: 19px;
+outline:none;
 }
 
 
@@ -125,7 +138,7 @@ background-color: #fefefe;
 margin: auto;
 padding: 12px;
 border: 1px solid #888;
-width: 88%;
+width: 100%;
 height: 553px;
 /* left: 3%; */
 }
@@ -292,7 +305,6 @@ border-bottom: 1px solid #b9b3b3;
 }
 .couns_search
 {
-	height: 690px!important;
 	padding-right:0px; 
 }
 
@@ -324,11 +336,11 @@ float: left;
 
 }
  .select_catego {
-     width: 30%;
+    width: 82%;
+    border: 1px solid gray;
      padding: 5px;
      font-size: 16px;
      line-height: 1;
-     border: 0;
      border-radius: 5px;
      height: 43px;
      padding-left: 10px;
@@ -439,7 +451,7 @@ float: left;
  }
  
  .dbt {
-     width: 17%;
+     width: 11%;
      height: 41px;
      background: #5cc8fd;
      border: none;
@@ -447,6 +459,7 @@ float: left;
      margin-left: 23px;
      font-size: 18px;
      border-radius: 19px;
+	 outline:none;
  }
  
  .drighttextarea {
@@ -497,7 +510,7 @@ float: left;
      padding: 13px;
      margin-top: 3px;
      padding-left: 18px;
-	 width: 494px;
+	 width: 100%;
     height: 113px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px dashed #707070;
@@ -533,15 +546,22 @@ float: left;
  .deconame::placeholder {
      font-size: 26px!important;
  }
- 
- .decoffer {
+   #updateProductTemplate .dealdetail{
+		width: 100%;
+		height: 212px;
+		background: #fffefe;
+		border-radius: 17px;
+		position: absolute;
+		bottom: 0;
+	}
+ .decoffer,.updatedecoffer {
      width: 100%;
      height: auto;
      padding-left: 26px;
      font-size: 26px;
      background: none;
      border: none;
-     color: white;
+     color: #000;
  }
  
  .decoffer:focus {
@@ -564,7 +584,7 @@ float: left;
  }
  
  .deoffdes {
-     width: 62%;
+     width: 97%;
      height: 39%;
      margin-top: 4px;
      margin-left: 12px;
@@ -718,9 +738,10 @@ float: left;
 	padding: 0;
 	font-size: 9px;
 	margin: 0px;
-	font-size: 16px;
+	font-size: 23px;
 	padding-left: 11px;
 	color: white;
+	font-weight:bold;
 	}
 	#dealsnameleft2
 	{
@@ -826,7 +847,7 @@ float: left;
      width: 100%;
      height: 100%;
  }
- #dlimageoutput{
+ #dlimageoutput,#dlimageoutput_{
 	 width: 100%;
     position: absolute;
     height: 100%;
@@ -918,7 +939,7 @@ float: left;
      border-radius: 1px;
      position: absolute;
 	 background: #C1C1C1 0% 0% no-repeat padding-box;
-	 opacity:0.6;
+	 opacity:1;
  }
  #delbackgroundurl .dealimage{
 	 height: 827px;
@@ -926,16 +947,20 @@ float: left;
  #delbackgroundurl .dealimageupload .product div{
 	 height: 169px;
  }
+  #delbackgroundurl #updateProductTemplate .imgdiv{
+	margin-bottom: 10px;
+ }
  #delbackgroundurl .dealimageupload{
 	 height: 586px;
 	 background:none;
  }
  #delbackgroundurl .dealimageupload .product .imgdiv span{
 	     top: 115px;
-    left: 183px;
+    left: 145px;
+	z-index:0;
  }
  .dealimage {
-   width: 942px;
+   width: 620px;
     height: 653px;
     margin-left: 17px;
     border-radius: 20px;

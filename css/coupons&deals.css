@@ -1,32 +1,277 @@
+.logoutuser{
+	color: #fff;
+	font-weight:bold;
+	margin-right: 18px;
+}
+#twoProductverticle{
+	height:651px !important;
+}
+#twoProductverticle .imgdiv{
+	height: 211px !important;
+}
+#twoProductverticle .imgdiv span{
+	top: 140px !important;
+}
+#threeProductverticle #product2 img{
+	    display: table;
+}
+input{
+	outline:none;
+}
+.slider10{
+	    height: 428px !important;
+}
+.slider15{
+	    height: 358px !important;
+}
+.product .slider10 a.control_prev, .product .slider10 a.control_next{
+	top:56% !important;
+}
+span.highlight {
+	border: 5px solid deepskyblue;
+}
+.deoffdesinput span {
+	font-size:20px !important;
+}
+.deoffdesinput h1,.deoffdesinput h2{
+	font-size:20px !important;
+}
+.showMessage{
+	color: green;
+    font-size: 17px;
+    font-weight: bold;
+}
+.h1, .h2, .h3, h1, h2, h3{
+	margin-top:0px;
+	    font-size: 33px;
+}
+.loaderImgs img{
+	display:none;
+}
+.businessField{
+	z-index: 9999 !important;
+    width: 100% !important;
+}
+.uploadOuter {
+  text-align: center;
+  padding: 20px;
+  strong {
+    padding: 0 10px
+  }
+}
+.previewIMG img{
+	width:152px;
+	margin: 5px;
+	vertical-align: sub;
+}
+.previewIMG{
+	text-align:left;
+	margin-top: 14px;
+}
+#uploadFile{
+	position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+}
+#UploadYoutube,#mediaDropDown,.mediaDropDown,.updateDeal{
+	display:none;
+}
+.mediaDropDown{
+	border: 1px solid gray;
+	position: absolute;
+    background: #fff;
+    z-index: 99;
+}
+.mediaDropDown span:first-child{
+	padding: 20px;
+    display: block;
+	border-bottom: 1px solid gray;
+}
+.mediaDropDown span{
+	padding-left: 20px;
+	padding-bottom: 20px;
+    display: block;
+}
+.dragBox {
+	width: 916px;
+	height: 108px;
+	top: 14px;
+	left: 10px;
+	padding: 4px;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  line-height: 95px;
+  color: #999;
+  border: 2px dashed #ccc;
+  display: inline-block;
+  transition: transform 0.3s;
+  input[type="file"] {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+  }
+}
+.draging {
+  transform: scale(1.1);
+}
+#preview {
+  text-align: center;
+  img {
+    max-width: 100%
+  }
+}
+.logoutuser:hover{
+	color: #fff;
+	text-decoration:none;
+}
+
+.insideImages{
+	width: 210px;
+    max-height: 196px;
+}
+.modal-header{
+	background:none !important;;
+	height:auto !important;;
+}
+.modal-content{
+	height:930px !important;;
+}
+#cropImagePop{
+	display:none;
+}
+label.cabinet input.file{
+	position: relative;
+	height: 100%;
+	width: auto;
+	opacity: 0;
+	-moz-opacity: 0;
+  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+  margin-top:-30px;
+}
+.modal-dialog{
+	width: 66% !important;
+    margin-left: 10px;
+    position: absolute !important;
+    left: 15%;
+}
+.previewtext{
+	width: 4px;
+    writing-mode: vertical-rl;
+    font-size: 31px;
+    font-weight: bold;
+	vertical-align: super;
+}
+#upload-demo{
+	width: auto;
+    height: 800px;
+    padding-bottom: 25px;
+}
+figure figcaption {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    width: 100%;
+    padding-left: 9px;
+    padding-bottom: 5px;
+    text-shadow: 0 0 10px #000;
+}
+
+li {
+	    list-style: none;
+}
+
 #deleteCoupons{
 	cursor: pointer;
 }
-#slider {
+.slider {
 	position: absolute;
     overflow: hidden;
     margin: 20px auto 0 auto;
     border-radius: 4px;
-    left: 55.6%;
-    width: 490.992px;
+    left: 51.6%;
+    width: 544.992px;
 	display:none;
 }
 
-#slider ul {
+.slider ul {
   position: relative;
   margin: 0;
   padding: 0;
   height: 340px;
   list-style: none;
 }
-#slider ul li img{
-	width:490px !important;
+textarea{
+	resize: none;
 }
-#slider ul li {
+#updateProductTemplate .dealimageupload .product input{
+	width:100%;
+}
+#updateProductTemplate .descproduct{
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px dashed #707070;
+    opacity: 0.8;
+    height: 140px;
+    width: 94%;
+    resize: none;
+    display: block;
+    margin-left: 9px;
+    padding-left: 11px;
+    padding-top: 4px;
+    margin-top: 12px;
+    margin-bottom: 21px;
+	text-align: initial;
+}
+
+#updateProductTemplate .descproduct div{
+ background:none;
+ height:auto;
+}
+.slider ul li img{
+	max-height: initial;
+	vertical-align: inherit;
+	width: 100%;
+    height: 100%;
+	display:table;
+}
+#printdes{
+	width:540px;
+	text-align: initial;
+}
+#delbackgroundurl  #updateProductTemplate{
+	height: 675px;
+}
+#updateProductTemplate .slider ul li img{
+	width: auto;
+    height: 347px;
+	    vertical-align: middle;
+		margin:auto;
+}
+.slider1 ul li img{
+	width:548px !important;
+	height: auto !important;
+	max-height: initial;
+}
+#close-imageModal{
+	float: right;
+    font-size: 27px;
+    margin-right: 13px;
+    color: #000;
+    margin-right: 2%;
+    margin-top: 10px;
+}
+.slider ul li {
   position: relative;
   display: block;
   margin: 0;
   padding: 0;
-  width: 500px;
+  width: auto;
   height: auto;
   background: #ccc;
   text-align: center;
@@ -35,7 +280,7 @@
 a.control_prev, a.control_next {
   position: absolute;
   top: 40%;
-  z-index: 999;
+  z-index: 9;
   display: block;
   padding: 4% 3%;
   width: auto;
@@ -45,12 +290,12 @@ a.control_prev, a.control_next {
   text-decoration: none;
   font-weight: 600;
   font-size: 18px;
-  opacity: 0.8;
+  opacity: 0.5;
   cursor: pointer;
 }
 
 a.control_prev:hover, a.control_next:hover {
-  opacity: 1;
+  opacity: 0.5;
   -webkit-transition: all 0.2s ease;
 }
 
@@ -168,14 +413,48 @@ a.control_next {
 .dealimageupload .product{
 	position:relative;
 }
+#textarea_feedback{
+	position: absolute;
+    bottom: 9px;
+    font-size: 19px;
+    color: #fff;
+	right:40px;
+}
+.slider1{
+	width: 558.992px;
+    height: 389px;
+	margin-top:11px;
+}
+.productdesc{
+        background: none !important;
+    height: 42px !important;
+    width: 94%;
+    text-align: left;
+    padding-left: 12px;
+    border: 1px dashed gray;
+    margin: 4px 10px;
+}
+.productdesc div{
+	background: none !important;
+    height: 42px !important;
+    width: 94%;
+    text-align: left;
+}
+.productdesc h1,.productdesc div,.productdesc h2,.productdesc h2,.productdesc h4{
+	font-size: 15px !important;
+	margin: 3px !important;
+}
 .dealimageupload .product .imgdiv{
     background-size: 43px;
     background-position: center;
-	opacity:0.6;
 }
 .dealimageupload .product div{
 	background: #C1C1C1 0% 0% no-repeat padding-box;
 	height: 92px;
+}
+#couponsimage .desc h1,#couponsimage .desc div span,#couponsimage .desc h4{
+	font-size: 10PX !important;
+    MARGIN: 0;
 }
 .innertem{
 	white-space: nowrap;
@@ -190,12 +469,15 @@ a.control_next {
     overflow-y: hidden;
 }
 .dealimageupload .product input {
-	    font-size:16px;
+	font-size:26px;
     background: none;
     border: none;
-    color: white;
+    color: #000;
     padding-left: 12px;
 	width: 94%;
+}
+#FourProductTemplate .dealimageupload .product input {
+	font-size:20px;
 }
 .dealimageupload .product .imgdiv span{
 	position: absolute;
@@ -223,6 +505,10 @@ a.control_next {
     padding-left: 11px;
     padding-top: 4px;
     margin-bottom: 21px;
+}
+#template_mini span{
+	display: table-footer-group;
+    margin: 3px;
 }
 #FourProductTemplate .dealimageupload,#FourProduct .dealimageupload{
 	background:none;
@@ -369,31 +655,45 @@ overflow: auto;
     color: ;
     color: #0a0a0a;
 }
+#tersconditons1{
+	z-index: 99999;
+	outline:none;
+    padding: 12px;
+}
 #createnewcouponsdeals{
+    background: #5cc8fd;
+    width: 100%;
+    height: 46px;
+    color: white;
+    position: relative;
+    margin-left: 20%;
     border: none;
-	background: none;
-    font-size: 15px;
-    color: black;
-    font-weight: 400;
-    border-radius: 19px;
-    right: 24%;
-    margin-top: 0%;
-    color: #0a0a0a; display: none;
-	letter-spacing: 0px;
-    color: #4B4B4B;
-    opacity: 0.5;
+    border-radius: 20px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 0px 20px;
+	display:none;
 }
 #createnewcouponsbtn22{
+    background: #5cc8fd;
+    width: 100%;
+    height: 36px;
+    color: white;
+    position: relative;
+    margin-left: 0;
     border: none;
-    font-size: 15px;
-    color: black;
-    font-weight: 400;
-    border-radius: 19px;
-    right: 24%;
-    margin-top: 0%;
-    color: ;
-    color: #0a0a0a;
-	background: none;
+    border-radius: 20px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 0px 20px;
+}
+.HideDivs{
+	display:none;
+}
+.removeImage{
+	position: relative;
+    top: -80px;
+    font-size: 23px;
 }
 #restbtnop{
     border: none;
@@ -410,13 +710,14 @@ overflow: auto;
 }
 #imagesearch2{
 	width: 10%;
-    margin-left: -74px;
+    margin-left: -100px;
     height: 39px;
     background: none;
     border: none;
     color: #0c0b0b;
     position: absolute;
     font-size: 17px;
+	outline:none;
 }
 #logodelcalls{
 	width: 152px;
@@ -448,6 +749,7 @@ overflow: auto;
 }
 #searhdata2{
 	width: 65%;
+	outline:none;
     padding-left: 14px;
     height: 39px;
     border-radius: 21px;
@@ -610,10 +912,10 @@ bottom: 7px; visibility: hidden;
 }
 #entcname{
 	width: 98%;
-    height: 55px;
+   height: 87px;
     padding-left: 0px;
     border: none;
-    font-size: 33px;
+    font-size: 37px;
     background: white;
     position: absolute;
     visibility: hidden;
@@ -621,13 +923,13 @@ bottom: 7px; visibility: hidden;
 .input-search-new
 {
 width: 100%;
-height: 59px;
-margin-top: 0px;
-border-radius: 0px;
-border: none;
-background: #ffffff;
-text-align: left;
-font-size: 26px;
+    height: 88px;
+    margin-top: 0px;
+    border-radius: 0px;
+    border: none;
+    background: #ffffff;
+    text-align: left;
+    font-size: 38px;
 }
 
 .input-search-new::placeholder
@@ -675,6 +977,26 @@ margin-left: -28px;
 text-align: center;
 
 }
+.disableButton_{
+	background-color: lightgray !important;
+pointer-events: none;
+}
+.maincommon{
+	background-color: var(--p-surface,#fff);
+    box-shadow: var(--p-card-shadow,0 0 0 1px rgba(63,63,68,.05),0 1px 3px 0 rgba(63,63,68,.15));
+    outline: .1rem solid transparent;
+	margin: 36px 0;
+}
+.commondetail{
+	WIDTH: 49%;
+    display: inline-block;
+    border: none;
+    outline: none;
+    box-shadow: none !important;
+}
+.publishDeal{
+	display:none;
+}
 .rigtimage
 {
   width: 181px;
@@ -682,6 +1004,19 @@ text-align: center;
     top: 26px;
     position: absolute;
     height: 111px;
+}
+.previewIMG li {
+	display:inline-block;
+}
+.product .slider{
+	display: none;
+    position: static;
+    width: 100%;
+	margin:0;
+}
+.product .slider a.control_prev, .product .slider a.control_next{
+	top: 24%;
+	opacity: 0.2;
 }
 .offerdd
 {
@@ -696,7 +1031,6 @@ width: 148px;
 	z-index: 9;
     width: 85px;
     left: 5px;
-    top: 28px;
     position: absolute;
     object-fit: cover;
     visibility: visible;
@@ -711,12 +1045,12 @@ z-index: 10;
 }
 .desc
 {
-    width: 140px;
-    left: 67px;
-    top: 40px;
+    width: 186px;
+    left: 24px;
+    top: 45px;
     position: absolute;
     height: 43px;
-    overflow: auto;
+    overflow: none;
 }
 #cropgetimagecode1{
 	position: absolute;
@@ -1145,17 +1479,6 @@ padding-left: 19px;
     margin-top: 6px;
 }
 
-.preview {
-    width: 195px;
-    height: 40px;
-    background: #5cc8fd;
-    float: left;
-    border: 1px solid black;
-    color: white;
-    text-align: center;
-    line-height: 36px;
-    margin-left: 351px;
-}
 
 .applay {
     width: 195px;
@@ -1254,8 +1577,8 @@ cupons_intract .offer::before {
     font-size: 18px;
     padding-left: 10px;
     border: none;
-    width: 427px;
-    height: 145px;
+    width: 541px;
+    height: 120px;
     border: 1px dashed lightgray;
 }
 
@@ -1296,6 +1619,7 @@ color: black!important;
     font-size: 18px;
     font-weight: 600;
     margin-left: 38px;
+	outline:none;
 }
 
 .input_form {
@@ -1388,8 +1712,8 @@ color: black!important;
     height: 161px;
     background: ;
     position: absolute;
-    left: 14%;
-    top: 18%;
+    left: 2%;
+    top: 27%;
 }
 
 .comname {
@@ -1443,7 +1767,6 @@ color: black!important;
 .addlogo {
 	border-radius: 50%;
     background-color: #fff;
-    border: 1px solid lightgray;
     width: 95px;
     height: 89px;
     left: 25px;
@@ -1692,7 +2015,7 @@ select::-ms-expand {
 .selectdivedccate {
     position: relative;
     width: 100%;
-    margin-top: 4px;
+    margin-top: 12px;
 }
 
 /* IE11 hide native button (thanks Matt!) */

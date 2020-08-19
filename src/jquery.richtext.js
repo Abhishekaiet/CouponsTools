@@ -166,7 +166,7 @@
             id: "",
             class: "",
             useParagraph: false,
-            maxlength: 0,
+            maxlength: 50,
             callback: undefined
 
         }, options);
@@ -252,31 +252,6 @@
                 "title": settings.translations.addFontSize,
                 html: '<span class="fa fa-text-height"></span>'
             }), // font color
-            $btnImageUpload = $('<a />', {
-                class: "richText-btn",
-                "title": settings.translations.addImage,
-                html: '<span class="fa fa-image"></span>'
-            }), // image
-            $btnVideoEmbed = $('<a />', {
-                class: "richText-btn",
-                "title": settings.translations.addVideo,
-                html: '<span class="fa fa-video-camera fa-video"></span>'
-            }), // video
-            $btnFileUpload = $('<a />', {
-                class: "richText-btn",
-                "title": settings.translations.addFile,
-                html: '<span class="fa fa-file-text-o far fa-file-alt"></span>'
-            }), // file
-            $btnURLs = $('<a />', {
-                class: "richText-btn",
-                "title": settings.translations.addURL,
-                html: '<span class="fa fa-link"></span>'
-            }), // urls/links
-            $btnTable = $('<a />', {
-                class: "richText-btn",
-                "title": settings.translations.addTable,
-                html: '<span class="fa fa-table"></span>'
-            }), // table
             $btnRemoveStyles = $('<a />', {
                 class: "richText-btn",
                 "data-command": "removeFormat",
@@ -378,7 +353,6 @@
         );
         $linksForm.append($formItem.clone().append($formButton.clone()));
         $linksDropdown.append($linksForm);
-        $btnURLs.append($dropdownOuter.clone().append($linksDropdown.prepend($dropdownClose.clone())));
 
         /* box dropdown for video embedding */
         var $videoDropdown = $dropdownBox.clone();
@@ -403,7 +377,6 @@
         );
         $videoForm.append($formItem.clone().append($formButton.clone()));
         $videoDropdown.append($videoForm);
-        $btnVideoEmbed.append($dropdownOuter.clone().append($videoDropdown.prepend($dropdownClose.clone())));
 
         /* box dropdown for image upload/image selection */
         var $imageDropdown = $dropdownBox.clone();
@@ -434,7 +407,6 @@
         }
         $imageForm.append($formItem.clone().append($formButton.clone()));
         $imageDropdown.append($imageForm);
-        $btnImageUpload.append($dropdownOuter.clone().append($imageDropdown.prepend($dropdownClose.clone())));
 
         /* box dropdown for file upload/file selection */
         var $fileDropdown = $dropdownBox.clone();
@@ -459,7 +431,6 @@
         }
         $fileForm.append($formItem.clone().append($formButton.clone()));
         $fileDropdown.append($fileForm);
-        $btnFileUpload.append($dropdownOuter.clone().append($fileDropdown.prepend($dropdownClose.clone())));
 
         /* box dropdown for tables */
         var $tableDropdown = $dropdownBox.clone();
@@ -476,7 +447,6 @@
         );
         $tableForm.append($formItem.clone().append($formButton.clone()));
         $tableDropdown.append($tableForm);
-        $btnTable.append($dropdownOuter.clone().append($tableDropdown.prepend($dropdownClose.clone())));
 
 
         /* initizalize editor */
@@ -583,28 +553,6 @@
             /* colors */
             if (settings.fontColor === true) {
                 $toolbarList.append($toolbarElement.clone().append($btnFontColor));
-            }
-
-            /* uploads */
-            if (settings.imageUpload === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnImageUpload));
-            }
-            if (settings.fileUpload === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnFileUpload));
-            }
-
-            /* media */
-            if (settings.videoEmbed === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnVideoEmbed));
-            }
-
-            /* urls */
-            if (settings.urls === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnURLs));
-            }
-
-            if (settings.table === true) {
-                $toolbarList.append($toolbarElement.clone().append($btnTable));
             }
 
             /* code */
@@ -736,11 +684,30 @@
                 tabifyEditableTable(window, e);
                 return false;
             }
+			console.log($(this).attr("id"));
+			if($.parseHTML($(this).html()).length > 0 && !isDeal){
+				var li_id = $("#updatebtn").attr("data-id");
+				$("#"+li_id+ " .desc").html($(this).html());
+				$("#printdes").html($(this).html());
+			    $(".Previewdesc").html($(this).html())
+			};
+			
+			if($(this).html().length > 0 && isDeal){
+				var li_id = $("#update_dealbtn").attr("data-id");
+				$("#li"+li_id+ " .deoffdes .deoffdesinput").html($(this).html());
+			    $(".demodesc .deoffdesinput").html($(this).html())
+				$("#"+templateSelected + " #"+ProductSelected+ " .deoffdesinput").html($(this).html());
+				if(currentForm == "updateProductTemplate"){
+					$(".descproduct").html($(this).html());
+				}
+				$(".demodesc .deoffdesinput").html($(this).html());
+				$("#"+templateSelected + " #"+ProductSelected+ " .productdesc").html($(this).html());
+			};
             fixFirstLine();
             updateTextarea();
             doSave($(this).attr("id"));
             updateMaxLength($(this).attr('id'));
-        });
+		});
 
 
         // add context menu to several Node elements
@@ -1640,11 +1607,8 @@
         function updateMaxLength(editorID) {
             var $editorInner = $('.richText-editor#' + editorID);
             var $editor = $editorInner.parents('.richText');
-            if (!$editor.data('maxlength')) {
-                return true;
-            }
             var color;
-            var maxLength = parseInt($editor.data('maxlength'));
+            var maxLength = 50;
             var content = $editorInner.text();
             var percentage = (content.length / maxLength) * 100;
             if (percentage > 99) {
@@ -1654,12 +1618,17 @@
             } else {
                 color = 'black';
             }
-
-            $editor.find('.richText-length').html('<span class="' + color + '">' + content.length + '</span>/' + maxLength);
+			$editor.find('.richText-length').html('<span class="' + color + '">' + content.length + '</span>/' + maxLength);
+			if(content.length == maxLength){
+				$editor.find('.richText-length').html('<span class="' + color + '">' + content.length + '</span>/' + maxLength + ' <span class="' + color + '"> Maximum limit reached<span>');
+			}
+            
 
             if (content.length > maxLength) {
                 // content too long
-                undo($editor);
+                //undo($editor);
+				$editorInner.html(content.substring(0,50));
+				$editor.find(".richText-initial").val(content.substring(0,50));
                 return false;
             }
             return true;
