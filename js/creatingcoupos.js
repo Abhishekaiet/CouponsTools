@@ -20,6 +20,8 @@ var iswebImg = false;
 var productPosted = 0;
 var googlePlaceID;
 var encodeImaged = [];
+var collectionId;
+var isTemplateUpdate= false;
 
 function convertFileToDataURLviaFileReader(url) {
   var xhr = new XMLHttpRequest();
@@ -42,7 +44,7 @@ inputBox.onkeyup = function(){
 
 
 function logoutuser(){
-			window.localStorage.removeItem("_token");
+			window.sessionStorage.removeItem("_token");
 			window.location.href = "login.html";
 		}
 $(".deoffdesinput").click(function(){
@@ -75,6 +77,7 @@ $(".titleinput").keyup(function() {
 	if(currentForm == "updateProductTemplate"){
 		$("#AppDealform1 #productTitle"+productno).val(txt);
 	}
+	$(".demoTitle").val(txt);
 });	
 
 var inputBox2 = document.getElementById('entdesc');
@@ -372,7 +375,7 @@ function openMenu(x) {
 							method: 'DELETE',
 							headers: {
 							'Content-Type': 'application/json',
-							'Authorization':localStorage.getItem('_token')
+							'Authorization':sessionStorage.getItem('_token')
 						}
 						});
 					}
@@ -869,11 +872,14 @@ function openMenu(x) {
 								"imagelogo": $(".deloutput").attr("src"),
 								"name": title1,
 								"offer": "GRILL",
-								"place_id": null,
+								"place_id": googlePlaceID.place_id,
 								"website": null,
-								"location": null,
+								"location": {
+									"latitude": googlePlaceID.geometry.location.lat,
+									"longitude":googlePlaceID.geometry.location.lng
+								},
 								"isPromoted": null,
-								"businessId": localStorage.getItem('sinid'),
+								"businessId": sessionStorage.getItem('sinid'),
 							}
 							console.log(JSON.stringify(body));
 						const response_ = await fetch('https://proxy.actv.05media.com/rest/private/sincommunityhubservice/addDeal', {
@@ -881,7 +887,7 @@ function openMenu(x) {
 							body:  JSON.stringify(body),
 							headers: {
 							'Content-Type': 'application/json',
-							'Authorization':localStorage.getItem('_token')
+							'Authorization':sessionStorage.getItem('_token')
 						}
 						});
 							 $(".saveloader").css("display","none");
@@ -927,9 +933,18 @@ function openMenu(x) {
 			function showmedia(){
 				$(".mediaDropDown").toggle();
 			}
-			function openRelatedProduct(id){
+			function openRelatedProduct(id,num){
 				var triggerid = $("."+id).attr("id");
 				$("#"+triggerid).trigger("click");
+				if($("#"+triggerid).length == 0){
+					collectionId = id.split('-')[1];
+					ResetDeal();
+					$("#SimpleDealTemplate").trigger("click");
+					totalProducts=num;
+					productno=id.split('-')[0].replace('li','');
+					isTemplateUpdate = true;
+					
+				}
 			}
 			function closePOP(){
 				$("#UploadYoutube").css("display","none");
@@ -1107,12 +1122,15 @@ function openMenu(x) {
 				   $("#DiscountCodeTextField").css("border","1px solid red");
 					return false;				   
 				}
-				if($("#percentageValueField").val() == ""){
-				   alert("please fill the discount value");
-				   $("#percentageValueField").css("border","1px solid red");
-					return false;				   
+				if($("#providername").val() != ""){
+					
 				}
 				if(isPercentage){
+					if(percentagevalue == ""){
+					   alert("please fill the discount value");
+					   $("#percentageValueField").css("border","1px solid red");
+						return false;				   
+					}
 					if(update){
 						UpdateCouponPR(PRID,"percentage",name,termsandcondition,description,Address,category,offer,Images,code,target_selection,percentagevalue,usage_limit,customer_selection,isSpecificCollectCheck,collectionIDs,isSpecificProductCheck,productIDs,dateTime,enddateTime,CustomerIDs,allocation_method);
 					}else {
@@ -1120,6 +1138,11 @@ function openMenu(x) {
 					}
 				}
 				if(isFixed){
+					if(fixedvalue == ""){
+					   alert("please fill the discount value");
+					   $("#percentageValueField").css("border","1px solid red");
+						return false;				   
+					}
 					if(update){
 						UpdateCouponPR(PRID,"fixed_amount",name,termsandcondition,description,Address,category,offer,Images,code,target_selection,fixedvalue,usage_limit,customer_selection,isSpecificCollectCheck,collectionIDs,isSpecificProductCheck,productIDs,dateTime,enddateTime,CustomerIDs,allocation_method,"")
 					}else {
@@ -1127,6 +1150,11 @@ function openMenu(x) {
 					}
 				}
 				if(isFreeShipping){
+					if(shippingvalue == ""){
+					   alert("please fill the discount value");
+					   $("#percentageValueField").css("border","1px solid red");
+						return false;				   
+					}
 					if(update){
 						UpdateCouponPR(PRID,"FreeShipping",name,termsandcondition,description,Address,category,offer,Images,code,target_selection,shippingvalue,usage_limit,customer_selection,isSpecificCollectCheck,collectionIDs,isSpecificProductCheck,productIDs,dateTime,enddateTime,CustomerIDs,allocation_method);
 					}else {
@@ -1134,6 +1162,11 @@ function openMenu(x) {
 					}
 				}
 				if(isbuy){
+					if(shippingvalue == ""){
+					   alert("please fill the discount value");
+					   $("#percentageValueField").css("border","1px solid red");
+						return false;				   
+					}
 					if(update){
 						UpdateCouponPR(PRID,"BuyGet",name,termsandcondition,description,Address,category,offer,Images,code,"entitled",shippingvalue,usage_limit,customer_selection,isSpecificCollectCheck,collectionIDs,isSpecificProductCheck,productIDs,dateTime,enddateTime,CustomerIDs,allocation_method,entitled_quantity,prerequisite_quantity,prerequisite_p,prerequisite_c,entitled_p,entitled_c);
 					}else{
@@ -1162,6 +1195,9 @@ function openMenu(x) {
 				$(".saveloader").css("display","inline");
 				var count = 1;
 				var i = productno;
+				if(isTemplateUpdate){
+					i = 1;
+				}
 				var collection;
 				const forLoop = async _ => {
 				var productID=0;	
@@ -1190,7 +1226,7 @@ function openMenu(x) {
 					weight = 0;
 				}
 
-				if(compare_at_price < price){
+				if(compare_at_price < price && compare_at_price != ""){
 					alert("Compare at price needs to be higher than Price.")
 					$(".saveloader").css("display","none");
 					return false;
@@ -1242,7 +1278,7 @@ function openMenu(x) {
 							body:  JSON.stringify(body),
 							headers: {
 							'Content-Type': 'application/json',
-							'Authorization':localStorage.getItem('_token')
+							'Authorization':sessionStorage.getItem('_token')
 						}
 						});
 						 const responseCode = await response_.ok;
@@ -1281,12 +1317,15 @@ function openMenu(x) {
 								"imagelogo": $(".deloutput").attr("src"),
 								"name": title1,
 								"offer": $("#"+SelectedProducts + ".deoffdesinput").val(),
-								"place_id": null,
+								"place_id": googlePlaceID.place_id,
 								"website": null,
-								"location": null,
+								"location": {
+									"latitude": googlePlaceID.geometry.location.lat,
+									"longitude":googlePlaceID.geometry.location.lng
+								},
 								"isPromoted": null,
 								"priority": null,
-								"businessId": localStorage.getItem('sinid'),
+								"businessId": sessionStorage.getItem('sinid'),
 							}
 				}
 				if(i==2){
@@ -1302,12 +1341,15 @@ function openMenu(x) {
 								"imagelogo": $(".deloutput").attr("src"),
 								"name": title1,
 								"offer": $("#"+SelectedProducts + ".deoffdesinput").val(),
-								"place_id": null,
+								"place_id": googlePlaceID.place_id,
 								"website": null,
-								"location": null,
+								"location": {
+									"latitude": googlePlaceID.geometry.location.lat,
+									"longitude":googlePlaceID.geometry.location.lng
+								},
 								"isPromoted": null,
 								"priority": null,
-								"businessId": localStorage.getItem('sinid'),
+								"businessId": sessionStorage.getItem('sinid'),
 							}
 				}
 				if(i==3){
@@ -1323,12 +1365,15 @@ function openMenu(x) {
 								"imagelogo": $(".deloutput").attr("src"),
 								"name": title1,
 								"offer": $("#"+SelectedProducts + ".deoffdesinput").val(),
-								"place_id": null,
+								"place_id": googlePlaceID.place_id,
 								"website": null,
-								"location": null,
+								"location": {
+									"latitude": googlePlaceID.geometry.location.lat,
+									"longitude":googlePlaceID.geometry.location.lng
+								},
 								"isPromoted": null,
 								"priority": null,
-								"businessId": localStorage.getItem('sinid'),
+								"businessId": sessionStorage.getItem('sinid'),
 							}
 				}
 				if(i==4){
@@ -1344,36 +1389,54 @@ function openMenu(x) {
 								"imagelogo": $(".deloutput").attr("src"),
 								"name": title1,
 								"offer": $("#"+SelectedProducts + ".deoffdesinput").val(),
-								"place_id": null,
+								"place_id": googlePlaceID.place_id,
 								"website": null,
-								"location": null,
+								"location": {
+									"latitude": googlePlaceID.geometry.location.lat,
+									"longitude":googlePlaceID.geometry.location.lng
+								},
 								"isPromoted": null,
 								"priority": null,
-								"businessId": localStorage.getItem('sinid'),
+								"businessId": sessionStorage.getItem('sinid'),
 							}
 				}
 				 count++;
 				 PostdealServer();
+				 if(productIds.length > 0) {
+					 
+					 productIds.forEach(function(item,index){
+						var h = index;
+						if(isTemplateUpdate){
+							h = productno;
+						}
+						collect.push({
+								"product_id": item,
+								"position": h,
+						});
+					 });
+					    collection = { "custom_collection": {
+								"title": $("#listsearch1").val(),
+								"collects": collect,
+								}
+						}
+						if(collectionId){
+						  collection = { "custom_collection": {
+								"id": collectionId,
+								"title": $("#listsearch1").val(),
+								"collects": collect,
+								}
+							}
+						}
+						
+					  Postcollection();
+					} 
 				}
 				var collect = [];
 				
 				if(title1){
 					await Postdeal();
 					$(".saveloader").css("display","none");
-					if(productPosted == totalProducts && totalProducts != 1) {
-						productIds.forEach(function(item,index){
-							collect.push({
-								"product_id": item,
-								"position": index+1
-							  });
-						});
-					    collection = { "custom_collection": {
-								"title": $("#listsearch1").val(),
-								"collects": collect,
-								}
-						}
-					  Postcollection();
-					} 
+					
 					if(totalProducts >= (productno+1)){
 						$("#Product_Number_"+(productno)).css("border","3px solid darkgreen");
 						$("#Product_Number_"+(productno)).css("background-color","lightgreen")
@@ -1387,6 +1450,7 @@ function openMenu(x) {
 				}
 				}
 				forLoop();
+				
 				const PostProductWithColllection = async () => {
 						collectionadded++;
 						const response_ = await fetch('https://proxy.actv.05media.com/rest/private/sincommunityhubservice/addDeal', {
@@ -1394,20 +1458,26 @@ function openMenu(x) {
 							body:  JSON.stringify(content),
 							headers: {
 							'Content-Type': 'application/json',
-							'Authorization':localStorage.getItem('_token')
+							'Authorization':sessionStorage.getItem('_token')
 						}
 						});
 						const responseCode = await response_.ok;
 						if(responseCode){
-							if(collectionadded == totalProducts){
+							if(collectionadded == totalProducts || isTemplateUpdate){
 								$("#actionloader").css("display","none");
 								window.location.href = "creatingcoupons.html?deal=1";
 							}
 						}
 					}
 				const Postcollection = async () => {
-					const response_ = await fetch('https://cors-anywhere.herokuapp.com/https://store-mycommunity-today.myshopify.com/admin/api/2020-07/custom_collections.json', {
-							method: 'POST',
+					var method = "POST";
+					var url = 'https://cors-anywhere.herokuapp.com/https://store-mycommunity-today.myshopify.com/admin/api/2020-07/custom_collections.json';
+					if(collectionId){
+						method = 'PUT'
+						url = 'https://cors-anywhere.herokuapp.com/https://store-mycommunity-today.myshopify.com/admin/api/2020-07/custom_collections/'+collectionId+'.json'
+					}
+					const response_ = await fetch(url, {
+							method: method,
 							body:  JSON.stringify(collection),
 							headers: {
 							'Content-Type': 'application/json',
@@ -1415,7 +1485,7 @@ function openMenu(x) {
 						}
 					});
 					const Data = await response_.json();
-					const collectionId= Data.custom_collection.id;
+					collectionId= Data.custom_collection.id;
 					 productIds.forEach(async function(item,index){
 						if(index == 0){
 							body1.code = totalProducts+"-"+(index+1)+"-"+collectionId;
@@ -1432,6 +1502,9 @@ function openMenu(x) {
 						if(index == 3){
 							body4.code = totalProducts+"-"+(index+1)+"-"+collectionId;
 							content = body4;
+						}
+						if(isTemplateUpdate){
+							content.code = totalProducts+"-"+productno+"-"+collectionId;
 						}
 						await PostProductWithColllection();
 					});
@@ -1531,11 +1604,14 @@ function openMenu(x) {
 								"imagelogo": $("#myImg").attr("src"),
 								"name": name,
 								"offer": offer,
-								"businessId": localStorage.getItem('sinid'),
+								"businessId": sessionStorage.getItem('sinid'),
 								"discalmer": termsandcondition,
-								"place_id": null,
+								"place_id": googlePlaceID.place_id,
 								"website": null,
-								"location":null,
+								"location": {
+									"latitude": googlePlaceID.geometry.location.lat,
+									"longitude":googlePlaceID.geometry.location.lng
+								},
 								"isPromoted": false,
 								"priority": null,
 							}
@@ -1545,15 +1621,56 @@ function openMenu(x) {
 							body:  JSON.stringify(body),
 							headers: {
 							'Content-Type': 'application/json',
-							'Authorization':localStorage.getItem('_token')
+							'Authorization':sessionStorage.getItem('_token')
 						}
 						});
 						 const responseCode = await response_.ok;
-						 if(responseCode){
-							 $("#actionloader").css("display","none");
-							 window.location.href = "creatingcoupons.html";
+						 if(responseCode && AddBusinessplace){
+							 var body = {
+								"address": Address,
+								"cateogry": category,
+								"code": code,
+								"description": description,
+								"expiryDate": "10/03/2020",
+								"id": PRID,
+								"image": Images,
+								"imagelogo": $("#myImg").attr("src"),
+								"name": name,
+								"offer": offer,
+								"businessId": AddBusinessSin,
+								"discalmer": termsandcondition,
+								"place_id": AddBusinessplace.place_id,
+								"website": null,
+								"location": {
+									"latitude": AddBusinessplace.geometry.location.lat,
+									"longitude":AddBusinessplace.geometry.location.lng
+								},
+								"isPromoted": false,
+								"priority": null,
+							}
+							 const response_1 = await fetch('https://proxy.actv.05media.com/rest/private/sincommunityhubservice/addCoupon', {
+								method: 'POST',
+								body:  JSON.stringify(body),
+								headers: {
+								'Content-Type': 'application/json',
+								'Authorization': AddBusinessToken
+							}
+							});
+							 const responseCode_1 = await response_1.ok;
+							 if(responseCode_1){
+								 $("#actionloader").css("display","none");
+								 window.location.href = "creatingcoupons.html";
+							 } else {
+								 $("#actionloader").css("display","none");
+							 }
 						 } else {
-							 $("#actionloader").css("display","none");
+							 if(responseCode){
+								 $("#actionloader").css("display","none");
+								 window.location.href = "creatingcoupons.html";
+							 } else {
+								 $("#actionloader").css("display","none");
+							 }
+							 
 						 }
 					}
 			}
@@ -1670,7 +1787,7 @@ function openMenu(x) {
 							method: 'DELETE',
 							headers: {
 							'Content-Type': 'application/json',
-							'Authorization':localStorage.getItem('_token')
+							'Authorization':sessionStorage.getItem('_token')
 						}
 						});
 					}
@@ -1686,12 +1803,15 @@ function openMenu(x) {
 								"imagelogo": $("#myImg").attr("src"),
 								"name": name,
 								"offer": offer,
-								"businessId": localStorage.getItem('sinid'),
+								"businessId": sessionStorage.getItem('sinid'),
 								"discalmer": null,
 								"discalmer": termsandcondition,
-								"place_id": null,
+								"place_id": googlePlaceID.place_id,
 								"website": null,
-								"location":null,
+								"location": {
+									"latitude": googlePlaceID.geometry.location.lat,
+									"longitude":googlePlaceID.geometry.location.lng
+								},
 								"isPromoted": false,
 								"priority": null,
 							}
@@ -1700,7 +1820,7 @@ function openMenu(x) {
 							body:  JSON.stringify(body),
 							headers: {
 							'Content-Type': 'application/json',
-							'Authorization':localStorage.getItem('_token')
+							'Authorization':sessionStorage.getItem('_token')
 						}
 						});
 						 const responseCode = await response_.ok;
@@ -1816,7 +1936,7 @@ function openMenu(x) {
 							method: 'DELETE',
 							headers: {
 							'Content-Type': 'application/json',
-							'Authorization':localStorage.getItem('_token')
+							'Authorization':sessionStorage.getItem('_token')
 						}
 						});
 					}

@@ -3,8 +3,9 @@
   $(function() {
       // Initialize form validation on the registration form.
       // It has the name attribute "registration"
+	   
 	  $("#buttonsignup").click(function() {
-			window.location.href = "signup.html";
+			window.location.href = "Signup.html";
 		});
       $("form[name='registration']").validate({
           // Specify validation rules
@@ -30,16 +31,27 @@
           }
       });
   });
-
+  function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		}
+		return null;
+	}
   function onload() {
-	 const token = localStorage.getItem('_token');
+	 const token = sessionStorage.getItem('_token');
 	  if(token){
 		window.location.href = "landing_page.html";
 	   }
+	   $("#usernm").val(getCookie('LoginEmail'));
+	  $("#pass").val(getCookie('Password'));
   }
   
    function openForgotScreen() {
-	 const token = localStorage.getItem('_token');
+	 const token = sessionStorage.getItem('_token');
 	  if(token){
 		window.location.href = "landing_page.html";
 	   }
@@ -96,10 +108,11 @@
 			  const loginData = await response.json();
 			  let token = loginData.access_token;
 			  let type = loginData.token_type;
-			  localStorage.setItem('_token', type +' '+token);
+			  sessionStorage.setItem('_token', type +' '+token);
+			  sessionStorage.setItem('checkout', type +' '+token);
 			  if (loginData.error) {
 				  $("#loader").css('display',"none");
-				  window.localStorage.removeItem("_token");
+				  window.sessionStorage.removeItem("_token");
 				  iziToast.error({
 					  title: 'Error',
 					  message: 'Wrong username or password'
@@ -111,20 +124,31 @@
 						method: 'GET',
 						headers: {
 						  'Accept': 'application/json',
-						  'Authorization':  localStorage.getItem('_token'),
+						  'Authorization':  sessionStorage.getItem('_token'),
 						  'Content-Type': 'application/json'
 						}
 					  });
 					  const userData = await response.json();
 					  console.log(userData);
-					  localStorage.setItem('userProfilePic', userData.user.gravatarURL);
-					  localStorage.setItem('vendor', userData.user.fullName);
-					  localStorage.setItem('sinid', userData.user.sinUsername);
+					  sessionStorage.setItem('userProfilePic', userData.user.gravatarURL);
+					  sessionStorage.setItem('vendor', userData.user.fullName);
+					  sessionStorage.setItem('fname', userData.user.firstname);
+					  sessionStorage.setItem('lname', userData.user.lastname);
+					  sessionStorage.setItem('email', userData.user.email);
+					  sessionStorage.setItem('sinid', userData.user.sinUsername);
+					  sessionStorage.setItem('role', userData.user.roles[0]);
+					  sessionStorage.setItem('telephone', userData.business.phoneNumber);
+					  if(userData.user.businessPackages == null){
+						  sessionStorage.setItem('package', 'Standard');
+					  } else {
+						  sessionStorage.setItem('package', userData.user.businessPackages);
+					  }
 					   if(userData.user.businessUser){
 						window.location.href = "landing_page.html";
 					   } else {
 						   $("#loader").css('display',"none");
-						   window.localStorage.removeItem("_token");
+						   sessionStorage.setItem('checkout', sessionStorage.getItem('_token'));
+						   window.sessionStorage.removeItem("_token");
 						   iziToast.error({
 							  title: 'Error',
 							  message: 'You are not a business user'

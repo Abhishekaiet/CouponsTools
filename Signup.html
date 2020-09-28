@@ -9,12 +9,38 @@
 <link href='https://fonts.googleapis.com/css?family=-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif' rel='stylesheet'>	  
 <!--	  Country code dropdown librabires linked-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="css/header.css">
 <script src="https://www.marghoobsuleman.com/misc/jquery.js"></script>
  <link rel="stylesheet" type="text/css" href="css/signup.css">
 <script>
 	var $x;
+	var selectedPacked = "";
+	var pricingTable = [];
+	var TotalAmount = 0;
     $x = jQuery.noConflict();
+	var isPaid = false;
+	var isaddedpack = false;
+	var SelectedAdditional = "";
+	var packages = [];
+	$( window ).resize(function() {
+	  $("#packagediv").css("height",(window.innerHeight-440))
+	});
+	$(document).ready(function() {
+	$("#packagediv").css("height",(window.innerHeight-440))
+		if(getCookie('LoginEmail') && getCookie('Password')){
+			$(".rightside").css("display","block");
+			document.getElementById("logi_signupselector").style.display="none";
+			document.getElementById("Plan_Selection").style.display="block"
+			document.getElementById("maindivscrable").style.display="block";
+			document.getElementById('continuesingup').style.display="none";
+			$("#emailaddress").val(getCookie('LoginEmail'));
+			$("#login-username").val(sessionStorage.getItem('SignFName'));
+			$("#login-userlastname").val(sessionStorage.getItem('SignLName'));
+		}
+		var defaultprofilePic="icons/img_avatar.png";
+		$("#profilePic").attr('src',defaultprofilePic);
+		
+	});
 	
 //   alert("Version: "+$x.fn.jquery);
 </script>
@@ -128,6 +154,54 @@
         font-weight: 500;
         padding: 6px 12px;
       }
+	  .modal_ {
+		  display: none; /* Hidden by default */
+		  position: fixed; /* Stay in place */
+		  z-index: 1; /* Sit on top */
+		  padding-top: 100px; /* Location of the box */
+		  left: 0;
+		  top: 0;
+		  width: 100%; /* Full width */
+		  height: 100%; /* Full height */
+		  overflow: auto; /* Enable scroll if needed */
+		  background-color: rgb(0,0,0); /* Fallback color */
+		  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		}
+		.modal_ .lead{
+			font-size:40px;
+			margin-bottom: 86px;
+			width:70%;
+		}
+		.modal_ .listdetails{
+			padding: 15px 71px;
+			line-height: 40px;
+			height: 75%;
+		}
+		.modal_ div{
+			  background-color: #fefefe;
+			  margin: auto;
+			  padding: 0 20px;
+			  width: 50%;
+			  height:80%;
+			  position:relative;
+		}
+		.modal_ .pricingtitle121{
+			font-size:45px;
+		}
+		.modal_ .btnaddpack{
+			position: absolute;
+			bottom: 30px;
+			right: 30px;
+			background: #F4F8FB 0% 0% no-repeat padding-box;
+			border: 0.5px solid #BBBBBB;
+			border-radius: 32px;
+			width: auto;
+			height: auto;
+			letter-spacing: 0px;
+			color: #656565;
+			font-size: 25px;
+			padding: 23px 37px;
+		}
     </style>
 <!--	  end here the validating the numbers-->
 	  
@@ -150,6 +224,9 @@
  
 	  
 	  <nav class="navbar navbar-default" style="background: white;">
+	  <div class="modal_">
+	  
+	  </div>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -158,6 +235,7 @@
     left: 2%;
     position: absolute;"></a>
     </div>
+	<div class="rightside" style="display:none"><img id="profilePic"/> <a onclick="logoutuser()" class="logoutuser">Logout</a></div>
   </div><!-- /.container-fluid -->
 </nav>
 	  
@@ -398,7 +476,164 @@ url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg");
 
 		
 <script>
-	
+function setCookie(name,value,days) {
+					var expires = "";
+					if (days) {
+						var date = new Date();
+						date.setTime(date.getTime() + (days*24*60*60*1000));
+						expires = "; expires=" + date.toUTCString();
+					}
+					document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+				}
+				function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		}
+		return null;
+	}
+	function OpenPOP(id){
+		$(".modal_").css("display","block");
+		$("."+id).css("display","block");
+	}
+	function logoutuser(){
+			window.sessionStorage.removeItem("_token");
+			setCookie("Password",'',-1);
+			window.location.href = "login.html";
+		}
+	function TriggerAddBtn(id){
+		$("#"+id+ " #btnaddpack").trigger("click");
+		ClosePOP(id);
+	}
+	function ClosePOP(id){
+		$(".modal_").css("display","none");
+		$("."+id).css("display","none");
+	}
+	function triggerCheckout(){
+		$("#submitdatamain").trigger("click");
+	}
+	function AddAdditionalPack(id,price,text){
+	    var Isadded = $('#'+text+' #btnaddpack').html();
+		if(Isadded != "ADDED"){
+	    var filt = pricingTable.filter((item) => ((item.item.indexOf("STANDARD") == -1) && (item.item.indexOf("PREMIUM") == -1) && (item.item.indexOf("ENTERPRISE") == -1)))
+		pricingTable = filt;
+		$(".selected_plan .basic_plan").html("<p>"+id +" "+ price+"</p>");
+		//$(".selected_plan_price").html(price+' <span style="font-size:12px;"> per Month/per entity</span></p>');
+		SelectedAdditional = text;
+		selectedPacked = id;
+		var filtered_;
+		filtered_ = packages.filter((item) => item.indexOf("Premium") == -1);
+		filtered_ = filtered_.filter((item) => item.indexOf("Enterprise") == -1);
+		filtered_ = filtered_.filter((item) => item.indexOf("Standard") == -1);
+		packages = filtered_;
+		if(id == 'STANDARD PACKAGE'){
+			$("#Standardpa #btnaddpack").html("ADDED");
+			$("#Premiumpa #btnaddpack").html("UPGRADE TO THIS PLAN");
+			$("#Enterprisepa #btnaddpack").html("UPGRADE TO THIS PLAN");
+			$("#LiveChat").css({"pointerEvents": "auto",'border': 'none'});
+			$(".LiveChat").css({"pointerEvents": "auto",'border': 'none'});
+			$("#LiveChat").find("#btnaddpack").css({'background-color':'#ffffff','color': '#656565'});
+			$(".LiveChat").find(".btnaddpack").css({'background-color':'#ffffff','color': '#656565'});
+		}
+		if(id == 'PREMIUM PACKAGE'){
+			$("#Standardpa #btnaddpack").html("UPGRADE TO THIS PLAN");
+			$("#Premiumpa #btnaddpack").html("ADDED");
+			$("#Enterprisepa #btnaddpack").html("UPGRADE TO THIS PLAN");
+			$("#LiveChat").css({"pointerEvents": "auto",'border': 'none'});
+			$(".LiveChat").css({"pointerEvents": "auto",'border': 'none'});
+			$("#LiveChat").find("#btnaddpack").css({'background-color':'#ffffff','color': '#656565'});
+			$(".LiveChat").find(".btnaddpack").css({'background-color':'#ffffff','color': '#656565'});
+		}
+		if(id == 'ENTERPRISE PACKAGE'){
+			$("#Standardpa #btnaddpack").html("UPGRADE TO THIS PLAN");
+			$("#Premiumpa #btnaddpack").html("UPGRADE TO THIS PLAN");
+			$("#Enterprisepa #btnaddpack").html("ADDED");
+			$("#LiveChat").css({pointerEvents: "none",'border': 'none'});
+			$("#LiveChat").find("#btnaddpack").html("UPGRADE TO THIS PLAN");
+			$("#LiveChat").find("#btnaddpack").css({'background-color':'#C0C0C0','color': '#fff'});
+			pricingTable.forEach(function(item,index){
+			 if(item.item.indexOf("Live-Chat") > -1){
+				TotalAmount = (TotalAmount-99);
+			 }
+			});
+			var filt_ = pricingTable.filter((item) => (item.item.indexOf("Live-Chat") == -1))
+			pricingTable = filt_;
+			var filt__ = packages.filter((item) => (item.indexOf("Live-Chat") == -1))
+			packages = filt__;
+			getadnilapackarray.forEach(function(addcpkid,addcpkitem){
+			 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjc2MTAzMQ=='){
+				getadnilapackarray.splice(addcpkitem,1);
+			 }
+			});
+		}
+		const found = pricingTable.find(element => element.item == id);
+		var html='';
+		var html1 = '';
+		var filtered;
+		if(found != undefined){
+			filtered = pricingTable.filter((item) => (item.item !== id))
+			var s = filtered.filter((item) => item.item !== "Credit "+id+" (Waived For 6 Month)");
+			filtered = s;
+		}
+		if(filtered != undefined){
+			pricingTable = filtered;
+		}
+		if(found == undefined){
+			pricingTable.push({item: id,price: price});
+		}
+		if(id.indexOf("Live-Chat") == -1 && (found == undefined)){
+			pricingTable.push({item: "Credit "+id+" (Waived For 6 Month)",price: "-"+price});
+		}
+		//TotalAmount = (TotalAmount+parseInt(item12.variants[0].compareAtPrice));
+		if(TotalAmount > 2 && TotalAmount < 3){
+			TotalAmount = 2.90;
+		}
+		pricingTable.forEach(function(item,index){
+		html += "<span class='price"+index+"' style='padding-right: 50px;'>"+item.item.toLowerCase()+"</span><span class='price"+index+"'>"+item.price+"</span>"
+		});
+		html1 += "<span class='totalAmount' style='padding-right: 50px;'>Total</span><span class='totalAmount'>$"+TotalAmount+"</span>";
+		$(".pricingDiv").html(html+"<hr><hr>"+html1);
+		getlistfromadd();
+		setTimeout(function() {
+		
+		if(isaddedpack){
+		 if(id == "STANDARD PACKAGE"){
+			addinal_variable = "Additional Standard";
+		  } else
+		  if(id == "PREMIUM PACKAGE"){
+			addinal_variable = "Additional Premium";
+		  } else
+		  if(id == "ENTERPRISE PACKAGE"){
+			addinal_variable = "Additional Enterprise";
+		  }
+		 }
+		},3000)
+		packages.filter((a, b) => packages.indexOf(a) === b)
+		} else {
+		    $("#"+text+" #btnaddpack").html("UPGRADE TO THIS PLAN");
+			var filt = pricingTable.filter((item) => ((item.item.indexOf("STANDARD") == -1) && (item.item.indexOf("PREMIUM") == -1) && (item.item.indexOf("ENTERPRISE") == -1)))
+			pricingTable = filt;
+			$(".selected_plan .basic_plan").html("<p>"+id +" "+ price+"</p>");
+			//$(".selected_plan_price").html(price+' <span style="font-size:12px;"> per Month/per entity</span></p>');
+			SelectedAdditional = text;
+			selectedPacked = id;
+			var filtered_;
+			filtered_ = packages.filter((item) => item.indexOf("Premium") == -1);
+			filtered_ = filtered_.filter((item) => item.indexOf("Enterprise") == -1);
+			filtered_ = filtered_.filter((item) => item.indexOf("Standard") == -1);
+			packages = filtered_;
+			var html ="";
+			var html1 ="";
+			pricingTable.forEach(function(item,index){
+				html += "<span class='price"+index+"' style='padding-right: 50px;'>"+item.item.toLowerCase()+"</span><span class='price"+index+"'>"+item.price+"</span>"
+				});
+				html1 += "<span class='totalAmount' style='padding-right: 50px;'>Total</span><span class='totalAmount'>$"+TotalAmount+"</span>";
+				$(".pricingDiv").html(html+"<hr><hr>"+html1);
+			}
+	}
 	function fname1() {
   document.getElementById("firstname").style.border="0px solid red";
 }
@@ -470,24 +705,24 @@ url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg");
 				
 				var xhr = new XMLHttpRequest();
 			
-xhr.open("POST", 'https://proxy.actv.05media.com/services/v1/profiles', true);
-xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.open("POST", 'https://proxy.actv.05media.com/services/v1/profiles', true);
+		xhr.setRequestHeader('Content-Type', 'application/json');
 
-xhr.addEventListener("readystatechange", function () {
+		xhr.addEventListener("readystatechange", function () {
 	
 	console.log(this.status);
-
+	if (this.readyState === 4 ) {
+	 var json = JSON.parse(this.responseText);
+	}
 	if (this.status === 201)
 		{
 			document.getElementById("logi_signupselector").style.display="none";
-			document.getElementById("mobileApp").style.display="block";
-			$(window).scrollTop(0);
+			document.getElementById("Plan_Selection").style.display="block";
 		}
 	
 });
 			}
-
-		  });
+		});
 		
 	
 	document.getElementById('continuesingup').addEventListener("click",function(){
@@ -738,10 +973,6 @@ xhr.send(data);
     height: 113vh;
 	display:none;
 			}
-			@media (max-width: 1024px){
-			
-			}
-		
 		</style>
 
 		
@@ -855,14 +1086,48 @@ xhr.addEventListener("readystatechange", function () {
 	
 	if (this.status === 201)
 		{
+		    const loginAction = async () => {
+			  var pass = document.getElementById("passwordb").value;
+			  const response = await fetch('https://proxy.actv.05media.com/oauth/token?grant_type=password&username=' + email + '&client_id=web&client_secret=2567a5ec9705eb7ac2c984033e06189d&password=' + pass, {
+				method: 'GET',
+				headers: {
+				  'Content-Type': 'application/json'
+				}
+			  });
+			  const loginData = await response.json();
+			  let token = loginData.token_type +' '+loginData.access_token;
+			  sessionStorage.setItem('checkout',token)
+			  sessionStorage.setItem('_token',token)
+			 
+			  const userDataAction = async () => {
+			  const response = await fetch('https://proxy.actv.05media.com:443/services/v1/profiles/me', {
+					method: 'GET',
+					headers: {
+					  'Accept': 'application/json',
+					  'Authorization':  token,
+					  'Content-Type': 'application/json'
+					}
+				  });
+				  const userData = await response.json();
+				  console.log(userData);
+				  sessionStorage.setItem('sinid', userData.user.sinUsername);
+				  setCookie('sinid', userData.user.sinUsername,1);	
+			  }
+				  userDataAction()
+			  }
+			  loginAction();
+			setCookie('LoginEmail', email,1);
+			setCookie('Password', password,1);
+			sessionStorage.setItem('SignFName', fname);
+			sessionStorage.setItem('SignLName', lname);
 		    document.getElementById("login-username").value = fname
 			document.getElementById("login-userlastname").value = lname
 			document.getElementById("emailaddress").value = email;
 			document.getElementById("phoneno").value = phoneno;
 			document.getElementById("logi_signup01").style.display="none";
-			document.getElementById("mobileApp").style.display="block";
+			//document.getElementById("mobileApp").style.display="block";
+				document.getElementById("Plan_Selection").style.display="block"
 			document.getElementById("maindivscrable").style.display="block";
-			$(window).scrollTop(0);
 		}
 	
 });
@@ -1018,51 +1283,249 @@ xhr.send(data);
 	  .LiveStreeam {
 	   margin-bottom: 30px !important;
 	  }
+	  #Plan_Selection{
+	      margin-top: 130px;
+		  display:none;
+	   }
+	  #Plan_Selection div{
+			display: inline-block;
+			margin-top: 61px;
+			position:relative;
+			    margin-right: 10px;
+			
+	   }
+	  #Plan_Selection div span{
+		 position:absolute;
+		     left: 40px;
+			top: 250px;
+	   }
+	 #Plan_Selection div img{
+		width: 400px;
+	 }
+	 #Plan_Selection ul{
+	  font-size: 29px;
+		color: #ffffff;
+		LINE-HEIGHT: 34PX;
+		margin-top:10px;
+	 }
+	 #Plan_Selection ul li{
+	  font-size:20px;
+	  color:#ffffff;
+	 }
+	 #Plan_Selection span.price{
+		    top: 46px;
+			LEFT: 115PX;
+	 }
+	 
+	 #Plan_Selection span .discount{
+		color: #1B6E33;
+		font-size: 40px;
+		font-weight: bold;
+		margin-bottom: 0;
+		text-align: center;
+	 }
+	 #Plan_Selection span .cprice{
+		 color: #1B6E33;
+		text-align: center;
+		font-size: 23px;
+		margin-bottom: 0;
+		    margin: 48px;
+	 }
+	 #Plan_Selection .button{
+	     margin: 0;
+		padding: 20px 118px;
+		background: #FFFFFF 0% 0% no-repeat padding-box;
+		border-radius: 35px;
+		font-size: 21px;
+		font-weight: bold;
+		position: absolute;
+		bottom: 14px;
+		z-index: 9999;
+		left: 34px;
+		cursor:pointer;
+	 }
+	  #Plan_Selection strike,#Plan_Selection p{
+	    text-align:center;
+	  }
+	  .selectedtext{
+		position: absolute;
+		top: 78px;
+		font-size: 28px;
+		left: 137px;
+		font-weight: bold;
+		text-align: center;
+		color:#656565;
+	}
+	.selectedplan{
+		position: absolute;
+    left: 66px;
+    top: 238px;
+    font-size: 16px;
+    color: #656565;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 72%;
+	}
+	.selected_plan{
+		width:300px;
+	}
 	</style>
 
 	  
 	  
-	  
+	  <div id="Plan_Selection">
+		  <div style="margin: auto;display: table;">
+		  <div><img src="img/plans/Standard_Package.png" >
+		   <span class="price">
+		   <strike class="cprice">$99.00</strike>
+		   <p class="discount">$0.00</p>
+		   <p>Waived for 6 months</p>
+		   </span>
+		  <span>
+		  <ul>STANDARD PACKAGE
+		  <li>Launch of the customer mobile application</li>
+		  <li>Populate the app with customer’s content and media</li>
+		  <li>Mycommunity.Today Social networking management</li>
+		  <li>Coupons management services</li>
+		  <li>Deals management services</li>
+		  <li>Content updated once per week</li>
+		  </ul>
+		  </span>
+		  <div class="button" onclick="SelectPackage('STANDARD PACKAGE','$99.00')" style="color:#1B6E33">SIGN UP</div>
+		  </div>
+		  <div><img src="img/plans/Premium_Package.png" >
+		    <span class="price">
+		   <strike style="color: #A61B20;" class="cprice">$299.00</strike>
+		   <p style="color: #A61B20;" class="discount">$0.00</p>
+		   <p>Waived for 6 months</p>
+		   </span>
+		   <span>
+		  <ul>PREMIUM PACKAGE
+		  <li>Standard Package</li>
+		  <li>Online store creation and Management. up to 100 items E-commerce solution including shopping cart</li>
+		  <li>E-commerce solution including shopping cart</li>
+		  <li>Order creation and management</li>
+		  <li>Discount codes management</li>
+		  </ul>
+		  </span>
+		   <div class="button" onclick="SelectPackage('PREMIUM PACKAGE','$299.00')" style="color:#A61B20">SIGN UP</div>
+		  </div>
+		  <div><img src="img/plans/Enterprise_Package.png" >
+		    <span class="price">
+		   <strike style="color: #2C2E79;" class="cprice">$499.00</strike>
+		   <p style="color: #2C2E79;" class="discount">$0.00</p>
+		   <p>Waived for 6 months</p>
+		   </span>
+		   <span>
+		  <ul>ENTERPRISE PACKAGE
+		  <li>Premium Package</li>
+		  <li>Email based Customer Support</li>
+		  <li>Online Store Creation and Management (Max 1000 items and updated once per week)</li>
+		  <li>First line phone support</li>
+		  <li>Text and Live-Chat Support</li>
+		  <li>Trainings</li>
+		  </ul>
+		  </span>
+		  <div class="button" onclick="SelectPackage('ENTERPRISE PACKAGE','$499.00')" style="color:#2C2E79">SIGN UP</div>
+		  </div>
+		  </div>
+		  <div style="margin: auto;display: table;">
+		  <div><img src="img/plans/Digital_Marketing_Package.png" >
+		    <span class="price" style="top: 67px;LEFT: 129PX;">
+		   <p style="color: #EC8600;" class="discount">$499.00</p>
+		   <p>Waived for 6 months</p>
+		   </span>
+		   <span>
+		  <ul>DIGITAL MARKETING PACKAGE
+		  <li>Marketing Program Development</li>
+		  <li>Marketing Program Development</li>
+		  <li>External Social media management (i.e. Yelp, Facebook, Instagram, Twitter, Pinterest)</li>
+		  <li>Social media marketing campaigns</li>
+		  <li>Email & text outreach programs</li>
+		  <li>Onsite & offsite marketing</li>
+		  <li>Re-targeting efforts</li>
+		  <li>Weekly specials generation and optimization</li>
+		  <li>Custom collateral & poster design for special occasions</li>
+		  <li>Local specific online marketing</li>
+		  </ul>
+		  </span>
+		  <div class="button" onclick="SelectPackage('DIGITAL MARKETING PACKAGE','$499.00')" style="color:#EC8600">SIGN UP</div>
+		  </div>
+		  <div><img src="img/plans/Website_developement.png" >
+		    <span class="price" style="top: 67px;LEFT: 129PX;">
+		   <p style="color: #00BBFF" class="discount">$299.00</p>
+		   <p>Waived for 6 months</p>
+		   </span>
+		   <span>
+		  <ul>WEBSITE DEVELOPMENT AND MANAGEMENT PACKAGE
+		  <li>Website design</li>
+		  <li>Website development</li>
+		  <li>Website hosting on Amazon</li>
+		  <li>Website weekly update</li>
+		  <li>Website analytics</li>
+		  <li>Maintenance</li>
+		  <li>Social Media Integration</li>
+		  <li>Bookings/Appointments</li>
+		  <li>Site Security</li>
+		  <li>Online Store</li>
+		  </ul>
+		  </span>
+		   <div class="button" onclick="SelectPackage('WEBSITE DEVELOPMENT AND MANAGEMENT PACKAGE','$299.00')" style="color:#00BBFF">SIGN UP</div>
+		  </div>
+		  </div>
+	  </div>
 	  <div class="container-fluid" id="mobileApp">
-		  <div class="row" style="margin-top:0px;">
+		  <div class="row" style="margin-top:22px;">
 	  <div class="col-sm-3" style="margin: 0px; padding: 0px;">
 		  <div class="leftmenu">
-		  
-			  <h4 style="margin-top: 30px;font-size: 21px;">Let's build your mobile app</h4>
-			  <div class="listtext">
-			 <p id="tellabutupou">Tell us about you  <span class="glyphicon glyphicon-ok" id="icond" style="display: none; color: #00B3FE; float: right;"></span></p>
-				  
-			  <p id="telabtyurbsuness">Tell us about your business <span class="glyphicon glyphicon-ok" id="icond2" style="display: none; color: #00B3FE; float: right;"></span></p>
-				  
-			  <p id="pricingtitleletbe"> Pricing <span class="glyphicon glyphicon-ok" id="icond6" style="display: none; color: #00B3FE; float: right;"></span></p>
-			  <p id="termscond"> Terms & condition <span class="glyphicon glyphicon-ok" id="icond4" style="display: none; color: #00B3FE; float: right;"></span></p>
-				
-				  
-				  <hr>
-				  
-				   <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" id="progressreport">
-                <span class="sr-only">60% Complete</span>
-            </div>
-            <span class="progress-type">Progress</span>
-            <span class="progress-completed"><span id="percentagecount">0%</span></span>
-        </div>
-				  
-				  <h5 style="    font-weight: 700;
-    font-size: 22px;
-    text-align: center; visibility: hidden;" id="packges">STARNDARD</h5>
-				  
-			  <p style="font-size: 20px;
-    color:#00B3FE; visibility: hidden;"> NRE Setup Fee $ <span id="pricestotal">990</span></p>
-			  <p style="font-size: 20px;
-    color: #00B3FE; visibility: hidden;">  Month Fee $ <span id="motnfee">99</span></p>
-		<p style="font-size: 20px;
-    color: #00B3FE; visibility: hidden;"> Total Fee $ <span id="totalfee">1089</span></p>
-			  </div>
-			 
-			
 			  
+			  <div style="position:relative"><img style="margin: auto;display: block;" src="img/plans/selected_small.png" >
+			  <span class="selectedtext"><p style="width: 166px;">Selected Plan</p></span>
+			  <span class="selectedplan"><span class="selected_plan"><span class="basic_plan"></span></span><span class="selected_plan_price"></span>
+			  </span>
+			  </div>
+			  <ul id="packagediv">	
+				</ul>
 			  <style>
+				::-webkit-scrollbar {
+					width: 20px;
+				}
+				#packagediv #Enterprisepa{
+					background: transparent linear-gradient(90deg, #374C95 0%, #2A2772 100%) 0% 0% no-repeat padding-box !important;
+					border-radius:12px;
+				}
+				#packagediv #Standardpa{
+					background: transparent linear-gradient(90deg, #219441 0%, #1A6831 100%) 0% 0% no-repeat padding-box !important;
+					border-radius:12px;
+				}
+				#packagediv #Premiumpa{
+					background: transparent linear-gradient(90deg, #C21B21 0%, #A51B20 100%) 0% 0% no-repeat padding-box !important;
+					border-radius:12px;
+				}
+				#packagediv #Enterprisepa .lead, #packagediv #Enterprisepa .pricingtitle121{
+					color: #fff !important;
+				}
+				#packagediv #Standardpa .lead,#packagediv #Standardpa .pricingtitle121{
+					color: #fff !important;
+				}
+				#packagediv #Premiumpa .lead, #packagediv #Premiumpa .pricingtitle121{
+					color: #fff !important;
+				}
+			  #DigitalM,.DigitalM{
+				border-left: 17px solid #FF9700 !important;
+			  }
+			  #WebsiteD,.WebsiteD{
+				border-left: 17px solid #009BFF !important;
+			  }
+			  #Entertai,.Entertai{
+				border-left: 17px solid #C500FF !important;
+			  }
+			  #Interact,#LiveStre,#TVChanne,.Interact,.LiveStre,.TVChanne{
+			    border-left: 17px solid #FFDD00 !important;
+			  }
+			  #LiveChat,.LiveChat{
+				border-left: 17px solid #570281 !important;
+			  }
 			  .progress > .progress-type
 			  .progress {
     position: relative;
@@ -1113,11 +1576,11 @@ xhr.send(data);
 			  
 		  </div>
 			  </div>
-		 <div class="col-sm-9" align="center">
+		 <div class="col-sm-6" align="center">
 	 
 	<div id="maindivscrable">
 			<div id="div1obj"> 
-            <div class="panel panel-info sizecuc">
+            <div class="panel panel-info">
                     <div class="panel-heading">
                         <div class="panel-title" align="left">Tell Us About You</div>
 <!--                        <div class="pricesrates"><a href="#">Price:$ <span id="maintoppricing">00.00</span></a></div>-->
@@ -1128,9 +1591,7 @@ xhr.send(data);
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             
 <!--                        <form id="loginform" class="form-horizontal" role="form">-->
-                          <div style="margin-bottom: 25px;
-    width: 45%;
-    float: left;" class="input-group">
+                          <div style="margin-bottom: 25px;width: 45%;float: left;" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                         <input id="login-username" type="text" class="form-control getvalues" name="password" placeholder="First Name*">
                                     </div>
@@ -1614,7 +2075,7 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 	}
 	#phoneno
 	{
-		padding-left: 23%;
+		padding-left: 25%;
     height: 55px;
 	}
 	
@@ -1634,6 +2095,17 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     font-size: 23px;
     opacity: 0.7;
 	width:65%;
+	}
+	.checkout{
+	    width: 420px;
+    height: 66px;
+    font-size: 22px;
+    margin-left: 23px;
+    background: #00B6FF 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    opacity: 1;
+    color: #fff;
+	border:none;
 	}
 						
 						</style>
@@ -1667,11 +2139,13 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 					<div style="margin-top:-17px" class="">
                                     <!-- Button -->
 
-                                    <div class="col-sm-11" style="margin-top: 2%;">
+                                    <div class="col-sm-12" style="margin-top: 1%;">
 <!--                                      <a id="btn-login" href="#" class="btn btn-success">Login </a>-->
-										<button id="cloclks" class="paybutton" style="float: right;margin-right: 69px;">Save & Continue</button>
-<!--                                      <a id="btn-fblogin" href="#" class="btn btn-primary" style="float: right;"></a>-->
-
+										<span style="float:left;margin-top: 20px;">
+										<input type="checkbox" id="checkdd" name="vehicle1" value="Bike">
+										<label for="checkdd" style="margin-left: 50px;vertical-align: text-bottom;font: normal normal normal 19px/25px Roboto;letter-spacing: 0px;color: #00B6FF;"> <a href="#" data-toggle="modal" data-target="#myModal" id="termeds">Terms & Conditions</a></label><br>
+										</span>
+										<button id="submitdatamain" class="checkout" style="float: right">CHECKOUT</button>
                                     </div>
                                 </div>
             </div>
@@ -2389,22 +2863,34 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 							</div>
 						</div>
 		</div>
-	  
+	     
 	  <style>
 		  
 		  #packagediv li
 		  {
-			    width: 100%!important;
+			    width: 85%!important;
 				margin-bottom: 49px!important;
-				border-radius: 30px!important;
 				background: white!important;
 				display:grid;
+				border-top-right-radius: 12px;
+				border-bottom-right-radius: 12px;
+				height: 150px;
+				margin: auto;
+				margin-top: 30px;
 		  }
-		  
+		  #packagediv li .listdetails
+		  {
+			display:none;
+		  }
 		   #packagediv
 		  {
-			  list-style: none!important;
-			      margin-top: 30px;
+				list-style: none!important;
+				overflow: scroll;
+				height: 500px;
+				background-color: #ECECEC;
+				margin-top: 9px;
+				position: absolute;
+				left: 0;
 		  }
 		  
 		  
@@ -2451,13 +2937,13 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
 		 .lead
 		 {
 		text-align: left!important;
-		padding: 15px 15px 0px 15px !important;
-		color: black;
+		padding: 21px 15px 0px 21px !important;
+		color: #656565;
 		font-weight: 500;
 		float: left;
 		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-		width: 59%;
-		font-size: 21px;
+		width: 95%;
+		font-size: 20px;
 		height: 54px;
 		margin-bottom: 0px;
 
@@ -2874,11 +3360,10 @@ var oHandler = $x('#countriesedd').msDropDown().data("dd");
     font-weight: 700;
 	}
 	#checkdd{
-	margin-left: 19px;
     text-align: left;
-    margin-top: 7px;
-    width: 31px;
-    height: 20px;
+    margin-top: 0;
+    width: 33px;
+    height: 27px;
     position: absolute;
 	}    
 	#descptermscheck{
@@ -2938,7 +3423,7 @@ var dateandtime = day + "/" + month + "/" + year;
 </script>
 				
 						
-						<a href="#" data-toggle="modal" data-target="#myModal" id="termeds" style="font-size: 16px;">Terms & Conditions</a>
+						
 						  <br>
 						  
 						  <style>
@@ -2953,7 +3438,7 @@ var dateandtime = day + "/" + month + "/" + year;
 						  </style>
 						
 						  <div class="checkboxdiv">
-							<input type="checkbox" id="checkdd">
+							<input type="checkbox" id="">
 							  <span id="descptermscheck">I hearby declare that I have read & agree with MyCommunity.Today Terms & Conditions</span>
 						</div>
 						
@@ -2994,7 +3479,6 @@ var dateandtime = day + "/" + month + "/" + year;
 			  </div>
 
 
-
 <style>
     
 	#tablelist th{
@@ -3025,24 +3509,38 @@ var dateandtime = day + "/" + month + "/" + year;
     font-size: 17px;
 	}
 	
+	.btnaddpack
+	{
+		float: right;
+		background: none;
+		line-height: 23px;
+		text-align: center;
+		height: 35px;
+		border: 1px solid #656565;
+		width: 20%;
+		font-weight: 700;
+		border-radius: 30px;
+		line-height: 32px;
+		font-size: 15px;
+		color: #656565;
+		margin-top: 82px;
+		cursor:pointer;
+	}
 	#btnaddpack
 	{
-		               float: right;
-    background: none;
-    line-height: 23px;
-    text-align: center;
-    height: 35px;
-    /* background: #fde11f; */
-    border: 1px solid black;
-    /* width: 108px; */
-    width: 20%;
-    font-weight: 700;
-    border-radius: 30px;
-    line-height: 32px;
-    font-size: 20px;
-    color: black;
-    margin-top: 82px;
-	
+		float: left;
+		line-height: 23px;
+		text-align: center;
+		padding: 4px 17px;
+		font-weight: 700;
+		line-height: 32px;
+		font-size: 14px;
+		color: #656565;
+		margin-top: 35px;
+	    margin-left: 14px;
+		background: #F4F8FB 0% 0% no-repeat padding-box;
+		border: 0.5px solid #BBBBBB;
+		border-radius: 32px;
 	}
 	#listdiv
 	{
@@ -3088,19 +3586,7 @@ var dateandtime = day + "/" + month + "/" + year;
 	{
 		list-style: none;
 	}
-/*
-	#packagediv li
-	{
-		   width: 67%;
-    margin-top: 5%;
-    margin-left: 0%;
-    border-radius: 16px;
-    height: auto;
-    background: white;
-		text-align: left;
-		padding: 22px;
-	}
-*/
+
 	.addinalpackage
 	{
 		    width: 100%;
@@ -3411,9 +3897,21 @@ authorized representatives as of the date set forth below.</p>
 
 
 	  </div>
-	 
+	 <div class="col-sm-3" style="background-color:#fff;">
+			 <div class="pricingDiv"></div>
+			 <button onclick="triggerCheckout()" class="checkout">CHECKOUT</button>
+			</div>
 <style>
-
+.pricingDiv{
+	display: grid;
+    grid-template-columns: auto auto;
+    background-color: #fff;
+    margin-top: 11px;
+}
+.pricingDiv span{
+	padding:13px 32px;
+	    color: #363636;
+}
 .tacnum{
 font-size:25px !important;
 color: #212121 !important;
@@ -3489,16 +3987,16 @@ input[type=number] {
 	
 	.pricingtitle121
 	{
-    font-size: 19px;
+    font-size: 24px;
     text-align: center;
     padding: 1px;
-    width: 21%;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    color: #b59e9e;
-    margin-top: 15px;
+    color: #656565;
+    margin-top: 25px;
     float: right;
     text-align: right;
     font-weight: 700;
+	margin-right: 11px;
 	}
 	
 	
@@ -3534,8 +4032,34 @@ input[type=number] {
 		font-size: 20px;
 		color: #403e3e;
 	}
-
-	
+	.listdetails h1,.listdetails h2,.listdetails h3{
+		display:none;
+	}
+	.subtotal_{
+		font-size:20px;
+		font-weight:bold;
+	}
+	.totalAmount{
+		font-size:25px;
+	}
+	.price0{
+	    padding-right: 50px;
+		font-size: 21px !important;
+		font-weight: bold;
+		text-transform: capitalize;
+	}
+	.price1,.price2,.pricingDiv span{
+		padding-right: 40px;
+		font-size: 18px;
+		text-transform: capitalize;
+		font-weight: bold;
+	}
+	.price_0,.price_1,.price_2{
+		padding-right: 50px;
+		font-size: 14px;
+		font-weight: bold;
+		text-transform: capitalize;
+	}
 </style>
 <!--
 
@@ -3561,18 +4085,15 @@ window.addEventListener('load', (event) => {
 				document.getElementById("emailaddress").value = username
 				document.getElementById("logi_signup01").style.display="none";
 				document.getElementById('logi_signupselector').style.display="none";
-				document.getElementById("mobileApp").style.display="block";
+				//document.getElementById("mobileApp").style.display="block";
+				document.getElementById("Plan_Selection").style.display="block"
 				document.getElementById("maindivscrable").style.display="block";
-				$(window).scrollTop(0);
 	} else {
-	 document.getElementById("loader").style.display="block";
-	document.getElementById("logi_signup01").style.display="none";
-
 	
-	 if (!window.sessionStorage.length) {
+	 if (getCookie('LoginEmail') == null || getCookie('Password') == null) {
 			document.getElementById('logi_signupselector').style.display="block";
 			document.getElementById("logi_signup01").style.display="block";	
-					 document.getElementById("loader").style.display="none";
+			document.getElementById("loader").style.display="none";
 	
                   }
 	
@@ -3580,10 +4101,10 @@ window.addEventListener('load', (event) => {
 			  {
 				 
 				  var username = sessionStorage.getItem("username");
-				  var password = sessionStorage.getItem("password");
+				  var password = getCookie("password");
 				  var Tokenid = sessionStorage.getItem("Tokenid");
 				
-				  
+	if(username != null && password != null)	{	  
 				   // Create a request variable and assign a new XMLHttpRequest object to it.
     var request = new XMLHttpRequest();
 
@@ -3626,21 +4147,17 @@ window.addEventListener('load', (event) => {
 					 document.getElementById("loader").style.display="none";
 				}
 				
-			}
-		
 
-		
-//        localStorage.setItem('token', token.token);
-        // window.location.href = "http://localhost/webstdio15april/creatingcoupons.html";
     }
 
     // Send request
     request.send();
 			
-				  
+	}			  
 	}		  }
 	
 	
+};
 });
 	 	
 		 var countiresvalues;
@@ -3675,11 +4192,11 @@ window.addEventListener('load', (event) => {
 	  
 	  
     var storeName = [i];
-    localStorage.setItem(storeName, theVal);
+    sessionStorage.setItem(storeName, theVal);
 
 	  
-localStorage.setItem("testKey", JSON.stringify(getadnilapackarray));
-var test = JSON.parse(localStorage.getItem("packages"));
+sessionStorage.setItem("testKey", JSON.stringify(getadnilapackarray));
+var test = JSON.parse(sessionStorage.getItem("packages"));
 //alert(test);
 	  
   }
@@ -3688,10 +4205,50 @@ var test = JSON.parse(localStorage.getItem("packages"));
 //checkstorage = "k";
 	}
 		  
-		  
+		  function SelectPackage(name,price) {
+			selectedPacked = name;
+			pricingTable = [];
+			pricingTable.push({item: name,price: price});
+			if(name.indexOf("DIGITAL") == -1 && name.indexOf("WEBSITE") == -1 ){
+				pricingTable.push({item: "Credit "+name+" (Waived For 6 Month)",price: '-'+price});
+				pricingTable.push({item: 'Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)',price: "$5000.00"});
+				pricingTable.push({item: 'Credit Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)',price: "-$5000.00"});
+			}
+			pricingTable.push({item: "Registration Fees",price: "$2.90"});
+			document.getElementById("mobileApp").style.display="block";
+			document.getElementById("Plan_Selection").style.display="none";
+			if(name.indexOf("STANDARD") > -1 || name.indexOf("PREMIUM") > -1 || name.indexOf("ENTERPRISE") > -1){
+				$(".selected_plan .basic_plan").append("<p>"+name +' '+ price+"</p>");
+			} else {
+				$(".selected_plan").append("<p>"+name +' '+ price+"</p>");
+			}
+			var html = "";
+			var html1 = "";
+			
+			TotalAmount = 2.90;
+			if(name.indexOf("DIGITAL") > -1){
+				getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjUzMTY1NQ==");
+			}
+			if(name.indexOf("WEBSITE") > -1){
+				getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjc5Mzc5OQ==");
+			}
+			if(name.indexOf("DIGITAL") > -1 || name.indexOf("WEBSITE") > -1 ){
+				TotalAmount = (TotalAmount+parseInt(price.replace('$','')));
+			}
+			if(TotalAmount > 2 && TotalAmount < 3){
+				TotalAmount = 2.9;
+			}
+			pricingTable.forEach(function(item,index){
+			html += "<span class='price"+index+"' style='padding-right: 50px;'>"+item.item.toLowerCase()+"</span><span class='price"+index+"'>"+item.price+"</span>"
+			});
+			html1 += "<span class='totalAmount' style='padding-right: 50px;'>Total</span><span class='totalAmount'>$"+TotalAmount+"</span>";
+			$(".pricingDiv").html(html+"<hr><hr>"+html1);
+			//$(".selected_plan_price").html(price+ "<span style='font-size:12px;'> per Month/per entity</span>");
+			getlistfromadd();
+		  };
 		  function loaddata()
 		  {
-		  if (!window.localStorage.length) {
+		  if (!window.sessionStorage.length) {
 			  
 			  
 			  getcountryname = "United States";
@@ -3710,42 +4267,42 @@ var test = JSON.parse(localStorage.getItem("packages"));
 						
 					document.getElementById("alerbgblockconfirm").style.display="none";	
 	
-				  if (!window.localStorage.length) {
+				  if (!window.sessionStorage.length) {
 					  
 					  alert("Nothing stored!");}
 			  
 	  
-		  for (var i = 0; i < localStorage.length; i++){
+		  for (var i = 0; i < sessionStorage.length; i++){
 			  
-		//	  console.log(localStorage.key(i))
+		//	  console.log(sessionStorage.key(i))
 			  
 			  document.getElementById("loader").style.display="block"; 
 			  
-			var obj = localStorage.getItem(localStorage.key(i));
+			var obj = sessionStorage.getItem(sessionStorage.key(i));
 			  
-		//	  console.log(localStorage.getItem(1,obj));
+		//	  console.log(sessionStorage.getItem(1,obj));
 			  //saneep
 			  
-			  var name =  localStorage.getItem(0,obj);
-			  var lname =  localStorage.getItem(1,obj);
-			  var buisnessName =  localStorage.getItem(2,obj);
-			  var Buisinessaddress =  localStorage.getItem(3,obj);
-			  getcountryname =  localStorage.getItem(4,obj);
-			  countiresvalues1210  =  localStorage.getItem(5,obj);
-			  var city =  localStorage.getItem(6,obj);
-			  var zipcode =  localStorage.getItem(7,obj);
-				  phonenoload =  localStorage.getItem(8,obj);
-			  var email =  localStorage.getItem(9,obj);
-			  var weburl =  localStorage.getItem(10,obj);
-				  busnitype =  localStorage.getItem(11,obj);
-				  busncategoes =  localStorage.getItem(12,obj);
-				  noofprodcuts =  localStorage.getItem(13,obj);
+			  var name =  sessionStorage.getItem(0,obj);
+			  var lname =  sessionStorage.getItem(1,obj);
+			  var buisnessName =  sessionStorage.getItem(2,obj);
+			  var Buisinessaddress =  sessionStorage.getItem(3,obj);
+			  getcountryname =  sessionStorage.getItem(4,obj);
+			  countiresvalues1210  =  sessionStorage.getItem(5,obj);
+			  var city =  sessionStorage.getItem(6,obj);
+			  var zipcode =  sessionStorage.getItem(7,obj);
+				  phonenoload =  sessionStorage.getItem(8,obj);
+			  var email =  sessionStorage.getItem(9,obj);
+			  var weburl =  sessionStorage.getItem(10,obj);
+				  busnitype =  sessionStorage.getItem(11,obj);
+				  busncategoes =  sessionStorage.getItem(12,obj);
+				  noofprodcuts =  sessionStorage.getItem(13,obj);
 			  
-			  var validationCustom03 =  localStorage.getItem(14,obj);// No of item products.
-			  var nooflocations =  localStorage.getItem(15,obj);// No of buiesness locatoins.
-			   yesdoyousellproduct =  localStorage.getItem(16,obj);// No of buiesness locatoins.
-			   numofpercentage =  localStorage.getItem(17,obj);// No of buiesness locatoins.
-			  yesisproductsame =  localStorage.getItem(18,obj); // yes or no for is the prodocts are same???.
+			  var validationCustom03 =  sessionStorage.getItem(14,obj);// No of item products.
+			  var nooflocations =  sessionStorage.getItem(15,obj);// No of buiesness locatoins.
+			   yesdoyousellproduct =  sessionStorage.getItem(16,obj);// No of buiesness locatoins.
+			   numofpercentage =  sessionStorage.getItem(17,obj);// No of buiesness locatoins.
+			  yesisproductsame =  sessionStorage.getItem(18,obj); // yes or no for is the prodocts are same???.
 			  
 			
 			  
@@ -4034,9 +4591,7 @@ validationCustom02.add(defaultOption122);
 		googledoob();  
 					  
 				  });
-				  
-				
-				  
+  
 			  }
 			  
 			  }
@@ -4044,17 +4599,17 @@ validationCustom02.add(defaultOption122);
 	  
 		  
 		 var client = ShopifyBuy.buildClient({
-  accessToken: '5d510805eb1a2007123bb11a4f779c2e',
-  domain: 'mycommunitytoday.myshopify.com'
-});	 
+		  accessToken: '456c7f3005dcef5a699baa2c94d0d4ed',
+		  domain: 'store-mycommunity-today.myshopify.com'
+		});	 
 		   
 		  newArr = getadnilapackarray;
 		
 		  
 		  var listthecheckmarmap;
 		  var listthecheckmarmap1;
-		  var servicecharge; 
-		  var addinal_variable;
+		  var servicecharge = ""; 
+		  var addinal_variable = "Additional Standard" ;
 		  var gettochwithvales;
 		  var testpopse;
 		  var percentage_variable;
@@ -4063,7 +4618,7 @@ validationCustom02.add(defaultOption122);
 		  var numofloation21;
 		  var numberlocationpricemultipling = 0;
 		  var totalpricepercentage = 0;
-
+		  var packageadded = false;
 		   
 		   
 		  
@@ -4096,53 +4651,149 @@ validationCustom02.add(defaultOption122);
 		  function getlistfromadd()
 			  {
 				  	
-				  
+				$(".modal_").html("");
 				numofloation21 =   numofloation-1;
 				 
 				    console.log(numofloation21);
 				  
-		  client.collection.fetchAllWithProducts().then((collections) => {
+		  client.collection.fetchAllWithProducts({productsFirst: 30}).then((collections) => {
 			  
 			  
-  // Do something with the collections
-  console.log(collections);
-  console.log(collections[0].products);
-  console.log(collections[1].products);
+			  // Do something with the collections
+			  console.log(collections);
+			  console.log(collections[0].products);
+			  console.log(collections[1].products);
 			  
 			  list = document.getElementById("packagediv");
-			  
-							 	 for (var j=document.getElementById("packagediv").getElementsByTagName("li").length-1; j>=0; j--)
-				{
-					
-					var itemview = document.getElementById("packagediv").getElementsByTagName("li")[j];
-					list.removeChild(itemview);
-					
-								console.log('remove'+j);
+			  if(selectedPacked == "STANDARD PACKAGE"){
+					packages.push('Standard');
+					addinal_variable = "Additional Standard";
+					typecontent = "Standard Package";
+					  typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)";
+				  } else
+				  if(selectedPacked == "PREMIUM PACKAGE"){
+					packages.push('Premium');
+					addinal_variable = "Additional Premium";
+					 typecontent = "Premium Package";
+					 typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)";
+				  } else
+				  if(selectedPacked == "ENTERPRISE PACKAGE"){
+					packages.push('Enterprise');
+					addinal_variable = "Additional Enterprise";
+					typecontent   = "Enterprise Package";
+					typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)";
+				  } else if(selectedPacked.indexOf("DIGITAL") > -1 || selectedPacked.indexOf("WEBSITE") > -1){
+					addinal_variable = "Additional Standard";
+					typecontent = "Standard Package";
+					  typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)";
+					  isPaid = true;
+				  }
+				  if(selectedPacked.indexOf("DIGITAL") > -1){
+					packages.push('Digital Marketing');
+				  }
+				  if(selectedPacked.indexOf("WEBSITE") > -1){
+					packages.push('Website Development and Management');
+				  }
 
+				
+				  collections[0].products.forEach(function(item,index){
+				
+				
+				if (typecontent==item.title)
+					{
+						
+						
+						varientidproduct = item.variants[0].id;
+						
+						console.log(varientidproduct);
+//						alert('ok1');
+					}
+				
+			});
+			  
+			  
+			  	collections[1].products.forEach(function(item2,index2){
+				
+					console.log(item2.title);
+					if (typecontent2==item2.title)
+					{	
+//						console.log(item2.title);
+						varientidNRE = item2.variants[0].id;
+					     console.log(varientidNRE);
+//						alert('ok2');
+					}
+						
+				});
+				if(!packageadded) {
+				 var li1 = document.createElement('li');
+				  var h = "OpenPOP('Enterprisepa')";
+				  var buttonText = "ADD TO YOUR PLAN";
+				  if(isaddedpack && SelectedAdditional == "Enterprisepa"){
+					buttonText = "ADDED";
+				  } else {
+					buttonText = "ADD TO YOUR PLAN";
+				  }
+				  var p = "AddAdditionalPack('ENTERPRISE PACKAGE','$499.00','Enterprisepa')";
+				  li1.innerHTML= '<div class=""><p onclick="'+h+'" class="lead Enterprisepa">Enterprise Package</p><span id="btnaddpack" onclick="'+p+'" >'+buttonText+'</span><p class="pricingtitle121">$499.00<br><span style="font-size:12px;">per Month/per entity</span></p></div>';
+				  li1.setAttribute("id", 'Enterprisepa');
+				  var li2 = document.createElement('li');
+				  h = "OpenPOP('Premiumpa')";
+				  p = "AddAdditionalPack('PREMIUM PACKAGE','$299.00','Premiumpa')";
+				  if(isaddedpack && SelectedAdditional == "Premiumpa"){
+					buttonText = "ADDED";
+				  } else {
+					buttonText = "ADD TO YOUR PLAN";
+				  }
+				  li2.innerHTML= '<div class=""><p onclick="'+h+'" class="lead Premiumpa">Premium Package</p><span id="btnaddpack" onclick="'+p+'" >'+buttonText+'</span><p class="pricingtitle121">$299.00<br><span style="font-size:12px;">per Month/per entity</span></p></div>'
+				  li2.setAttribute("id", 'Premiumpa');
+				  var li3 = document.createElement('li');
+				  h = "OpenPOP('Standardpa')";
+				  p = "AddAdditionalPack('STANDARD PACKAGE','$99.00','Standardpa')";
+				  if(isaddedpack && SelectedAdditional == "Standardpa"){
+					buttonText = "ADDED";
+				  } else {
+					buttonText = "ADD TO YOUR PLAN";
+				  }
+				  li3.innerHTML=  '<div class=""><p onclick="'+h+'" class="lead Standardpa">Standard Package</p><span id="btnaddpack" onclick="'+p+'" >'+buttonText+'</span><p class="pricingtitle121">$99.00<br><span style="font-size:12px;">per Month/per entity</span></p></div>'
+				  li3.setAttribute("id", 'Standardpa');
+				  var ul = document.getElementById("packagediv");
+						ul.appendChild(li1);
+						ul.appendChild(li2);
+						ul.appendChild(li3);
 				}
-			  
-			  
 			  collections.forEach(function(item121,index121){
-				  
-				  			 
+
+				  if ("Service Charge"==item121.title)
+					  {
+						 
+						servicecharge = item121.products[0].variants[0].id;
+						  console.log(servicecharge);
+//						  alert('ok3');
+					  }
+				 if(!packageadded) {
 				  if (addinal_variable==item121.title)
 					{
 						
-						console.log(item121.products);
+							console.log(item121.products);
 						
-						 item121.products.forEach(function(item12,index12){	 
+							item121.products.forEach(function(item12,index12){	 
 				
 							 
-							 var ul = document.getElementById("packagediv");
+							 
 		                     var li = document.createElement('li');
 							     li.className="item";										
 							 console.log(item12);
+							 packageadded = true;
+							 var close = "ClosePOP('"+item12.title.replace("-","").replace(" ","").substring(0, 8)+"')";
+							 var open = "OpenPOP('"+item12.title.replace("-","").replace(" ","").substring(0, 8)+"')";
+							 var trigger = "TriggerAddBtn('"+item12.title.replace("-","").replace(" ","").substring(0, 8)+"')";
+							 li.innerHTML='<div class=""><p onclick="'+open+'" class="lead '+item12.title.replace(" ","").substring(0, 10)+'">'+item12.title+'</p><div class="listdetails">'+item12.descriptionHtml.replace('<br>','')+'</div><span id="btnaddpack">ADD TO YOUR PLAN</span><p class="pricingtitle121">$'+(item12.variants[0].compareAtPrice != null ? item12.variants[0].compareAtPrice : item12.variants[0].price) +'<br><span style="font-size:12px;">per Month/per entity</span></p></p></div>';
+							 $(".modal_").append('<div style="display:none;" class="'+item12.title.replace("-","").replace(" ","").substring(0, 8)+'"><p onclick="'+close+'" style="float: right;font-size: 23px;margin-right: 20px;">&#10006</p><p class="lead '+item12.title.replace(" ","").substring(0, 10)+'">'+item12.title+'</p><p class="pricingtitle121">$'+(item12.variants[0].compareAtPrice != null ? item12.variants[0].compareAtPrice : item12.variants[0].price)+'<br><span style="font-size:20px;">per Month/per entity</span></p><div class="listdetails">'+item12.descriptionHtml.replace('<br>','')+'</div><span class="btnaddpack" onclick="'+trigger+'">ADD TO YOUR PLAN</span></p></div>')
+							 li.setAttribute("id", item12.title.replace("-","").replace(" ","").substring(0, 8));
 							 
-			 li.innerHTML='<div class="pad15"><p class="lead '+item12.title.replace(" ","").substring(0, 10)+'">'+item12.title+'"</p><p class="pricingtitle121">$<strike>'+item12.variants[0].compareAtPrice+'/mo*</strike></p><p class="pricingtitle">$'+item12.variants[0].price+'/mo*</p><div class="listdetails">'+item12.descriptionHtml.replace('<br>','')+'</div><span id="btnaddpack">+ADD</span></p></div>';
-			 li.setAttribute("id", item12.title.replace("-","").replace(" ","").substring(0, 8));
-			 ul.appendChild(li);
-			 getadnilapackarray = [];
-			 
+							 ul.appendChild(li);
+							 getadnilapackarray = [];
+							 
 
 							 var lkkl = "Digital Marketing Package";
 							 var llb = "Website Development and Management Package";
@@ -4154,9 +4805,8 @@ validationCustom02.add(defaultOption122);
 								 {
 									var lis = document.getElementById("packagediv").getElementsByClassName("item");						 
 									var itemview = lis[index12];	 
-									itemview.style.cssText = " display:none;";
 									 itemview.setAttribute("id", "DigitalM");
-
+									
 									  var x = document.getElementById("packagediv").querySelectorAll(".listdetails");
 
 									   var desc = x[index12].innerText.substring(x[index12].innerText.indexOf('{')+1, x[index12].innerText.indexOf('}'));  
@@ -4164,11 +4814,7 @@ validationCustom02.add(defaultOption122);
 									     x[index12].innerText = desc.trim();
 									 
 									  var bx = document.getElementById("packagediv").querySelectorAll(".pricingtitle121");
-									  bx[index12].style.cssText="display:none;";
-									 
-									  var bxs = document.getElementById("packagediv").querySelectorAll(".pricingtitle");
-									  bxs[index12].style.cssText="margin-bottom: 10px;margin-top: 14px;margin-right: 28px;";
-									 
+									  //bx[index12].innerHTML = "$499.00<br><span style='font-size:12px;'>per Month/per entity</span>";
 								 }
 							 
 							 
@@ -4177,21 +4823,15 @@ validationCustom02.add(defaultOption122);
 									 
 						var lisb = document.getElementById("packagediv").getElementsByClassName("item");						 
 						var itemviewn = lisb[index12];	 
-						itemviewn.style.cssText = "display:none;";
 									 itemviewn.setAttribute("id", "WebsiteD");
-									  
 									 var x = document.getElementById("packagediv").querySelectorAll(".listdetails");
 																      
 									   var desc = x[index12].innerText.substring(x[index12].innerText.indexOf('{')+1, x[index12].innerText.indexOf('}'));  
 									 
-									     x[index12].innerText = desc.trim();;
+									     x[index12].innerText = desc.trim();
 									 
 									 var bx = document.getElementById("packagediv").querySelectorAll(".pricingtitle121");
-									  bx[index12].style.cssText="display:none;";
-									 
-									  var bxs = document.getElementById("packagediv").querySelectorAll(".pricingtitle");
-									  bxs[index12].style.cssText="margin-bottom: 10px; margin-top: 14px;margin-right: 28px;";
-								
+									  //bx[index12].innerHTML = "$299.00<br><span style='font-size:12px;'>per Month/per entity</span>";
 								 }
 			 
 							  if (llb3==item12.title)
@@ -4222,9 +4862,42 @@ validationCustom02.add(defaultOption122);
 									 
 //									 console.log(x[index12].innerText);
 								 }
-							 
-							 
-							 
+							    
+								if(selectedPacked == 'STANDARD PACKAGE'){
+									$("#Standardpa #btnaddpack").trigger('click');
+								}
+								if(selectedPacked == 'PREMIUM PACKAGE'){
+									$("#Premiumpa #btnaddpack").trigger('click');
+								}
+								if(selectedPacked == 'ENTERPRISE PACKAGE'){
+									$("#Enterprisepa #btnaddpack").trigger('click');
+								}
+								if(selectedPacked == "DIGITAL MARKETING PACKAGE"){
+									$("#DigitalM #btnaddpack").trigger('click');
+								}
+								if(selectedPacked == "WEBSITE DEVELOPMENT AND MANAGEMENT PACKAGE"){
+									$("#WebsiteD #btnaddpack").trigger('click');
+								}
+							    $("#TVChanne").appendTo("#packagediv");
+								$("#LiveStre").appendTo("#packagediv");
+								$("#Interact").appendTo("#packagediv");
+								$("#WebsiteD").prependTo("#packagediv");
+								$("#DigitalM").prependTo("#packagediv");
+								$("#LiveChat").prependTo("#packagediv");
+								if(selectedPacked == "ENTERPRISE PACKAGE"){
+									$("#LiveChat").css({pointerEvents: "none",'border': 'none'});
+									$(".LiveChat").css({pointerEvents: "none",'border': 'none'});
+									$("#LiveChat").find("#btnaddpack").html("UPGRADE TO THIS PLAN");
+									$(".LiveChat").find(".btnaddpack").html("UPGRADE TO THIS PLAN");
+									$("#LiveChat").find("#btnaddpack").css({'background-color':'#C0C0C0','color': '#fff'});
+									$(".LiveChat").find(".btnaddpack").css({'background-color':'#C0C0C0','color': '#fff'});
+								  }
+								 if(selectedPacked.indexOf("DIGITAL") > -1 || selectedPacked.indexOf("WEBSITE") > -1 ){
+									$("#Entertai").css("display","none");
+									$("#TVChanne").css("display","none");
+									$("#LiveStre").css("display","none");
+									$("#Interact").css("display","none");
+								 }
 		     li.addEventListener('click',getpackage);
 							 
 							
@@ -4236,11 +4909,45 @@ validationCustom02.add(defaultOption122);
 								    justcheckfor = "Interactivity Creation & Management Package";
 								 
 					 var titlemain;
-								 
-								 if(item12.title == item12.title){				  
-					titlemain = item12.title;
-									 gettochwithvales = "Entertainment Package";
-									getifslcteddesobject = "Interactivity Creation & Management Package";
+				     packages.push(item12.title.replace("Package","").trim());	 
+					if(item12.title == item12.title){
+						const found = pricingTable.find(element => element.item == item12.title);
+						var html='';
+						var html1 = '';
+						var filtered;
+						if(found != undefined){
+							filtered = pricingTable.filter((item) => item.item !== item12.title)
+							filtered = filtered.filter((item) => item.item !== "Credit "+item12.title+" (Waived For 6 Month)")
+						}
+						if(filtered != undefined){
+							pricingTable = filtered;
+						}
+						
+						if(found == undefined){
+							pricingTable.push({item: item12.title,price: (item12.variants[0].compareAtPrice != null ? item12.variants[0].compareAtPrice : item12.variants[0].price)});
+						}
+						if(item12.title.indexOf("Live-Chat") == -1 && item12.title.indexOf("Digital") == -1 && item12.title.indexOf("Website") == -1 && (found == undefined)){
+							pricingTable.push({item: "Credit "+item12.title+" (Waived For 6 Month)",price: '-$'+(item12.variants[0].compareAtPrice != null ? item12.variants[0].compareAtPrice : item12.variants[0].price)});
+						} 
+						
+						if((item12.title.indexOf("Live-Chat") > -1 || item12.title.indexOf("Digital") > -1 || item12.title.indexOf("Website") > -1) && (found == undefined)){
+							TotalAmount = (TotalAmount+parseInt(item12.variants[0].price));
+						} 
+						if((item12.title.indexOf("Live-Chat") > -1 || item12.title.indexOf("Digital") > -1 || item12.title.indexOf("Website") > -1) && (found != undefined)){
+							TotalAmount = (TotalAmount-parseInt(item12.variants[0].price));
+						} 
+						//TotalAmount = (TotalAmount+parseInt(item12.variants[0].compareAtPrice));
+						if(TotalAmount > 2 && TotalAmount < 3){
+							TotalAmount = 2.9;
+						}
+						pricingTable.forEach(function(item,index){
+						html += "<span class='price"+index+"' style='padding-right: 50px;'>"+item.item.toLowerCase()+"</span><span class='price"+index+"'>"+item.price+"</span>"
+						});
+						html1 += "<span class='totalAmount' style='padding-right: 50px;'>Total</span><span class='totalAmount'>$"+TotalAmount+"</span>";
+						$(".pricingDiv").html(html+"<hr><hr>"+html1);
+						titlemain = item12.title;
+						gettochwithvales = "Entertainment Package";
+						getifslcteddesobject = "Interactivity Creation & Management Package";
 						
 						var id = item12.title.replace("-","").replace(" ","").substring(0, 8);
 						var lis = document.getElementById(id);						 
@@ -4257,9 +4964,10 @@ validationCustom02.add(defaultOption122);
 						 }
 						});
 						if(!Added){
+						    //$(".selected_plan").append("<p class='"+item12.title.replace("-","").replace(" ","").substring(0,5)+"'>"+item12.title +' $'+ (item12.variants[0].compareAtPrice != null ? item12.variants[0].compareAtPrice : item12.variants[0].price)+"</p>");
+							$("."+id).find("#btnaddpack").html("ADDED");
 							var x = $("#"+id).find("#btnaddpack");
-							x.html("Remove");
-							x.css ({"background": "#00B3FE","color": "white","font-size": "18px","line-height": "35px","border": "none"});
+							x.html("ADDED");
 							if(item12.title == "Entertainment Package"){
 								var newArray = []
 								getadnilapackarray.forEach(function(addcpkid,addcpkitem){
@@ -4271,20 +4979,20 @@ validationCustom02.add(defaultOption122);
 								$("#Interact").css({pointerEvents: "none",'border': 'none'})
 								$("#LiveStre").css({pointerEvents: "none",'border': 'none'})
 								$("#TVChanne").css({pointerEvents: "none",'border': 'none'})
-								$("#Interact").find("#btnaddpack").css({"background":"rgb(255, 255, 255)","width": "20%","border": "1px solid #e8e1e1","font-weight": "700","color": "#e8e1e1","font-size": "18px"});
-								$("#TVChanne").find("#btnaddpack").css({"background":"rgb(255, 255, 255)","width": "20%","border": "1px solid #e8e1e1","font-weight": "700","color": "#e8e1e1","font-size": "18px"});
-								$("#LiveStre").find("#btnaddpack").css({"background":"rgb(255, 255, 255)","width": "20%","border": "1px solid #e8e1e1","font-weight": "700","color": "#e8e1e1","font-size": "18px"});
-								$("#Interact").find("#btnaddpack").html("+ADD");
-								$("#LiveStre").find("#btnaddpack").html("+ADD");
-								$("#TVChanne").find("#btnaddpack").html("+ADD");
+								$("#Interact").find("#btnaddpack").html("ADD TO YOUR PLAN");
+								$("#LiveStre").find("#btnaddpack").html("ADD TO YOUR PLAN");
+								$("#TVChanne").find("#btnaddpack").html("ADD TO YOUR PLAN");
+								$("#Interact").find("#btnaddpack").css({'background-color':'#C0C0C0','color': '#fff'});
+								$("#LiveStre").find("#btnaddpack").css({'background-color':'#C0C0C0','color': '#fff'});
+								$("#TVChanne").find("#btnaddpack").css({'background-color':'#C0C0C0','color': '#fff'});
 							}
 							getadnilapackarray.push(item12.variants[0].id);
 						} else {
+						    //$('.'+item12.title.replace("-","").replace(" ","").substring(0,5)).remove();
 							var id = item12.title.replace("-","").replace(" ","").substring(0, 8);
 							$("#"+id).css({"border":"2px solid #ececec"});
 							var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
-							$("#"+id).find("#btnaddpack").html("+ADD");
-							$("#"+id).find("#btnaddpack").css({"background":"white","color":"black","border":"1px solid black","width": "20%"});
+							$("#"+id).find("#btnaddpack").html("ADD TO YOUR PLAN");
 							if(item12.title == "Entertainment Package"){
 								$("#Interact").css({"pointerEvents": "auto","background":"#ffffff",'border': 'none'})
 								$("#LiveStre").css({"pointerEvents": "auto","background":"#ffffff",'border': 'none'})
@@ -4292,12 +5000,12 @@ validationCustom02.add(defaultOption122);
 								$("#Interact").find(".pad15").css({"background":"#ffffff"})
 								$("#LiveStre").find(".pad15").css({"background":"#ffffff"})
 								$("#TVChanne").find(".pad15").css({"background":"#ffffff"})
-								$("#Interact").find("#btnaddpack").css({"background":"#ffffff", "width": "20%","border": "1px solid #000","color":"#000","font-weight": "700"})
-								$("#LiveStre").find("#btnaddpack").css({"background":"#ffffff", "width": "20%","border": "1px solid #000","color":"#000","font-weight": "700"})
-								$("#TVChanne").find("#btnaddpack").css({"background":"#ffffff", "width": "20%","border": "1px solid #000","color":"#000","font-weight": "700"})
-								$("#Interact").find("#btnaddpack").html( "+ADD")
-								$("#LiveStre").find("#btnaddpack").html( "+ADD")
-								$("#TVChanne").find("#btnaddpack").html( "+ADD")
+								$("#Interact").find("#btnaddpack").html( "ADD TO YOUR PLAN")
+								$("#LiveStre").find("#btnaddpack").html( "ADD TO YOUR PLAN")
+								$("#TVChanne").find("#btnaddpack").html( "ADD TO YOUR PLAN")
+								$("#Interact").find("#btnaddpack").css({'background':'#F4F8FB 0% 0% no-repeat padding-box','color': '#656565'});
+								$("#LiveStre").find("#btnaddpack").css({'background':'#F4F8FB 0% 0% no-repeat padding-box','color': '#656565'});
+								$("#TVChanne").find("#btnaddpack").css({'background':'#F4F8FB 0% 0% no-repeat padding-box','color': '#656565'});
 							}
 							Added = false;
 						}
@@ -4382,11 +5090,11 @@ validationCustom02.add(defaultOption122);
 		
 }
 								 var str = newArr.toString();
- listthecheckmarmap = str.split();
-  listthecheckmarmap = JSON.parse("[" + listthecheckmarmap + "]");
-console.log(listthecheckmarmap);
-	console.log(getadnilapackarray);
-			
+									 listthecheckmarmap = str.split();
+									  listthecheckmarmap = JSON.parse("[" + listthecheckmarmap + "]");
+									console.log(listthecheckmarmap);
+										console.log(getadnilapackarray);
+												
 										}	
 								}  //ok
 
@@ -4514,10 +5222,6 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 					console.log(listthecheckmarmap);		 
 							 }	 
 						 });
-						$("#LiveChat").prependTo("#packagediv");
-					}
-				  
-				  
 				  if (percentage_variable==item121.title)
 					  {
 						  console.log(item121.products);
@@ -4607,12 +5311,9 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 						  console.log(servicecharge);
 //						  alert('ok3');
 					  }
-				  
-				  
-				  
-//				  
-//				
-				
+
+				}
+				}
 			});
 				  
 //				 
@@ -4640,7 +5341,6 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 						var desckk = item21.descriptionHtml;
 						var desckk2 = desckk.substring(desckk.indexOf('{')+1, desckk.indexOf('}')); 
 						var ss =desckk2.replace("<p> </p>","").trim()
-						document.getElementById("descff09").innerHTML = desckk2.replace("<p></p>","").replace("<p> </p>","").trim();
 						
 						/*Remove extra spaces*/
 						$( 'p:empty' ).remove();
@@ -4663,8 +5363,8 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 });
 		 }  
 		  
-  var typecontent;
-  var typecontent2;
+ var typecontent = "Standard Package";
+ var typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)";
   var varientidproduct;
   var varientidNRE;
   var varientidNRE121; 
@@ -4680,34 +5380,7 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 		  
 		  client.collection.fetchAllWithProducts().then((collections) => {
 			  
-			collections[0].products.forEach(function(item,index){
-				
-				
-				if (typecontent==item.title)
-					{
-						
-						
-						varientidproduct = item.variants[0].id;
-						
-						console.log(varientidproduct);
-//						alert('ok1');
-					}
-				
-			});
-			  
-			  
-			  	collections[1].products.forEach(function(item2,index2){
-				
-					console.log(item2.title);
-					if (typecontent2==item2.title)
-					{	
-//						console.log(item2.title);
-						varientidNRE = item2.variants[0].id;
-					     console.log(varientidNRE);
-//						alert('ok2');
-					}
-						
-			});
+			
 			  
 
 });
@@ -4730,7 +5403,10 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 			  var obj 
 			      obj = {}; 
 			  
-			  
+	   setCookie('address',address+","+city+","+countrylist+","+states+" "+zipcode,1);
+	   setCookie('pnoneno',pnoneno,1);
+	   setCookie('fname',fname,1);
+	   setCookie('lname',lname,1);		
 const input = {
 	
 	email:emailtextnode,
@@ -4765,7 +5441,16 @@ const input = {
  }
 	
 }
-
+	packages = packages.filter((a, b) => packages.indexOf(a) === b)
+	packages.forEach(function(item,addcpkitem){
+		if(item.indexOf("Digital") > -1){
+			getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjUzMTY1NQ==");
+		}
+		if(item.indexOf("Website") > -1){
+			getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjc5Mzc5OQ==");
+		}
+	});
+getadnilapackarray  = getadnilapackarray.filter((a, b) => getadnilapackarray.indexOf(a) === b)
  getadnilapackarray.forEach(function(item332,index332){
 	       
 				  
@@ -4821,18 +5506,13 @@ console.log(input.lineItems);
 			  
 			  
 			  function myFunction() {	  
-				
-//				  window.open(checkout.webUrl);
-//				  window.location.replace(checkout.webUrl);
-				  console.log(checkout);
-				  
-				  
-if (discountavailed=="")
+				console.log(checkout);
+				setCookie('checkoutid',sessionStorage.getItem('checkout'),1);
+				if (discountavailed=="")
 				  {
-//					  alert("lov");
+					  setCookie('Password', '',-1);
 					  window.location.replace(checkout.webUrl);
-				  console.log(checkout);
-					  
+						console.log(checkout);
 				  }
 			  else
 				  {
@@ -4865,11 +5545,7 @@ client.checkout.addDiscount(checkoutId, validiscoutcodehere).then(checkout => {
 			  
 			 
 			  
-		 }, 3000); 
-
-			  
-			  
-
+		 }, 5000); 
 		  	}	  
 		  
 		 
@@ -5321,7 +5997,6 @@ fetch(url1)
 		  ///koook
 		  
 		  
-		   document.getElementById("checkdd").disabled = true;
 		  
 		  document.getElementById('agreementcall').addEventListener("click",function(){
 			  
@@ -5469,9 +6144,22 @@ document.getElementById('prcingpageservices2').style.display="none";
 			});
 		   document.getElementById('submitdatamain').addEventListener("click",function(){
 			 
-			var datacall =  document.getElementById('validatedd').value;
-			  
-			  if (datacall=="")
+			var datacall =  $("#checkdd").is(':checked');
+			var business =  $("#pac-input").val();
+			var zip = $("#zipcode").val(); 
+			var phn = $("#phoneno").val();
+			
+			  if(business == "" || zip == ""){
+				alert('Please fill the business details.');
+				document.getElementById('pac-input').style.color="red";
+				$("#loader").css("display","none");
+			  }
+			  if(phn == ""){
+			  alert('Please fill the contact number.');
+				document.getElementById('phoneno').style.color="red";
+				$("#loader").css("display","none");
+			  }
+			  if (datacall==false)
 				  {
 					 
 					  alert('Please read the terms and condtions');
@@ -5479,15 +6167,7 @@ document.getElementById('prcingpageservices2').style.display="none";
 				  }
 			  else
 			  {
-				  senddatatoshopi();
-				  
-				   document.getElementById('termscond').style.color="#00B3FE";
-				   document.getElementById('icond4').style.display="block";
-				   document.getElementById('progressreport').style.width = "100%";
-				   document.getElementById('percentagecount').innerHTML = "100%";
-				  
-				  
-				  
+				  senddatatoshopi();	  
 			  }
 			  
 		  });
@@ -5814,9 +6494,7 @@ document.getElementById('prcingpageservices2').style.display="none";
 							 var topPos = document.getElementById('div6obj').offsetTop;
                             
 						document.getElementById('divpricingobj').style.display = "none";
-			  document.getElementById('pricingtitleletbe').style.color = "#00B3FE"; 
-			  document.getElementById('icond6').style.display = "block";
-			  
+	
 			  
 			  //package price standard, premium and enterprise
 						
@@ -5973,141 +6651,6 @@ document.getElementById('weburl121').value = "wrong";
 	     
         }
 });
-		  
-		   
-
-
-		  
-		  document.getElementById('cloclks').addEventListener("click",function(){
-		
-			  storeingdata();
-			  
-	    var username= document.getElementById('login-username').value;
-		var userlastname= document.getElementById('login-userlastname').value;
-		var buisneslegal= document.getElementById('buisneslegal').value;
-		var pac_input =  document.getElementById('pac-input').value;
-	    var countrylist =  document.getElementById('countrylist').value;
-		var states =  document.getElementById('states').value;  	  
-		var city   =  document.getElementById('city').value;
-		var zipcode =  document.getElementById('zipcode').value
-		var phoneno =  document.getElementById('phoneno').value;
-		var emailaddress =  document.getElementById('emailaddress').value;
-		var weburl121 =  document.getElementById('weburl121').value;
-			  
-//			var countries =  document.getElementById('countries').value;  
-			  
-//			  console.log(countries);
-			  
-//			 var countrylistbox =  document.getElementsByClassName('iti__selected-flag').value;
-//			  console.log(countrylistbox);
-			  
-			  
-			  
-			  if (username=="")
-				  {
-//					  alert('Please fill the user name');
-					  var username = document.getElementById('login-username').style.border="1px solid red";
-					  return;
-				  }
-			  
-			   if (userlastname=="")
-				  {
-//					  alert('Please fill the user Last name');
-					  var username = document.getElementById('login-userlastname').style.border="1px solid red";
-					  return;
-				  }
-			  
-			   else if (buisneslegal=="")
-				  {
-//					  alert('Please fill the buisness Leagal name');
-					  document.getElementById('buisneslegal').style.border="1px solid red";
-					  return;
-				  }
-			  else if (pac_input=="")
-				  {
-//					  alert('Please fill the buisness address');
-					  document.getElementById('pac-input').style.border="1px solid red";
-					  return;
-				  }
-			  
-			  else if (countrylist=="")
-				  {
-//					  alert('Please choose counties');
-					  document.getElementById('countrylist').style.border="1px solid red";
-					  return;
-				  }
-			  
-			  else if (states=="States")
-				  {
-//					  alert('Please choose states');
-					  document.getElementById('states').style.border="1px solid red";
-					  return;
-				  }
-			  
-			   else if (city=="")
-				  {
-//					  alert('Please fill the city');
-					  document.getElementById('city').style.border="1px solid red";
-					  return;
-				  }
-			  
-			   else if (zipcode=="")
-				  {
-//					  alert('Please fill the zipcode');
-					  document.getElementById('zipcode').style.border="1px solid red";
-					  return;
-				  }
-			   else if (phoneno=="")
-				  {
-					  
-//					  alert('Please fill the Phone number');
-					  document.getElementById('phoneno').style.border="1px solid red";
-					  return;
-				  }
-			   else if (phoneno.length<=9)
-				  {
-					  
-//					  alert('Please fill the Phone number');
-					  document.getElementById('phoneno').style.border="1px solid red";
-					  return;
-				  }
-			 
-			  
-			   else if (emailaddress=="")
-				  {
-//					  alert('Please fill the email adress');
-					  document.getElementById('emailaddress').style.border="1px solid red";
-					  return;
-				  }
-			  
-			  else if (weburl121=="wrong")
-				  {
-//					  alert('Please fill the email adress');
-					  document.getElementById('weburl121').style.border="1px solid red";
-					  return;
-				  }
-			 
-			  else
-			  {
-				  
-				  console.log(phoneno.length);
-				  
-				  document.getElementById('div2obj').style.display = "block";
-				  
-				 document.getElementById('icond').style.display = "block";
-				  var topPos = document.getElementById('div2obj').offsetTop;
-     
-				   document.getElementById('tellabutupou').style.color = "#00B3FE"; 
-				  
-				  	  document.getElementById('progressreport').style.width = "20%";
-				       document.getElementById('percentagecount').innerHTML = "20%";
-				  document.getElementById('div1obj').style.display = "none";
-				  
-			  }
-		
-			  
-		  });
-		  
 		  
 		  var validationCustom;
 		  
@@ -6471,9 +7014,6 @@ document.getElementById('weburl121').value = "wrong";
 					  
 					     document.getElementById('tolnumlocaion').innerHTML = numofloation;
 					    document.getElementById('numofproducts').innerHTML = validationCustom;
-    document.getElementById('progressreport').style.width = "40%";  
-			 document.getElementById('progressreport').style.width = "40%";
-			 document.getElementById('percentagecount').innerHTML = "40%";
 					  calcu();
 					  calcunumberofitems();
 							  document.getElementById('divcustomeqotes').style.display = "none";
@@ -6557,11 +7097,7 @@ document.getElementById('weburl121').value = "wrong";
 //			   console.log(motnfeetotal);
 //			  console.log(pricingcal+motnfeetotal);
 		
-			  
-			       document.getElementById('pricestotal').innerHTML = pricingcal;
-		           document.getElementById('motnfee').innerHTML = motnfeetotal;
-                   document.getElementById('totalfee').innerHTML = motnfeetotal+pricingcal;
-			  
+                  
 			       document.getElementById('prcingpanel').innerHTML = motnfeetotal+pricingcal;	//greand total.
 			                var totalnumpert001 = totalpercentoflocaion_pricingpanel;
 			                var NREaddlocationprinting = totalnumpert001.toFixed(2);
@@ -6756,13 +7292,7 @@ document.getElementById('weburl121').value = "wrong";
 					   document.getElementById('div8obj').style.display = "block";
 					   
 				   var topPos = document.getElementById('div8obj').offsetTop;
-                       
-					    document.getElementById('telabtyurbsuness').style.color = "#00B3FE"; 
-				  document.getElementById('icond2').style.display = "block"; 
-					   
 					    document.getElementById('Perceproducts').innerHTML = percentsvalues;
-					   document.getElementById('progressreport').style.width = "60%";  
-					    document.getElementById('percentagecount').innerHTML = "60%";
 					   
 					    document.getElementById('percentresult').innerHTML=conttake1;
 					    document.getElementById('percentageshowsup').innerHTML=conttake1;
@@ -6887,25 +7417,12 @@ document.getElementById('weburl121').value = "wrong";
 			  
 			 var totalvali =  numberofitemstoals+totalmonthwithmultiplecalcu;// 3298 total nre and month
 			  
-//			   console.log(pricingcal);  // 990
-//			  console.log(datatextval);  //9
-//			   console.log(numbersitemprices); //2000
-//			  console.log(pricingextnal+numbersitemprices+datatextval); //2999
 			  var packagesdefinder = pricingextnal+numbersitemprices+datatextval;
-//			  numberofitemstoals // here 2999
-//			  monthfeenumitem // 200
-			  
-//			  console.log(totalvali);
-			  
-//			  motnfee2221
-//			    document.getElementById('prcingpanel').innerHTML = motnfeetotal+pricingcal;	
-//			       adinallocionprcing
 			  if (packagesdefinder <= 999)
 				  {
 					  addinal_variable = "Additional Standard";
 					  percentage_variable = "PerPercentage Standard";
 					  
-					  document.getElementById("packges").innerHTML = "Standard";
 					  document.getElementById("packges121").innerHTML = "Standard";
 					  document.getElementById("packges121lb").innerHTML = "Standard";
 					  document.getElementById("price1").innerHTML = "Standard";
@@ -6929,7 +7446,7 @@ document.getElementById('weburl121').value = "wrong";
 					  //shabbu
 					  typecontent = "Standard Package";
 //					  typecontent2 = "Standard NRE";
-					  typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE) Standard";
+					  typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)";
 					   document.getElementById("titlepcing1aff").innerHTML = typecontent2;
 					   document.getElementById("titlepcing1aff1").innerHTML = typecontent2+" discount code applied";
 					    document.getElementById("packpciingtitle").innerHTML = typecontent;
@@ -6948,7 +7465,6 @@ document.getElementById('weburl121').value = "wrong";
 					  
 					  addinal_variable = "Additional Premium";
 					   percentage_variable = "PerPercentage Premium";
-				      document.getElementById("packges").innerHTML = "Premium"
 				      document.getElementById("packges121").innerHTML = "Premium";
 				      document.getElementById("packges121lb").innerHTML = "Premium";
 					  document.getElementById("price1").innerHTML = "Premium";
@@ -6992,7 +7508,7 @@ document.getElementById('weburl121').value = "wrong";
 					  
 					  typecontent = "Premium Package";
 //					  typecontent2 = "Premium NRE";
-					  typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE) Premium";
+					  typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)";
 					  
 					  document.getElementById("titlepcing1aff").innerHTML = typecontent2;
 					   document.getElementById("titlepcing1aff1").innerHTML = typecontent2+" discount code applied";;
@@ -7012,7 +7528,6 @@ document.getElementById('weburl121').value = "wrong";
 					  
 					  addinal_variable = "Additional Enterprise";
 					  percentage_variable = "PerPercentage Enterprise";
-				      document.getElementById("packges").innerHTML = "ENTERPRISE";
 					  document.getElementById("packges121").innerHTML = "ENTERPRISE"; 
 					  document.getElementById("packges121lb").innerHTML = "ENTERPRISE"; 
 					  document.getElementById("price1").innerHTML = "ENTERPRISE";
@@ -7052,7 +7567,7 @@ document.getElementById('weburl121').value = "wrong";
 					  
 					  typecontent   = "Enterprise Package";
 //					  typecontent2 = "Enterprise NRE";
-					   typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE) Enterprise";
+					   typecontent2 = "Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)";
 					   document.getElementById("titlepcing1aff").innerHTML = typecontent2;
 					   document.getElementById("titlepcing1aff1").innerHTML = typecontent2+" discount code applied";;
 					    document.getElementById("packpciingtitle").innerHTML = typecontent;
@@ -7192,14 +7707,80 @@ document.getElementById('weburl121').value = "wrong";
 //			  
 			  function senddatatoshopi()
 		  {
+			var fname =   document.getElementById("login-username").value;
+			var lname =   document.getElementById("login-userlastname").value;
+		    var business_address =   document.getElementById("pac-input").value; 
+			var busnes_legal_name =   document.getElementById("buisneslegal").value;
+			var city =   document.getElementById("city").value;
+			var zipcode =   document.getElementById("zipcode").value;
+			var mobile_no =   document.getElementById("phoneno").value;
+			var phno =   document.getElementById("phno").value;
+			var Email =   document.getElementById("emailaddress").value;
+			var website_link =   document.getElementById("weburl").value;
+			  
+			var biusness_type =   document.getElementById("validationCustom01").value;
+			
+			//var numof_prodct =   document.getElementById("validationCustom03").value;
+			//var numof_location =   document.getElementById("numofloation").value;
+			//var percentsvalues =   document.getElementById("percentsvalues").value;
+			var countrylist =   document.getElementById("countrylist").value;
+			var states =   document.getElementById("states").value;
+			//var busness_categores =   document.getElementById("validationCustom02").value; //dropdown categoreis
+			
+			
+			  //var buinesscate;
+			  var phonenumber = phno+mobile_no;
+			  var token_ = sessionStorage.getItem('_token');
+			  packages.filter((a, b) => packages.indexOf(a) === b);
+		   var objToSubmit = {
+			   
+			first_name : fname,
+			last_name : lname,
+			business_address : business_address,
+			business_city : city,
+			business_email : Email,
+			business_legal_name : busnes_legal_name,
+			business_mobile : phonenumber,
+			business_website : website_link,
+			business_zip_code : zipcode,	   
+			country:countrylist,
+			purchaseDate : dateandtime,
+			purchasePackageName : typecontent,
+			purchasePackagePrice : motnfeetotal,
+			state:states,
+			businessPackages: packages,
+	  }
+	     
+			const loginAction = async () => {
+			var pass = getCookie("Password");
+			  const response = await fetch('https://proxy.actv.05media.com/oauth/token?grant_type=password&username=' + Email + '&client_id=web&client_secret=2567a5ec9705eb7ac2c984033e06189d&password=' + pass, {
+				method: 'GET',
+				headers: {
+				  'Content-Type': 'application/json'
+				}
+			  });
+			  const loginData = await response.json();
+			  let token = loginData.access_token;
+			  let type = loginData.token_type;
+			  token_ =  type +' '+token;
+			  userDataAction();	
 			  objectceating(); 
 			  checkoutfuncoin();
-//			
-		  }
-//			  
-//			  
-//			  
-//		  });
+		}			 
+		loginAction();
+		let userDataAction = async () => {
+				  const response = await fetch('https://proxy.actv.05media.com/services/v1/profiles', {
+						method: 'PUT',
+						body:  JSON.stringify(objToSubmit),
+						headers: {
+						  'Accept': 'application/json',
+						  'Authorization':  token_,
+						  'Content-Type': 'application/json'
+						}
+					  });
+					  const userData = await response.json();
+		}	
+	}
 		  
 		 
 		  
@@ -7257,70 +7838,46 @@ var dateandtime = day + "/" + month + "/" + year + " " + hruse +":"+ minut+":"+s
 			  
 			var biusness_type =   document.getElementById("validationCustom01").value;
 			
-			var numof_prodct =   document.getElementById("validationCustom03").value;
-			var numof_location =   document.getElementById("numofloation").value;
-			var percentsvalues =   document.getElementById("percentsvalues").value;
+			//var numof_prodct =   document.getElementById("validationCustom03").value;
+			//var numof_location =   document.getElementById("numofloation").value;
+			//var percentsvalues =   document.getElementById("percentsvalues").value;
 			var countrylist =   document.getElementById("countrylist").value;
 			var states =   document.getElementById("states").value;
-			var busness_categores =   document.getElementById("validationCustom02").value; //dropdown categoreis
+			//var busness_categores =   document.getElementById("validationCustom02").value; //dropdown categoreis
 			
 			
-			  var buinesscate;
+			  //var buinesscate;
 			  var phonenumber = phno+mobile_no;
 			  
 			  console.log(countrylist);
-			  
-			  //dad
-			   
-			  
-			  if (busness_categores=="Select Buisness Category")
-				  {
-//					  alert('01');
-					  buinesscate =   document.getElementById("validationCustom0221").value;
-				       
-				  }
-				  else
-				  {
-					  
-//					  alert('02');
-				     buinesscate =   document.getElementById("validationCustom02").value
-				  }
-			  
-			  document.getElementById('progressreport').style.width = "100%";
-			  
+
+			 
 			  loader = document.getElementById("loader");
 			loader.style.display = "block";
-			 
+			 packages.filter((a, b) => packages.indexOf(a) === b);
 			  if (typeof latitute === 'undefined')
 				  {
 					  console.log("lo1");
 					  
 					  var objToSubmit = {
 			   
-	first_name : fname,
-    last_name : lname,
-	business_address : business_address,
-	business_city : city,
-	business_email : Email,
-    business_legal_name : busnes_legal_name,
-    business_mobile : phonenumber,
-    business_website : website_link,
-	business_zip_code : zipcode,	   
-	business_type : biusness_type, 
-	business_category : buinesscate, 
-	sale_online : yesnofprdtsleline1,
-	estimated_product_count : numof_prodct,
-    business_location_count : numof_location,
-    need_multiple_app : yesboolentrue2,
-    offer_same_product : yesboolentrue3,
-    percantage_of_difference : percentsvalues,
-	country:countrylist,
-    purchaseDate : dateandtime,
-    purchasePackageName : typecontent,
-    purchasePackagePrice : motnfeetotal,
-	state:states
-  
-	  }
+						first_name : fname,
+						last_name : lname,
+						business_address : business_address,
+						business_city : city,
+						business_email : Email,
+						business_legal_name : busnes_legal_name,
+						business_mobile : phonenumber,
+						business_website : website_link,
+						business_zip_code : zipcode,	   
+						country:countrylist,
+						purchaseDate : dateandtime,
+						purchasePackageName : typecontent,
+						purchasePackagePrice : motnfeetotal,
+						state:states,
+						businessPackages: packages,
+						businessUser: true,
+					}
 				  }
 			  else
 				  {
@@ -7328,45 +7885,30 @@ var dateandtime = day + "/" + month + "/" + year + " " + hruse +":"+ minut+":"+s
 					  
 					   var objToSubmit = {
 			   
-	first_name : fname,
-    last_name : lname,
-	business_address : business_address,
-	business_city : city,
-	business_email : Email,
-    business_legal_name : busnes_legal_name,
-    business_mobile : phonenumber,
-    business_website : website_link,
-	business_zip_code : zipcode,	   
-	business_type : biusness_type, 
-	business_category : buinesscate, 
-	sale_online : yesnofprdtsleline1,
-	estimated_product_count : numof_prodct,
-    business_location_count : numof_location,
-	location_lat : latitute,
-    location_lng : lognitute,
-    need_multiple_app : yesboolentrue2,
-    offer_same_product : yesboolentrue3,
-    percantage_of_difference : percentsvalues,
-	country:countrylist,
-    purchaseDate : dateandtime,
-    purchasePackageName : typecontent,
-    purchasePackagePrice : motnfeetotal,
-	state:states
-  
-	  }
+							first_name : fname,
+							last_name : lname,
+							business_address : business_address,
+							business_city : city,
+							business_email : Email,
+							business_legal_name : busnes_legal_name,
+							business_mobile : phonenumber,
+							business_website : website_link,
+							business_zip_code : zipcode,	   
+							country:countrylist,
+							purchaseDate : dateandtime,
+							purchasePackageName : typecontent,
+							purchasePackagePrice : motnfeetotal,
+							state:states,
+							businessPackages: packages,
+							businessUser: true,
+						}
 				  }
 			  
-		   
 	 
+	
   firebase.database().ref('mycom/'+ uniqueId).set(JSON.parse(JSON.stringify(objToSubmit)));
 // alert('Successfully submited');	
 			  
-			   setTimeout(function(){
-				   loader = document.getElementById("loader");
-			loader.style.display = "none";
-//		window.location.href = "signup.html";
-				
-		}, 6000);
  
 }
  
@@ -7709,7 +8251,6 @@ data();
 		  {
 			color: #ffffff!important;
 			background: #00B3FE 0% 0% no-repeat padding-box !important;
-			padding: 18px 15px !important;
 			opacity:0.7
 		  }
 		  
@@ -7773,7 +8314,7 @@ data();
 			  
 		  }
 		  #termeds{
-			color: #00B3FE;
+			color: #00B6FF;
 			margin-left: 25px;
 			margin-top: 20px;
 			font-size: 22px;
@@ -7826,10 +8367,10 @@ data();
 		  
 		  .leftmenu
 		  {
-			  width: 350px;
+			  width: 480px;
 			  height: 93vh;
-			  background: white;
-			  margin-top: -20px;
+			  background: #F8F8F8;
+			  margin-top: -33px;
 			  box-shadow: 2px 2px 4px #a5a5a5;
 			  padding: 19px;
 			position: fixed;
@@ -7972,7 +8513,30 @@ data();
   border-radius: 10px;
 }
 
-
+@media (max-width: 1821px) and (min-width: 1366px) {
+			.checkout{
+			  width: 264px
+			}
+			.leftmenu img{
+			  width: 247px;
+			}
+			.leftmenu{
+				width:25%;
+			}
+			.selectedtext{
+				left: 32%;
+				top: 18%;
+			}
+			.selectedplan{
+				left:24%;
+				    top: 66%;
+			}
+			#btnaddpack{
+			 font-size:7px;
+			 cursor:pointer;
+			}
+			}
+		
 		  
 	  </style> 
 

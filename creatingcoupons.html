@@ -78,6 +78,9 @@
 
     <!-- Css Stylesheet Contolling page Design-->
 	<style>
+	.borderRed {
+			border: 2px solid red !important;
+         }
 	select {
 		background-color: white !important;
 		background-image: url(img/Icons/arrow-triangle.png) !important;
@@ -85,15 +88,39 @@
 		background-repeat: no-repeat;
 		background-size: auto 30%;
 	}
+	.Savebutton{
+	padding: 16px 30px;
+	color: #fff;
+	font-size: 14px;
+	position: absolute;
+	bottom: 50;
+	right: 43px;
+	border-radius: 7px;
+	cursor:pointer;
+	background: #00B6FF 0% 0% no-repeat padding-box;
+}
+
 	</style>
 	<script>
 	var ProductData;
+	var userPlaceID;
+	var lat;
+	var log;
 	var CollectionData;
 	var CustomerData;
 	var PriceRule;
 	var rawImg;
 	var curremtCropid;
 	var Imgcount = 0;
+	var templateData = [];
+	var previousColID = 0;
+	var userData;
+	var AddBusinessToken;
+	var AddBusinessSin;
+	var ProviderAddress;
+	var AddBusinesslat;
+	var AddBusinesslon;
+	var AddBusinessplace;
 	$( window ).resize(function() {
 	  $(".couns_search").css("height",(window.outerHeight-150))
 	});
@@ -135,6 +162,8 @@
 										height: cropHeight,
 									},
 									enableZoom: true,
+									enforceBoundary: false,
+									enableExif: true,
 								});
 							$(".cr-overlay").html("<img style='width:40px' src='img/loader1.gif'>");
 								$(".cr-overlay").css({"top":"50%","left":"49%"});
@@ -143,7 +172,7 @@
 				        		url: rawImg,
 				        	}).then(function(){
 								$(".cr-overlay").html("");
-								$uploadCrop.croppie('setZoom', 0.7509);
+								$uploadCrop.croppie('setZoom', 0.7653);
 				        		console.log('jQuery bind complete');
 				        	});
 						});
@@ -183,7 +212,7 @@
 	$('.slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
 	
     $('.slider ul li:last-child').prependTo('.slider ul');
-
+	 
     function moveLeft(id) {
         $('.slider'+id+ ' ul').animate({
             left: + slideWidth
@@ -194,6 +223,7 @@
     };
 	$('.innertem .dealimage').click(function () {
 		$(".ImageUploadDiv4").html("")
+		productno = 1;
     });
     function moveRight(id) {
         $('.slider'+id+ ' ul').animate({
@@ -601,7 +631,7 @@
 			  GetProductList();
 		}
 		const GetProductList = async () => {
-			  const response_ = await fetch('https://cors-anywhere.herokuapp.com/https://store-mycommunity-today.myshopify.com/admin/api/2020-04/products.json?vendor='+localStorage.getItem('vendor').replace("  "," "), {
+			  const response_ = await fetch('https://cors-anywhere.herokuapp.com/https://store-mycommunity-today.myshopify.com/admin/api/2020-04/products.json?vendor='+sessionStorage.getItem('vendor').replace("  "," "), {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
@@ -622,7 +652,7 @@
 			  GetCollectionList();
 		}
 		const GetCollectionList = async () => {
-			  const response_ = await fetch('https://cors-anywhere.herokuapp.com/https://store-mycommunity-today.myshopify.com/admin/api/2020-04/custom_collections.json?query='+localStorage.getItem('sinid').replace("sin",""), {
+			  const response_ = await fetch('https://cors-anywhere.herokuapp.com/https://store-mycommunity-today.myshopify.com/admin/api/2020-04/custom_collections.json?query='+sessionStorage.getItem('sinid').replace("sin",""), {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
@@ -639,9 +669,11 @@
 		}
 		
 		var displayName = '';
-		const sinId= localStorage.getItem('sinid');
-		const token = localStorage.getItem('_token');
+		
+		const sinId= sessionStorage.getItem('sinid');
+		const token = sessionStorage.getItem('_token');
 		var name,description,offer,ExpiryDate,discalmer,address,code,zipcode,placeid,imagelogo,imageurl = '';
+		
 		let userDataAction = async () => {
 			  const response = await fetch('https://proxy.actv.05media.com/rest/private/sincommunityhubservice/getBusiness/'+sinId, {
 					method: 'GET',
@@ -651,17 +683,23 @@
 					  'Content-Type': 'application/json'
 					}
 				  });
-				  const userData = await response.json();
+				  userData = await response.json();
 				  const responseCode = await response.ok;
 				  if(!responseCode){
-				    window.localStorage.removeItem("_token");
+				    window.sessionStorage.removeItem("_token");
 					window.location.href = "login.html";
 				  }
 				  console.log(userData.coupons);
 				  var category = userData.business.category;
+				  userPlaceID = userData.business.place_id;
+				  lat = userData.business.location.latitude;
+				  log = userData.business.location.longitude;
 				  $('select[name="category"]').first().val(category);
 				  $('select[name="Dealselect"]').first().val(category);
 				  $("#imagebackground").attr('src','img/blankcoupons/'+category+'.png');
+				  if(category == "Shopping"){
+					$("#imagebackground").attr('src','img/blankcoupons/Shoppings.png');
+				  }
 				  $("#myImg").attr('src',userData.business.image_logo);
 				  $("#deloutput").attr('src',userData.business.image_logo);
 				  $("#listsearch").val(userData.business.displayName);
@@ -677,6 +715,7 @@
 				  $(".previewnamedc").html(userData.business.displayName);
 				  $(".secondsearchbar").val(userData.business.displayName);
 				  $("#listsearch1").val(userData.business.displayName);
+				  ProviderAddress = userData.business.address;
 				  $("#address1").val(userData.business.address);
 				  $("#address").val(userData.business.address);
 				  $("#submit").trigger("click");
@@ -684,6 +723,7 @@
 					$(this).val(userData.business.address);
 				   });
 				   $("#deladdress").val(userData.business.address);
+				   
 				     var data = Array.prototype.reverse.apply(userData.coupons)
 					 data.forEach(function(item,index){
 						const imageurl = item.image.length > 0 ? item.image[0].imageUrl : "";
@@ -717,6 +757,7 @@
 						  imghtml2 += '<li id="image'+(($(".ImageUploadDiv4 li").length)+1+index)+'" style="list-style: none;"><img onclick="openPop('+(($(".ImageUploadDiv4 li").length)+1+index)+')" class="insideImages" src="'+item.imageUrl+'"><span onclick="removeImage('+(($(".ImageUploadDiv4 li").length)+1+index)+')" class="removeImage"><i class="fa fa-times"  aria-hidden="true"></span></i></li>'
 						  
 						});
+						
 						const GetCouponsData = async () => {
 							  const response_ = await fetch('https://cors-anywhere.herokuapp.com/https://store-mycommunity-today.myshopify.com/admin/api/2020-04/price_rules/'+id+'.json', {
 									method: 'GET',
@@ -757,7 +798,7 @@
 						li.innerHTML='<div id="cplframe" style="background-image: url(img/blankcoupons/'+cateogry.replace(" ","_").replace(" ","_")+'.png);"><div style="width: 100%; height: 123px; padding:0px; position: absolute; background: rgba(255, 0, 0,0.5); z-index: 2; display:none; text-align:center;" class="highlightclk"><h3 style="color:white; padding: 9px; color: white; margin-top: 11%; margin-left: 62px; border: 1px solid white; width: 61%;">SELECTED</h3></div><div style="width: 54px;height: 40px; position: absolute;left: 13px;top: 17px;" id="logodiv"></div>'+'<div class="namedd"><p id="namedc">'+name+'</p></div><div class="desc"><p id="desccc">'+description+'</p></div><div class="offerdd"><p id="offerdc">'+offer+'</p></div><input type="checkbox" style="width:17px; height:25px; position: absolute; top: 8px; right: 9px; z-index: 1;" id="'+id+'" class="checkboxclicks"><div class="rigtimage"><img src='+imageurl+' style="width: 100%; height: 100%; object-fit: cover;"></div></div>';
 						ul.appendChild(li);
 						}				
-                					
+                	
 			function listgetcoupons()
 			{
 			$("#confim_copons").css("display","none")
@@ -853,6 +894,9 @@
 						document.getElementById('DiscountCodeTextField').value = found.cid.code;
 						document.getElementById('percentageValueField').value = found.cid.value.replace('-',"");
 						$("#imagebackground").attr('src','img/blankcoupons/'+found.cid.category+'.png');
+						if(found.cid.category == "Shopping"){
+							$("#imagebackground").attr('src','img/blankcoupons/'+found.cid.category+'.png');
+						}
 						if(found.cid.value_type == "percentage"){
 							$("#PercentageRadioButton").attr("checked",true)
 						}
@@ -874,10 +918,53 @@
 					}
 				}
 			}
-
 			li.addEventListener('click', listgetcoupons);
 			});
-			        var data_ = Array.prototype.reverse.apply(userData.deals)
+					var templatehtml = "";
+			        var data_ = Array.prototype.reverse.apply(userData.deals);
+					var group;
+					data_.forEach(function(item,index){
+						if(item.code != null){
+						var split = item.code.split("-");
+						var collectionid_ = split[2];
+						templateData.push({collectionid: collectionid_, data: item});
+						}
+					});
+				    group = templateData.map((item)=>  item.collectionid ).filter((item, i, ar) => ar.indexOf(item) === i).sort((a, b)=> a - b).map(item=>{
+					let new_list = templateData.filter(itm => itm.collectionid == item).map(itm=>itm.data);
+					return {total:new_list.length,collectionid:item,item:new_list}
+					});
+					templateData = group;
+					templateData.forEach(function(item,index){
+					   if(item.total == 4){
+							var desc1,desc2,desc3,desc4;
+							var title1,title2,title3,title4
+							var image1,image2,image3,image4
+							item.item.forEach(function(data,index){
+								if(index == 0){
+									desc1=data.description;
+									title1=data.name;
+									image1 = data.image[0].imageUrl;
+								}
+								if(index == 1){
+									desc2=data.description;
+									title2=data.name;
+									image2 = data.image[0].imageUrl;
+								}
+								if(index == 2){
+									desc3=data.description;
+									title3=data.name;
+									image3 = data.image[0].imageUrl;
+								}
+								if(index == 3){
+									desc4=data.description;
+									title4=data.name;
+									image4 = data.image[0].imageUrl;
+								}
+							});
+							templatehtml += '<li><div class="dealimage" id="FourProduct" style="display: block;height: 462px;width: 70%;margin-top: auto;max-width: 378px;"><div class="topnamelogo"><div class="deallogo"> <i class="fas fa-image"></i><p class="logotext">Upload Your logo here</p> <input type="file" name="image" id="file1" accept="image/*" onchange="loadFile3(event)" class="hide_file"> <img id="output3" src=""><div class="dellogo" id="mv-del-logo"> <img src="'+logoimage+'" class="deloutput"></div> <img id="dellogo" src="compman.gif"></div><div class="decomname">'+displayName+'</div></div><div class="dealimageupload"><div class="product" id="product1" style="border-bottom: 10px solid gray;border-right: 10px solid gray;"> <div style="background-image: url(img/shopping-cart.png);" class="imgdiv"><img id="dlimageoutput" src="'+image1+'" style="height: 213px;display:block;"><div class="productNum">1</div> <span>Product Image here</span></div><div>'+title1+'</div><div class="productdesc">'+desc1+'</div></div><div class="product" id="product3" style="border-right: 10px solid gray;"> <div style="background-image: url(img/shopping-cart.png);" class="imgdiv"><img id="dlimageoutput" src="'+image2+'" style="height: 213px;display:block;"><div class="productNum">3</div> <img class="ImageLoader" style="display:none;width:45px;margin-top: 10px;" src="img/loader1.gif"> <span>Product Image here</span></div><div>'+title2+'</div><div class="productdesc">'+desc2+'</div></div><div class="product" id="product2" style="border-bottom: 10px solid gray;"> <div style="background-image: url(img/shopping-cart.png);" class="imgdiv"><img id="dlimageoutput" src="'+image3+'" style="height: 213px;display:block;"><div class="productNum">2</div> <img class="ImageLoader" style="display:none;width:45px;margin-top: 10px;" src="img/loader1.gif"> <span>Product Image here</span></div><div>'+title3+'</div><div class="productdesc">'+desc3+'</div></div><div class="product" id="product4"> <div style="background-image: url(img/shopping-cart.png);"><img id="dlimageoutput" src="'+image4+'" style="height: 213px;display:block;"><div class="productNum">4</div> <img class="ImageLoader" style="display:none;width:45px;margin-top: 10px;" src="img/loader1.gif"> <span>Product Image here</span></div><div>'+title4+'</div><div class="productdesc">'+desc4+'</div></div></div><div class="dealdetail"><div class="deoffer"> <input type="text" placeholder="Your offer here*" class="decoffer" id="delofferc"></div><div class="deoffdes"><div rows="3" placeholder="Offer description here" class="deoffdesinput" id="deldescriptnc"></div></div><div class="categoriestextnode"><span>Category here</span></div></div></div></li>'
+					   }
+					});
 					data_.forEach(function(item,index){
 						if(item.image == null){
 							item.image = [];
@@ -923,7 +1010,8 @@
                 		var ul = document.getElementById("couponsimagedeal");
                 		var li=document.createElement('li');
 						li.setAttribute("id", "li"+id);
-                        li.innerHTML='<div class="dealimage" style="height: 462px;width:70%;max-width:378px" id=""> <div class="topnamelogo" style="height: 64px;"><input type="checkbox" style="width:22px; height:25px; position: absolute; top: 17px; right: 5px; z-index: 1;" id="'+id+'" class="dealsCheckboxes"><div class="deallogo" style="margin-left:0;"> <i class="fas fa-image"></i> <p class="logotext">Upload Your logo here</p><div class="dellogo" id="mv-del-logo"> <img src='+logoimage+' "=""> </div></div><div class="decomname" style="width:50%;"> <input style="height: 64px!important;width: 64%!important;font-size: 29px;" type="text" value="'+displayName+'" class="input-search-new secondsearchbar" id="" placeholder="Your Company name here" list="searchresults" autocomplete="off"> <input type="text" placeholder="company name here*" class="deconame" id="entcname3" > </div></div><div class="dealimageupload"> <br><br><br><br><br><i class="fas fa-image imageupload"></i><br><span style="font-size: 26px;text-align: center;margin-left: 16px;color: dimgrey;">Upload image Here</span> <img id="dlimageoutput" src='+imageurl+' style="height: 213px;display:block;object-fit: cover;"> </div><div class="dealdetail" style="bottom:-10px;border-radius: unset;"> <div class="deoffer"> <div style="color:black" class="decoffer" id="delofferc">'+name+'</div> </div><div class="deoffdes"> <div rows="3" style="width: 354px;" placeholder="Offer description here" class="deoffdesinput" id="deldescriptnc">'+description+'</div> </div><div class="categoriestextnode"><span>Category here</span></div></div></div>';
+                        //li.innerHTML = templatehtml;
+						li.innerHTML +='<div class="dealimage" style="height: 462px;width:70%;max-width:378px" id=""> <div class="topnamelogo" style="height: 64px;"><input type="checkbox" style="width:22px; height:25px; position: absolute; top: 17px; right: 5px; z-index: 1;" id="'+id+'" class="dealsCheckboxes"><div class="deallogo" style="margin-left:0;"> <i class="fas fa-image"></i> <p class="logotext">Upload Your logo here</p><div class="dellogo" id="mv-del-logo"> <img src='+logoimage+' "=""> </div></div><div class="decomname" style="width:50%;"> <input style="height: 64px!important;width: 64%!important;font-size: 29px;" type="text" value="'+displayName+'" class="input-search-new secondsearchbar" id="" placeholder="Your Company name here" list="searchresults" autocomplete="off"> <input type="text" placeholder="company name here*" class="deconame" id="entcname3" > </div></div><div class="dealimageupload"> <br><br><br><br><br><i class="fas fa-image imageupload"></i><br><span style="font-size: 26px;text-align: center;margin-left: 16px;color: dimgrey;">Upload image Here</span> <img id="dlimageoutput" src='+imageurl+' style="height: 213px;display:block;object-fit: cover;"> </div><div class="dealdetail" style="bottom:-10px;border-radius: unset;"> <div class="deoffer"> <div style="color:black" class="decoffer" id="delofferc">'+name+'</div> </div><div class="deoffdes"> <div rows="3" style="width: 354px;" placeholder="Offer description here" class="deoffdesinput" id="deldescriptnc">'+description+'</div> </div><div class="categoriestextnode"><span>Category here</span></div></div></div>';
 						if(code != null){
 						var split = code.split("-");
 						var collectionid_ = split[2];
@@ -953,7 +1041,7 @@
 								if(h == split[1]){
 									class_ = "highlight";
 								}
-								var trigger = 'openRelatedProduct("li'+h+'-'+collectionid+'")';
+								var trigger = 'openRelatedProduct("li'+h+'-'+collectionid+'",'+split[0]+')';
 									templ += "<span onclick='"+trigger+"' style='background-color: gray;padding: 12px;color: #fff;column-count:2;column-gap: 0px;' class='" +class_+"'>"+h+"</span>"
 								}
 							$("#updateProductTemplate .productNum").html(split[1]);
@@ -1094,8 +1182,9 @@
 		if(!token){
 		window.location.href = "login.html";
 		}
+		 $(".Disname").html(sessionStorage.getItem('fname')+" "+sessionStorage.getItem('lname'));
 		var defaultprofilePic="icons/img_avatar.png";
-		var UserprofilePicture = localStorage.getItem('userProfilePic');
+		var UserprofilePicture = sessionStorage.getItem('userProfilePic');
 		if(UserprofilePicture){
 		$("#profilePic").attr('src',UserprofilePicture);
 		}else{
@@ -1117,12 +1206,335 @@
 		cropmodalclose.style.display="none";
 		});
 	});
-	
+	function AddBusiness(){
+	if(ProviderAddress != $("#address1").val()){
+	 const GetcityState = async () => {
+	      var aadrray = $("#address1").val().split(',');
+	      var dd= aadrray[aadrray.length-1].match(/\d+/)[0];
+		  var country
+		  var state
+		  var city
+		  const response_ = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+dd+'&key=AIzaSyCM641AP5CCKjh30Z1_p8tEj-PccFZdx50', {
+				method: 'GET',
+		  });
+		  const Data = await response_.json();	
+		  var address = Data.results[0].address_components;
+		  address.forEach(function(item,index){
+		  if(item.types[0] == "country"){
+			country = item.long_name;
+		  }
+		  if(item.types[0] == "administrative_area_level_1"){
+			state = item.long_name;
+		  }
+		  if(item.types[0] == "administrative_area_level_2"){
+			city = item.long_name;
+		  }
+		  });
+		   $('#countryName').val(country);
+		  $('#states').val(state);
+		  $('#city').val(city);
+		  $('#zipcode').val(dd);
+	 }
+	 GetcityState();
+	 $('#buisneslegal').val($("#address1").val());
+	 $(".modal_").css("display","block");
+	  const Getgoogleplace_1 = async () => {
+		  const response_ = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+$("#address1").val()+'&key=AIzaSyCM641AP5CCKjh30Z1_p8tEj-PccFZdx50', {
+				method: 'GET',
+			  });
+		  const Data = await response_.json();	
+		  console.log(Data.results[0].geometry.location);
+		  AddBusinesslat = Data.results[0].geometry.location.lat;
+		  AddBusinesslon = Data.results[0].geometry.location.lng;
+		   const GetgoogleplaceObject = async () => {
+				  const response_ = await fetch('https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?name='+$("#address1").val()+'&rankby=distance&sensor=false&location='+AddBusinesslat+'%2C'+AddBusinesslon+'&key=AIzaSyCM641AP5CCKjh30Z1_p8tEj-PccFZdx50', {
+						method: 'GET',
+					  });
+				  const Data = await response_.json();	
+				  console.log(Data);
+				  AddBusinessplace = Data.results[0];
+			 }
+			 GetgoogleplaceObject();
+	 }
+	  Getgoogleplace_1();
+	 } else {
+	  alert("Please enter diffrent address");
+	 }
+	 return false;
+	}
+	function crossIcon() {
+		$(".modal_").css('display',"none");
+	 };
+	 function AddUnsignedBusiness(){
+	 var FirstNAME = $(".businessFName").val();
+	 var LastNAME = $(".businessLName").val();
+	 var Email = $("#EmailAdd").val();
+	 var password = $("#Password").val();
+	  var shopi;
+	  var business;
+	  if(FirstNAME != "" && LastNAME != ""){
+	     $(".businessFName").removeClass('borderRed');
+		 $(".businessLName").removeClass('borderRed');
+		 var data = JSON.stringify({
+			  "email": Email,
+			  "password": password,
+			  "firstname": FirstNAME,
+			  "lastname": LastNAME,
+			  "roles": [
+				"User"
+			  ],
+			"business_address" : $("#address1").val(),
+			"business_city" : $('#city').val(),
+			"business_email" : Email,
+			"business_legal_name" : $("#pac-input").val(),
+			"business_zip_code" : $('#zipcode').val(),	   
+			"country":$('#countryName').val(),
+			"state":$('#states').val(),
+			"phoneNumber": null,
+			});
+			const Signup = async () => {
+				  const response = await fetch('https://proxy.actv.05media.com/services/v1/profiles', {
+					method: 'POST',
+					body:  data,
+					headers: {
+					  'Content-Type': 'application/json'
+					}
+				  });
+				  const Status = await response.status;
+				  if(Status == 201){
+					loginAction();
+				  }
+			}
+			Signup();
+			const CreateBusiness = async () => {
+				  const response_ = await fetch('https://proxy.actv.05media.com/rest/private/sincommunityhubservice/addBusiness', {
+						method: 'POST',
+						body:  JSON.stringify(business),
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization':  AddBusinessToken,
+						}
+					  });
+				  const Data = await response_.json();
+			}
+			const loginAction = async () => {
+				  const response = await fetch('https://proxy.actv.05media.com/oauth/token?grant_type=password&username=' + Email + '&client_id=web&client_secret=2567a5ec9705eb7ac2c984033e06189d&password=' + password, {
+					method: 'GET',
+					headers: {
+					  'Content-Type': 'application/json'
+					}
+				  });
+				  const loginData = await response.json();
+				  AddBusinessToken = loginData.token_type +' '+loginData.access_token;
+				  
+				  const userDataAction = async () => {
+				  const response = await fetch('https://proxy.actv.05media.com:443/services/v1/profiles/me', {
+						method: 'GET',
+						headers: {
+						  'Accept': 'application/json',
+						  'Authorization':  AddBusinessToken,
+						  'Content-Type': 'application/json'
+						}
+					  });
+					  const userData_ = await response.json();
+					  AddBusinessSin = userData_.user.sinUsername
+					  shopi = {
+							apiKey: "18292eb8ffa883a10e3bd4c977a7c23c",
+							apiPassword: "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",
+							baseDomain: "store-mycommunity-today.myshopify.com",
+							storeFrontToken: "4572810d32f5bea20704701dda15265d",
+						}
+						business = {
+							  "shopifyCredentials": shopi,
+							  "tabs": ["Home", "Menu","Catering","Events","Media","Video","Coupons","Deals"],
+							  "category": "Services", 
+							  "businessType":null,
+							  "businessId" : AddBusinessSin,
+							  "promoted": true, 
+							  "banner": true,
+							  "avatarUrl": null,
+							  "description": null,
+							  "displayName": FirstNAME+' '+LastNAME,
+							  "address":$("#address1").val(),
+							  "image_logo": null,
+							  "telephone": null,
+							  "place": AddBusinessplace,
+							  "place_id": AddBusinessplace.place_id,
+							  "location": {
+								  "latitude": AddBusinesslat,
+								  "longitude": AddBusinesslon
+							  },
+							  "bannerList": [],
+							  "signed": false
+							}
+					  CreateBusiness();
+				  }
+					  userDataAction()
+				  }
+				  //loginAction();
+			} else {
+			var first =  document.getElementById("businessFName");
+			var last =  document.getElementById("businessLName");
+				
+			if(first.value == "" && last.value == "" ){
+				first.setCustomValidity("Required");
+				first.reportValidity();
+				first.classList.add("borderRed");
+				last.setCustomValidity("Required");
+				last.reportValidity();
+				last.classList.add("borderRed");
+			} else if(first.value  == "" ){
+				first.setCustomValidity("Required");
+				first.reportValidity();
+				first.classList.add("borderRed");
+			} else if(last.value  == "" ) {
+				last.setCustomValidity("Required");
+				last.reportValidity();
+				last.classList.add("borderRed");
+			}
+			}
+	 };
+	 
+	 function CreateEmail(){
+	   $('#EmailAdd').val($(".businessFName").val()+"@mycommunity.today");
+	   $("#pac-input").val($(".businessFName").val());
+	 };
+	 function Createlegal(){
+	   $("#pac-input").val($("#pac-input").val() +" "+ $(".businessLName").val());
+	 };
 	</script>
 </head>
 
 <body>
+<div class="modal_" style="display: none;">
+	 <div class="content">
+	 <span class="crossicon" onclick="crossIcon()"><i class="fa fa-times-circle-o" aria-hidden="true"></i></span>
+		<div style="padding-top:30px" class="panel-body">
 
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            
+<!--                        <form id="loginform" class="form-horizontal" role="form">-->
+                          <div style="margin-bottom: 25px;width: 49%;float: left;" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="businessFName" onchange="CreateEmail()" type="text" class="form-control businessFName"  placeholder="First Name*">
+                                    </div>
+						
+						<div style="margin-bottom: 25px;width: 48%;left: 28px;" class="input-group" id="lnameidtitle">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="businessLName" onchange="Createlegal()" type="text" class="form-control businessLName" placeholder="Last Name*">
+                                    </div>
+                                
+                            
+							
+							 <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+<!--                                        <input id="businessaddress" type="text" class="form-control" name="password" placeholder="Buisness address">-->
+						
+								 <div class="pac-card" id="pac-card">
+   
+								  <div id="pac-container">
+									<input id="pac-input" type="text" placeholder=" Buisness Legal Name*" class="form-control getvalues pac-target-input" autocomplete="off" style="border: 1px solid rgb(204, 204, 204);">
+								  </div>
+								</div>
+								<div id="map" style="position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div style="overflow: hidden;"></div><div class="gm-style" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;"><div tabindex="0" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: none;"><div style="z-index: 1; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div style="position: absolute; z-index: 992; transform: matrix(1, 0, 0, 1, -157, -245);"><div style="position: absolute; left: 256px; top: 256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 0px; top: 256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div style="position: absolute; z-index: 992; transform: matrix(1, 0, 0, 1, -157, -245);"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: 256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 0px;"></div></div></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -14px; top: -17px; z-index: 26;"><img alt="" src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"></div></div><div class="gm-style-pbc" style="z-index: 2; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0;"></div><div style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;"><div style="z-index: 4; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0; left: -14px; top: -17px; z-index: 26;"><img alt="" src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png" draggable="false" usemap="#gmimap0" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap0" id="gmimap0"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"><div style="cursor: default; position: absolute; top: 0px; left: 0px; z-index: -26;"><div class="gm-style-iw-a" style="position: absolute; left: 0px; top: 26px;"><div class="gm-style-iw-t" style="right: 0px; bottom: 40px;"><div class="gm-style-iw gm-style-iw-c" style="padding-right: 0px; padding-bottom: 0px; max-width: 144px; max-height: 0px; min-width: 0px;"><div class="gm-style-iw-d" style="overflow: scroll;"></div><button draggable="false" title="Close" aria-label="Close" type="button" class="gm-ui-hover-effect" style="background: none; display: block; border: 0px; margin: 0px; padding: 0px; position: absolute; cursor: pointer; user-select: none; top: -6px; right: -6px; width: 30px; height: 30px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23000000%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M19%206.41L17.59%205%2012%2010.59%206.41%205%205%206.41%2010.59%2012%205%2017.59%206.41%2019%2012%2013.41%2017.59%2019%2019%2017.59%2013.41%2012z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%0A%3C%2Fsvg%3E%0A" style="pointer-events: none; display: block; width: 14px; height: 14px; margin: 8px;"></button></div></div></div></div></div></div></div></div><iframe aria-hidden="true" frameborder="0" tabindex="-1" style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;"></iframe></div></div></div>
+<!--								 Buisness Legal Name-->
+                               </div>
+						
+								<div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                        <input id="buisneslegal" disabled type="text" class="form-control getvalues pac-target-input" name="buisneslegal" placeholder="Business Address*" autocomplete="off" style="border: 1px solid rgb(204, 204, 204);">
+                                    </div>
+						 <div style="margin-bottom: 25px;float: left;width: 51%;" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span><input disabled id="countryName" type="text" class="form-control getvalues pac-target-input" name="countryName" placeholder="country*" autocomplete="off" style="border: 1px solid rgb(204, 204, 204);">
+                               </div>
+
+						 <div style="margin-bottom: 25px;float: left;width: 50%;" class="input-group titlestatesinput">
+                                     <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span><input disabled id="states"" type="text" class="form-control getvalues" name="states" placeholder="States">
+                               </div>
+							
+							 <div style="margin-bottom: 25px;width: 46%;float: left;margin-left: 38px;" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                        <input id="city" disabled type="text" class="form-control getvalues" name="password" placeholder="City">
+                                    </div>
+						
+						<div style="margin-bottom: 25px;width: 45%;left: 28px;" class="input-group zipcodetitleinput">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                        <input id="zipcode" disabled type="number" class="form-control getvalues" name="password" placeholder="Zipcode" style="width: 102%;">
+                                    </div>
+							
+							
+
+                                       
+<div class="input-group" style="width: 100%;
+    margin-bottom: 16px; text-align: left;">
+							
+<div class="ddOutOfVision" id="countriesedd_msddHolder" style="height: 0px; overflow: hidden; position: absolute;"></div><div class="dd ddcommon borderRadius" id="countriesedd_msdd" style="width: 300px;">
+<input id="countriesedd_titleText" placeholder="" type="text" autocomplete="off" class="text shadow borderRadius" style="display: none;"><div class="ddChild ddchild_ border shadow" id="countriesedd_child" style="z-index: 9999; display: none; position: absolute; visibility: visible; height: 70px;"><ul><li class="enabled _msddli_" title="Andorra" style=""><img src="img/msdropdown/icons/blank.gif" class="flag ad fnone"><span class="ddlabel">Andorra</span><div class="clear"></div></li><li class="enabled _msddli_" title="United Arab Emirates"><img src="img/msdropdown/icons/blank.gif" class="flag ae fnone"><span class="ddlabel">United Arab Emirates</span><div class="clear"></div></li><li class="enabled _msddli_" title="Afghanistan"><img src="img/msdropdown/icons/blank.gif" class="flag af fnone"><span class="ddlabel">Afghanistan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Antigua and Barbuda"><img src="img/msdropdown/icons/blank.gif" class="flag ag fnone"><span class="ddlabel">Antigua and Barbuda</span><div class="clear"></div></li><li class="enabled _msddli_" title="Anguilla"><img src="img/msdropdown/icons/blank.gif" class="flag ai fnone"><span class="ddlabel">Anguilla</span><div class="clear"></div></li><li class="enabled _msddli_" title="Albania"><img src="img/msdropdown/icons/blank.gif" class="flag al fnone"><span class="ddlabel">Albania</span><div class="clear"></div></li><li class="enabled _msddli_" title="Armenia"><img src="img/msdropdown/icons/blank.gif" class="flag am fnone"><span class="ddlabel">Armenia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Netherlands Antilles"><img src="img/msdropdown/icons/blank.gif" class="flag an fnone"><span class="ddlabel">Netherlands Antilles</span><div class="clear"></div></li><li class="enabled _msddli_" title="Angola"><img src="img/msdropdown/icons/blank.gif" class="flag ao fnone"><span class="ddlabel">Angola</span><div class="clear"></div></li><li class="enabled _msddli_" title="Antarctica"><img src="img/msdropdown/icons/blank.gif" class="flag aq fnone"><span class="ddlabel">Antarctica</span><div class="clear"></div></li><li class="enabled _msddli_" title="Argentina"><img src="img/msdropdown/icons/blank.gif" class="flag ar fnone"><span class="ddlabel">Argentina</span><div class="clear"></div></li><li class="enabled _msddli_" title="American Samoa"><img src="img/msdropdown/icons/blank.gif" class="flag as fnone"><span class="ddlabel">American Samoa</span><div class="clear"></div></li><li class="enabled _msddli_" title="Austria"><img src="img/msdropdown/icons/blank.gif" class="flag at fnone"><span class="ddlabel">Austria</span><div class="clear"></div></li><li class="enabled _msddli_" title="Australia"><img src="img/msdropdown/icons/blank.gif" class="flag au fnone"><span class="ddlabel">Australia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Aruba"><img src="img/msdropdown/icons/blank.gif" class="flag aw fnone"><span class="ddlabel">Aruba</span><div class="clear"></div></li><li class="enabled _msddli_" title="Aland Islands"><img src="img/msdropdown/icons/blank.gif" class="flag ax fnone"><span class="ddlabel">Aland Islands</span><div class="clear"></div></li><li class="enabled _msddli_" title="Azerbaijan"><img src="img/msdropdown/icons/blank.gif" class="flag az fnone"><span class="ddlabel">Azerbaijan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Bosnia and Herzegovina"><img src="img/msdropdown/icons/blank.gif" class="flag ba fnone"><span class="ddlabel">Bosnia and Herzegovina</span><div class="clear"></div></li><li class="enabled _msddli_" title="Barbados"><img src="img/msdropdown/icons/blank.gif" class="flag bb fnone"><span class="ddlabel">Barbados</span><div class="clear"></div></li><li class="enabled _msddli_" title="Bangladesh"><img src="img/msdropdown/icons/blank.gif" class="flag bd fnone"><span class="ddlabel">Bangladesh</span><div class="clear"></div></li><li class="enabled _msddli_" title="Belgium"><img src="img/msdropdown/icons/blank.gif" class="flag be fnone"><span class="ddlabel">Belgium</span><div class="clear"></div></li><li class="enabled _msddli_" title="Burkina Faso"><img src="img/msdropdown/icons/blank.gif" class="flag bf fnone"><span class="ddlabel">Burkina Faso</span><div class="clear"></div></li><li class="enabled _msddli_" title="Bulgaria"><img src="img/msdropdown/icons/blank.gif" class="flag bg fnone"><span class="ddlabel">Bulgaria</span><div class="clear"></div></li><li class="enabled _msddli_" title="Bahrain"><img src="img/msdropdown/icons/blank.gif" class="flag bh fnone"><span class="ddlabel">Bahrain</span><div class="clear"></div></li><li class="enabled _msddli_" title="Burundi"><img src="img/msdropdown/icons/blank.gif" class="flag bi fnone"><span class="ddlabel">Burundi</span><div class="clear"></div></li><li class="enabled _msddli_" title="Benin"><img src="img/msdropdown/icons/blank.gif" class="flag bj fnone"><span class="ddlabel">Benin</span><div class="clear"></div></li><li class="enabled _msddli_" title="Bermuda"><img src="img/msdropdown/icons/blank.gif" class="flag bm fnone"><span class="ddlabel">Bermuda</span><div class="clear"></div></li><li class="enabled _msddli_" title="Brunei Darussalam"><img src="img/msdropdown/icons/blank.gif" class="flag bn fnone"><span class="ddlabel">Brunei Darussalam</span><div class="clear"></div></li><li class="enabled _msddli_" title="Bolivia"><img src="img/msdropdown/icons/blank.gif" class="flag bo fnone"><span class="ddlabel">Bolivia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Brazil"><img src="img/msdropdown/icons/blank.gif" class="flag br fnone"><span class="ddlabel">Brazil</span><div class="clear"></div></li><li class="enabled _msddli_" title="Bahamas"><img src="img/msdropdown/icons/blank.gif" class="flag bs fnone"><span class="ddlabel">Bahamas</span><div class="clear"></div></li><li class="enabled _msddli_" title="Bhutan"><img src="img/msdropdown/icons/blank.gif" class="flag bt fnone"><span class="ddlabel">Bhutan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Bouvet Island"><img src="img/msdropdown/icons/blank.gif" class="flag bv fnone"><span class="ddlabel">Bouvet Island</span><div class="clear"></div></li><li class="enabled _msddli_" title="Botswana"><img src="img/msdropdown/icons/blank.gif" class="flag bw fnone"><span class="ddlabel">Botswana</span><div class="clear"></div></li><li class="enabled _msddli_" title="Belarus"><img src="img/msdropdown/icons/blank.gif" class="flag by fnone"><span class="ddlabel">Belarus</span><div class="clear"></div></li><li class="enabled _msddli_" title="Belize"><img src="img/msdropdown/icons/blank.gif" class="flag bz fnone"><span class="ddlabel">Belize</span><div class="clear"></div></li><li class="enabled _msddli_" title="Canada"><img src="img/msdropdown/icons/blank.gif" class="flag ca fnone"><span class="ddlabel">Canada</span><div class="clear"></div></li><li class="enabled _msddli_" title="Cocos (Keeling) Islands"><img src="img/msdropdown/icons/blank.gif" class="flag cc fnone"><span class="ddlabel">Cocos (Keeling) Islands</span><div class="clear"></div></li><li class="enabled _msddli_" title="Democratic Republic of the Congo"><img src="img/msdropdown/icons/blank.gif" class="flag cd fnone"><span class="ddlabel">Democratic Republic of the Congo</span><div class="clear"></div></li><li class="enabled _msddli_" title="Central African Republic"><img src="img/msdropdown/icons/blank.gif" class="flag cf fnone"><span class="ddlabel">Central African Republic</span><div class="clear"></div></li><li class="enabled _msddli_" title="Congo"><img src="img/msdropdown/icons/blank.gif" class="flag cg fnone"><span class="ddlabel">Congo</span><div class="clear"></div></li><li class="enabled _msddli_" title="Switzerland"><img src="img/msdropdown/icons/blank.gif" class="flag ch fnone"><span class="ddlabel">Switzerland</span><div class="clear"></div></li><li class="enabled _msddli_" title="Cote D'Ivoire (Ivory Coast)"><img src="img/msdropdown/icons/blank.gif" class="flag ci fnone"><span class="ddlabel">Cote D'Ivoire (Ivory Coast)</span><div class="clear"></div></li><li class="enabled _msddli_" title="Cook Islands"><img src="img/msdropdown/icons/blank.gif" class="flag ck fnone"><span class="ddlabel">Cook Islands</span><div class="clear"></div></li><li class="enabled _msddli_" title="Chile"><img src="img/msdropdown/icons/blank.gif" class="flag cl fnone"><span class="ddlabel">Chile</span><div class="clear"></div></li><li class="enabled _msddli_" title="Cameroon"><img src="img/msdropdown/icons/blank.gif" class="flag cm fnone"><span class="ddlabel">Cameroon</span><div class="clear"></div></li><li class="enabled _msddli_" title="China"><img src="img/msdropdown/icons/blank.gif" class="flag cn fnone"><span class="ddlabel">China</span><div class="clear"></div></li><li class="enabled _msddli_" title="Colombia"><img src="img/msdropdown/icons/blank.gif" class="flag co fnone"><span class="ddlabel">Colombia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Costa Rica"><img src="img/msdropdown/icons/blank.gif" class="flag cr fnone"><span class="ddlabel">Costa Rica</span><div class="clear"></div></li><li class="enabled _msddli_" title="Serbia and Montenegro"><img src="img/msdropdown/icons/blank.gif" class="flag cs fnone"><span class="ddlabel">Serbia and Montenegro</span><div class="clear"></div></li><li class="enabled _msddli_" title="Cuba"><img src="img/msdropdown/icons/blank.gif" class="flag cu fnone"><span class="ddlabel">Cuba</span><div class="clear"></div></li><li class="enabled _msddli_" title="Cape Verde"><img src="img/msdropdown/icons/blank.gif" class="flag cv fnone"><span class="ddlabel">Cape Verde</span><div class="clear"></div></li><li class="enabled _msddli_" title="Christmas Island"><img src="img/msdropdown/icons/blank.gif" class="flag cx fnone"><span class="ddlabel">Christmas Island</span><div class="clear"></div></li><li class="enabled _msddli_" title="Cyprus"><img src="img/msdropdown/icons/blank.gif" class="flag cy fnone"><span class="ddlabel">Cyprus</span><div class="clear"></div></li><li class="enabled _msddli_" title="Czech Republic"><img src="img/msdropdown/icons/blank.gif" class="flag cz fnone"><span class="ddlabel">Czech Republic</span><div class="clear"></div></li><li class="enabled _msddli_" title="Germany"><img src="img/msdropdown/icons/blank.gif" class="flag de fnone"><span class="ddlabel">Germany</span><div class="clear"></div></li><li class="enabled _msddli_" title="Djibouti"><img src="img/msdropdown/icons/blank.gif" class="flag dj fnone"><span class="ddlabel">Djibouti</span><div class="clear"></div></li><li class="enabled _msddli_" title="Denmark"><img src="img/msdropdown/icons/blank.gif" class="flag dk fnone"><span class="ddlabel">Denmark</span><div class="clear"></div></li><li class="enabled _msddli_" title="Dominica"><img src="img/msdropdown/icons/blank.gif" class="flag dm fnone"><span class="ddlabel">Dominica</span><div class="clear"></div></li><li class="enabled _msddli_" title="Dominican Republic"><img src="img/msdropdown/icons/blank.gif" class="flag do fnone"><span class="ddlabel">Dominican Republic</span><div class="clear"></div></li><li class="enabled _msddli_" title="Algeria"><img src="img/msdropdown/icons/blank.gif" class="flag dz fnone"><span class="ddlabel">Algeria</span><div class="clear"></div></li><li class="enabled _msddli_" title="Ecuador"><img src="img/msdropdown/icons/blank.gif" class="flag ec fnone"><span class="ddlabel">Ecuador</span><div class="clear"></div></li><li class="enabled _msddli_" title="Estonia"><img src="img/msdropdown/icons/blank.gif" class="flag ee fnone"><span class="ddlabel">Estonia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Egypt"><img src="img/msdropdown/icons/blank.gif" class="flag eg fnone"><span class="ddlabel">Egypt</span><div class="clear"></div></li><li class="enabled _msddli_" title="Western Sahara"><img src="img/msdropdown/icons/blank.gif" class="flag eh fnone"><span class="ddlabel">Western Sahara</span><div class="clear"></div></li><li class="enabled _msddli_" title="Eritrea"><img src="img/msdropdown/icons/blank.gif" class="flag er fnone"><span class="ddlabel">Eritrea</span><div class="clear"></div></li><li class="enabled _msddli_" title="Spain"><img src="img/msdropdown/icons/blank.gif" class="flag es fnone"><span class="ddlabel">Spain</span><div class="clear"></div></li><li class="enabled _msddli_" title="Ethiopia"><img src="img/msdropdown/icons/blank.gif" class="flag et fnone"><span class="ddlabel">Ethiopia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Finland"><img src="img/msdropdown/icons/blank.gif" class="flag fi fnone"><span class="ddlabel">Finland</span><div class="clear"></div></li><li class="enabled _msddli_" title="Fiji"><img src="img/msdropdown/icons/blank.gif" class="flag fj fnone"><span class="ddlabel">Fiji</span><div class="clear"></div></li><li class="enabled _msddli_" title="Falkland Islands (Malvinas)"><img src="img/msdropdown/icons/blank.gif" class="flag fk fnone"><span class="ddlabel">Falkland Islands (Malvinas)</span><div class="clear"></div></li><li class="enabled _msddli_" title="Federated States of Micronesia"><img src="img/msdropdown/icons/blank.gif" class="flag fm fnone"><span class="ddlabel">Federated States of Micronesia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Faroe Islands"><img src="img/msdropdown/icons/blank.gif" class="flag fo fnone"><span class="ddlabel">Faroe Islands</span><div class="clear"></div></li><li class="enabled _msddli_" title="France"><img src="img/msdropdown/icons/blank.gif" class="flag fr fnone"><span class="ddlabel">France</span><div class="clear"></div></li><li class="enabled _msddli_" title="France, Metropolitan"><img src="img/msdropdown/icons/blank.gif" class="flag fx fnone"><span class="ddlabel">France, Metropolitan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Gabon"><img src="img/msdropdown/icons/blank.gif" class="flag ga fnone"><span class="ddlabel">Gabon</span><div class="clear"></div></li><li class="enabled _msddli_" title="Great Britain (UK)"><img src="img/msdropdown/icons/blank.gif" class="flag gb fnone"><span class="ddlabel">Great Britain (UK)</span><div class="clear"></div></li><li class="enabled _msddli_" title="Grenada"><img src="img/msdropdown/icons/blank.gif" class="flag gd fnone"><span class="ddlabel">Grenada</span><div class="clear"></div></li><li class="enabled _msddli_" title="Georgia"><img src="img/msdropdown/icons/blank.gif" class="flag ge fnone"><span class="ddlabel">Georgia</span><div class="clear"></div></li><li class="enabled _msddli_" title="French Guiana"><img src="img/msdropdown/icons/blank.gif" class="flag gf fnone"><span class="ddlabel">French Guiana</span><div class="clear"></div></li><li class="enabled _msddli_" title="Ghana"><img src="img/msdropdown/icons/blank.gif" class="flag gh fnone"><span class="ddlabel">Ghana</span><div class="clear"></div></li><li class="enabled _msddli_" title="Gibraltar"><img src="img/msdropdown/icons/blank.gif" class="flag gi fnone"><span class="ddlabel">Gibraltar</span><div class="clear"></div></li><li class="enabled _msddli_" title="Greenland"><img src="img/msdropdown/icons/blank.gif" class="flag gl fnone"><span class="ddlabel">Greenland</span><div class="clear"></div></li><li class="enabled _msddli_" title="Gambia"><img src="img/msdropdown/icons/blank.gif" class="flag gm fnone"><span class="ddlabel">Gambia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Guinea"><img src="img/msdropdown/icons/blank.gif" class="flag gn fnone"><span class="ddlabel">Guinea</span><div class="clear"></div></li><li class="enabled _msddli_" title="Guadeloupe"><img src="img/msdropdown/icons/blank.gif" class="flag gp fnone"><span class="ddlabel">Guadeloupe</span><div class="clear"></div></li><li class="enabled _msddli_" title="Equatorial Guinea"><img src="img/msdropdown/icons/blank.gif" class="flag gq fnone"><span class="ddlabel">Equatorial Guinea</span><div class="clear"></div></li><li class="enabled _msddli_" title="Greece"><img src="img/msdropdown/icons/blank.gif" class="flag gr fnone"><span class="ddlabel">Greece</span><div class="clear"></div></li><li class="enabled _msddli_" title="S. Georgia and S. Sandwich Islands"><img src="img/msdropdown/icons/blank.gif" class="flag gs fnone"><span class="ddlabel">S. Georgia and S. Sandwich Islands</span><div class="clear"></div></li><li class="enabled _msddli_" title="Guatemala"><img src="img/msdropdown/icons/blank.gif" class="flag gt fnone"><span class="ddlabel">Guatemala</span><div class="clear"></div></li><li class="enabled _msddli_" title="Guam"><img src="img/msdropdown/icons/blank.gif" class="flag gu fnone"><span class="ddlabel">Guam</span><div class="clear"></div></li><li class="enabled _msddli_" title="Guinea-Bissau"><img src="img/msdropdown/icons/blank.gif" class="flag gw fnone"><span class="ddlabel">Guinea-Bissau</span><div class="clear"></div></li><li class="enabled _msddli_" title="Guyana"><img src="img/msdropdown/icons/blank.gif" class="flag gy fnone"><span class="ddlabel">Guyana</span><div class="clear"></div></li><li class="enabled _msddli_" title="Hong Kong"><img src="img/msdropdown/icons/blank.gif" class="flag hk fnone"><span class="ddlabel">Hong Kong</span><div class="clear"></div></li><li class="enabled _msddli_" title="Heard Island and McDonald Islands"><img src="img/msdropdown/icons/blank.gif" class="flag hm fnone"><span class="ddlabel">Heard Island and McDonald Islands</span><div class="clear"></div></li><li class="enabled _msddli_" title="Honduras"><img src="img/msdropdown/icons/blank.gif" class="flag hn fnone"><span class="ddlabel">Honduras</span><div class="clear"></div></li><li class="enabled _msddli_" title="Croatia (Hrvatska)"><img src="img/msdropdown/icons/blank.gif" class="flag hr fnone"><span class="ddlabel">Croatia (Hrvatska)</span><div class="clear"></div></li><li class="enabled _msddli_" title="Haiti"><img src="img/msdropdown/icons/blank.gif" class="flag ht fnone"><span class="ddlabel">Haiti</span><div class="clear"></div></li><li class="enabled _msddli_" title="Hungary"><img src="img/msdropdown/icons/blank.gif" class="flag hu fnone"><span class="ddlabel">Hungary</span><div class="clear"></div></li><li class="enabled _msddli_" title="Indonesia"><img src="img/msdropdown/icons/blank.gif" class="flag id fnone"><span class="ddlabel">Indonesia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Ireland"><img src="img/msdropdown/icons/blank.gif" class="flag ie fnone"><span class="ddlabel">Ireland</span><div class="clear"></div></li><li class="enabled _msddli_" title="Israel"><img src="img/msdropdown/icons/blank.gif" class="flag il fnone"><span class="ddlabel">Israel</span><div class="clear"></div></li><li class="enabled _msddli_" title="India"><img src="img/msdropdown/icons/blank.gif" class="flag in fnone"><span class="ddlabel">India</span><div class="clear"></div></li><li class="enabled _msddli_" title="Iraq"><img src="img/msdropdown/icons/blank.gif" class="flag iq fnone"><span class="ddlabel">Iraq</span><div class="clear"></div></li><li class="enabled _msddli_" title="Iran"><img src="img/msdropdown/icons/blank.gif" class="flag ir fnone"><span class="ddlabel">Iran</span><div class="clear"></div></li><li class="enabled _msddli_" title="Iceland"><img src="img/msdropdown/icons/blank.gif" class="flag is fnone"><span class="ddlabel">Iceland</span><div class="clear"></div></li><li class="enabled _msddli_" title="Italy"><img src="img/msdropdown/icons/blank.gif" class="flag it fnone"><span class="ddlabel">Italy</span><div class="clear"></div></li><li class="enabled _msddli_" title="Jamaica"><img src="img/msdropdown/icons/blank.gif" class="flag jm fnone"><span class="ddlabel">Jamaica</span><div class="clear"></div></li><li class="enabled _msddli_" title="Jordan"><img src="img/msdropdown/icons/blank.gif" class="flag jo fnone"><span class="ddlabel">Jordan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Japan"><img src="img/msdropdown/icons/blank.gif" class="flag jp fnone"><span class="ddlabel">Japan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Kenya"><img src="img/msdropdown/icons/blank.gif" class="flag ke fnone"><span class="ddlabel">Kenya</span><div class="clear"></div></li><li class="enabled _msddli_" title="Kyrgyzstan"><img src="img/msdropdown/icons/blank.gif" class="flag kg fnone"><span class="ddlabel">Kyrgyzstan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Cambodia"><img src="img/msdropdown/icons/blank.gif" class="flag kh fnone"><span class="ddlabel">Cambodia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Kiribati"><img src="img/msdropdown/icons/blank.gif" class="flag ki fnone"><span class="ddlabel">Kiribati</span><div class="clear"></div></li><li class="enabled _msddli_" title="Comoros"><img src="img/msdropdown/icons/blank.gif" class="flag km fnone"><span class="ddlabel">Comoros</span><div class="clear"></div></li><li class="enabled _msddli_" title="Saint Kitts and Nevis"><img src="img/msdropdown/icons/blank.gif" class="flag kn fnone"><span class="ddlabel">Saint Kitts and Nevis</span><div class="clear"></div></li><li class="enabled _msddli_" title="Korea (North)"><img src="img/msdropdown/icons/blank.gif" class="flag kp fnone"><span class="ddlabel">Korea (North)</span><div class="clear"></div></li><li class="enabled _msddli_" title="Korea (South)"><img src="img/msdropdown/icons/blank.gif" class="flag kr fnone"><span class="ddlabel">Korea (South)</span><div class="clear"></div></li><li class="enabled _msddli_" title="Kuwait"><img src="img/msdropdown/icons/blank.gif" class="flag kw fnone"><span class="ddlabel">Kuwait</span><div class="clear"></div></li><li class="enabled _msddli_" title="Cayman Islands"><img src="img/msdropdown/icons/blank.gif" class="flag ky fnone"><span class="ddlabel">Cayman Islands</span><div class="clear"></div></li><li class="enabled _msddli_" title="Kazakhstan"><img src="img/msdropdown/icons/blank.gif" class="flag kz fnone"><span class="ddlabel">Kazakhstan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Laos"><img src="img/msdropdown/icons/blank.gif" class="flag la fnone"><span class="ddlabel">Laos</span><div class="clear"></div></li><li class="enabled _msddli_" title="Lebanon"><img src="img/msdropdown/icons/blank.gif" class="flag lb fnone"><span class="ddlabel">Lebanon</span><div class="clear"></div></li><li class="enabled _msddli_" title="Saint Lucia"><img src="img/msdropdown/icons/blank.gif" class="flag lc fnone"><span class="ddlabel">Saint Lucia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Liechtenstein"><img src="img/msdropdown/icons/blank.gif" class="flag li fnone"><span class="ddlabel">Liechtenstein</span><div class="clear"></div></li><li class="enabled _msddli_" title="Sri Lanka"><img src="img/msdropdown/icons/blank.gif" class="flag lk fnone"><span class="ddlabel">Sri Lanka</span><div class="clear"></div></li><li class="enabled _msddli_" title="Liberia"><img src="img/msdropdown/icons/blank.gif" class="flag lr fnone"><span class="ddlabel">Liberia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Lesotho"><img src="img/msdropdown/icons/blank.gif" class="flag ls fnone"><span class="ddlabel">Lesotho</span><div class="clear"></div></li><li class="enabled _msddli_" title="Lithuania"><img src="img/msdropdown/icons/blank.gif" class="flag lt fnone"><span class="ddlabel">Lithuania</span><div class="clear"></div></li><li class="enabled _msddli_" title="Luxembourg"><img src="img/msdropdown/icons/blank.gif" class="flag lu fnone"><span class="ddlabel">Luxembourg</span><div class="clear"></div></li><li class="enabled _msddli_" title="Latvia"><img src="img/msdropdown/icons/blank.gif" class="flag lv fnone"><span class="ddlabel">Latvia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Libya"><img src="img/msdropdown/icons/blank.gif" class="flag ly fnone"><span class="ddlabel">Libya</span><div class="clear"></div></li><li class="enabled _msddli_" title="Morocco"><img src="img/msdropdown/icons/blank.gif" class="flag ma fnone"><span class="ddlabel">Morocco</span><div class="clear"></div></li><li class="enabled _msddli_" title="Monaco"><img src="img/msdropdown/icons/blank.gif" class="flag mc fnone"><span class="ddlabel">Monaco</span><div class="clear"></div></li><li class="enabled _msddli_" title="Moldova"><img src="img/msdropdown/icons/blank.gif" class="flag md fnone"><span class="ddlabel">Moldova</span><div class="clear"></div></li><li class="enabled _msddli_" title="Madagascar"><img src="img/msdropdown/icons/blank.gif" class="flag mg fnone"><span class="ddlabel">Madagascar</span><div class="clear"></div></li><li class="enabled _msddli_" title="Marshall Islands"><img src="img/msdropdown/icons/blank.gif" class="flag mh fnone"><span class="ddlabel">Marshall Islands</span><div class="clear"></div></li><li class="enabled _msddli_" title="Macedonia"><img src="img/msdropdown/icons/blank.gif" class="flag mk fnone"><span class="ddlabel">Macedonia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Mali"><img src="img/msdropdown/icons/blank.gif" class="flag ml fnone"><span class="ddlabel">Mali</span><div class="clear"></div></li><li class="enabled _msddli_" title="Myanmar"><img src="img/msdropdown/icons/blank.gif" class="flag mm fnone"><span class="ddlabel">Myanmar</span><div class="clear"></div></li><li class="enabled _msddli_" title="Mongolia"><img src="img/msdropdown/icons/blank.gif" class="flag mn fnone"><span class="ddlabel">Mongolia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Macao"><img src="img/msdropdown/icons/blank.gif" class="flag mo fnone"><span class="ddlabel">Macao</span><div class="clear"></div></li><li class="enabled _msddli_" title="Northern Mariana Islands"><img src="img/msdropdown/icons/blank.gif" class="flag mp fnone"><span class="ddlabel">Northern Mariana Islands</span><div class="clear"></div></li><li class="enabled _msddli_" title="Martinique"><img src="img/msdropdown/icons/blank.gif" class="flag mq fnone"><span class="ddlabel">Martinique</span><div class="clear"></div></li><li class="enabled _msddli_" title="Mauritania"><img src="img/msdropdown/icons/blank.gif" class="flag mr fnone"><span class="ddlabel">Mauritania</span><div class="clear"></div></li><li class="enabled _msddli_" title="Montserrat"><img src="img/msdropdown/icons/blank.gif" class="flag ms fnone"><span class="ddlabel">Montserrat</span><div class="clear"></div></li><li class="enabled _msddli_" title="Malta"><img src="img/msdropdown/icons/blank.gif" class="flag mt fnone"><span class="ddlabel">Malta</span><div class="clear"></div></li><li class="enabled _msddli_" title="Mauritius"><img src="img/msdropdown/icons/blank.gif" class="flag mu fnone"><span class="ddlabel">Mauritius</span><div class="clear"></div></li><li class="enabled _msddli_" title="Maldives"><img src="img/msdropdown/icons/blank.gif" class="flag mv fnone"><span class="ddlabel">Maldives</span><div class="clear"></div></li><li class="enabled _msddli_" title="Malawi"><img src="img/msdropdown/icons/blank.gif" class="flag mw fnone"><span class="ddlabel">Malawi</span><div class="clear"></div></li><li class="enabled _msddli_" title="Mexico"><img src="img/msdropdown/icons/blank.gif" class="flag mx fnone"><span class="ddlabel">Mexico</span><div class="clear"></div></li><li class="enabled _msddli_" title="Malaysia"><img src="img/msdropdown/icons/blank.gif" class="flag my fnone"><span class="ddlabel">Malaysia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Mozambique"><img src="img/msdropdown/icons/blank.gif" class="flag mz fnone"><span class="ddlabel">Mozambique</span><div class="clear"></div></li><li class="enabled _msddli_" title="Namibia"><img src="img/msdropdown/icons/blank.gif" class="flag na fnone"><span class="ddlabel">Namibia</span><div class="clear"></div></li><li class="enabled _msddli_" title="New Caledonia"><img src="img/msdropdown/icons/blank.gif" class="flag nc fnone"><span class="ddlabel">New Caledonia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Niger"><img src="img/msdropdown/icons/blank.gif" class="flag ne fnone"><span class="ddlabel">Niger</span><div class="clear"></div></li><li class="enabled _msddli_" title="Norfolk Island"><img src="img/msdropdown/icons/blank.gif" class="flag nf fnone"><span class="ddlabel">Norfolk Island</span><div class="clear"></div></li><li class="enabled _msddli_" title="Nigeria"><img src="img/msdropdown/icons/blank.gif" class="flag ng fnone"><span class="ddlabel">Nigeria</span><div class="clear"></div></li><li class="enabled _msddli_" title="Nicaragua"><img src="img/msdropdown/icons/blank.gif" class="flag ni fnone"><span class="ddlabel">Nicaragua</span><div class="clear"></div></li><li class="enabled _msddli_" title="Netherlands"><img src="img/msdropdown/icons/blank.gif" class="flag nl fnone"><span class="ddlabel">Netherlands</span><div class="clear"></div></li><li class="enabled _msddli_" title="Norway"><img src="img/msdropdown/icons/blank.gif" class="flag no fnone"><span class="ddlabel">Norway</span><div class="clear"></div></li><li class="enabled _msddli_" title="Nepal"><img src="img/msdropdown/icons/blank.gif" class="flag np fnone"><span class="ddlabel">Nepal</span><div class="clear"></div></li><li class="enabled _msddli_" title="Nauru"><img src="img/msdropdown/icons/blank.gif" class="flag nr fnone"><span class="ddlabel">Nauru</span><div class="clear"></div></li><li class="enabled _msddli_" title="Niue"><img src="img/msdropdown/icons/blank.gif" class="flag nu fnone"><span class="ddlabel">Niue</span><div class="clear"></div></li><li class="enabled _msddli_" title="New Zealand (Aotearoa)"><img src="img/msdropdown/icons/blank.gif" class="flag nz fnone"><span class="ddlabel">New Zealand (Aotearoa)</span><div class="clear"></div></li><li class="enabled _msddli_" title="Oman"><img src="img/msdropdown/icons/blank.gif" class="flag om fnone"><span class="ddlabel">Oman</span><div class="clear"></div></li><li class="enabled _msddli_" title="Panama"><img src="img/msdropdown/icons/blank.gif" class="flag pa fnone"><span class="ddlabel">Panama</span><div class="clear"></div></li><li class="enabled _msddli_" title="Peru"><img src="img/msdropdown/icons/blank.gif" class="flag pe fnone"><span class="ddlabel">Peru</span><div class="clear"></div></li><li class="enabled _msddli_" title="French Polynesia"><img src="img/msdropdown/icons/blank.gif" class="flag pf fnone"><span class="ddlabel">French Polynesia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Papua New Guinea"><img src="img/msdropdown/icons/blank.gif" class="flag pg fnone"><span class="ddlabel">Papua New Guinea</span><div class="clear"></div></li><li class="enabled _msddli_" title="Philippines"><img src="img/msdropdown/icons/blank.gif" class="flag ph fnone"><span class="ddlabel">Philippines</span><div class="clear"></div></li><li class="enabled _msddli_" title="Pakistan"><img src="img/msdropdown/icons/blank.gif" class="flag pk fnone"><span class="ddlabel">Pakistan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Poland"><img src="img/msdropdown/icons/blank.gif" class="flag pl fnone"><span class="ddlabel">Poland</span><div class="clear"></div></li><li class="enabled _msddli_" title="Saint Pierre and Miquelon"><img src="img/msdropdown/icons/blank.gif" class="flag pm fnone"><span class="ddlabel">Saint Pierre and Miquelon</span><div class="clear"></div></li><li class="enabled _msddli_" title="Pitcairn"><img src="img/msdropdown/icons/blank.gif" class="flag pn fnone"><span class="ddlabel">Pitcairn</span><div class="clear"></div></li><li class="enabled _msddli_" title="Puerto Rico"><img src="img/msdropdown/icons/blank.gif" class="flag pr fnone"><span class="ddlabel">Puerto Rico</span><div class="clear"></div></li><li class="enabled _msddli_" title="Palestinian Territory"><img src="img/msdropdown/icons/blank.gif" class="flag ps fnone"><span class="ddlabel">Palestinian Territory</span><div class="clear"></div></li><li class="enabled _msddli_" title="Portugal"><img src="img/msdropdown/icons/blank.gif" class="flag pt fnone"><span class="ddlabel">Portugal</span><div class="clear"></div></li><li class="enabled _msddli_" title="Palau"><img src="img/msdropdown/icons/blank.gif" class="flag pw fnone"><span class="ddlabel">Palau</span><div class="clear"></div></li><li class="enabled _msddli_" title="Paraguay"><img src="img/msdropdown/icons/blank.gif" class="flag py fnone"><span class="ddlabel">Paraguay</span><div class="clear"></div></li><li class="enabled _msddli_" title="Qatar"><img src="img/msdropdown/icons/blank.gif" class="flag qa fnone"><span class="ddlabel">Qatar</span><div class="clear"></div></li><li class="enabled _msddli_" title="Reunion"><img src="img/msdropdown/icons/blank.gif" class="flag re fnone"><span class="ddlabel">Reunion</span><div class="clear"></div></li><li class="enabled _msddli_" title="Romania"><img src="img/msdropdown/icons/blank.gif" class="flag ro fnone"><span class="ddlabel">Romania</span><div class="clear"></div></li><li class="enabled _msddli_" title="Russian Federation"><img src="img/msdropdown/icons/blank.gif" class="flag ru fnone"><span class="ddlabel">Russian Federation</span><div class="clear"></div></li><li class="enabled _msddli_" title="Rwanda"><img src="img/msdropdown/icons/blank.gif" class="flag rw fnone"><span class="ddlabel">Rwanda</span><div class="clear"></div></li><li class="enabled _msddli_" title="Saudi Arabia"><img src="img/msdropdown/icons/blank.gif" class="flag sa fnone"><span class="ddlabel">Saudi Arabia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Solomon Islands"><img src="img/msdropdown/icons/blank.gif" class="flag sb fnone"><span class="ddlabel">Solomon Islands</span><div class="clear"></div></li><li class="enabled _msddli_" title="Seychelles"><img src="img/msdropdown/icons/blank.gif" class="flag sc fnone"><span class="ddlabel">Seychelles</span><div class="clear"></div></li><li class="enabled _msddli_" title="Sudan"><img src="img/msdropdown/icons/blank.gif" class="flag sd fnone"><span class="ddlabel">Sudan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Sweden"><img src="img/msdropdown/icons/blank.gif" class="flag se fnone"><span class="ddlabel">Sweden</span><div class="clear"></div></li><li class="enabled _msddli_" title="Singapore"><img src="img/msdropdown/icons/blank.gif" class="flag sg fnone"><span class="ddlabel">Singapore</span><div class="clear"></div></li><li class="enabled _msddli_" title="Saint Helena"><img src="img/msdropdown/icons/blank.gif" class="flag sh fnone"><span class="ddlabel">Saint Helena</span><div class="clear"></div></li><li class="enabled _msddli_" title="Slovenia"><img src="img/msdropdown/icons/blank.gif" class="flag si fnone"><span class="ddlabel">Slovenia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Svalbard and Jan Mayen"><img src="img/msdropdown/icons/blank.gif" class="flag sj fnone"><span class="ddlabel">Svalbard and Jan Mayen</span><div class="clear"></div></li><li class="enabled _msddli_" title="Slovakia"><img src="img/msdropdown/icons/blank.gif" class="flag sk fnone"><span class="ddlabel">Slovakia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Sierra Leone"><img src="img/msdropdown/icons/blank.gif" class="flag sl fnone"><span class="ddlabel">Sierra Leone</span><div class="clear"></div></li><li class="enabled _msddli_" title="San Marino"><img src="img/msdropdown/icons/blank.gif" class="flag sm fnone"><span class="ddlabel">San Marino</span><div class="clear"></div></li><li class="enabled _msddli_" title="Senegal"><img src="img/msdropdown/icons/blank.gif" class="flag sn fnone"><span class="ddlabel">Senegal</span><div class="clear"></div></li><li class="enabled _msddli_" title="Somalia"><img src="img/msdropdown/icons/blank.gif" class="flag so fnone"><span class="ddlabel">Somalia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Suriname"><img src="img/msdropdown/icons/blank.gif" class="flag sr fnone"><span class="ddlabel">Suriname</span><div class="clear"></div></li><li class="enabled _msddli_" title="Sao Tome and Principe"><img src="img/msdropdown/icons/blank.gif" class="flag st fnone"><span class="ddlabel">Sao Tome and Principe</span><div class="clear"></div></li><li class="enabled _msddli_" title="USSR (former)"><img src="img/msdropdown/icons/blank.gif" class="flag su fnone"><span class="ddlabel">USSR (former)</span><div class="clear"></div></li><li class="enabled _msddli_" title="El Salvador"><img src="img/msdropdown/icons/blank.gif" class="flag sv fnone"><span class="ddlabel">El Salvador</span><div class="clear"></div></li><li class="enabled _msddli_" title="Syria"><img src="img/msdropdown/icons/blank.gif" class="flag sy fnone"><span class="ddlabel">Syria</span><div class="clear"></div></li><li class="enabled _msddli_" title="Swaziland"><img src="img/msdropdown/icons/blank.gif" class="flag sz fnone"><span class="ddlabel">Swaziland</span><div class="clear"></div></li><li class="enabled _msddli_" title="Turks and Caicos Islands"><img src="img/msdropdown/icons/blank.gif" class="flag tc fnone"><span class="ddlabel">Turks and Caicos Islands</span><div class="clear"></div></li><li class="enabled _msddli_" title="Chad"><img src="img/msdropdown/icons/blank.gif" class="flag td fnone"><span class="ddlabel">Chad</span><div class="clear"></div></li><li class="enabled _msddli_" title="French Southern Territories"><img src="img/msdropdown/icons/blank.gif" class="flag tf fnone"><span class="ddlabel">French Southern Territories</span><div class="clear"></div></li><li class="enabled _msddli_" title="Togo"><img src="img/msdropdown/icons/blank.gif" class="flag tg fnone"><span class="ddlabel">Togo</span><div class="clear"></div></li><li class="enabled _msddli_" title="Thailand"><img src="img/msdropdown/icons/blank.gif" class="flag th fnone"><span class="ddlabel">Thailand</span><div class="clear"></div></li><li class="enabled _msddli_" title="Tajikistan"><img src="img/msdropdown/icons/blank.gif" class="flag tj fnone"><span class="ddlabel">Tajikistan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Tokelau"><img src="img/msdropdown/icons/blank.gif" class="flag tk fnone"><span class="ddlabel">Tokelau</span><div class="clear"></div></li><li class="enabled _msddli_" title="Timor-Leste"><img src="img/msdropdown/icons/blank.gif" class="flag tl fnone"><span class="ddlabel">Timor-Leste</span><div class="clear"></div></li><li class="enabled _msddli_" title="Turkmenistan"><img src="img/msdropdown/icons/blank.gif" class="flag tm fnone"><span class="ddlabel">Turkmenistan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Tunisia"><img src="img/msdropdown/icons/blank.gif" class="flag tn fnone"><span class="ddlabel">Tunisia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Tonga"><img src="img/msdropdown/icons/blank.gif" class="flag to fnone"><span class="ddlabel">Tonga</span><div class="clear"></div></li><li class="enabled _msddli_" title="East Timor"><img src="img/msdropdown/icons/blank.gif" class="flag tp fnone"><span class="ddlabel">East Timor</span><div class="clear"></div></li><li class="enabled _msddli_" title="Turkey"><img src="img/msdropdown/icons/blank.gif" class="flag tr fnone"><span class="ddlabel">Turkey</span><div class="clear"></div></li><li class="enabled _msddli_" title="Trinidad and Tobago"><img src="img/msdropdown/icons/blank.gif" class="flag tt fnone"><span class="ddlabel">Trinidad and Tobago</span><div class="clear"></div></li><li class="enabled _msddli_" title="Tuvalu"><img src="img/msdropdown/icons/blank.gif" class="flag tv fnone"><span class="ddlabel">Tuvalu</span><div class="clear"></div></li><li class="enabled _msddli_" title="Taiwan"><img src="img/msdropdown/icons/blank.gif" class="flag tw fnone"><span class="ddlabel">Taiwan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Tanzania"><img src="img/msdropdown/icons/blank.gif" class="flag tz fnone"><span class="ddlabel">Tanzania</span><div class="clear"></div></li><li class="enabled _msddli_" title="Ukraine"><img src="img/msdropdown/icons/blank.gif" class="flag ua fnone"><span class="ddlabel">Ukraine</span><div class="clear"></div></li><li class="enabled _msddli_" title="Uganda"><img src="img/msdropdown/icons/blank.gif" class="flag ug fnone"><span class="ddlabel">Uganda</span><div class="clear"></div></li><li class="enabled _msddli_" title="United Kingdom"><img src="img/msdropdown/icons/blank.gif" class="flag uk fnone"><span class="ddlabel">United Kingdom</span><div class="clear"></div></li><li class="enabled _msddli_" title="United States Minor Outlying Islands"><img src="img/msdropdown/icons/blank.gif" class="flag um fnone"><span class="ddlabel">United States Minor Outlying Islands</span><div class="clear"></div></li><li class="enabled _msddli_ selected" title="United States"><img src="img/msdropdown/icons/blank.gif" class="flag us fnone"><span class="ddlabel">United States</span><div class="clear"></div></li><li class="enabled _msddli_" title="Uruguay"><img src="img/msdropdown/icons/blank.gif" class="flag uy fnone"><span class="ddlabel">Uruguay</span><div class="clear"></div></li><li class="enabled _msddli_" title="Uzbekistan"><img src="img/msdropdown/icons/blank.gif" class="flag uz fnone"><span class="ddlabel">Uzbekistan</span><div class="clear"></div></li><li class="enabled _msddli_" title="Vatican City State (Holy See)"><img src="img/msdropdown/icons/blank.gif" class="flag va fnone"><span class="ddlabel">Vatican City State (Holy See)</span><div class="clear"></div></li><li class="enabled _msddli_" title="Saint Vincent and the Grenadines"><img src="img/msdropdown/icons/blank.gif" class="flag vc fnone"><span class="ddlabel">Saint Vincent and the Grenadines</span><div class="clear"></div></li><li class="enabled _msddli_" title="Venezuela"><img src="img/msdropdown/icons/blank.gif" class="flag ve fnone"><span class="ddlabel">Venezuela</span><div class="clear"></div></li><li class="enabled _msddli_" title="Virgin Islands (British)"><img src="img/msdropdown/icons/blank.gif" class="flag vg fnone"><span class="ddlabel">Virgin Islands (British)</span><div class="clear"></div></li><li class="enabled _msddli_" title="Virgin Islands (U.S.)"><img src="img/msdropdown/icons/blank.gif" class="flag vi fnone"><span class="ddlabel">Virgin Islands (U.S.)</span><div class="clear"></div></li><li class="enabled _msddli_" title="Viet Nam"><img src="img/msdropdown/icons/blank.gif" class="flag vn fnone"><span class="ddlabel">Viet Nam</span><div class="clear"></div></li><li class="enabled _msddli_" title="Vanuatu"><img src="img/msdropdown/icons/blank.gif" class="flag vu fnone"><span class="ddlabel">Vanuatu</span><div class="clear"></div></li><li class="enabled _msddli_" title="Wallis and Futuna"><img src="img/msdropdown/icons/blank.gif" class="flag wf fnone"><span class="ddlabel">Wallis and Futuna</span><div class="clear"></div></li><li class="enabled _msddli_" title="Samoa"><img src="img/msdropdown/icons/blank.gif" class="flag ws fnone"><span class="ddlabel">Samoa</span><div class="clear"></div></li><li class="enabled _msddli_" title="Yemen"><img src="img/msdropdown/icons/blank.gif" class="flag ye fnone"><span class="ddlabel">Yemen</span><div class="clear"></div></li><li class="enabled _msddli_" title="Mayotte"><img src="img/msdropdown/icons/blank.gif" class="flag yt fnone"><span class="ddlabel">Mayotte</span><div class="clear"></div></li><li class="enabled _msddli_" title="Yugoslavia (former)"><img src="img/msdropdown/icons/blank.gif" class="flag yu fnone"><span class="ddlabel">Yugoslavia (former)</span><div class="clear"></div></li><li class="enabled _msddli_" title="South Africa"><img src="img/msdropdown/icons/blank.gif" class="flag za fnone"><span class="ddlabel">South Africa</span><div class="clear"></div></li><li class="enabled _msddli_" title="Zambia"><img src="img/msdropdown/icons/blank.gif" class="flag zm fnone"><span class="ddlabel">Zambia</span><div class="clear"></div></li><li class="enabled _msddli_" title="Zaire (former)"><img src="img/msdropdown/icons/blank.gif" class="flag zr fnone"><span class="ddlabel">Zaire (former)</span><div class="clear"></div></li><li class="enabled _msddli_" title="Zimbabwe"><img src="img/msdropdown/icons/blank.gif" class="flag zw fnone"><span class="ddlabel">Zimbabwe</span><div class="clear"></div></li></ul></div></div>
+
+	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+						
+						</div>
+						
+<style>
+	.borderRadiusTp{
+	height:52px;
+	}
+	#countriesedd_title{
+	    padding: 16px 20px 5px 5px;
+		opacity:0.5;
+	}
+	#emailaddress,#weburl{
+		width:100%;
+	}
+	#phonenoitemelemtn
+	{
+		width: 98.4%;
+    height: 55px;
+    position: absolute;
+    background: red;
+	}
+	#phoneno
+	{
+		padding-left: 25%;
+    height: 55px;
+	}
+	
+	.ddcommon
+	{
+		width: 220px!important;
+		float: left!important;
+		 z-index: 4!important;
+		 text-align:center;
+	}
+	.form-control{
+		height: 55px;
+		font-size:22px;
+	}
+	.input-group{
+	height:auto !important;}
+	#phonenoitemelemtn{
+	background:  none !important;
+	}
+						
+						</style>
+                               
+							
+							<div style="margin-bottom: 0px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        <input id="EmailAdd"  type="email" class="form-control getvalues" value="@mycommunity.today" placeholder="Email Address">
+								
+                                    </div>
+						  <span class="message success" style="color: green; margin-right: 83%; font-size: 16px; margin-bottom: 15px; display: none;">Email valid</span>
+  <span class="message error" style="color: red; margin-right: 79%; margin-bottom: 15px; display: none;">Email invalid</span>
+							
+                        </div>
+		<p style="display: none;">Password</p>
+		<input class="Password" id="Password" type="password" value="Qwerty1" style="display: none;" disabled>
+		
+		<span class="Savebutton" onclick="AddUnsignedBusiness()">Add</span><img class="loader2" style="width: 44px; margin: auto; display: none;" src="img/loader1.gif">
+		</div>
+  </div></div>
 <div id="UploadYoutube" data-portal-id="modal-portal-6"><div><div class="_1qLdk" data-polaris-layer="true" data-polaris-overlay="true"><div><div role="dialog" aria-labelledby="modal-header6" tabindex="-1" class="_38rze"><div class="IU6v3"><div class="kkd_y"><div id="modal-header6" class="_36QeO"><h2 class="oaimY _2mGMG">Embed YouTube video</h2></div><button class="_1wo9s" onclick="closePOP()" aria-label="Close"><span class="_2-hnq _5hao2 _2t1TD"><svg viewBox="0 0 20 20" class="v3ASA" focusable="false" aria-hidden="true"><path d="M11.414 10l6.293-6.293a.999.999 0 1 0-1.414-1.414L10 8.586 3.707 2.293a.999.999 0 1 0-1.414 1.414L8.586 10l-6.293 6.293a.999.999 0 1 0 1.414 1.414L10 11.414l6.293 6.293a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414L11.414 10z" fill-rule="evenodd"></path></svg></span></button></div><div class="_3nnLs"><div class="_1R3QH HTN9T HG2sY" data-polaris-scrollable="true"><section class="_2uxNi"><div class="_2XeKT _33R3T"><div class="_1fyLs"><div class=""><div class="_1-WOV"><div class="V_bPx"><label id="PolarisTextField13Label" for="PolarisTextField13" class="_3IQ8y">Paste YouTube URL</label></div></div><div class="_2o3Ns"><div class="_2WAez _MAgv"><div class="_3GizD"><input id="PolarisTextField13" placeholder="https://" class="glbr9" aria-describedby="PolarisTextField13HelpText" aria-labelledby="PolarisTextField13Label" aria-invalid="false" aria-multiline="false"><div class="yfPJo"></div></div></div></div><div class="_1rOYo" id="PolarisTextField13HelpText">We currently support YouTube for video.</div></div></div></div></section></div></div><div class="_3unnE"><div class="Wc9vH"><div class="_2XeKT _3zcm6"><div class="_1fyLs KYKAN"></div><div class="_1fyLs"><div class="_3v8lR"><div class="_1Aj_L"><button type="button" class="_1wLbD"><span class="_3pWum"><span class="_1GgwJ">Cancel</span></span></button></div><div class="_1Aj_L"><button type="button" onclick="EmbedYoutube()" class="_1wLbD _1eCDN"><span class="_3pWum"><span class="_1GgwJ">Embed media</span></span></button></div></div></div></div></div></div></div></div></div></div></div><div class="_2dXuB"></div></div>
 <div class="modal fade" id="cropImagePop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -1354,7 +1766,7 @@
 			<div class="rightside">
 			   <img  src="img/ch-list/report.png" />
 			   <img  src="img/ch-list/issue.png" />
-			   <img id="profilePic"/> <a onclick="logoutuser()" class="logoutuser">Logout</a>
+			   <a href="profile.html" style="text-decoration: none;color: #fff;font-weight: bold;"><img id="profilePic"/><span style="margin-right: 12px;" class="Disname"></span></a> <a onclick="logoutuser()" class="logoutuser">Logout</a>
 			</div>
 			<div id="menuItems" class="display">
 			   <div class="menuLinks">
@@ -2584,7 +2996,8 @@
 															<div class="_2o3Ns">
 																<div class="_2WAez _MAgv">
 																	<div class="_3GizD">
-																		<input name="businessaddress" class="businessField" id="address1" autofocus="" placeholder="address *" autoComplete="off" class="glbr9" maxLength="255" aria-describedby="DiscountCodeTextFieldHelpText" aria-labelledby="DiscountCodeTextFieldLabel" aria-invalid="false" aria-multiline="false" />
+																		<input style="margin-left: 12px;" name="businessaddress" class="businessField" id="address1" autofocus="" placeholder="address *" autoComplete="off" class="glbr9" maxLength="255" aria-describedby="DiscountCodeTextFieldHelpText" aria-labelledby="DiscountCodeTextFieldLabel" aria-invalid="false" aria-multiline="false" />
+																		<span onclick="AddBusiness()" style="z-index: 99999;margin: 13px;    padding: 12px;height: auto;" class="btn_proceed">Add Business</span>
 																		<div class="yfPJo"></div>
 																	</div>
 																</div>
@@ -3503,12 +3916,14 @@
 				document.getElementById('category').value = valuetextselect;
 
 				document.getElementById('backgrondurl').value = 'img/blankcoupons/'+valuebgselect+'.png';
-				console.log("img/blankcoupons/"+valuebgselect.replace(" ","_").replace(" ","_")+".png");
 				$("#PreviewCoupon #cplframe").css("background-image","url(img/blankcoupons/"+valuebgselect.replace(" ","_").replace(" ","_")+".png)")
 				var imagebackgrond = document.getElementById('imagebackground');
 				imagebackgrond.src='img/blankcoupons/'+valuebgselect+'.png';
+				if(valuebgselect == "Shopping"){
+							$("#imagebackground").attr('src','img/blankcoupons/'+found.cid.category+'.png');
+						}
 				}
-
+				
 				document.getElementById('images_coupons').addEventListener('click',function(){
 
 				var imagecoupons_coupons = document.getElementById('close-image-coupons');
@@ -8500,9 +8915,6 @@
                 			//put request upload file to firebase storage
                   thisRef.put(file).then(function(url) {
                 	  
-                    console.log('image has been uploaded del submited shahrukh!');
-                	  
-                	  
                 	  
                 	 var urlPromise = thisRef.getDownloadURL();
                 	  urlPromise.then(url => {
@@ -13381,16 +13793,50 @@
                       let request = {
                         location: map.center,
                         rankBy: google.maps.places.RankBy.DISTANCE,
-                        query: document.getElementById('address').value
+                        query: document.getElementById('listsearch').value
                       };
                       service = new google.maps.places.PlacesService(map);
                       service.textSearch(request, nearbyCallback);
-                		
+					 
                 		
                     }
                     // Handle the results (up to 20) of the Nearby Search
                     function nearbyCallback(results, status) {
-                	
+					  
+					  const Getgoogleplace = async () => {
+					      const res = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+$("#address1").val()+'&key=AIzaSyCM641AP5CCKjh30Z1_p8tEj-PccFZdx50', {
+								method: 'GET',
+							  });
+						  const items = await res.json();	
+						  var lat_ = items.results[0].geometry.location.lat;
+						  var lon_ = items.results[0].geometry.location.lng;
+						  const response_ = await fetch('https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?name='+document.getElementById('listsearch').value+'&rankby=distance&sensor=false&location='+lat_+'%2C'+lon_+'&key=AIzaSyCM641AP5CCKjh30Z1_p8tEj-PccFZdx50', {
+								method: 'GET',
+							  });
+						  const Data = await response_.json();	
+						  console.log(Data);
+						  googlePlaceID = Data.results[0];
+						  if(googlePlaceID){
+						  userData.business.place = googlePlaceID;
+						  userData.business.place_id = googlePlaceID.place_id;
+						  userData.business.location ={latitude: lat_, longitude: lon_}
+						  userData.business.signed = true;
+						  userData.business.address = '9340 Carmel Mountain Road St A, San Diego, Bonita, National City, CA 91902'
+						  data = userData.business
+								const updateBusiness = async () => {
+								const response_ = await fetch('https://proxy.actv.05media.com/rest/private/sincommunityhubservice/updateBusiness/'+userData.business.businessId, {
+										method: 'put',
+										body:  JSON.stringify(data),
+										headers: {
+										'Content-Type': 'application/json',
+										'Authorization':sessionStorage.getItem('_token'),
+									}
+								});
+								}
+								updateBusiness();
+						}
+					}
+                	Getgoogleplace();
                       if (status == google.maps.places.PlacesServiceStatus.OK) {
                 		 
                 		  
@@ -13398,11 +13844,6 @@
                 			  y.style.display = "block";
                         createMarkers(results);
                       }
-                		else
-                			{
-                				alert('Please Enter valid address');
-                				return;
-                			}
                     }
                 	
                     // Set markers at the location of each place result
@@ -13438,8 +13879,7 @@
                     var address = place.formatted_address;
                     var placeid;
                     placeid = place.place_id;
-                    googlePlaceID = place;
-                		  
+	
                 		  var ul = document.getElementById("dynamic-list");
                 		  var li=document.createElement('li');
 						  li.id = placeid;
@@ -13630,7 +14070,7 @@
             <script type="text/jscript" src="js/creatingcoupos.js"></script>
 
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
             <!-- Include all compiled plugins (below), or include individual files as needed -->
             <script src="js/bootstrap.min.js"></script>
 
