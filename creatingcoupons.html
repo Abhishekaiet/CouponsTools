@@ -121,6 +121,7 @@
 	var AddBusinesslat;
 	var AddBusinesslon;
 	var AddBusinessplace;
+	var provider;
 	$( window ).resize(function() {
 	  $(".couns_search").css("height",(window.outerHeight-150))
 	});
@@ -703,7 +704,15 @@
 				  $("#myImg").attr('src',userData.business.image_logo);
 				  $("#deloutput").attr('src',userData.business.image_logo);
 				  $("#listsearch").val(userData.business.displayName);
-				  displayName = userData.business.displayName
+				  displayName = userData.business.displayName;
+				  if(displayName.indexOf('Money Mailer') > -1){
+				   provider = "MoneyMailer"
+				  } else
+				  if(displayName.indexOf('OIC') > -1){
+				   provider = "OIC"
+				  } else{
+				   provider = "MyCommunity"
+				  }
 				  $(".demoname").val(displayName);
 				  $(".demoLogo").attr('src',userData.business.image_logo)
 				   $(".deconame").each(function() {
@@ -1268,7 +1277,7 @@
 	 function AddUnsignedBusiness(){
 	 var FirstNAME = $(".businessFName").val();
 	 var LastNAME = $(".businessLName").val();
-	 var Email = $("#EmailAdd").val();
+	 var Email = $("#EmailAdd").val().toLowerCase();
 	 var password = $("#Password").val();
 	  var shopi;
 	  var business;
@@ -1302,6 +1311,7 @@
 				  });
 				  const Status = await response.status;
 				  if(Status == 201){
+				    crossIcon();
 					loginAction();
 				  }
 			}

@@ -515,12 +515,59 @@ function setCookie(name,value,days) {
 	function triggerCheckout(){
 		$("#submitdatamain").trigger("click");
 	}
+	function enableLinks() {
+			$("#Interact").css({"pointerEvents": "auto","background":"#ffffff",'border': 'none'})
+			$("#LiveStre").css({"pointerEvents": "auto","background":"#ffffff",'border': 'none'})
+			$("#TVChanne").css({"pointerEvents": "auto","background":"#ffffff",'border': 'none'})
+			$("#Entertai").css({"pointerEvents": "auto","background":"#ffffff",'border': 'none'})
+			$("#Interact").find(".pad15").css({"background":"#ffffff"})
+			$("#LiveStre").find(".pad15").css({"background":"#ffffff"})
+			$("#TVChanne").find(".pad15").css({"background":"#ffffff"})
+			$("#Entertai").find(".pad15").css({"background":"#ffffff"})
+			$("#Interact").find("#btnaddpack").html( "UPGRADE TO THIS PLAN")
+			$("#LiveStre").find("#btnaddpack").html( "UPGRADE TO THIS PLAN")
+			$("#TVChanne").find("#btnaddpack").html( "UPGRADE TO THIS PLAN")
+			$("#Entertai").find("#btnaddpack").html( "UPGRADE TO THIS PLAN")
+			$("#Interact").find("#btnaddpack").css({'background':'#F4F8FB 0% 0% no-repeat padding-box','color': '#656565'});
+			$("#LiveStre").find("#btnaddpack").css({'background':'#F4F8FB 0% 0% no-repeat padding-box','color': '#656565'});
+			$("#TVChanne").find("#btnaddpack").css({'background':'#F4F8FB 0% 0% no-repeat padding-box','color': '#656565'});
+			$("#Entertai").find("#btnaddpack").css({'background':'#F4F8FB 0% 0% no-repeat padding-box','color': '#656565'});
+	}
+	function disablelinks(){
+		$("#Interact").css({pointerEvents: "none",'border': 'none'})
+		$("#LiveStre").css({pointerEvents: "none",'border': 'none'})
+		$("#TVChanne").css({pointerEvents: "none",'border': 'none'})
+		$("#Interact").find("#btnaddpack").html("UPGRADE TO THIS PLAN");
+		$("#LiveStre").find("#btnaddpack").html("UPGRADE TO THIS PLAN");
+		$("#TVChanne").find("#btnaddpack").html("UPGRADE TO THIS PLAN");
+		$("#Interact").find("#btnaddpack").css({'background-color':'#C0C0C0','color': '#fff'});
+		$("#LiveStre").find("#btnaddpack").css({'background-color':'#C0C0C0','color': '#fff'});
+		$("#TVChanne").find("#btnaddpack").css({'background-color':'#C0C0C0','color': '#fff'});
+		$("#Entertai").css({pointerEvents: "none",'border': 'none'})
+		$("#Entertai").find("#btnaddpack").html("UPGRADE TO THIS PLAN");
+		$("#Entertai").find("#btnaddpack").css({'background-color':'#C0C0C0','color': '#fff'});
+	}
 	function AddAdditionalPack(id,price,text){
 	    var Isadded = $('#'+text+' #btnaddpack').html();
 		if(Isadded != "ADDED"){
+		$("#Interact").css('display',"block");
+		$("#LiveStre").css('display',"block");
+		$("#TVChanne").css('display',"block");
+		$("#Entertai").css('display',"block");
+		
+		enableLinks();
 	    var filt = pricingTable.filter((item) => ((item.item.indexOf("STANDARD") == -1) && (item.item.indexOf("PREMIUM") == -1) && (item.item.indexOf("ENTERPRISE") == -1)))
 		pricingTable = filt;
-		$(".selected_plan .basic_plan").html("<p>"+id +" "+ price+"</p>");
+		
+		$(".selected_plan .basic_plan").html("<p class='"+id.toLowerCase().replace("-","").replace(" ","").substring(0,6)+"'>"+id +" "+ price+"</p>");
+		if($('.selected_plan p').length >= 4){
+			$('.select_img img').attr('src','img/plans/selected_large.png');
+			$("#packagediv").css("height",(window.innerHeight-640))
+		}
+		if($('.selected_plan p').length <= 3){
+			$('.select_img img').attr('src','img/plans/selected_small.png');
+			$("#packagediv").css("height",(window.innerHeight-440))
+		}
 		//$(".selected_plan_price").html(price+' <span style="font-size:12px;"> per Month/per entity</span></p>');
 		SelectedAdditional = text;
 		selectedPacked = id;
@@ -548,6 +595,7 @@ function setCookie(name,value,days) {
 			$(".LiveChat").find(".btnaddpack").css({'background-color':'#ffffff','color': '#656565'});
 		}
 		if(id == 'ENTERPRISE PACKAGE'){
+			$('.livech').remove();
 			$("#Standardpa #btnaddpack").html("UPGRADE TO THIS PLAN");
 			$("#Premiumpa #btnaddpack").html("UPGRADE TO THIS PLAN");
 			$("#Enterprisepa #btnaddpack").html("ADDED");
@@ -561,6 +609,7 @@ function setCookie(name,value,days) {
 			});
 			var filt_ = pricingTable.filter((item) => (item.item.indexOf("Live-Chat") == -1))
 			pricingTable = filt_;
+			
 			var filt__ = packages.filter((item) => (item.indexOf("Live-Chat") == -1))
 			packages = filt__;
 			getadnilapackarray.forEach(function(addcpkid,addcpkitem){
@@ -569,6 +618,7 @@ function setCookie(name,value,days) {
 			 }
 			});
 		}
+		
 		const found = pricingTable.find(element => element.item == id);
 		var html='';
 		var html1 = '';
@@ -591,9 +641,17 @@ function setCookie(name,value,days) {
 		if(TotalAmount > 2 && TotalAmount < 3){
 			TotalAmount = 2.90;
 		}
+		var fil = pricingTable.filter((item) => ((item.item.indexOf("Registration") == -1) && (item.item.indexOf("Mobile App As A Service") == -1)));
+		pricingTable = fil;
+		pricingTable.push({item: 'Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)',price: "$5000.00"});
+		pricingTable.push({item: 'Credit Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)',price: "-$5000.00"});
+		pricingTable.push({item: "Registration Fees",price: "$2.90"});
 		pricingTable.forEach(function(item,index){
 		html += "<span class='price"+index+"' style='padding-right: 50px;'>"+item.item.toLowerCase()+"</span><span class='price"+index+"'>"+item.price+"</span>"
 		});
+		if(TotalAmount == 0){
+			TotalAmount = 2.90
+		}
 		html1 += "<span class='totalAmount' style='padding-right: 50px;'>Total</span><span class='totalAmount'>$"+TotalAmount+"</span>";
 		$(".pricingDiv").html(html+"<hr><hr>"+html1);
 		getlistfromadd();
@@ -613,10 +671,23 @@ function setCookie(name,value,days) {
 		},3000)
 		packages.filter((a, b) => packages.indexOf(a) === b)
 		} else {
+		    if(id == 'ENTERPRISE PACKAGE'){
+				$("#LiveChat").css({"pointerEvents": "auto",'border': 'none'});
+				$("#LiveChat").find("#btnaddpack").css({'background-color':'#ffffff','color': '#656565'});
+			}
+			$('.'+id.toLowerCase().replace("-","").replace(" ","").substring(0,6)).remove();
+			if($('.selected_plan p').length >= 4){
+				$('.select_img img').attr('src','img/plans/selected_large.png');
+				$("#packagediv").css("height",(window.innerHeight-640))
+			}
+			if($('.selected_plan p').length <= 3){
+				$('.select_img img').attr('src','img/plans/selected_small.png');
+				$("#packagediv").css("height",(window.innerHeight-440))
+			}
 		    $("#"+text+" #btnaddpack").html("UPGRADE TO THIS PLAN");
 			var filt = pricingTable.filter((item) => ((item.item.indexOf("STANDARD") == -1) && (item.item.indexOf("PREMIUM") == -1) && (item.item.indexOf("ENTERPRISE") == -1)))
 			pricingTable = filt;
-			$(".selected_plan .basic_plan").html("<p>"+id +" "+ price+"</p>");
+			//$(".selected_plan .basic_plan").html("<p class='"+id.toLowerCase().replace("-","").replace(" ","").substring(0,5)+"'>"+id +" "+ price+"</p>");
 			//$(".selected_plan_price").html(price+' <span style="font-size:12px;"> per Month/per entity</span></p>');
 			SelectedAdditional = text;
 			selectedPacked = id;
@@ -627,6 +698,52 @@ function setCookie(name,value,days) {
 			packages = filtered_;
 			var html ="";
 			var html1 ="";
+			var isbasic = false;
+			
+			packages.forEach(function(item,index){
+				if(item.indexOf('Standard') > -1 || item.indexOf('Premium') > -1 || item.indexOf('Enterprise') > -1){
+					isbasic = true;
+				}
+			});
+			
+			if(!isbasic){
+				var fil = pricingTable.filter((item) => ((item.item.indexOf("Mobile App As A Service") == -1) && (item.item.indexOf("Interactivity") == -1) && (item.item.indexOf("Live Stream") == -1) && (item.item.indexOf("TV Channel") == -1) && (item.item.indexOf("Entertainment") == -1)));
+				pricingTable = fil;
+				var pack = packages.filter((item) => ((item.indexOf("Interactivity") == -1) && (item.indexOf("Live Stream") == -1) && (item.indexOf("TV Channel") == -1) && (item.indexOf("Entertainment") == -1)));
+				packages = pack;
+				$('.tvchan').remove();
+				$('.entert').remove();
+				$('.intera').remove();
+				$('.livest').remove();
+				getadnilapackarray.forEach(function(addcpkid,addcpkitem){
+				 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjY2MjcyNw=='){
+					getadnilapackarray.splice(addcpkitem,1);
+				 }
+				 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjY5NTQ5NQ=='){
+					getadnilapackarray.splice(addcpkitem,1);
+				 }
+				 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjcyODI2Mw=='){
+					getadnilapackarray.splice(addcpkitem,1);
+				 }
+				 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjQ5ODg4Nw=='){
+					getadnilapackarray.splice(addcpkitem,1);
+				 }
+				});
+			}
+			if(isbasic){
+				enableLinks();
+			} else{
+				disablelinks();
+			}
+			if(!isbasic){
+				var fil = pricingTable.filter((item) => ((item.item.indexOf("Mobile App As A Service") == -1)));
+				pricingTable = fil;
+				if(packages.length == 0){
+				var fill = pricingTable.filter((item) => ((item.item.indexOf("Registration") == -1 )));
+				pricingTable = fill;
+				TotalAmount = 0.00;
+				}
+			}
 			pricingTable.forEach(function(item,index){
 				html += "<span class='price"+index+"' style='padding-right: 50px;'>"+item.item.toLowerCase()+"</span><span class='price"+index+"'>"+item.price+"</span>"
 				});
@@ -805,7 +922,7 @@ xhr.addEventListener("readystatechange", function () {
   "firstname": fname,
   "lastname": lname,
   "roles": [
-    "Admin"
+    "User"
   ],
   "phoneNumber": phoneno
 });
@@ -1140,7 +1257,7 @@ xhr.addEventListener("readystatechange", function () {
   "firstname": fname,
   "lastname": lname,
   "roles": [
-    "Admin"
+    "User"
   ],
   "phoneNumber": phoneno
 });
@@ -1479,7 +1596,7 @@ xhr.send(data);
 	  <div class="col-sm-3" style="margin: 0px; padding: 0px;">
 		  <div class="leftmenu">
 			  
-			  <div style="position:relative"><img style="margin: auto;display: block;" src="img/plans/selected_small.png" >
+			  <div style="position:relative" class="select_img"><img style="margin: auto;display: block;" src="img/plans/selected_small.png" >
 			  <span class="selectedtext"><p style="width: 166px;">Selected Plan</p></span>
 			  <span class="selectedplan"><span class="selected_plan"><span class="basic_plan"></span></span><span class="selected_plan_price"></span>
 			  </span>
@@ -1576,7 +1693,7 @@ xhr.send(data);
 			  
 		  </div>
 			  </div>
-		 <div class="col-sm-6" align="center">
+		 <div class="col-sm-6" align="center" style="margin-top: 35px;">
 	 
 	<div id="maindivscrable">
 			<div id="div1obj"> 
@@ -3891,13 +4008,9 @@ authorized representatives as of the date set forth below.</p>
 
 
 <!-- Modal -->
-  
-
-
-
 
 	  </div>
-	 <div class="col-sm-3" style="background-color:#fff;">
+	 <div class="col-sm-3" style="background-color:#fff; margin-top: 35px;">
 			 <div class="pricingDiv"></div>
 			 <button onclick="triggerCheckout()" class="checkout">CHECKOUT</button>
 			</div>
@@ -4044,7 +4157,7 @@ input[type=number] {
 	}
 	.price0{
 	    padding-right: 50px;
-		font-size: 21px !important;
+		font-size: 18px !important;
 		font-weight: bold;
 		text-transform: capitalize;
 	}
@@ -4208,33 +4321,25 @@ var test = JSON.parse(sessionStorage.getItem("packages"));
 		  function SelectPackage(name,price) {
 			selectedPacked = name;
 			pricingTable = [];
-			pricingTable.push({item: name,price: price});
+			//pricingTable.push({item: name,price: price});
 			if(name.indexOf("DIGITAL") == -1 && name.indexOf("WEBSITE") == -1 ){
-				pricingTable.push({item: "Credit "+name+" (Waived For 6 Month)",price: '-'+price});
 				pricingTable.push({item: 'Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)',price: "$5000.00"});
 				pricingTable.push({item: 'Credit Mobile App As A Service (MAAS) Non-Recurring Engineering (NRE)',price: "-$5000.00"});
 			}
 			pricingTable.push({item: "Registration Fees",price: "$2.90"});
 			document.getElementById("mobileApp").style.display="block";
 			document.getElementById("Plan_Selection").style.display="none";
+			
 			if(name.indexOf("STANDARD") > -1 || name.indexOf("PREMIUM") > -1 || name.indexOf("ENTERPRISE") > -1){
 				$(".selected_plan .basic_plan").append("<p>"+name +' '+ price+"</p>");
 			} else {
-				$(".selected_plan").append("<p>"+name +' '+ price+"</p>");
+				$(".selected_plan").append("<p class='"+name.toLowerCase().replace("-","").replace(" ","").substring(0,6)+"'>"+name +' '+ price+"</p>");
 			}
 			var html = "";
 			var html1 = "";
 			
 			TotalAmount = 2.90;
-			if(name.indexOf("DIGITAL") > -1){
-				getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjUzMTY1NQ==");
-			}
-			if(name.indexOf("WEBSITE") > -1){
-				getadnilapackarray.push("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjc5Mzc5OQ==");
-			}
-			if(name.indexOf("DIGITAL") > -1 || name.indexOf("WEBSITE") > -1 ){
-				TotalAmount = (TotalAmount+parseInt(price.replace('$','')));
-			}
+		
 			if(TotalAmount > 2 && TotalAmount < 3){
 				TotalAmount = 2.9;
 			}
@@ -4245,6 +4350,23 @@ var test = JSON.parse(sessionStorage.getItem("packages"));
 			$(".pricingDiv").html(html+"<hr><hr>"+html1);
 			//$(".selected_plan_price").html(price+ "<span style='font-size:12px;'> per Month/per entity</span>");
 			getlistfromadd();
+			setTimeout(function(){ 
+			if(selectedPacked == 'STANDARD PACKAGE'){
+				$("#Standardpa #btnaddpack").trigger('click');
+			}
+			if(selectedPacked == 'PREMIUM PACKAGE'){
+				$("#Premiumpa #btnaddpack").trigger('click');
+			}
+			if(selectedPacked == 'ENTERPRISE PACKAGE'){
+				$("#Enterprisepa #btnaddpack").trigger('click');
+			}
+			if(selectedPacked == "DIGITAL MARKETING PACKAGE"){
+				$("#DigitalM #btnaddpack").trigger('click');
+			}
+			if(selectedPacked == "WEBSITE DEVELOPMENT AND MANAGEMENT PACKAGE"){
+				$("#WebsiteD #btnaddpack").trigger('click');
+			}
+			},2600);
 		  };
 		  function loaddata()
 		  {
@@ -4792,7 +4914,7 @@ validationCustom02.add(defaultOption122);
 							 li.setAttribute("id", item12.title.replace("-","").replace(" ","").substring(0, 8));
 							 
 							 ul.appendChild(li);
-							 getadnilapackarray = [];
+							 //getadnilapackarray = [];
 							 
 
 							 var lkkl = "Digital Marketing Package";
@@ -4863,21 +4985,6 @@ validationCustom02.add(defaultOption122);
 //									 console.log(x[index12].innerText);
 								 }
 							    
-								if(selectedPacked == 'STANDARD PACKAGE'){
-									$("#Standardpa #btnaddpack").trigger('click');
-								}
-								if(selectedPacked == 'PREMIUM PACKAGE'){
-									$("#Premiumpa #btnaddpack").trigger('click');
-								}
-								if(selectedPacked == 'ENTERPRISE PACKAGE'){
-									$("#Enterprisepa #btnaddpack").trigger('click');
-								}
-								if(selectedPacked == "DIGITAL MARKETING PACKAGE"){
-									$("#DigitalM #btnaddpack").trigger('click');
-								}
-								if(selectedPacked == "WEBSITE DEVELOPMENT AND MANAGEMENT PACKAGE"){
-									$("#WebsiteD #btnaddpack").trigger('click');
-								}
 							    $("#TVChanne").appendTo("#packagediv");
 								$("#LiveStre").appendTo("#packagediv");
 								$("#Interact").appendTo("#packagediv");
@@ -4904,19 +5011,20 @@ validationCustom02.add(defaultOption122);
 							 
 							 function getpackage()
 							 {
-								 
+								 if(TotalAmount == 0){
+									 TotalAmount = 2.9;
+								 }
 								 var justcheckfor;
 								    justcheckfor = "Interactivity Creation & Management Package";
 								 
 					 var titlemain;
-				     packages.push(item12.title.replace("Package","").trim());	 
 					if(item12.title == item12.title){
-						const found = pricingTable.find(element => element.item == item12.title);
+						const found = pricingTable.find(element => element.item.toLowerCase() == item12.title.toLowerCase());
 						var html='';
 						var html1 = '';
 						var filtered;
 						if(found != undefined){
-							filtered = pricingTable.filter((item) => item.item !== item12.title)
+							filtered = pricingTable.filter((item) => item.item.toLowerCase() !== item12.title.toLowerCase())
 							filtered = filtered.filter((item) => item.item !== "Credit "+item12.title+" (Waived For 6 Month)")
 						}
 						if(filtered != undefined){
@@ -4924,12 +5032,16 @@ validationCustom02.add(defaultOption122);
 						}
 						
 						if(found == undefined){
+						    var fi = pricingTable.filter((item) => item.item !== "Registration Fees");
+							pricingTable = fi;
 							pricingTable.push({item: item12.title,price: (item12.variants[0].compareAtPrice != null ? item12.variants[0].compareAtPrice : item12.variants[0].price)});
 						}
 						if(item12.title.indexOf("Live-Chat") == -1 && item12.title.indexOf("Digital") == -1 && item12.title.indexOf("Website") == -1 && (found == undefined)){
 							pricingTable.push({item: "Credit "+item12.title+" (Waived For 6 Month)",price: '-$'+(item12.variants[0].compareAtPrice != null ? item12.variants[0].compareAtPrice : item12.variants[0].price)});
 						} 
-						
+						if(found == undefined){
+							pricingTable.push({item: 'Registration Fees',price: '$2.90'});
+						}
 						if((item12.title.indexOf("Live-Chat") > -1 || item12.title.indexOf("Digital") > -1 || item12.title.indexOf("Website") > -1) && (found == undefined)){
 							TotalAmount = (TotalAmount+parseInt(item12.variants[0].price));
 						} 
@@ -4940,10 +5052,15 @@ validationCustom02.add(defaultOption122);
 						if(TotalAmount > 2 && TotalAmount < 3){
 							TotalAmount = 2.9;
 						}
+						
+						if(pricingTable.length == 1){
+							pricingTable = [];
+							TotalAmount = 0;
+						}
 						pricingTable.forEach(function(item,index){
 						html += "<span class='price"+index+"' style='padding-right: 50px;'>"+item.item.toLowerCase()+"</span><span class='price"+index+"'>"+item.price+"</span>"
 						});
-						html1 += "<span class='totalAmount' style='padding-right: 50px;'>Total</span><span class='totalAmount'>$"+TotalAmount+"</span>";
+						html1 += "<span class='totalAmount' style='padding-right: 50px;'>Total</span><span class='totalAmount'>$"+TotalAmount.toFixed(2)+"</span>";
 						$(".pricingDiv").html(html+"<hr><hr>"+html1);
 						titlemain = item12.title;
 						gettochwithvales = "Entertainment Package";
@@ -4964,18 +5081,58 @@ validationCustom02.add(defaultOption122);
 						 }
 						});
 						if(!Added){
-						    //$(".selected_plan").append("<p class='"+item12.title.replace("-","").replace(" ","").substring(0,5)+"'>"+item12.title +' $'+ (item12.variants[0].compareAtPrice != null ? item12.variants[0].compareAtPrice : item12.variants[0].price)+"</p>");
+							var ss = packages.filter((item) => item !== item12.title.replace('Package','').trim());
+							packages = ss;
+						    packages.push(item12.title.replace("Package","").trim());
+							var basic = false;
+							packages.forEach(function(item,index){
+								if(item.indexOf('Standard') > -1 || item.indexOf('Premium') > -1 || item.indexOf('Enterprise') > -1){
+									basic = true;
+								}
+							});
+							if(!basic){
+								var fil = pricingTable.filter((item) => ((item.item.indexOf("Mobile App As A Service") == -1) && (item.item.indexOf("Interactivity") == -1) && (item.item.indexOf("Live Stream") == -1) && (item.item.indexOf("TV Channel") == -1) && (item.item.indexOf("Entertainment") == -1)));
+								pricingTable = fil;
+								var pack = packages.filter((item) => ((item.indexOf("Interactivity") == -1) && (item.indexOf("Live Stream") == -1) && (item.indexOf("TV Channel") == -1) && (item.indexOf("Entertainment") == -1)));
+								packages = pack;
+								$('.tvchan').remove();
+								$('.entert').remove();
+								$('.intera').remove();
+								$('.livest').remove();
+								getadnilapackarray.forEach(function(addcpkid,addcpkitem){
+								 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjY2MjcyNw=='){
+									getadnilapackarray.splice(addcpkitem,1);
+								 }
+								 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjY5NTQ5NQ=='){
+									getadnilapackarray.splice(addcpkitem,1);
+								 }
+								 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjcyODI2Mw=='){
+									getadnilapackarray.splice(addcpkitem,1);
+								 }
+								 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjQ5ODg4Nw=='){
+									getadnilapackarray.splice(addcpkitem,1);
+								 }
+								});
+							}
+							if(basic){
+								enableLinks();
+							} else{
+								disablelinks();
+							}
+						    $('.'+item12.title.toLowerCase().replace("-","").replace(" ","").substring(0,6)).remove();
+						    $(".selected_plan").append("<p class='"+item12.title.toLowerCase().replace("-","").replace(" ","").substring(0,6)+"'>"+item12.title +' $'+ (item12.variants[0].compareAtPrice != null ? item12.variants[0].compareAtPrice : item12.variants[0].price)+"</p>");
+							if($('.selected_plan p').length >= 4){
+								$('.select_img img').attr('src','img/plans/selected_large.png');
+								$("#packagediv").css("height",(window.innerHeight-640))
+							}
+							if($('.selected_plan p').length <= 3){
+								$('.select_img img').attr('src','img/plans/selected_small.png');
+								$("#packagediv").css("height",(window.innerHeight-440))
+							}
 							$("."+id).find("#btnaddpack").html("ADDED");
 							var x = $("#"+id).find("#btnaddpack");
 							x.html("ADDED");
 							if(item12.title == "Entertainment Package"){
-								var newArray = []
-								getadnilapackarray.forEach(function(addcpkid,addcpkitem){
-								if(addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2Mjg1MTg5OTUyNQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjQ0NDc1NzEyNQ==" || addcpkid == "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjQ2MjQ1MzQ0MDY0NQ=="){
-									newArray.push(addcpkid);
-								}
-								});
-								getadnilapackarray = newArray;
 								$("#Interact").css({pointerEvents: "none",'border': 'none'})
 								$("#LiveStre").css({pointerEvents: "none",'border': 'none'})
 								$("#TVChanne").css({pointerEvents: "none",'border': 'none'})
@@ -4988,7 +5145,52 @@ validationCustom02.add(defaultOption122);
 							}
 							getadnilapackarray.push(item12.variants[0].id);
 						} else {
-						    //$('.'+item12.title.replace("-","").replace(" ","").substring(0,5)).remove();
+						    if($('.selected_plan p').length >= 4){
+								$('.select_img img').attr('src','img/plans/selected_large.png');
+								$("#packagediv").css("height",(window.innerHeight-640))
+							}
+							if($('.selected_plan p').length <= 3){
+								$('.select_img img').attr('src','img/plans/selected_small.png');
+								$("#packagediv").css("height",(window.innerHeight-440))
+							}
+							var ss = packages.filter((item) => item !== item12.title.replace('Package','').trim());
+							packages = ss;
+							var basic = false;
+							packages.forEach(function(item,index){
+								if(item.indexOf('Standard') > -1 || item.indexOf('Premium') > -1 || item.indexOf('Enterprise') > -1){
+									basic = true;
+								}
+							});
+							if(!basic){
+								var fil = pricingTable.filter((item) => ((item.item.indexOf("Mobile App As A Service") == -1) && (item.item.indexOf("Interactivity") == -1) && (item.item.indexOf("Live Stream") == -1) && (item.item.indexOf("TV Channel") == -1) && (item.item.indexOf("Entertainment") == -1)));
+								pricingTable = fil;
+								var pack = packages.filter((item) => ((item.indexOf("Interactivity") == -1) && (item.indexOf("Live Stream") == -1) && (item.indexOf("TV Channel") == -1) && (item.indexOf("Entertainment") == -1)));
+								packages = pack;
+								$('.tvchan').remove();
+								$('.entert').remove();
+								$('.intera').remove();
+								$('.livest').remove();
+								getadnilapackarray.forEach(function(addcpkid,addcpkitem){
+								 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjY2MjcyNw=='){
+									getadnilapackarray.splice(addcpkitem,1);
+								 }
+								 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjY5NTQ5NQ=='){
+									getadnilapackarray.splice(addcpkitem,1);
+								 }
+								 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjcyODI2Mw=='){
+									getadnilapackarray.splice(addcpkitem,1);
+								 }
+								 if(addcpkid == 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjIyOTAyMjQ5ODg4Nw=='){
+									getadnilapackarray.splice(addcpkitem,1);
+								 }
+								});
+							}
+							if(basic){
+								enableLinks();
+							} else{
+								disablelinks();
+							}
+						    $('.'+item12.title.toLowerCase().replace("-","").replace(" ","").substring(0,6)).remove();
 							var id = item12.title.replace("-","").replace(" ","").substring(0, 8);
 							$("#"+id).css({"border":"2px solid #ececec"});
 							var x = document.getElementById("packagediv").querySelectorAll("#btnaddpack");
@@ -8512,20 +8714,52 @@ data();
   background: #ececec; 
   border-radius: 10px;
 }
+@media (max-width: 1395px) {
+ .col-sm-6,.col-sm-3{
+  width:100% !important;
+ }
+ .leftmenu{
+	position:initial;
+	margin: auto;
+	none: none;
+	border: none;
+	box-shadow: none;
+ }
+ #packagediv{
+	position:inherit;
+ }
+ #phoneno {
+    padding-left: 260px  !important;
+ }
+ .pricingDiv{
+	 display: inline-grid;
+ }
 
-@media (max-width: 1821px) and (min-width: 1366px) {
+}
+@media (max-width: 750px) {
+ .rightside{
+	margin-top: -29px;
+ }
+ .navbar-brand img{
+  width:35%;
+ }
+}
+@media (max-width: 1821px) and (min-width: 1398px) {
 			.checkout{
 			  width: 264px
 			}
-			.leftmenu img{
-			  width: 247px;
-			}
+			 #phoneno {
+    padding-left: 37% !important;
+ }
 			.leftmenu{
-				width:25%;
+			width:25%;
 			}
 			.selectedtext{
 				left: 32%;
 				top: 18%;
+			}
+			.select_img img{
+				    width: 338px;
 			}
 			.selectedplan{
 				left:24%;

@@ -1614,6 +1614,7 @@ function openMenu(x) {
 								},
 								"isPromoted": false,
 								"priority": null,
+								"provider": provider
 							}
 							console.log(JSON.stringify(body));
 						const response_ = await fetch('https://proxy.actv.05media.com/rest/private/sincommunityhubservice/addCoupon', {
@@ -1632,7 +1633,7 @@ function openMenu(x) {
 								"code": code,
 								"description": description,
 								"expiryDate": "10/03/2020",
-								"id": PRID,
+								"id": PRID+Math.floor((Math.random() * 9999) + 999),
 								"image": Images,
 								"imagelogo": $("#myImg").attr("src"),
 								"name": name,
@@ -1647,6 +1648,7 @@ function openMenu(x) {
 								},
 								"isPromoted": false,
 								"priority": null,
+								"provider": provider
 							}
 							 const response_1 = await fetch('https://proxy.actv.05media.com/rest/private/sincommunityhubservice/addCoupon', {
 								method: 'POST',

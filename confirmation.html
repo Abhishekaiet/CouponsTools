@@ -1,0 +1,178 @@
+<html>
+<head>
+<style>
+.header {
+    padding: 25px;
+    text-align: center;
+    background: rgb(255, 255, 255);
+    /* color: red; */
+    font-size: 20px;
+    box-shadow: 1px 4px 1px rgb(240, 241, 241);
+}
+
+.headerlogo {
+    height: 32px;
+    float: left;
+    margin-top: -17px;
+}
+.main{
+    position: absolute;
+    left: 45%;
+    top: 30%;
+    font-size: 25px;
+	    color: gray;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		}
+		return null;
+	}
+	function setCookie(name,value,days) {
+					var expires = "";
+					if (days) {
+						var date = new Date();
+						date.setTime(date.getTime() + (days*24*60*60*1000));
+						expires = "; expires=" + date.toUTCString();
+					}
+					document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+				}
+  $(document).ready(function() {
+	 var id = new URLSearchParams(window.location.search).get('id');
+	 var array = id.split('/');
+	 var tokenid = array[array.length-1];
+	 var status = true;
+	 var shopi;
+	 var business;
+	 if(tokenid){
+		shopi = {
+			apiKey: "18292eb8ffa883a10e3bd4c977a7c23c",
+			apiPassword: "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",
+			baseDomain: "store-mycommunity-today.myshopify.com",
+			storeFrontToken: "4572810d32f5bea20704701dda15265d",
+		}
+		$(".thankyou").html("Thank You "+getCookie('fname'));
+		business = {
+			  "shopifyCredentials": shopi,
+			  "tabs": ["Home", "Menu","Catering","Events","Media","Video","Coupons","Deals"],
+			  "category": "Services", 
+			  "businessType":null,
+			  "businessId" : getCookie('sinid'),
+			  "promoted": true, 
+			  "banner": true,
+			  "avatarUrl": null,
+			  "description": null,
+			  "displayName": getCookie('fname')+' '+getCookie('lname'),
+			  "image_logo": null,
+			  "address": getCookie("address"),
+			  "telephone": getCookie("pnoneno"),
+			  "location": {
+				  "latitude": 32.818932,
+				  "longitude": -117.177648
+			  },
+			  "bannerList": []
+			}
+		
+		const CreateBusiness = async () => {
+			  const response_ = await fetch('https://proxy.actv.05media.com/rest/private/sincommunityhubservice/addBusiness', {
+					method: 'POST',
+					body:  JSON.stringify(business),
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization':  getCookie("checkoutid"),
+					}
+				  });
+			  const Data = await response_.json();
+			  GetpaymentList();
+		}
+		if(!sessionStorage.getItem('update')){
+			CreateBusiness();
+		}
+		let userDataAction = async () => {
+		          var split = sessionStorage.getItem('package').split(',');
+				  var pack = [];
+				  split.forEach(function(item121,index121){
+					pack.push(item121);
+				  });
+				  var objToSubmit = {  
+						businessPackages: pack,
+				  }
+				  const response = await fetch('https://proxy.actv.05media.com/services/v1/profiles', {
+						method: 'PUT',
+						body:  JSON.stringify(objToSubmit),
+						headers: {
+						  'Accept': 'application/json',
+						  'Authorization':  sessionStorage.getItem('_token'),
+						  'Content-Type': 'application/json'
+						}
+					  });
+					  const userData = await response.json();
+					   $(".confirm").css("display","BLOCK");
+						$(".loader").css("display","none")
+					
+				}	
+				if(sessionStorage.getItem('update')){
+					userDataAction();
+					window.sessionStorage.removeItem("update");
+				}
+		const GetpaymentList = async () => {
+			  const response_ = await fetch('https://cors-anywhere.herokuapp.com/https://store-mycommunity-today.myshopify.com/admin/api/2020-04/checkouts/'+tokenid+'/payments.json', {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization':'Basic MTgyOTJlYjhmZmE4ODNhMTBlM2JkNGM5NzdhN2MyM2M6c2hwcGFfOGE1NTdmMTc4OTNjYjQ1YmQyZWRkZmYxOTk3NDZiNjU=',
+					}
+				  });
+			  const Data = await response_.json();
+			  status = Data.status;
+		}
+	 }
+	 if(!sessionStorage.getItem('update')){
+	 if(getCookie("checkoutid") && status){
+		 var objToSubmit = {
+			businessUser: true,
+			shopifyCredentials: shopi
+		}	 
+		
+		let userDataAction = async () => {
+			const response = await fetch('https://proxy.actv.05media.com/services/v1/profiles', {
+				method: 'PUT',
+				body:  JSON.stringify(objToSubmit),
+				headers: {
+				  'Accept': 'application/json',
+				  'Authorization':  getCookie("checkoutid"),
+				  'Content-Type': 'application/json'
+				}
+			  });
+			  const userData = await response.json();
+			  $(".confirm").css("display","BLOCK");
+			  $(".loader").css("display","none")
+			}	
+			userDataAction();
+		}
+		}
+  });
+
+</script>
+</head>
+<body style="text-align: center;">
+<header class="header">
+        <img class="headerlogo" src="login/image/header_logo.png">
+    </header>
+	<div class="main">
+		<div class="loader"><img style="width: 100px;" src="img/loader1.gif" /><br>Processing your payment</div>
+		<div class="confirm" STYLE="display:none;">
+		 <p class="thankyou">Thank You</p> <br>
+		 Your payment is successful. <br>
+		 <a style="color: deepskyblue;text-decoration: none;" href="profile.html">Continue</a>
+		</div>
+	</div>
+</body>
+</html>
