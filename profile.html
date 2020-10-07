@@ -421,6 +421,7 @@ var calc = "";
 var packages = [];
 var pack = sessionStorage.getItem('package');
 var currentPacks;
+var triggered = false;
  function crossIcon() {
 	$(".modal_").css('display',"none");
  };
@@ -496,28 +497,7 @@ var currentPacks;
   return result;
 }
  $(document).ready(function() {
-	var cart = localStorage.getItem(sessionStorage.getItem('sinid').replace('sin',''));
-	setTimeout(function(){
-		if(cart){
-			var cartitems = cart.split(',');
-			$('.numberitems').html(cartitems.length);
-			cartitems.forEach(function(item121,index121){
-			  if(item121.indexOf("Standard") > -1 || item121.indexOf("Premium") > -1 || item121.indexOf("Enterprise") > -1){
-					$('#'+item121+"pa #btnaddpack").trigger('click');
-			  }
-			  $('#'+item121.replace("-","").replace(" ","").substring(0, 8)+ " #btnaddpack").trigger('click');
-			  if(item121.indexOf('Added') > -1){
-				var arr = item121.split("_");
-				var arr1 = arr[1].split('-');
-				$('.businessNo').val(arr1[0]);
-				showpercentage();
-				$('#percentsvalues').val(arr1[1].replace('%',''));
-				SavePercentage();
-			  }
-			});
-		}
-	},2000);
-	 $(".Disname").html(sessionStorage.getItem('fname')+" "+sessionStorage.getItem('lname'));
+	 $(".Disname").html(getCookie('fname')+" "+getCookie('lname'));
 	const token = sessionStorage.getItem('_token');
 	  if(!token){
 		window.location.href = "login.html";
@@ -922,7 +902,7 @@ console.log(input.lineItems);
 				  }
 				  sessionStorage.setItem('package', packages);
 				  sessionStorage.setItem('update', 1);
-				  localStorage.setItem(sessionStorage.getItem('sinid').replace('sin',''),'')
+				  localStorage.clear();
 				  console.log(checkout);
 					window.location.replace(checkout.webUrl);
 					console.log(checkout);
@@ -978,6 +958,7 @@ console.log(input.lineItems);
 				client.collection.fetchAllWithProducts({productsFirst:30}).then((collections) => {
 				console.log(collections);
 				collections.forEach(function(item121,index121){
+				     
 					 var ul = document.getElementById("packagediv");
 					 $(".loader1").css("display","none");
 					  if (percentage_variable==item121.title)
@@ -1186,6 +1167,30 @@ console.log(input.lineItems);
 									$(".Interact").css({'display': "none"});
 								}
 							 
+							    if(!triggered){ 
+									triggered = true;
+									 var cart = localStorage.getItem(sessionStorage.getItem('sinid').replace('sin',''));
+									setTimeout(function(){
+										if(cart){
+											var cartitems = cart.split(',');
+											$('.numberitems').html(cartitems.length);
+											cartitems.forEach(function(item121,index121){
+											  if(item121.indexOf("Standard") > -1 || item121.indexOf("Premium") > -1 || item121.indexOf("Enterprise") > -1){
+													$('#'+item121+"pa #btnaddpack").trigger('click');
+											  }
+											  $('#'+item121.replace("-","").replace(" ","").substring(0, 8)+ " #btnaddpack").trigger('click');
+											  if(item121.indexOf('Added') > -1){
+												var arr = item121.split("_");
+												var arr1 = arr[1].split('-');
+												$('.businessNo').val((parseInt(arr1[0])+1));
+												showpercentage();
+												$('#percentsvalues').val(arr1[1].replace('%',''));
+												SavePercentage();
+											  }
+											});
+										}
+									},500);
+								}
 		     li.addEventListener('click',getpackage);
 							 
 							
@@ -1663,9 +1668,6 @@ for(var h = 0; h < getadnilapackarray.length; h++) {
 
 		                conttake = "0%";
 					 conttake1 = "0%";
-					 document.getElementById('prcingpageservices2').style.display="none";
-					 
-					 
 				 }
 			  
 			  

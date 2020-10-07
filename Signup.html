@@ -22,20 +22,41 @@
 	var isaddedpack = false;
 	var SelectedAdditional = "";
 	var packages = [];
+	var triggered = false;
+	var cart;
 	$( window ).resize(function() {
 	  $("#packagediv").css("height",(window.innerHeight-440))
 	});
 	$(document).ready(function() {
+	if(sessionStorage.getItem('sinid')){
+	cart = localStorage.getItem(sessionStorage.getItem('sinid').replace('sin',''));
+	}
+	$(".Disname").html(getCookie('fname')+" "+getCookie('lname'));
 	$("#packagediv").css("height",(window.innerHeight-440))
-		if(getCookie('LoginEmail') && getCookie('Password')){
+		if(getCookie('LoginEmail') && getCookie('Password') && getCookie('fname')){
 			$(".rightside").css("display","block");
 			document.getElementById("logi_signupselector").style.display="none";
-			document.getElementById("Plan_Selection").style.display="block"
+			if(cart){
+				pricingTable.push({item: "Registration Fees",price: "$2.90"});
+				document.getElementById("mobileApp").style.display="block";
+				$(".Disname").html(getCookie('fname')+" "+getCookie('lname'));
+				$('.rightside').css('display',"block");
+				document.getElementById("Plan_Selection").style.display="none";
+				getlistfromadd();
+			}else{
+				document.getElementById("Plan_Selection").style.display="block"
+			}
 			document.getElementById("maindivscrable").style.display="block";
 			document.getElementById('continuesingup').style.display="none";
 			$("#emailaddress").val(getCookie('LoginEmail'));
 			$("#login-username").val(sessionStorage.getItem('SignFName'));
 			$("#login-userlastname").val(sessionStorage.getItem('SignLName'));
+		}else {
+			setCookie('LoginEmail','',-1)
+			setCookie('Password','',-1)
+			setCookie('fname','',-1)
+			setCookie('lname','',-1);
+			document.getElementById("logi_signupselector").style.display="block";
 		}
 		var defaultprofilePic="icons/img_avatar.png";
 		$("#profilePic").attr('src',defaultprofilePic);
@@ -202,6 +223,20 @@
 			font-size: 25px;
 			padding: 23px 37px;
 		}
+		.numberitems{
+	    color: #fff;
+		background: red;
+		width: 23px;
+		height: 22px;
+		border-radius: 50%;
+		display: inline-block;
+		text-align: center;
+		font-size: 16px;
+		right: -11px;
+		top: -16px;
+		position: absolute;
+		cursor:pointer;
+	}
     </style>
 <!--	  end here the validating the numbers-->
 	  
@@ -235,7 +270,9 @@
     left: 2%;
     position: absolute;"></a>
     </div>
-	<div class="rightside" style="display:none"><img id="profilePic"/> <a onclick="logoutuser()" class="logoutuser">Logout</a></div>
+	<div class="rightside" style="display:none">
+	<span style="position:relative;margin-right:20px;"><img style="width: 39px;" src="img/shopping_cart.png" /><span class="numberitems">0</span></span>
+	<a><span class="Disname"></span><img id="profilePic"/></a> <a onclick="logoutuser()" class="logoutuser">Logout</a></div>
   </div><!-- /.container-fluid -->
 </nav>
 	  
@@ -476,6 +513,9 @@ url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg");
 
 		
 <script>
+function showCustom(){
+	$("#CustomPackages").toggle();
+}
 function setCookie(name,value,days) {
 					var expires = "";
 					if (days) {
@@ -502,6 +542,7 @@ function setCookie(name,value,days) {
 	function logoutuser(){
 			window.sessionStorage.removeItem("_token");
 			setCookie("Password",'',-1);
+			sessionStorage.clear();
 			window.location.href = "login.html";
 		}
 	function TriggerAddBtn(id){
@@ -547,6 +588,48 @@ function setCookie(name,value,days) {
 		$("#Entertai").find("#btnaddpack").html("UPGRADE TO THIS PLAN");
 		$("#Entertai").find("#btnaddpack").css({'background-color':'#C0C0C0','color': '#fff'});
 	}
+	function AddCustom(name,price,vid,id){
+		var IsAdded = $('#'+id+' #btnaddpack').html();
+		var html = ""
+		var html1 = ""
+		if(IsAdded != "ADDED"){
+		    $(".selected_plan").append("<p class='"+name.toLowerCase().replace("-","").replace(" ","").substring(0,6)+"'>"+name +' '+ price+"</p>");
+			$('#'+id+' #btnaddpack').html('ADDED');
+			pricingTable.push({item: name,price: price});
+			pricingTable.forEach(function(item,index){
+			html += "<span class='price"+index+"' style='padding-right: 50px;'>"+item.item.toLowerCase()+"</span><span class='price"+index+"'>"+item.price+"</span>"
+			});
+			if(TotalAmount == 0){
+				TotalAmount = 2.90
+			}
+			TotalAmount = (TotalAmount+parseInt(price));
+			html1 += "<span class='totalAmount' style='padding-right: 50px;'>Total</span><span class='totalAmount'>$"+TotalAmount+"</span>";
+			$(".pricingDiv").html(html+"<hr><hr>"+html1);
+			packages.push(name.replace('Package',''));
+			getadnilapackarray.push(vid);
+		} else {
+		    $('.'+name.toLowerCase().replace("-","").replace(" ","").substring(0,6)).remove();
+			$('#'+id+' #btnaddpack').html('ADD TO YOUR PLAN');
+			 var filt = pricingTable.filter((item) => ((item.item != name)));
+			 pricingTable = filt;
+			 pricingTable.forEach(function(item,index){
+			html += "<span class='price"+index+"' style='padding-right: 50px;'>"+item.item.toLowerCase()+"</span><span class='price"+index+"'>"+item.price+"</span>"
+			});
+			if(TotalAmount == 0){
+				TotalAmount = 2.90
+			}
+			TotalAmount = (TotalAmount-parseInt(price));
+			html1 += "<span class='totalAmount' style='padding-right: 50px;'>Total</span><span class='totalAmount'>$"+TotalAmount+"</span>";
+			$(".pricingDiv").html(html+"<hr><hr>"+html1);
+			var fil = packages.filter((item) => ((item != name)));
+			 packages = fil;
+			 getadnilapackarray.forEach(function(addcpkid,addcpkitem){
+			 if(addcpkid == vid){
+				getadnilapackarray.splice(addcpkitem,1);
+			 }
+			});
+		}
+	}
 	function AddAdditionalPack(id,price,text){
 	    var Isadded = $('#'+text+' #btnaddpack').html();
 		if(Isadded != "ADDED"){
@@ -576,6 +659,15 @@ function setCookie(name,value,days) {
 		filtered_ = filtered_.filter((item) => item.indexOf("Enterprise") == -1);
 		filtered_ = filtered_.filter((item) => item.indexOf("Standard") == -1);
 		packages = filtered_;
+		if(cart){
+		var cartitems = cart.split(',');
+		filtered_ = cartitems.filter((item) => item.indexOf("Premium") == -1);
+		filtered_ = filtered_.filter((item) => item.indexOf("Enterprise") == -1);
+		filtered_ = filtered_.filter((item) => item.indexOf("Standard") == -1);
+		cartitems = filtered_;
+		localStorage.setItem(sessionStorage.getItem('sinid').replace('sin',''),cartitems);
+		cart = localStorage.getItem(sessionStorage.getItem('sinid').replace('sin',''));
+		}
 		if(id == 'STANDARD PACKAGE'){
 			$("#Standardpa #btnaddpack").html("ADDED");
 			$("#Premiumpa #btnaddpack").html("UPGRADE TO THIS PLAN");
@@ -1237,6 +1329,10 @@ xhr.addEventListener("readystatechange", function () {
 			setCookie('Password', password,1);
 			sessionStorage.setItem('SignFName', fname);
 			sessionStorage.setItem('SignLName', lname);
+			sessionStorage.setItem('fname', fname);
+			sessionStorage.setItem('lname', lname);
+			setCookie('fname', fname,1);	
+			setCookie('lname', lname,1);	
 		    document.getElementById("login-username").value = fname
 			document.getElementById("login-userlastname").value = lname
 			document.getElementById("emailaddress").value = email;
@@ -1614,6 +1710,23 @@ xhr.send(data);
 				#packagediv #Standardpa{
 					background: transparent linear-gradient(90deg, #219441 0%, #1A6831 100%) 0% 0% no-repeat padding-box !important;
 					border-radius:12px;
+				}
+				#packagediv #Custompa{
+				  background-color: #00B6FF !important;
+				  position: relative;
+				  color:#fff !important;
+				  border-radius:12px;
+				}
+				#packagediv .Custompa{
+				  background-color: #FFF !important;
+				  position: relative;
+				  color:#fff !important;
+				  border-radius:12px;
+				  border:1px solid gray;
+				}
+				#CustomPackages{
+				 background-color:#fff;
+				 display:none;
 				}
 				#packagediv #Premiumpa{
 					background: transparent linear-gradient(90deg, #C21B21 0%, #A51B20 100%) 0% 0% no-repeat padding-box !important;
@@ -4328,6 +4441,8 @@ var test = JSON.parse(sessionStorage.getItem("packages"));
 			}
 			pricingTable.push({item: "Registration Fees",price: "$2.90"});
 			document.getElementById("mobileApp").style.display="block";
+			$(".Disname").html(getCookie('fname')+" "+getCookie('lname'));
+			$('.rightside').css('display',"block");
 			document.getElementById("Plan_Selection").style.display="none";
 			
 			if(name.indexOf("STANDARD") > -1 || name.indexOf("PREMIUM") > -1 || name.indexOf("ENTERPRISE") > -1){
@@ -4350,23 +4465,6 @@ var test = JSON.parse(sessionStorage.getItem("packages"));
 			$(".pricingDiv").html(html+"<hr><hr>"+html1);
 			//$(".selected_plan_price").html(price+ "<span style='font-size:12px;'> per Month/per entity</span>");
 			getlistfromadd();
-			setTimeout(function(){ 
-			if(selectedPacked == 'STANDARD PACKAGE'){
-				$("#Standardpa #btnaddpack").trigger('click');
-			}
-			if(selectedPacked == 'PREMIUM PACKAGE'){
-				$("#Premiumpa #btnaddpack").trigger('click');
-			}
-			if(selectedPacked == 'ENTERPRISE PACKAGE'){
-				$("#Enterprisepa #btnaddpack").trigger('click');
-			}
-			if(selectedPacked == "DIGITAL MARKETING PACKAGE"){
-				$("#DigitalM #btnaddpack").trigger('click');
-			}
-			if(selectedPacked == "WEBSITE DEVELOPMENT AND MANAGEMENT PACKAGE"){
-				$("#WebsiteD #btnaddpack").trigger('click');
-			}
-			},2600);
 		  };
 		  function loaddata()
 		  {
@@ -4816,8 +4914,10 @@ validationCustom02.add(defaultOption122);
 				  if(selectedPacked.indexOf("WEBSITE") > -1){
 					packages.push('Website Development and Management');
 				  }
-
-				
+					if(sessionStorage.getItem('sinid')){
+					localStorage.setItem(sessionStorage.getItem('sinid').replace('sin',''),packages);
+					}
+				  $('.numberitems').html(packages.length);
 				  collections[0].products.forEach(function(item,index){
 				
 				
@@ -4847,6 +4947,11 @@ validationCustom02.add(defaultOption122);
 						
 				});
 				if(!packageadded) {
+				 var li4 = document.createElement('li');
+				 li4.innerHTML=  '<div onclick="showCustom()" class=""><p onclick="'+h+'" style="color:#fff" class="lead Standardpa">Custom Package</p><i style="position: absolute;left: 40px;bottom: 21px;font-size: 36px;color: #fff" class="fa fa-angle-down"></i></div><div id="CustomPackages"></div>'
+				 li4.setAttribute("id", 'Custompa');
+				 var ul1 = document.getElementById("packagediv");
+				 ul1.appendChild(li4);
 				 var li1 = document.createElement('li');
 				  var h = "OpenPOP('Enterprisepa')";
 				  var buttonText = "ADD TO YOUR PLAN";
@@ -4884,7 +4989,17 @@ validationCustom02.add(defaultOption122);
 						ul.appendChild(li3);
 				}
 			  collections.forEach(function(item121,index121){
-
+                  if(item121.title == "Custom Package" && !triggered){
+					item121.products.forEach(function(item12,index12){	
+						var li4 = document.createElement('li');
+						var onclick = "AddCustom('"+item12.title+"','"+item12.variants[0].price+"','"+item12.variants[0].id+"','"+item12.title.replace("-","").replace(" ","").substring(0, 8)+"')"
+						 li4.setAttribute("id", item12.title.replace("-","").replace(" ","").substring(0, 8));
+						 li4.innerHTML='<div class=""><p class="lead '+item12.title.replace(" ","").substring(0, 10)+'">'+item12.title+'</p><div class="listdetails">'+item12.descriptionHtml.replace('<br>','')+'</div><span onclick="'+onclick+'" id="btnaddpack">ADD TO YOUR PLAN</span><p class="pricingtitle121">$'+(item12.variants[0].compareAtPrice != null ? item12.variants[0].compareAtPrice : item12.variants[0].price) +'<br><span style="font-size:12px;">per Month/per entity</span></p></p></div>';
+						 li4.setAttribute("class", 'Custompa');
+						 var ul1 = document.getElementById("CustomPackages");
+						 ul1.appendChild(li4);
+					});
+				  }
 				  if ("Service Charge"==item121.title)
 					  {
 						 
@@ -4991,6 +5106,7 @@ validationCustom02.add(defaultOption122);
 								$("#WebsiteD").prependTo("#packagediv");
 								$("#DigitalM").prependTo("#packagediv");
 								$("#LiveChat").prependTo("#packagediv");
+								$("#Custompa").appendTo("#packagediv");
 								if(selectedPacked == "ENTERPRISE PACKAGE"){
 									$("#LiveChat").css({pointerEvents: "none",'border': 'none'});
 									$(".LiveChat").css({pointerEvents: "none",'border': 'none'});
@@ -5005,6 +5121,50 @@ validationCustom02.add(defaultOption122);
 									$("#LiveStre").css("display","none");
 									$("#Interact").css("display","none");
 								 }
+								 
+								 setTimeout(function(){
+								 if(!triggered){
+								        triggered = true;
+										
+									    if(selectedPacked == 'STANDARD PACKAGE'){
+											$("#Standardpa #btnaddpack").trigger('click');
+										}
+										if(selectedPacked == 'PREMIUM PACKAGE'){
+											$("#Premiumpa #btnaddpack").trigger('click');
+										}
+										if(selectedPacked == 'ENTERPRISE PACKAGE'){
+											$("#Enterprisepa #btnaddpack").trigger('click');
+										}
+										if(selectedPacked == "DIGITAL MARKETING PACKAGE"){
+											$("#DigitalM #btnaddpack").trigger('click');
+										}
+										if(selectedPacked == "WEBSITE DEVELOPMENT AND MANAGEMENT PACKAGE"){
+											$("#WebsiteD #btnaddpack").trigger('click');
+										}
+									}
+								},500);
+										setTimeout(function(){
+											if(cart){
+												var cartitems = cart.split(',');
+												$('.numberitems').html(cartitems.length);
+												cartitems.forEach(function(item121,index121){
+												  if(selectedPacked.toLowerCase().replace('package','').trim() != item121.toLowerCase()){
+												  if(item121.indexOf("Standard") > -1 || item121.indexOf("Premium") > -1 || item121.indexOf("Enterprise") > -1){
+														$('#'+item121+"pa #btnaddpack").trigger('click');
+												  }
+												  $('#'+item121.replace("-","").replace(" ","").substring(0, 8)+ " #btnaddpack").trigger('click');
+												  if(item121.indexOf('Added') > -1){
+													var arr = item121.split("_");
+													var arr1 = arr[1].split('-');
+													$('.businessNo').val((parseInt(arr1[0])+1));
+													showpercentage();
+													$('#percentsvalues').val(arr1[1].replace('%',''));
+													SavePercentage();
+												  }
+												  }
+												});
+											}
+										},1000);
 		     li.addEventListener('click',getpackage);
 							 
 							
@@ -5090,6 +5250,7 @@ validationCustom02.add(defaultOption122);
 									basic = true;
 								}
 							});
+							
 							if(!basic){
 								var fil = pricingTable.filter((item) => ((item.item.indexOf("Mobile App As A Service") == -1) && (item.item.indexOf("Interactivity") == -1) && (item.item.indexOf("Live Stream") == -1) && (item.item.indexOf("TV Channel") == -1) && (item.item.indexOf("Entertainment") == -1)));
 								pricingTable = fil;
@@ -5119,6 +5280,8 @@ validationCustom02.add(defaultOption122);
 							} else{
 								disablelinks();
 							}
+							localStorage.setItem(sessionStorage.getItem('sinid').replace('sin',''),packages);
+							$('.numberitems').html(packages.length);
 						    $('.'+item12.title.toLowerCase().replace("-","").replace(" ","").substring(0,6)).remove();
 						    $(".selected_plan").append("<p class='"+item12.title.toLowerCase().replace("-","").replace(" ","").substring(0,6)+"'>"+item12.title +' $'+ (item12.variants[0].compareAtPrice != null ? item12.variants[0].compareAtPrice : item12.variants[0].price)+"</p>");
 							if($('.selected_plan p').length >= 4){
@@ -5185,6 +5348,8 @@ validationCustom02.add(defaultOption122);
 								 }
 								});
 							}
+							localStorage.setItem(sessionStorage.getItem('sinid').replace('sin',''),packages);
+							$('.numberitems').html(packages.length);
 							if(basic){
 								enableLinks();
 							} else{
@@ -5710,6 +5875,7 @@ console.log(input.lineItems);
 			  function myFunction() {	  
 				console.log(checkout);
 				setCookie('checkoutid',sessionStorage.getItem('checkout'),1);
+				localStorage.clear();
 				if (discountavailed=="")
 				  {
 					  setCookie('Password', '',-1);
@@ -8172,7 +8338,7 @@ var dateandtime = day + "/" + month + "/" + year + " " + hruse +":"+ minut+":"+s
 			
 			console.log(place);
 			
-			document.getElementById('pac-input').value = place.name;
+			//document.getElementById('pac-input').value = place.name;
 			
 
           // If the place has a geometry, then present it on a map.
@@ -8311,7 +8477,7 @@ data();
           }
 			
 
-			document.getElementById('pac-input').value = place.name;
+			//document.getElementById('pac-input').value = place.name;
 			  
           // If the place has a geometry, then present it on a map.
           if (place.geometry.viewport) {
